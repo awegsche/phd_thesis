@@ -1,0 +1,180 @@
+\chapter{Introduction}
+
+\KOMAoptions{headsepline=true}
+\lohead{\leftmark}
+\rehead{\rightmark}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\begin{chapterinfo}
+    This chapter is a general introduction to accelerator physics.
+    The goal of this introduction is to collect all the necessary tools that are needed to develop
+    the methods and algorithms presented in the main part of this thesis.
+    Therefore we need a sound understanding of linear beam optics, 
+    $\beta$~function, phase, coupling and chromaticity.
+    Only a brief summary of the vast field of accelerator physics can be given in the scope of this
+    thesis. The interested reader may consult some of the great introductory works of the field, e.g.
+    \cite{WolskiBook}.
+
+    Also the normal form approach shall be introduced here as it is needed to calculate optics
+    parameters from Hamiltonian terms in chapter~\ref{ch_localobs}.
+
+\end{chapterinfo}
+
+\section{Beam Optics}
+
+aaa: fi rf ct sf
+
+Charged particle beams in an accelerator can be bent, focused, defocused and can be subject to effects
+like dispersion and chromaticity very much like light beams. Therefore the term \emph{optics} is
+generally used to describe the movement and behaviour of particle beams around the accelerator.
+
+Important optics parameters are described in this section like $\beta$~function, betatron phase and
+transverse coupling.
+The discription is limited to single particle dynamics. Effects of the particles on each other are
+neglected for the sake of the studies in this thesis.
+
+\subsection{Linear Beam Dynamics}
+
+Linear beam dynamics studies the effect of linear electromagnetic fields on the particles.
+Thus, primarily only drift spaces, bending magnets and (de)focusing magnets are considered.
+In this case only Lorentz force acts on the particles\footnote{Of course also other forces like gravity
+act on the particle. But those are negligible.}:
+
+\begin{equation}
+    \vec{F} = q\left(\vec{E} + \vec{v} \times \vec{B}\right)
+    \fstop
+    \label{eq_lorentz_force}
+\end{equation}
+
+A dipole with a constant magnetic field $B_y$ bends the particles trajectory into an arc of radius $\rho$
+
+\begin{equation}
+    \rho = \frac{p}{qB_y}
+    \fstop
+    \label{eq_acc_radius}
+\end{equation}
+
+It is useful to describe the motion in a circular accelerator in a co-moving reference frame as
+depictet in \figref{fig_frenet_serret} where the cartesian coordinates $\{x', y', z'\}$ are
+transformed into a system $\{x,y,s\}$ with the properties:
+
+\begin{align}
+    \hat{s} &\parallel \text{design orbit}\notag\\
+    \hat{y} &= \hat{y}'\notag\\
+    \hat{x} &= \hat{y} \times \hat{s}
+\end{align}
+
+
+\begin{figure}[h]
+    \tdplotsetmaincoords{70}{110}
+    \centering
+    \begin{tikzpicture} [scale=3, tdplot_main_coords, axis/.style={->,black,thick}, 
+        vector/.style={-stealth,red,very thick}, 
+        vector guide/.style={dashed,CLRemph1,thick}]
+
+        %standard tikz coordinate definition using x, y, z coords
+        \coordinate (O) at (0,0,0);
+
+        %tikz-3dplot coordinate definition using x, y, z coords
+
+        \pgfmathsetmacro{\as}{0}
+        \pgfmathsetmacro{\ax}{.75}
+        \pgfmathsetmacro{\ay}{.5}
+
+        \coordinate (P) at (\as,\ax,\ay);
+        \coordinate (SA) at (2,-2.,0);
+
+        \draw[thick, gray, ->] (0,-2.5,0) -- (0,-0.05,0) node[pos=2/3,above,sloped]{\small bending radius $\rho$};
+        \draw[thick,dashed, gray] (SA) arc (0:120:2.);
+        \node[above right, color = gray] at (SA){\small design orbit};
+
+        %draw axes
+        \draw[axis] (0,0,0) -- (1,0,0) node[anchor=north east]{$\hat{s}$};
+        \draw[axis] (0,0,0) -- (0,1,0) node[anchor=west]{$\hat{x}$};
+        \draw[axis] (0,0,0) -- (0,0,1) node[anchor=south]{$\hat{y}$};
+
+        %draw a vector from O to P
+        %\begin{scope}[canvas is zy plane at x=0]
+
+        \draw[vector guide] (\as,\ax,0) -- (P);
+        \draw[vector guide]         (P) -- (0,0,\ay);
+
+        \filldraw[gray!70!black, fill=gray!50!white] (O) circle (0.05cm);
+        \filldraw[CLRemph1!70!black, fill=CLRemph1!50!white] (P) circle (0.05cm);
+        %\end{scope}
+
+        %draw guide lines to components
+        % \draw[vector guide]         (O) -- (\ax,\ay,0);
+        % \draw[vector guide] (\ax,\ay,0) -- (0,\ay,0);
+        % \draw[vector guide] (\ax,\ay,0) -- (0,\ay,0);
+        % \draw[vector guide] (\ax,\ay,0) -- (\ax,0,0);
+        \node[above right,CLRemph1] at (P){\small particle};
+        \node[right, gray, above right] at ($(O) + (0,0.1,0)$) {\small reference};
+        \node[below,sloped,CLRemph1] at (0,\ax,0){\small $x(s)$};
+        \node[left,sloped,CLRemph1] at (0,0,\ay){\small $y(s)$};
+
+    \end{tikzpicture}
+    \caption{
+        The Frenet-Serret coordinate system which is moving along the design orbit of particles
+        in the accelerator.
+    }
+    \label{fig_frenet_serret}
+\end{figure}
+
+In this coordinate system the motion of a particle in a circular accelerator is described by Hill's
+differential equation:
+
+\begin{equation}
+    \frac{\der^2 \vec{q}}{\der s^2} + k(s)\vec{q} = 0
+    %\fstop
+    \label{eq_hills}
+\end{equation}
+
+where $\vec{q} = (x,y)^T$ is the transverse coordinate and $k(s)$ is the linear magnet strength at
+position $s$.
+
+
+
+
+
+\section{Resonance driving terms}
+
+In order to derive optics parameters from Hamiltonian terms the normal form approach -- classically
+used to describe non-linear optics -- is useful. 
+
+The transfer map of a general (non-linear) element is given by
+\begin{equation}
+    M= \e{:H_w(s):}R
+\end{equation}
+where $R$ is the simple rotation of linear components and the Hamiltonian term $H_w(s)$ is given by
+\begin{equation}
+    H_w(s) = \sum\limits_n\sum\limits_{jklm} h_{w,jklm}\expi{(j-k)\phi_{w,x}}
+\end{equation}
+
+\begin{equation}
+    f_{jklm}=\sum\limits_{n}\sum\limits_{j+k+l+m=n} \frac{h_{jklm} }{1-\e{2\pi i [(j-k)Q_x+(l-m)Q_y]}}
+\end{equation}
+
+
+\section{Forced motion}
+
+\section{The Large Hadron Collider}
+
+The Large Hadron Collider is the world's largest particle accelerator with the highest center of mass
+energy per charge unit. It has a circumference of $\SI{27}{km}$ and is situated at the French-Swiss 
+border near Geneva. The top energy for protons is $\SI{7}{TeV}$
+and in the lead ion run of 2018 a beam energy of $\SI{6.37}{Z TeV}$ was achieved.
+
+The particles pass through various pre-accelerators where they are accelerated in steps before being
+injected in the LHC at $\SI{450}{GeV}$. The complete accelerator complex at CERN is sketched in
+\figref{fig_cern_acc_cmplx}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{CCC-v2019-final-white_small}
+    \caption{CERN has various accelerators and decelerators. H$^-$ ions are pre-accelerated
+    in LINAC2 (LINAC4 in the future) and passed to PSBooster, PS, SPS and finally injected into
+    the LHC. Image credit: \cite{CERN_AccCmplx}}
+    \label{fig_cern_acc_cmplx}
+\end{figure}

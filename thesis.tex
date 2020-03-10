@@ -1,0 +1,150 @@
+\documentclass[titlepage]{scrbook}
+
+\usepackage{amsmath}
+\usepackage[paper=a4paper, margin=2cm, top=5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{siunitx}
+
+\usepackage{unicode-math}
+\usepackage{fontspec}
+\usepackage[
+    headsepline=1pt:\linewidth,
+    %footsepline=1pt:\linewidth
+]{scrlayer-scrpage}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{titlesec}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[
+    pdfencoding=auto,
+    psdextra,
+    colorlinks=true
+]{hyperref}
+\usepackage[format=hang, labelfont=bf, font=small]{caption}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots}
+\usepackage{standalone}
+\pgfplotsset{compat=1.16}
+
+
+% debug
+\usepackage{lipsum}
+
+% --------------------------------------------------------------------------------------------------
+% fonts
+% --------------------------------------------------------------------------------------------------
+\setmainfont{STIX Two Text}[RawFeature={+liga}]
+\setmathfont{STIX Two Math}
+\setsansfont{TeX Gyre Heros}
+
+% fix phi, why do they use the ugly print face phi as standard?
+\AtBeginDocument{
+    \let\phi\varphi
+}
+
+% --------------------------------------------------------------------------------------------------
+% page layout
+% --------------------------------------------------------------------------------------------------
+\clearscrheadfoot
+\addtokomafont{pagenumber}{\oldstylenums}
+\KOMAoptions{headsepline=false}
+
+\definecolor{headfootsepcolor}{RGB}{200,200,200}
+\addtokomafont{headsepline}{\color{headfootsepcolor}}
+
+\ohead[\pagemark]{\pagemark}
+
+% --------------------------------------------------------------------------------------------------
+% sectioning
+% --------------------------------------------------------------------------------------------------
+\titleformat{\chapter}[frame]
+{\normalfont\thispagestyle{empty}\addfontfeatures{Letters=SmallCaps}}
+{\filright \hspace{1em} CHAPTER \thechapter \hspace{1em}}
+{8pt}
+{\Huge\bfseries\filcenter}
+
+\titleformat{\section}
+{\normalfont}
+{\filright\huge \bfseries \thesection \hspace{1em}}
+{8pt}
+{\huge\bfseries}
+
+\titleformat{\subsection}
+{\normalfont}
+{\filright\large \bfseries \thesubsection \hspace{1em}}
+{8pt}
+{\large\bfseries}
+
+\newenvironment{chapterinfo}
+{
+    \hspace{1cm}\begin{minipage}{\dimexpr\textwidth-2cm}%
+    \small%
+    \itshape\parindent1em
+}{
+    \end{minipage}%
+    \normalfont%
+    \normalsize
+}
+
+% --------------------------------------------------------------------------------------------------
+% my definitions
+% --------------------------------------------------------------------------------------------------
+\newcommand{\fstop}{\quad .}
+\renewcommand{\eqref}[1]{Eq.~(\ref{#1})}
+\newcommand{\equationref}[1]{Equation~(\ref{#1})}
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\figureref}[1]{Figure~\ref{#1}}
+
+\newcommand{\der}{\text{d}}
+\newcommand{\e}[1]{\text{e}^{#1}}
+\newcommand{\expi}[1]{\text{e}^{i\left(#1\right)}}
+
+% --------------------------------------------------------------------------------------------------
+% colors
+% --------------------------------------------------------------------------------------------------
+
+\definecolor{CLRsub1}{RGB}{128, 128, 128}
+\definecolor{CLRemph1}{RGB}{88, 110, 225}
+\definecolor{CLRemph2}{RGB}{220, 160, 108}
+
+% --------------------------------------------------------------------------------------------------
+% DOCUMENT
+% --------------------------------------------------------------------------------------------------
+\author{Andreas Wegscheider}
+\title{Development of optics measurement methods for circular accelerators}
+
+\begin{document}
+
+\input{debugpages}
+
+% --------------------------------------------------------------------------------------------------
+% Title Page
+% --------------------------------------------------------------------------------------------------
+\input{titlepages}
+
+
+% --------------------------------------------------------------------------------------------------
+% Frontmatter
+% --------------------------------------------------------------------------------------------------
+\parindent0pt
+\parskip0.5em
+
+\input{acknowledgments}
+
+% --------------------------------------------------------------------------------------------------
+% Content
+% --------------------------------------------------------------------------------------------------
+%\markpage{\addfontfeature{Numbers=OldStyle}\thepage\addfontfeature{Numbers=Lining}}
+\input{introduction}
+
+\input{a_nbpm}
+
+\input{localobs}
+
+\input{coupling}
+
+\bibliography{literature}
+\bibliographystyle{prab}
+    
+\end{document}

@@ -21,9 +21,31 @@
 
 \end{chapterinfo}
 
-\section{Beam Optics}
+\section{A word on notation}
 
-aaa: fi rf ct sf
+Accelerator physics is a field, for sure not the only one, with notoriously bad notation and conventions.
+In multiple cases the same symbol is used to describe two or more completely different quantities.
+Keeping the notation of a work like this PhD thesis consistent is not an easy task on its own. Less so
+in the given situation.
+Therefore this little prolog serves in guiding the reader through the notations and conventions adopted
+throughout this thesis.
+
+\textbf{Planes} We describe the motion of the particles and beams in the regime of \emph{transverse beam dynamics} with
+two transverse planes $x$ and $y$.
+So we have to distinguish optical functions and variables by plane: $x, y, \beta_x, \alpha_x, \phi_x$.
+
+Most of the time however it is of no importance in which plane the equations
+are expressed or we work for an extended period in the same plane.
+In those cases, the index denoting the plane will be dropped. 
+
+\textbf{Vectors} are denoted by an italic letter with an arrow above. Phase space \textbf{coordinates} are
+usually denoted by lowercase latin letters ($\vec{x}, \vec{v}, \vec{p}$) with the exception of normal form coordinates
+which are greek lowarcase letters ($\vec{\zeta}, \vec{\xi}$). \textbf{Fields} are denoted by capital
+latin letters ($\vec{E}, \vec{B}$).
+
+\textbf{Matrices} are denoted by bold face letters, usually capital latin $\mat{M}, \mat{V}$.
+
+\section{Beam Optics}
 
 Charged particle beams in an accelerator can be bent, focused, defocused and can be subject to effects
 like dispersion and chromaticity very much like light beams. Therefore the term \emph{optics} is
@@ -126,16 +148,43 @@ In this coordinate system the motion of a particle in a circular accelerator is 
 differential equation:
 
 \begin{equation}
-    \frac{\der^2 \vec{q}}{\der s^2} + k(s)\vec{q} = 0
+    \frac{\der^2 q}{\der s^2} + k(s)q = 0
     %\fstop
     \label{eq_hills}
 \end{equation}
 
-where $\vec{q} = (x,y)^T$ is the transverse coordinate and $k(s)$ is the linear magnet strength at
+where $q \in \{x,y\}$ is the transverse coordinate and $k(s)$ is the linear magnet strength at
 position $s$.
 
+A solution that satisfies \eqref{eq_hills} is
 
+\begin{equation}
+    q(s) = A_q(s) \cos\left(\phi_q(s) + \phi_{q,0} \right)
+    \label{eq_betatron_osc}
+\end{equation}
+where the $s$-dependent amplitude of the oscillation can be split:
+\begin{equation}
+    A_q(s) = \sqrt{2I_q \beta_q(s)}
+    \fstop
+    \label{eq_betatron_ampl}
+\end{equation}
+$\beta_q(s)$ is the $s$-dependent part of the amplitude, called $\beta$~function. $\beta(s)$ and 
+$\phi(s)$ are periodic with the circumference of the ring $C$.
 
+$\phi(s)$ is called the \emph{betatron phase} and satisfies the following property:
+
+\begin{equation}
+    \phi(s_1) - \phi(s_0) = \int\limits_{s_0}^{s_1} \frac{1}{\beta(s)}\der s
+    \fstop
+    \label{eq_phase}
+\end{equation}
+
+For convenience later we introduce the following short-hand notation:
+
+\begin{equation}
+    \phi_{q,ab} = \phi_q(s_b) - \phi_q(s_a)
+\end{equation}
+which is the \emph{phase advance} between position $s_a$ and $s_b$.
 
 
 \section{Resonance driving terms}

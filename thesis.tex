@@ -20,12 +20,14 @@
     psdextra,
     colorlinks=true
 ]{hyperref}
-\usepackage[format=hang, labelfont=bf, font=small]{caption}
+\usepackage[format=plain,labelfont=bf, font=small]{caption}
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
+\usetikzlibrary{patterns}
 \usepackage{pgfplots}
 \usepackage{standalone}
 \pgfplotsset{compat=1.16}
+\usepackage{wrapfig}
 
 
 % debug
@@ -99,6 +101,8 @@
 \newcommand{\der}{\text{d}}
 \newcommand{\e}[1]{\text{e}^{#1}}
 \newcommand{\expi}[1]{\text{e}^{i\left(#1\right)}}
+\newcommand{\m}{^\text{m}}
+\newcommand{\mat}[1]{\mathbf{#1}}
 
 % --------------------------------------------------------------------------------------------------
 % colors

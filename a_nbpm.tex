@@ -17,9 +17,11 @@ detail the improvements made by the \emph{analytical N-BPM method}.
 
 \section{$\beta$~function measurement from turn-by-turn data}
 
+\subsection{Three BPM method}
+
 The classical method to measure the $\beta$~function in hadron machines is the \emph{Three BPM Method}
-where we can make use of the transfer matrix element \eqref{eq_transfermatrix_beta_alpha}. By equating
-the model and real transfer matrix elements we can infer the $\beta$~function from measured phase
+where the transfer matrix element \eqref{eq_transfermatrix_beta_alpha} can be used. By equating
+the model and real transfer matrix elements the $\beta$~function can be infered from measured phase
 and model values:
 \begin{align}
     \frac{1}{\beta_i} \left( \cot\phi_{ij} + \alpha_i\right)
@@ -35,77 +37,500 @@ Subtracting \eqref{eq_transfm13} from \eqref{eq_transfm12} and solving for $\bet
     \label{eq_three_bpm}
     \fstop
 \end{equation}
-This equation has two shortcomings: it assumes that the actual $\beta$~beating is very low and it
+
+With this method one can use the phase advance between three BPMs $i,j,k$ to calculate the $\beta$~function
+of the probed BPM $i$. It is a model dependent approach, the greater the difference between the model
+and the real accelerator the less accurate will be the result. A good knowledge of the actual accelerator
+is crucial for this approach to work.
+
+\equationref{eq_three_bpm} has been developped for LEP and it has been used for optics measurements in LEP
+and LHC during run I.
+But it has two shortcomings: it assumes that the actual $\beta$~beating is very low and it
 diverges for phase advances close to $n\pi$, $n \in \mathbb{N}$. The latter makes measurements at
 exact $n\pi$ phase advances impossible and strongly enhances phase measurement errors near $n\pi$.
-Unfortunately especially in the IR phase advances are close to 0 and precise $\beta$~function measurements
+Unfortunately especially in the IR phase advances are very small and precise $\beta$~function measurements
 are not feasible.
 
+\begin{wrapfigure}{O}[\figborderhang]{6cm}
+    \centering
+    \includestandalone{figThreeBPM} 
+    \caption{A sketch of the three BPM method. The probed BPM is shown in blue. For LHC arcs the
+    combination with the probed BPM in the center is the most stable against phase measurement errors.}
+    \label{fig_threebpm}
+\end{wrapfigure}
 
-\section{Original N-BPM method}
+\figureref{fig_threebpm} displays a sketch of the Three BPM Method. The probed BPM is shown in blue,
+BPMs $j$ and $k$ are shown in red.
+Classically the arithmetic mean of all three adjacent cases -- as shown in the figure -- were used.
 
-To avoid cases with unsuitable phase advances and to improve statistics, BPMs can be skipped and more combinations
-can be used and averaged over with appropriate weights.
-The N-BPM method was developped \cite{AndyNBPM, AndyThesis} to implement this feature.
-\figureref{fig_three_nbpm} illustrates the principle. The Three BPM method takes three adjacent BPMs
-for the calculation of the $\beta$~function. In any case there is at least one very unsuitable phase
-advance involved. This renders the method unusable for LHC interaction regions.
+
+In LHC arcs where the phase advance between adjacent BPMs is around
+$\SI{45}{\degree}$ the combination with the probed BPM in the center yields almost optimal results
+since the perturbation from phase measurement errors is small for the occurring phase advances.
+The two other cases shown in \figref{fig_threebpm} on the other hand include the 
+phase advance $\phi_{13} = \SI{90}{\degree}$ which is less optimal.
+
+In LHC interaction regions the phase advance between consecutive BPMs does not follow the same constraints
+as in the arc and values different from $\SI{45}{\degree}$ may appear. In the final focus quadrupoles
+the $\beta$~function peaks are very high to deliver a strong focusing of the beams in the interaction
+point. This yields a very small phase advance in this area, rendering a $\beta$ measurement from phase
+impossible. At the same time a high precision of $\beta$~beating is necessary to control $\betastar$ and
+to optimise the aperture.
+
+\subsection{Original N-BPM method}
+
+To avoid cases with unsuitable phase advances or to get the optimal phase advances, BPMs can be
+skipped. For an LHC arc a combination as shown in \figref{fig_skip_one_BPM} can be used for the non-center
+cases of the Three BPM method in order to have the least uncertainties in all three combinations.
+
+A second tool that can be applied to reduce uncertainty is averaging over more combinations which
+improves statistics and reduces statistical uncertainties.
+Unfortunately, systematic errors increase
+as more and more BPMs are skipped because of the presence of other elements with their imperfections in between the
+BPMs.
+In order to further improve the precision the information about statistical and systematic
+uncertainties can be used to calculate a weighted mean. 
+
+\begin{align}
+    \beta(s_i) = \sum\limits_{l} \beta_l(s_i) g_l
+    \label{eq_beta_wmean}\\
+    \beta_l(s_i) = \frac{\cot\phi_{ij_l} - \cot\phi_{ik_l}}{\cot\phi_{ij_l}\m - \cot\phi_{ik}l} \beta(s_i)\m
+    \label{eq_beta_l}
+\end{align}
+with the weights $g_l$ satisfying
+$%\begin{equation}
+    \sum\limits_l g_l = 1
+$%\end{equation}
+and $j_l,\,k_l$ pairs of BPMs around the probed BPM.
+
+
+\begin{wrapfigure}{O}[\figborderhang]{7cm}
+    \centering
+    \includestandalone{figSkipOneBpm}
+    \caption{In the LHC arcs skipping one BPM for the non-center cases of the Three BPM Method
+    is of advantage since the phase advance $\phi_{14}$
+    is more suitable regarding error propagation.}
+    \label{fig_skip_one_BPM}
+\end{wrapfigure}
+
+Furthermore the $\beta$~function values calculated from different combinations are not statistically
+independent and correlation has to be taken into account when calculating the weights.
+The N-BPM method \cite{AndyNBPM, AndyThesis} was developped to implement this feature.
+It was successfully used in the LHC during run II and for the re-analysis of run I data
+as well as in the storage rings of ALBA and ESRF.
+
+The name originates in the fact that the BPMs $i$, $j_l$ and $k_l$ are taken in a range of $N$ BPMs.
+This generates $n = (N-2)(N-1)/2$ combinations.
+
+
+\subsection{A take on generalised least squares}
+
+To get the correct estimate for the weights $g_l$ the study of some statistics is in order.
+The weights can be determined using a least-squares optimisation. The weighted mean \eqref{eq_beta_wmean}
+can be rewritten in vector notation:
+
+\begin{align}
+    \vec{\hat{\beta}} = \mat{B}\vec{\gamma}
+    \label{eq_beta_wmean_vec}\\
+    \vec{\hat{\beta}} = 
+    \begin{pmatrix}
+        \hat{\beta}\\
+        \vdots\\
+        \hat{\beta}
+    \end{pmatrix},\quad
+    \vec{\gamma} =
+    \begin{pmatrix}
+        g_1\\
+        \vdots\\
+        g_n
+    \end{pmatrix},\quad
+    \mat{B} =
+    \begin{pmatrix}
+        \vec{\beta}^T\\
+        \vdots\\
+        \vec{\beta}^T
+    \end{pmatrix}
+\end{align}
+where each line of the equation system is just the same.
+The difference between measurement $l$ and the mean value $\hat{\beta}$ is denoted by $\epsilon_l$:
+
+\begin{equation}
+    \vec{\epsilon} = \vec{\hat{\beta}} - \vec{\beta}
+\end{equation}
+
+The least square minimisation seeks a set of weights $g_i$ for which the squared errors are minimal. Since the different $\beta_l$
+are correlated and have a covariance matrix $\mat{Cov}[\vec{\beta}] \neq \mat{diag}(\sigma_1^2, \ldots, \sigma_n^2)$
+the theory of generalised least-squares estimation has to be applied.
+
+The \emph{covariance matrix} of a set of random variables $\Omega_i$ is defined as
+\begin{align}
+    \mat{Cov}[\vec{\Omega}] &= \mat{E}[(\vec{\Omega} - E[\vec{\Omega}])(\vec{\Omega} - E[\vec{\Omega}])^T]
+    \notag \\
+    &= \mat{E}[\vec{\Omega}\vec{\Omega}^T] - E[\vec{\Omega}]E[\vec{\Omega}]^T
+    \label{eq_def_cov}
+\end{align}
+where $E[\vec{\Omega}]$ is the \emph{expected value} of the random variables $\vec{\Omega}$. And the
+notation is chosen such that the expected value of a vector is a vector
+of expected values of each component and similar for matrices.
+
+\equationref{eq_def_cov} can be expressed element-wise:
+\begin{equation}
+    \left(Cov[\vec{\Omega}]\right)_{ij} = E[\Omega_i\Omega_j] - E[\Omega_i]E[\Omega_j]
+    \fstop
+\end{equation}
+
+\subsubsection{Error Propagation}
+
+We have a set of unperturbed phase measurements $ \{\phi_1, \ldots, \phi_n\} $ and non-observable  parameters $  \{ K_{1,1} , \ldots , K_{1,m}, s_1, \ldots, s_{\nu}, x_1, \ldots x_{\mu} \} $ with corresponding errors $ \Delta \phi_\alpha,\, \Delta K_{1,\beta}, \,\Delta s_\gamma,\, \Delta x_\kappa  $. We collect all parameters into a vector
+
+\begin{equation}
+\vec{\Omega}_0 =
+\begin{pmatrix}
+\vec{\phi}\\
+\vec{K}\\
+\vec{s}\\
+\vec{x}
+\end{pmatrix},\quad
+\vec{\Delta \Omega} = 
+\begin{pmatrix}
+\vec{\Delta\phi}\\
+\vec{\Delta K}\\
+\vec{\Delta s}\\
+\vec{\Delta x}
+\end{pmatrix}.
+\end{equation}
+
+Using a Taylor expansion we can propagate the errors in these parameters
+
+\begin{equation}
+\beta_l (\vec{\Omega}) = \beta_l(\vec{\Omega}_0) + \partial^i\beta_l(\vec{\Omega}_0)\Delta\Omega_i +  \partial^i\partial^j\beta_l(\vec{\Omega}_0)\Delta\Omega_i\Delta\Omega_j + O(\Delta\Omega^3)\;,
+\label{eq:err_prop}
+\end{equation}
+where the Einstein summation convention is used and the derivatives are w.r.t. $ \Omega_i $: $ \partial^i\beta_l \equiv \frac{\partial \beta_l}{\partial \Omega_i} $. In the following we omit the argument $ (\vec{\Omega}_0) $ for the $ \beta $ function and its derivatives at the unperturbed position $ \vec{\Omega}_0 $. For the calculation of the covariance matrix, we truncate \eqref{eq:err_prop} to second order and derive the two summands of \eqref{eq:cov} separately.
+
+\begin{equation}
+E[\beta_l(\vec{\Omega})] \approx E\left[   
+\beta_l + \partial^i\beta_l\Delta\Omega_i +  \partial^i\partial^j\beta_l\Delta\Omega_i\Delta\Omega_j 
+\right] =
+\beta_l + \partial^i\beta_l E[\Delta\Omega_i] +  \partial^i\partial^j\beta_l E\left[\Delta\Omega_i\Delta\Omega_j \right]\;.
+\end{equation} We assume that there are no systematic errors in the measurement instruments and so $ {E}[{\Delta\Omega_i}] =0$ and the middle term vanishes. We can conclude
+\begin{equation}
+E[\beta_l(\vec{\Omega})]E[\beta_m(\vec{\Omega})] \approx \beta_l\beta_m +
+ \left(\beta_l\partial^i\partial^j\beta_m +
+ \beta_m\partial^i\partial^j\beta_l\right) E\left[\Delta\Omega_i\Delta\Omega_j \right]\;,
+ \label{eq:Eb_Eb}
+\end{equation} where terms proportional to the square of the variance go into the reminder $ O(\Delta\Omega^3) $.
+
+To calculate the term $ {E}[{\beta_l}{\beta_m}] $ more steps are needed:
+
+\begin{align}
+E\left[\beta_l(\vec{\Omega})\beta_m(\vec{\Omega})\right]& = 
+E\left[
+	(
+		\beta_l + \partial^i\beta_l\Delta\Omega_i + \partial^i\partial^j\beta_l\Delta\Omega_i\Delta\Omega_j
+	)
+	(
+		\beta_m + \partial^i\beta_m\Delta\Omega_i + \partial^i\partial^j\beta_m\Delta\Omega_i\Delta\Omega_j
+	)
+\right] \notag \\
+&\approx E\left[
+	\beta_l\beta_m + 
+	\left(\beta_l\partial^i\beta_m + \beta_m\partial^i\beta_l\right)\Delta\Omega_i +
+	\partial^i\beta_l\partial^j\beta_m\Delta\Omega_i\Delta\Omega_j +\right. \notag\\ &\left.\quad\quad\quad
+	\left(\beta_l\partial^i\partial^j\beta_m +\beta_m\partial^i\partial^j\beta_l\right)\Delta\Omega_i\Delta\Omega_j
+\right] \notag\\
+&= 	
+	\beta_l\beta_m + 
+	\partial^i\beta_l\partial^j\beta_mE[\Delta\Omega_i\Delta\Omega_j]+
+	\left(\beta_l\partial^i\partial^j\beta_m +
+	\beta_m\partial^i\partial^j\beta_l\right) E\left[\Delta\Omega_i\Delta\Omega_j \right]\;.
+	\label{eq:Ebb}
+\end{align} 
+
+Finally, subtracting \eqref{eq:Eb_Eb} from \eqref{eq:Ebb}, we obtain
+\begin{equation}
+(\text{Cov}[\v{\beta}])_{lm} = \partial^i\beta_l\partial^j\beta_mE[\Delta\Omega_i\Delta\Omega_j] = \partial^i\beta_l\partial^j\beta_m \text{Cov}[\vec{\Delta\Omega}]_{ij}\;.
+\label{eq:covbb}
+\end{equation}
+In the last step we made again the assumption $ E(\Delta\Omega_i)=0 $, implying
+\begin{equation}\label{key}
+\text{Cov}[\vec{\Delta\Omega}]_{ij} =  E\left[\Delta\Omega_i \right] E[\Delta\Omega_j ] -  E\left[\Delta\Omega_i\Delta\Omega_j \right] =  E\left[\Delta\Omega_i\Delta\Omega_j \right]\;.
+\end{equation}
+In matrix notation \eqref{eq:covbb} reads
+
+\begin{equation}\label{key}
+\mat{Cov}\left[\vec{\beta}\right] = \mat{T}\; \mat{Cov}\left[\vec{\Delta\Omega}\right] \;\mat{T}^T,
+\end{equation} where 
+\begin{equation}\label{key}
+T_{ij} = \frac{\partial \beta_i}{\partial \Omega_j}\;.
+\end{equation}
+If the parameters $ \vec{\Omega} $ are uncorrelated, the covariance matrix of $\vec{ \Delta\Omega} $ simplifies to
+\begin{align}\label{key}
+\left(\text{Cov}\left[\vec{\Delta\Omega}\right] \right)_{ij}&= 0 \quad  \text{ if } i\neq j \;,\\
+ \left(\text{Cov}\left[\vec{\Delta\Omega}\right] \right)_{ii}&= \sigma_i^2\;,
+\end{align} 
+\begin{equation}\label{key}
+\Rightarrow E\left[\Delta\Omega_i\Delta\Omega_j\right] = E\left[\Delta\Omega_i\right]E\left[\Delta\Omega_j\right]\quad \text{ if } i \neq j\;,
+\end{equation}
+and \eqref{eq:covbb} reads
+\begin{equation}\label{key}
+(\text{Cov}[\vec{\beta}])_{lm} = \partial^i\beta_l\partial^i\beta_mE[\Delta\Omega_i^2] = \partial^i\beta_l\partial^i\beta_m \sigma_i^2\;,
+\end{equation}
+with the variance being defined by
+\begin{equation}\label{key}
+\sigma_i^2 = E\left[\Delta\Omega_i^2\right].
+\end{equation}
+
+\subsubsection{The generalized least-squares estimator}
+
+After computing the covariance matrix of $ \beta $, we can calculate the generalized least-squares estimator by solving the translated system
+
+\begin{equation}
+\mat{X}^{-1} \vec{\beta} = \mat{X}^{-1}\mat{B}\vec{\gamma} + \mat{X}^{-1}\vec{\epsilon}
+\end{equation}
+where the translation $ \mat{X} $ is such that $ \mat{X}^T\mat{X} = \mat{V} = \mat{Cov}[\vec{\beta}] $. The least-squares estimation searches for a minimum of 
+\begin{equation}
+\left\|\mat{X}^{-1}\left(\vec{\beta} - \mat{B}\vec{\gamma}\right)\right\|^2 = \left(\vec{\beta} - \mat{B}\vec{\gamma}\right)^T \mat{V}^{-1}\left(\vec{\beta} - \mat{B}\vec{\gamma}\right)\;.
+\label{eq:corr_syst}
+\end{equation} %Deriving~(\ref{eq:corr_syst}) with respect to $ \vec{\gamma} $ yields
+We solve \eqref{eq:corr_syst} in the index notation:
+
+\[\frac{\partial}{\partial g_k}\sum\limits_{i,j} \left(\beta_i - \sum_l\beta_lg_l\right) V_{ij}^{-1} \left(\beta_j-\sum_m\beta_mg_m\right) = 2\sum_{i,j}\beta_kV_{ij}^{-1}\left(\beta_j - \sum_m\beta_mg_m\right) = 0\]
+\begin{align}
+\Rightarrow \sum_{i,j}V_{ij}^{-1}\beta_j&=\sum_{i,j}V_{ij}^{-1}\sum_m\beta_mg_m\notag \\
+\Rightarrow\sum_mg_m\beta_m &= \frac{\sum\limits_{i,j}V_{ij}^{-1}\beta_j}{\sum\limits_{i,j}V_{ij}^{-1}}=\sum_m \frac{\sum\limits_i V_{im}^{-1}}{\sum\limits_{i,j}V_{ij}^{-1}}\beta_m
+\end{align} where we renamed the summation index in the numerator to highlight a solution of the system:
+
+\begin{equation}
+g_i(\mat{V}) = \frac{\sum\limits_k V_{ik}^{-1}}{\sum\limits_{j,k}V_{jk}^{-1}}\; .
+\end{equation}
+The uncertainty of the weighted average is then
+
+\begin{equation}
+\sigma^2(\mat{X}^{-1}\vec{\beta}) = \vec{g}^T\mat{V}\vec{g} = \sum\limits_{i,j}g_iV_{ij}g_j\;.
+\end{equation}
+
+\subsubsection{Error matrix for N-BPM method}
+
+We can get the error matrix $ \mathbf{V} $ from the single variances by
+\begin{equation}
+\mathbf{V} = \mathbf{T}\mathbf{M}\mathbf{T}^{-1}\quad ,
+\label{eq:V}
+\end{equation}
+where $ \mathbf{M}=\text{diag}(\sigma^2_{\phi_1}, \ldots, \sigma^2_{\phi_n}) $ is a diagonal matrix consisting of the variances of the phases and $ \mathbf{T} $ is the Jacobian matrix
+\begin{equation}
+T_{l\lambda}(s_i) = \left.\frac{\partial \beta_l(s_i)}{\partial \phi_\lambda} \right|_{\delta\phi=0}\quad ,
+\label{eq:Tij}
+\end{equation}
+$ \delta\phi=0 $ meaning that the derivatives are evaluated with all phase advance errors set to zero. The correlation of statistical errors (coming from BPM noise) is
+
+\begin{align}
+&T_{l\lambda}^\phi(s_i) = \left.\frac{\partial \beta_l(s_i)}{\partial \phi_\lambda}\right|_{\delta \phi =0} =\notag\\ 
+&\frac{
+		\left(\delta_{i}^\lambda-\delta_{j_l}^\lambda\right)\sin^{-2}\phi\m_{i{j_l}} -
+		\left(\delta_{i}^\lambda-\delta_{k_l}^\lambda\right)\sin^{-2}\phi_{i{k_l}}\m
+	}
+	{
+		\cot \phi_{i{j_l}}\m - \cot\phi_{i{k_l}}\m
+	}
+\beta\m(s_i)\quad .
+\label{eq:Tphiij}
+\end{align}  
+We place here intentionally a superscript $ \phi $ to highlight that the $ \mat{T} $ matrix only includes statistical errors coming from the uncertainty of the phase measurement. $\delta^\alpha_\beta $ denotes the Kronecker~$\delta$. Including systematic errors, the total error matrix is
+
+\begin{equation}
+\mathbf{V} = \mathbf{V_\text{stat}} + \mathbf{V}_\text{syst}\quad ,
+\label{eq:V1}
+\end{equation}
+where $ \mathbf{V}_\text{stat} = \mathbf{T}^\phi \mathbf{M} {\mathbf{T}^{\phi}}^{-1}$ and the total uncertainty of the averaged $ \hat{\beta} $ is then given by
+\begin{equation}
+\sigma_{\hat{\beta}}^2 = \sigma_\text{stat}^2 + \sigma_\text{syst}^2\quad .
+\end{equation}
+
+\subsubsection{Extension of the N-BPM method}
+
+In the existing numerical N-BPM method only the statistical errors are calculated analytically while
+$\mathbf{V}_\text{syst}$ and hence $\sigma_\text{syst}^2$ are evaluated from Monte Carlo simulations
+of lattices with errors.
+For that the statistics over many simulations is gathered.
+Even with a highly parallelized code on a multicore machine this procedure takes about 1 hour for a
+``fast'' set of 1000 simulations. Since the computation time scales linearly with the number of simulations,
+this can take up to 10 hours for $10^{4}$ simulations which were used in the post processing of a measurement.
+
+In this thesis a new method is introduced that calculates also the systematic errors analytically. 
+On the same computer the analytical N-BPM method takes only 30 seconds to compute the $ \beta $~function
+for more than 500 BPMs whereas the N-BPM method takes about one hour.
+It provides a fully analytical calculation of the uncertainties while the precision of the original
+method depends on the number of simulations. Any source of uncertainties can be taken into account
+if its analytical expression is known. The method does not depend on the stability of the lattice whereas
+the Monte Carlo simulations fail if, for some combinations of errors, no closed orbit can be found.
+This is a limiting factor when the N-BPM method is used for pushed optics with very low $ \beta^* $ like the HL-LHC. 
+
 
 \section{Corrected $\beta$ from phase formula}
+Equation~\eqref{eq.3bpm} assumes that no error is present in the region between the involved BPMs. A new formula has been developed in \cite{Franchi:2016tfi} that takes quadrupolar errors into account,
 
+
+\begin{equation}
+\beta(s_1) = \frac{\cot\phi_{12} - \cot\phi_{13}}{\cot\phi_{12}\m - \cot\phi_{13}\m +\bar{h}_{12} - \bar{h}_{13}}\beta\m(s_1) + O(\delta K_1^2)\quad ,
+\label{eq:18}
+\end{equation}
+with 
+
+\begin{equation}
+\bar{h}_{ij} =  \dfrac{\sum\limits_{i<w<j}\beta_w\m\delta K_{w,1}\sin^2\phi_{wj}\m}{\sin^2\phi_{ij}\m}\;.
+\label{eq:h_ij}
+\end{equation}
+The sum runs over all elements $ w $ between BPMs $i$ and $j$. $\delta K_{w,1}$ is the integrated quadrupolar field error of element $w$. The definition of $ K_n $ follows the MAD \cite{madx} convention.
+Note that Eq.~\eqref{eq:h_ij} is only defined for the case $ s_1 <\nobreak s_2 < s_3 $ i.e. the $ \beta $ function is calculated at the position of the first BPM. Since we want to use as many BPM combinations as possible we will derive below a form of Eq.~\eqref{eq:18} without this constraint.
+
+In \cite{Franchi:2016tfi} the quality of Eq.~\eqref{eq:18} has been assessed for the ESRF storage ring by simulating a lattice with errors and comparing the results of Eq.~\eqref{eq:18} to the beta beating of the simulated lattice. In this paper the same study is repeated for the LHC and its future upgrade the HL-LHC.
+ Table~\ref{tab:unc_estimates} summarizes those uncertainty estimates for the LHC elements that are relevant for this study. 
+In Figure~\ref{fig:hist1518} a comparison between Eqs.~\eqref{eq:pablo} and~\eqref{eq:18} is shown in the horizontal plane. The plot shows a histogram of the deviation of the formulas (1) and (11) from the real (i.e. simulated) $ \beta $ function values. The histogram contains the values of all the individual BPMs for one simulated lattice. The top plot shows the case with only quadrupolar field errors whereas in the bottom plot also misalignment errors were included in the lattice. The introduction of errors not taken into account in Eq.~\eqref{eq:h_ij} deteriorates the result. However Eq.~\eqref{eq:18} still yields a clearly better estimate.
+
+
+\begin{table}
+	\centering
+	\begin{tabular}{lrrr}
+		\multirow{ 2}{*}{element} & \multicolumn{1}{c}{ $ \sigma_K/K_1 $ }&\multicolumn{1}{c}{ $ \sigma_s $ }&\multicolumn{1}{c}{ $ \sigma_x $}\\
+		&\multicolumn{1}{c}{  [$ 10^{-4} $]} &\multicolumn{1}{c}{  $ [\text{mm}] $} &\multicolumn{1}{c}{  [mm]} \rule[-3mm]{0mm}{0mm} \\ 
+		\hline
+		MQ & $18  $ & $ 1.0   $ &\rule[5mm]{0mm}{0mm}\\
+		MQM & $ 12 $ & $ 1.0   $ & -\\
+		MQY & $ 11 $ & $ 1.0  $ & -\\
+		MQX &  $4   $ & $ 6.0   $  & -\\
+		MQW & $ 15  $ & $ 1.0   $  & -\\
+		MQT & $ 75  $ & $ 1.0   $  & -\\
+		MS & -& - & $ 0.3   $ \\
+		BPM & -& $ 1.0   $ & - 
+	\end{tabular}
+	\caption{Estimates for the LHC gradient and misalignment errors. MQ are focusing and defocusing quadrupoles, MS are sextupoles. The values of the magnet errors are derived from magnetic measurements of \cite{ref:15} \cite{ref:16} . }
+	\label{tab:unc_estimates}
+\end{table}
+
+Moreover Eq.~\eqref{eq:18} may be easily modified for taking into account a more realistic set of errors -- quadrupolar field errors as well as sextupole transverse misalignments, quadrupole longitudinal misalignments and BPM longitudinal displacements. 
+
+
+\begin{figure}
+	\centering
+	%\includegraphics[width=1\linewidth, max width=\maxfigwidth]{hist1518_ONLYQUADS_01}
+	
+	%\includegraphics[width=1\linewidth, max width=\maxfigwidth]{hist1518_NAIV_01}
+	\caption{TOP: Difference between the real (simulated)  horizontal $\beta$-functions and the ones calculated by Eq.~\eqref{eq:pablo} in red and~(\ref{eq:18}) in blue, respectively. Data are from MADX simulations of a lattice with quadrupolar errors only. BOTTOM: The same quantities are evaluated for the case with additional magnet misalignments. rms denotes the root mean square of the deviations and p-t-p denotes peak-to-peak deviation.}
+	\label{fig:hist1518}
+\end{figure}
+
+While the magnet misalignment errors can be approximated as \emph{effective} quadrupolar field errors and integrated in Eq.~\eqref{eq:h_ij} the BPM misalignments need a different approach as shown in the
+next paragraph.
+
+\subsection{Effect of transverse sextupole misalignments}
+
+The magnetic field of a sextupole displaced horizontally by $ \Delta x $ reads
+
+\begin{equation}
+B_y = \frac{B}{2}((x + \Delta x)^2 - y^2)\quad .
+\end{equation}
+{This induces a quadrupolar field error whose strength $ \delta K_1 $ is}
+\begin{equation}
+\delta K_1 =  \left.\frac{1}{B_0\rho_0}\frac{\partial B_y}{\partial x}\right|_{x=y=0} = \frac{B}{B_0\rho_0}\Delta x \quad .
+\end{equation}
+This {term} can be used in Eq.~\eqref{eq:h_ij} to include sextupole offsets in $ \bar{h}_{ij} $.
+
+\subsection{Effect of longitudinal quadrupole misalignments}
+
+\begin{wrapfigure}{O}[\figborderhang]{8cm}
+    \centering
+    \includestandalone{quad_misal}
+	\caption{The top sketch shows the displaced quadrupole (solid gray) relative to the original position (dashed). In the bottom sketch one can see the quadrupole at its original position with thin magnets on both ends.}
+	\label{fig:quadmisal}
+\end{wrapfigure} 
+
+The effect of a longitudinal displacement $ \delta s $ of a quadrupole magnet can be approximated by
+leaving the magnet at its original position and introducing two thin magnets at its edges to mimic
+the displacement, as shown in Figure~\ref{fig:quadmisal}.
+The top part of the figure shows the actual situation:
+The quadrupole is moved to the left such that it covers now the hatched area in addition to the gray
+region. 
+The bottom part illustrates the approximation method:
+In the direction of the displacement there is an additional element with integrated field strength
+$ \delta K_1 = k_1\delta s $ ($k_1$ being the 
+non-integrated quadrupole strength), to simulate the part of the quadrupole that moved into this area
+whereas an error 
+$ -\delta K_1 $ is placed at the opposite end to compensate the part of the quadrupole that moved out
+of this area.
+
+
+
+\subsection{Effect of BPM misalignments}
+
+An error, $ \delta s_i $, in the longitudinal position of
+a BPM affects the evaluation of Eqs.~\eqref{eq:18} and \eqref{eq:h_ij} which rely on the model
+values of $ \beta $ and $ \phi $ at the nominal position of the BPM. To determine the effect we start with the definition of the phase advance
+
+\begin{equation}
+\phi_{ij} = \int_{s_i}^{s_j} \frac{1}{\beta(s)}\d s\quad .
+\end{equation}
+We can approximate the phase error and the resulting $\beta$ shift at the position $s_i + \delta s_i$ as
+
+
+\begin{align}
+\tilde{\phi}_i &\approx \phi_i + \frac{1}{\beta_i}\delta s_i\quad , 
+\label{eq:Dphi} \\
+\tilde{\beta}_i &\approx \beta_i + \frac{\partial \beta_i}{\partial s} \delta s_i  = \beta_i - 2\alpha_i \delta s_i \quad , \label{eq:Dbeta}
+\end{align}
+up to first order in $ \delta s_i $. By $ \alpha_i $ we denote the $ \alpha $ function at the position of element $ i $, defined as 
+
+\begin{equation}
+\alpha = -\frac{1}{2}\frac{\partial \beta}{ \partial s}\quad .
+\end{equation}
+
+We have to re-derive an equation similar to Eq.~(\ref{eq:18}) by taking into account the considerations of the preceding sections. The steps of the derivation are elaborated in appendix~\ref{app:derivation}. The final formula up to first order reads:
+
+\begin{align}
+\beta_l(s_i) \approx& \frac{\cot\phi_{i{j_l}} - \cot\phi_{i{k_l}}}{\cot\phi_{i{j_l}}\m - \cot\phi_{i{k_l}}\m +\bar{g}_{i{j_l}} - \bar{g}_{i{k_l}}} \left[\beta\m(s_i) - 2 \alpha\m(s_i) \delta s_i\right] \quad ,
+\label{eq:beta_g}
+\end{align}
+with 
+\begin{equation}
+\bar{g}_{ij} = \text{sgn}(i-j)\dfrac{ \frac{1}{\beta\m(s_j)}\delta s_j - \frac{1}{\beta\m(s_i)}\delta s_i +
+\sumw\beta_w\m\delta K_{w,1}\sin^2\phi_{wj}\m}{\sin^2\phi_{ij}\m}\quad ,
+\label{eq:g_ij}
+\end{equation} 
+where $\delta K_{w,1} $ now includes quadrupolar-like errors coming from sextupole misalignments and quadrupole longitudinal misalignments, as described in the previous sections. 
+
+
+Having defined the set I as
+ \begin{equation}
+ I = \left[\min(i,j), \max(i,j)\right] \subset \mathbb{N}\quad ,
+ \end{equation}
+
+\begin{wrapfigure}{O}[\figborderhang]{9cm}
+	\centering
+	\includegraphics[width=\linewidth]{hist1518_EVERYTHING_01}
+	\caption{Accuracy of the horizontal $\beta$-function evaluated via  Eq.~\eqref{eq:pablo} and~\eqref{eq:beta_g} with the effect of magnets and BPM misalignments taken into account. The accuracy of Eq~\eqref{eq:beta_g} is similar to the one of  Eq~\eqref{eq:18} with quadrupolar field errors only (Figure~\ref{fig:hist1518}).}
+	\label{fig:hist1518_with_everything}
+\end{wrapfigure}
+
+so that an element with index $ w \in I$ lies between elements $ i $ and $ j $, Eqs.~\eqref{eq:beta_g}
+and~\eqref{eq:g_ij} hold for every combination $ i $, $ j $, $ k $ of the BPMs.
+ By doing so, we do not need to distinguish the three cases where the probed BPM is in the middle, left or right.
+
+
+All these considerations can be put into Eq.~\eqref{eq:beta_g} and used to get a more accurate
+$ \beta $ function.
+To verify the validity of Eq.~\eqref{eq:beta_g}, its horizontal $\beta$-functions are compared to the
+ones simulated by MADX along with the ones inferred from Eq.~\eqref{eq:pablo}, this time including
+sextupole radial offsets and BPMs longitudinal shifts.
+
+The result is shown in Figure~\ref{fig:hist1518_with_everything}. The accuracy is now as good as the one of Eq.~\eqref{eq:18}  when only quadrupolar field errors were introduced in the
+lattice, which in turn is much greater than the old formula, Eq.~\eqref{eq:pablo}.
+
+\lipsum[1-5]
 \section{Error propagation}
 
 \section{Quadrupolar like errors}
 
 %\addtolength{\wrapoverhang}{0.5\marginparsep}
-\begin{wrapfigure}{O}[1.7cm]{8cm}
-	\centering
-	\begin{tikzpicture}[x=1.2cm]
-	%		\draw (-4,0) -- (-1,0);
-	%		\draw (1,0) -- (4,0);
-	%		\draw[fill=black!20!white] (-.5,-.5) rectangle (1,.5);
-	%		\filldraw[fill=white, draw=black, dashed] (1,-.5) rectangle (1.5,.5);
-	%		\draw[pattern=north west lines, pattern color=black!20!white] (-1,-.5) rectangle (-.5,.5);
-	%		\draw[black] (-1,-.5) rectangle (1,.5);
-	
-	\draw (-2,0) -- (-1,0);
-	\draw (1,0) -- (2,0);
-	
-	\filldraw[fill=white, draw=black, dashed] (1,-.5) rectangle (1.5,.5);
-	\fill[white!80!black] (-1,-.5) rectangle (1,.5);
-	\node at (0.0,0) {$ K_1 $};
-	\draw[pattern=north west lines, draw=none]  (-1,-.5) rectangle (-.5,.5);
-	\draw[dashed] (-1,-.5) rectangle (-.5,.5);
-	\draw[black,thick] (-1,-.5) rectangle (1,.5);
-	
-	\draw[->] (-.5, .8) -- (-1, .8);
-	\draw[dotted] (-.5,.5) -- (-.5, .9);
-	\draw[dotted] (-1,.5) -- (-1, .9);
-	\node[above] at (-.75, .8) {$ \delta s $};
-	\end{tikzpicture}
-	
-	\vspace{.5cm}
-	
-	\begin{tikzpicture}[x=1.2cm]
-	\draw (-2, 0) -- (-.5,0);
-	\draw (1.5,0) --(2,0);
-	%\draw (-.65,0) --(-.5,0);
-	%\draw (1.0, 0) -- (1.15, 0);
-	
-	\filldraw[draw=black, thick, fill=white!80!black] (-.5,-.5) rectangle (1.5,.5);
-	\node at (0.5,0) {$ K_1 $};
-	\fill[white] (-.55, -.4) rectangle (-.45,.4);		
-	\draw[pattern=north west lines] (-.55, -.4) rectangle (-.45,.4);
-	
-	\fill[white] (1.45, -.4) rectangle (1.55,.4);
-	\draw[pattern=north east lines] (1.45, -.4) rectangle (1.55,.4);
-	
-	\node[below] at (-.5,-.5) {$k_1\delta s $};
-	\node[below] at (1.5,-.5) {$- k_1\delta s  $};
-	\end{tikzpicture}
-	\caption{The top sketch shows the displaced quadrupole (solid gray) relative to the original position (dashed). In the bottom sketch one can see the quadrupole at its original position with thin magnets on both ends.}
-	\label{fig:quadmisal}
-\end{wrapfigure} 
 
 
 \section{Routine $\beta$ measurement in LHC}

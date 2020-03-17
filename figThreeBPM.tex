@@ -1,0 +1,49 @@
+\documentclass{standalone}
+
+\input{image_header}
+
+\begin{document}
+	\begin{tikzpicture}
+	%	\draw[thick] (-1,-1) -- (5.5,-1) -- (5.5,1.5) -- (-1,1.5) -- cycle;
+	
+	\triang{(0,0)}{red}
+	\triang{(1.5,0)}{blue}
+	\triang{(3,0)}{red}
+	\scriptsize
+	\node[above] at ($ (\LTRIA*0.5,\LTRIA) $) {BPM 1};
+	\draw (\LTRIA,0) to[bend right] (1.5,0);
+	\node[below] at (1,-.1) {$ \phi_{12} $};
+	
+	\node[above] at ($ (1.5+\LTRIA*0.5,\LTRIA) $) {BPM 2};
+	\draw ($(1.5+\LTRIA,0)$) to[bend right] (3,0);
+	\node[below] at (2.5,-.1) {$ \phi_{23} $};
+	
+	\node[above] at ($ (3+\LTRIA*0.5,\LTRIA) $) {BPM 3};
+    
+    \begin{scope}[shift={(0,-1.1)}]
+        \triang{(0,0)}{blue}
+        \triang{(1.5,0)}{red}
+        \triang{(3,0)}{red}
+        \scriptsize
+        \draw (\LTRIA,0) to[bend right] (1.5,0);
+        \node at (1,0.1) {$ \phi_{12} $};
+        
+        \draw ($(\LTRIA,0)$) to[bend right] (3,0);
+        \node[below] at ($(1.5+\LTRIA*0.5,-.3)$) {$ \phi_{13} $};
+        
+    \end{scope}
+    \begin{scope}[shift={(0,-2.5)}]
+        \triang{(0,0)}{red}
+        \triang{(1.5,0)}{red}
+        \triang{(3,0)}{blue}
+        \scriptsize
+        \draw ($(\LTRIA,0)$) to[bend right] (3,0);
+        \node[below] at ($(1.5+\LTRIA*0.5,-.3)$) {$ \phi_{13} $};
+        
+        \draw ($(1.5+\LTRIA,0)$) to[bend right] (3,0);
+        \node at (2.5,0.1) {$ \phi_{23} $};
+        
+    \end{scope}
+	\normalsize
+	\end{tikzpicture}
+\end{document}

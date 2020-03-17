@@ -1,0 +1,45 @@
+\documentclass{standalone}
+\input{image_header}
+
+\begin{document}
+	\begin{tikzpicture}[x=1.2cm]
+	%		\draw (-4,0) -- (-1,0);
+	%		\draw (1,0) -- (4,0);
+	%		\draw[fill=black!20!white] (-.5,-.5) rectangle (1,.5);
+	%		\filldraw[fill=white, draw=black, dashed] (1,-.5) rectangle (1.5,.5);
+	%		\draw[pattern=north west lines, pattern color=black!20!white] (-1,-.5) rectangle (-.5,.5);
+	%		\draw[black] (-1,-.5) rectangle (1,.5);
+	
+	\draw (-2,0) -- (-1,0);
+	\draw (1,0) -- (2,0);
+	
+	\filldraw[fill=white, draw=black, dashed] (1,-.5) rectangle (1.5,.5);
+	\fill[white!80!black] (-1,-.5) rectangle (1,.5);
+	\node at (0.0,0) {$ K_1 $};
+	\draw[pattern=north west lines, draw=none]  (-1,-.5) rectangle (-.5,.5);
+	\draw[dashed] (-1,-.5) rectangle (-.5,.5);
+	\draw[black,thick] (-1,-.5) rectangle (1,.5);
+	
+	\draw[->] (-.5, .8) -- (-1, .8);
+	\draw[dotted] (-.5,.5) -- (-.5, .9);
+	\draw[dotted] (-1,.5) -- (-1, .9);
+    \node[above] at (-.75, .8) {$ \delta s $};
+    \begin{scope}[shift={(0,-2)}]
+	\draw (-2, 0) -- (-.5,0);
+	\draw (1.5,0) --(2,0);
+	%\draw (-.65,0) --(-.5,0);
+	%\draw (1.0, 0) -- (1.15, 0);
+	
+	\filldraw[draw=black, thick, fill=white!80!black] (-.5,-.5) rectangle (1.5,.5);
+	\node at (0.5,0) {$ K_1 $};
+	\fill[white] (-.55, -.4) rectangle (-.45,.4);		
+	\draw[pattern=north west lines] (-.55, -.4) rectangle (-.45,.4);
+	
+	\fill[white] (1.45, -.4) rectangle (1.55,.4);
+	\draw[pattern=north east lines] (1.45, -.4) rectangle (1.55,.4);
+	
+	\node[below] at (-.5,-.5) {$k_1\delta s $};
+    \node[below] at (1.5,-.5) {$- k_1\delta s  $};
+    \end{scope}
+	\end{tikzpicture}
+\end{document}

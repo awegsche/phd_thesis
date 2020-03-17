@@ -1,0 +1,11 @@
+% additional header file for standalone images
+
+
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+
+\newcommand{\LTRIA}{0.5}
+\newcommand{\triang}[2]{\filldraw[fill=#2!60!white, draw=#2!50!black, very thick] #1 -- ($ #1 + (\LTRIA, 0) $) -- ($ #1 + (0.5*\LTRIA, \LTRIA) $) -- cycle;}

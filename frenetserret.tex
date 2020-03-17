@@ -1,0 +1,54 @@
+\documentclass{standalone}
+\input{image_header}
+
+\begin{document}
+    
+    \tdplotsetmaincoords{70}{110}
+    \centering
+    \begin{tikzpicture} [scale=3, tdplot_main_coords, axis/.style={->,black,thick}, 
+        vector/.style={-stealth,red,very thick}, 
+        vector guide/.style={dashed,CLRemph1,thick}]
+
+        %standard tikz coordinate definition using x, y, z coords
+        \coordinate (O) at (0,0,0);
+
+        %tikz-3dplot coordinate definition using x, y, z coords
+
+        \pgfmathsetmacro{\as}{0}
+        \pgfmathsetmacro{\ax}{.75}
+        \pgfmathsetmacro{\ay}{.5}
+
+        \coordinate (P) at (\as,\ax,\ay);
+        \coordinate (SA) at (2,-2.,0);
+
+        \draw[thick, gray, ->] (0,-2.5,0) -- (0,-0.05,0) node[pos=2/3,above,sloped]{\small bending radius $\rho$};
+        \draw[thick,dashed, gray] (SA) arc (0:120:2.);
+        \node[above right, color = gray] at (SA){\small design orbit};
+
+        %draw axes
+        \draw[axis] (0,0,0) -- (1,0,0) node[anchor=north east]{$\hat{s}$};
+        \draw[axis] (0,0,0) -- (0,1,0) node[anchor=west]{$\hat{x}$};
+        \draw[axis] (0,0,0) -- (0,0,1) node[anchor=south]{$\hat{y}$};
+
+        %draw a vector from O to P
+        %\begin{scope}[canvas is zy plane at x=0]
+
+        \draw[vector guide] (\as,\ax,0) -- (P);
+        \draw[vector guide]         (P) -- (0,0,\ay);
+
+        \filldraw[gray!70!black, fill=gray!50!white] (O) circle (0.05cm);
+        \filldraw[CLRemph1!70!black, fill=CLRemph1!50!white] (P) circle (0.05cm);
+        %\end{scope}
+
+        %draw guide lines to components
+        % \draw[vector guide]         (O) -- (\ax,\ay,0);
+        % \draw[vector guide] (\ax,\ay,0) -- (0,\ay,0);
+        % \draw[vector guide] (\ax,\ay,0) -- (0,\ay,0);
+        % \draw[vector guide] (\ax,\ay,0) -- (\ax,0,0);
+        \node[above right,CLRemph1] at (P){\small particle};
+        \node[right, gray, above right] at ($(O) + (0,0.1,0)$) {\small reference};
+        \node[below,sloped,CLRemph1] at (0,\ax,0){\small $x(s)$};
+        \node[left,sloped,CLRemph1] at (0,0,\ay){\small $y(s)$};
+
+    \end{tikzpicture}
+\end{document}

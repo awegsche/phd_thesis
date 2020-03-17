@@ -15,19 +15,16 @@
 \usepackage{titlesec}
 \usepackage{multirow}
 \usepackage{xcolor}
+\input{image_header}
+\usepackage{standalone}
+\usepackage{wrapfig}
+\usepackage{setspace}
 \usepackage[
     pdfencoding=auto,
     psdextra,
     colorlinks=true
 ]{hyperref}
-\usepackage[format=plain,labelfont=bf, font=small]{caption}
-\usepackage{tikz}
-\usepackage{tikz-3dplot}
-\usetikzlibrary{patterns}
-\usepackage{pgfplots}
-\usepackage{standalone}
-\pgfplotsset{compat=1.16}
-\usepackage{wrapfig}
+\usepackage{caption}
 
 
 % debug
@@ -57,6 +54,20 @@
 
 \ohead[\pagemark]{\pagemark}
 
+\newdimen{\outermarg}      \setlength{\outermarg}{3.0cm} % leave considerable outer border for images
+\newdimen{\innermarg}      \setlength{\innermarg}{4.0cm} % leave large inner border for binding
+\newlength{\figborderhang} 
+\setlength{\figborderhang}{\outermarg} % aligns images with the outer border (if placement o or O used)
+\addtolength{\figborderhang}{-1.0cm} % and leaves 1cm from the border
+
+\setlength{\belowcaptionskip}{-.8\baselineskip}
+\newcommand{\textlinespread}{1.25}
+\newcommand{\captionlinespread}{1.125}
+\newcommand{\infolinespread}{1.125}
+
+\captionsetup{format=plain,labelfont=bf, font={small,stretch=\captionlinespread}}
+
+
 % --------------------------------------------------------------------------------------------------
 % sectioning
 % --------------------------------------------------------------------------------------------------
@@ -78,13 +89,21 @@
 {8pt}
 {\large\bfseries}
 
+\titleformat{\subsubsection}
+{\normalfont}
+{\filright\large \bfseries \thesubsubsection \hspace{1em}}
+{8pt}
+{\large\bfseries}
+
 \newenvironment{chapterinfo}
 {
     \hspace{1cm}\begin{minipage}{\dimexpr\textwidth-2cm}%
     \small%
     \itshape\parindent1em
+    \renewcommand\baselinestretch{\infolinespread}\selectfont
 }{
     \end{minipage}%
+    %\vspace{1.5em}%
     \normalfont%
     \normalsize
 }
@@ -103,6 +122,9 @@
 \newcommand{\expi}[1]{\text{e}^{i\left(#1\right)}}
 \newcommand{\m}{^\text{m}}
 \newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\betastar}{\beta^*}
+\newcommand{\sumw}{\sum\limits_{w \in I}}
+
 
 % --------------------------------------------------------------------------------------------------
 % colors
@@ -149,6 +171,6 @@
 \input{coupling}
 
 \bibliography{literature}
-\bibliographystyle{prab}
+\bibliographystyle{thesis_bib_style}
     
 \end{document}

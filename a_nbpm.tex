@@ -368,8 +368,8 @@ This is a limiting factor when the N-BPM method is used for pushed optics with v
 
 
 \section{Corrected $\beta$ from phase formula}
-Equation~\eqref{eq.3bpm} assumes that no error is present in the region between the involved BPMs. A new formula has been developed in \cite{Franchi:2016tfi} that takes quadrupolar errors into account,
-
+\equationref{eq_three_bpm} assumes that no error is present in the region between the involved BPMs.
+A new formula has been developed in \cite{Franchi:2016tfi} that takes quadrupolar errors into account,
 
 \begin{equation}
 \beta(s_1) = \frac{\cot\phi_{12} - \cot\phi_{13}}{\cot\phi_{12}\m - \cot\phi_{13}\m +\bar{h}_{12} - \bar{h}_{13}}\beta\m(s_1) + O(\delta K_1^2)\quad ,
@@ -382,11 +382,22 @@ with
 \label{eq:h_ij}
 \end{equation}
 The sum runs over all elements $ w $ between BPMs $i$ and $j$. $\delta K_{w,1}$ is the integrated quadrupolar field error of element $w$. The definition of $ K_n $ follows the MAD \cite{madx} convention.
-Note that Eq.~\eqref{eq:h_ij} is only defined for the case $ s_1 <\nobreak s_2 < s_3 $ i.e. the $ \beta $ function is calculated at the position of the first BPM. Since we want to use as many BPM combinations as possible we will derive below a form of Eq.~\eqref{eq:18} without this constraint.
+Note that Eq.~\eqref{eq:h_ij} is only defined for the case $ s_1 <\nobreak s_2 < s_3 $ i.e.~the
+$ \beta $~function is calculated at the position of the first BPM. Since we want to use as many BPM
+combinations as possible we will derive below a form of \eqref{eq:18} without this constraint.
 
-In \cite{Franchi:2016tfi} the quality of Eq.~\eqref{eq:18} has been assessed for the ESRF storage ring by simulating a lattice with errors and comparing the results of Eq.~\eqref{eq:18} to the beta beating of the simulated lattice. In this paper the same study is repeated for the LHC and its future upgrade the HL-LHC.
- Table~\ref{tab:unc_estimates} summarizes those uncertainty estimates for the LHC elements that are relevant for this study. 
-In Figure~\ref{fig:hist1518} a comparison between Eqs.~\eqref{eq:pablo} and~\eqref{eq:18} is shown in the horizontal plane. The plot shows a histogram of the deviation of the formulas (1) and (11) from the real (i.e. simulated) $ \beta $ function values. The histogram contains the values of all the individual BPMs for one simulated lattice. The top plot shows the case with only quadrupolar field errors whereas in the bottom plot also misalignment errors were included in the lattice. The introduction of errors not taken into account in Eq.~\eqref{eq:h_ij} deteriorates the result. However Eq.~\eqref{eq:18} still yields a clearly better estimate.
+In \cite{Franchi:2016tfi} the quality of \eqref{eq:18} has been assessed for the ESRF storage ring by
+simulating a lattice with errors and comparing the results of \eqref{eq:18} to the beta beating of
+the simulated lattice. In this paper the same study is repeated for the LHC and its future upgrade the HL-LHC.
+Table~\ref{tab:unc_estimates} summarizes those uncertainty estimates for the LHC elements that are
+relevant for this study. 
+In Figure~\ref{fig:hist1518} a comparison between Eqs.~(\ref{eq:pablo}) and~(\ref{eq:18}) is shown
+in the horizontal plane. The plot shows a histogram of the deviation of the formulas (1) and (11)
+from the real (i.e. simulated) $ \beta $ function values. The histogram contains the values of all the
+individual BPMs for one simulated lattice. The top plot shows the case with only quadrupolar field
+errors whereas in the bottom plot also misalignment errors were included in the lattice. The introduction
+of errors not taken into account in \eqref{eq:h_ij} deteriorates the result. However \eqref{eq:18}
+still yields a clearly better estimate.
 
 
 \begin{table}
@@ -408,7 +419,7 @@ In Figure~\ref{fig:hist1518} a comparison between Eqs.~\eqref{eq:pablo} and~\eqr
 	\label{tab:unc_estimates}
 \end{table}
 
-Moreover Eq.~\eqref{eq:18} may be easily modified for taking into account a more realistic set of errors -- quadrupolar field errors as well as sextupole transverse misalignments, quadrupole longitudinal misalignments and BPM longitudinal displacements. 
+Moreover \eqref{eq:18} may be easily modified for taking into account a more realistic set of errors -- quadrupolar field errors as well as sextupole transverse misalignments, quadrupole longitudinal misalignments and BPM longitudinal displacements. 
 
 
 \begin{figure}
@@ -416,11 +427,16 @@ Moreover Eq.~\eqref{eq:18} may be easily modified for taking into account a more
 	%\includegraphics[width=1\linewidth, max width=\maxfigwidth]{hist1518_ONLYQUADS_01}
 	
 	%\includegraphics[width=1\linewidth, max width=\maxfigwidth]{hist1518_NAIV_01}
-	\caption{TOP: Difference between the real (simulated)  horizontal $\beta$-functions and the ones calculated by Eq.~\eqref{eq:pablo} in red and~(\ref{eq:18}) in blue, respectively. Data are from MADX simulations of a lattice with quadrupolar errors only. BOTTOM: The same quantities are evaluated for the case with additional magnet misalignments. rms denotes the root mean square of the deviations and p-t-p denotes peak-to-peak deviation.}
+	\caption{TOP: Difference between the real (simulated)  horizontal $\beta$-functions and the ones
+  calculated by \eqref{eq:pablo} in red and~(\ref{eq:18}) in blue, respectively. Data are from MADX
+simulations of a lattice with quadrupolar errors only. BOTTOM: The same quantities are evaluated for
+the case with additional magnet misalignments. rms denotes the root mean square of the deviations and
+p-t-p denotes peak-to-peak deviation.}
 	\label{fig:hist1518}
 \end{figure}
 
-While the magnet misalignment errors can be approximated as \emph{effective} quadrupolar field errors and integrated in Eq.~\eqref{eq:h_ij} the BPM misalignments need a different approach as shown in the
+While the magnet misalignment errors can be approximated as \emph{effective} quadrupolar field errors
+and integrated in \eqref{eq:h_ij} the BPM misalignments need a different approach as shown in the
 next paragraph.
 
 \subsection{Effect of transverse sextupole misalignments}
@@ -432,9 +448,10 @@ B_y = \frac{B}{2}((x + \Delta x)^2 - y^2)\quad .
 \end{equation}
 {This induces a quadrupolar field error whose strength $ \delta K_1 $ is}
 \begin{equation}
-\delta K_1 =  \left.\frac{1}{B_0\rho_0}\frac{\partial B_y}{\partial x}\right|_{x=y=0} = \frac{B}{B_0\rho_0}\Delta x \quad .
+\delta K_1 =  \left.\frac{1}{B_0\rho_0}\frac{\partial B_y}{\partial x}\right|_{x=y=0}
+  = \frac{B}{B_0\rho_0}\Delta x \quad .
 \end{equation}
-This {term} can be used in Eq.~\eqref{eq:h_ij} to include sextupole offsets in $ \bar{h}_{ij} $.
+This {term} can be used in \eqref{eq:h_ij} to include sextupole offsets in $ \bar{h}_{ij} $.
 
 \subsection{Effect of longitudinal quadrupole misalignments}
 
@@ -464,7 +481,7 @@ of this area.
 \subsection{Effect of BPM misalignments}
 
 An error, $ \delta s_i $, in the longitudinal position of
-a BPM affects the evaluation of Eqs.~\eqref{eq:18} and \eqref{eq:h_ij} which rely on the model
+a BPM affects the evaluation of \eqref{eq:18} and \eqref{eq:h_ij} which rely on the model
 values of $ \beta $ and $ \phi $ at the nominal position of the BPM. To determine the effect we start with the definition of the phase advance
 
 \begin{equation}
@@ -507,23 +524,24 @@ Having defined the set I as
 \begin{wrapfigure}{O}[\figborderhang]{9cm}
 	\centering
 	\includegraphics[width=\linewidth]{hist1518_EVERYTHING_01}
-	\caption{Accuracy of the horizontal $\beta$-function evaluated via  Eq.~\eqref{eq:pablo} and~\eqref{eq:beta_g} with the effect of magnets and BPM misalignments taken into account. The accuracy of Eq~\eqref{eq:beta_g} is similar to the one of  Eq~\eqref{eq:18} with quadrupolar field errors only (Figure~\ref{fig:hist1518}).}
+	\caption{Accuracy of the horizontal $\beta$-function evaluated via \eqref{eq:pablo} and~\eqref{eq:beta_g} with the effect of magnets and BPM misalignments taken into account. The accuracy of
+ \eqref{eq:beta_g} is similar to the one of \eqref{eq:18} with quadrupolar field errors only (Figure~\ref{fig:hist1518}).}
 	\label{fig:hist1518_with_everything}
 \end{wrapfigure}
 
-so that an element with index $ w \in I$ lies between elements $ i $ and $ j $, Eqs.~\eqref{eq:beta_g}
+so that an element with index $ w \in I$ lies between elements $ i $ and $ j $, \eqref{eq:beta_g}
 and~\eqref{eq:g_ij} hold for every combination $ i $, $ j $, $ k $ of the BPMs.
  By doing so, we do not need to distinguish the three cases where the probed BPM is in the middle, left or right.
 
 
-All these considerations can be put into Eq.~\eqref{eq:beta_g} and used to get a more accurate
+All these considerations can be put into \eqref{eq:beta_g} and used to get a more accurate
 $ \beta $ function.
-To verify the validity of Eq.~\eqref{eq:beta_g}, its horizontal $\beta$-functions are compared to the
-ones simulated by MADX along with the ones inferred from Eq.~\eqref{eq:pablo}, this time including
+To verify the validity of \eqref{eq:beta_g}, its horizontal $\beta$-functions are compared to the
+ones simulated by MADX along with the ones inferred from \eqref{eq:pablo}, this time including
 sextupole radial offsets and BPMs longitudinal shifts.
 
-The result is shown in Figure~\ref{fig:hist1518_with_everything}. The accuracy is now as good as the one of Eq.~\eqref{eq:18}  when only quadrupolar field errors were introduced in the
-lattice, which in turn is much greater than the old formula, Eq.~\eqref{eq:pablo}.
+The result is shown in Figure~\ref{fig:hist1518_with_everything}. The accuracy is now as good as the one of \eqref{eq:18}  when only quadrupolar field errors were introduced in the
+lattice, which in turn is much greater than the old formula, \eqref{eq_three_bpm}.
 
 \lipsum[1-5]
 \section{Error propagation}

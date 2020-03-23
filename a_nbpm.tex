@@ -391,7 +391,7 @@ simulating a lattice with errors and comparing the results of \eqref{eq:18} to t
 the simulated lattice. In this paper the same study is repeated for the LHC and its future upgrade the HL-LHC.
 Table~\ref{tab:unc_estimates} summarizes those uncertainty estimates for the LHC elements that are
 relevant for this study. 
-In Figure~\ref{fig:hist1518} a comparison between Eqs.~(\ref{eq:pablo}) and~(\ref{eq:18}) is shown
+In Figure~\ref{fig:hist1518} a comparison between Eqs.~(\ref{eq_three_bpm}) and~(\ref{eq:18}) is shown
 in the horizontal plane. The plot shows a histogram of the deviation of the formulas (1) and (11)
 from the real (i.e. simulated) $ \beta $ function values. The histogram contains the values of all the
 individual BPMs for one simulated lattice. The top plot shows the case with only quadrupolar field
@@ -428,7 +428,7 @@ Moreover \eqref{eq:18} may be easily modified for taking into account a more rea
 	
 	%\includegraphics[width=1\linewidth, max width=\maxfigwidth]{hist1518_NAIV_01}
 	\caption{TOP: Difference between the real (simulated)  horizontal $\beta$-functions and the ones
-  calculated by \eqref{eq:pablo} in red and~(\ref{eq:18}) in blue, respectively. Data are from MADX
+      calculated by \eqref{eq_three_bpm} in red and~(\ref{eq:18}) in blue, respectively. Data are from MADX
 simulations of a lattice with quadrupolar errors only. BOTTOM: The same quantities are evaluated for
 the case with additional magnet misalignments. rms denotes the root mean square of the deviations and
 p-t-p denotes peak-to-peak deviation.}
@@ -521,13 +521,15 @@ Having defined the set I as
  I = \left[\min(i,j), \max(i,j)\right] \subset \mathbb{N}\quad ,
  \end{equation}
 
-\begin{wrapfigure}{O}[\figborderhang]{9cm}
+%\begin{wrapfigure}{O}[\figborderhang]{9cm}
+\begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{hist1518_EVERYTHING_01}
-	\caption{Accuracy of the horizontal $\beta$-function evaluated via \eqref{eq:pablo} and~\eqref{eq:beta_g} with the effect of magnets and BPM misalignments taken into account. The accuracy of
+    \caption{Accuracy of the horizontal $\beta$-function evaluated via \eqref{eq_three_bpm} and~\eqref{eq:beta_g} with the effect of magnets and BPM misalignments taken into account. The accuracy of
  \eqref{eq:beta_g} is similar to the one of \eqref{eq:18} with quadrupolar field errors only (Figure~\ref{fig:hist1518}).}
 	\label{fig:hist1518_with_everything}
-\end{wrapfigure}
+%\end{wrapfigure}
+\end{figure}
 
 so that an element with index $ w \in I$ lies between elements $ i $ and $ j $, \eqref{eq:beta_g}
 and~\eqref{eq:g_ij} hold for every combination $ i $, $ j $, $ k $ of the BPMs.
@@ -537,7 +539,7 @@ and~\eqref{eq:g_ij} hold for every combination $ i $, $ j $, $ k $ of the BPMs.
 All these considerations can be put into \eqref{eq:beta_g} and used to get a more accurate
 $ \beta $ function.
 To verify the validity of \eqref{eq:beta_g}, its horizontal $\beta$-functions are compared to the
-ones simulated by MADX along with the ones inferred from \eqref{eq:pablo}, this time including
+ones simulated by MADX along with the ones inferred from \eqref{eq_three_bpm}, this time including
 sextupole radial offsets and BPMs longitudinal shifts.
 
 The result is shown in Figure~\ref{fig:hist1518_with_everything}. The accuracy is now as good as the one of \eqref{eq:18}  when only quadrupolar field errors were introduced in the
@@ -553,7 +555,6 @@ The Jacobian $ \mathbf{T} $ of \eqref{eq:Tij} can be split into blocks
 for the uncertainties of phase $ \mathbf{T}^\phi$, quadrupole field  $\mathbf{T}^K$ and BPM misalignment $\mathbf{T}^s$.
 $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field errors we get
 
-\begin{widetext}
 
 \begin{align}
 	T^K_{l\lambda}(s_i) = 
@@ -583,7 +584,6 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
       \label{Ts}
   \end{align}
   In \eqref{eq:TK}) and~\eqref{Ts} the minus and plus signs refer to the horizontal and vertical case, respectively. 
-\end{widetext}
 %In Equations~(\ref{eq:TK}) and~(\ref{Ts}) $\delta \epsilon = 0$ means \[\delta K_w = \delta s_w = \delta \phi_w = 0,\quad \forall w.\]
 
 \section{Error propagation}

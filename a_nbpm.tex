@@ -382,7 +382,7 @@ with
 \label{eq:h_ij}
 \end{equation}
 The sum runs over all elements $ w $ between BPMs $i$ and $j$. $\delta K_{w,1}$ is the integrated quadrupolar field error of element $w$. The definition of $ K_n $ follows the MAD \cite{madx} convention.
-Note that Eq.~\eqref{eq:h_ij} is only defined for the case $ s_1 <\nobreak s_2 < s_3 $ i.e.~the
+Note that \eqref{eq:h_ij} is only defined for the case $ s_1 <\nobreak s_2 < s_3 $ i.e.~the
 $ \beta $~function is calculated at the position of the first BPM. Since we want to use as many BPM
 combinations as possible we will derive below a form of \eqref{eq:18} without this constraint.
 
@@ -543,7 +543,49 @@ sextupole radial offsets and BPMs longitudinal shifts.
 The result is shown in Figure~\ref{fig:hist1518_with_everything}. The accuracy is now as good as the one of \eqref{eq:18}  when only quadrupolar field errors were introduced in the
 lattice, which in turn is much greater than the old formula, \eqref{eq_three_bpm}.
 
-\lipsum[1-5]
+\subsection{Calculation of the correlation matrix}
+
+The Jacobian $ \mathbf{T} $ of \eqref{eq:Tij} can be split into blocks 
+
+\begin{equation}
+\mathbf{T} = \left( \mathbf{T}^\phi \quad \mathbf{T}^K \quad \mathbf{T}^s\right),
+\end{equation} 
+for the uncertainties of phase $ \mathbf{T}^\phi$, quadrupole field  $\mathbf{T}^K$ and BPM misalignment $\mathbf{T}^s$.
+$ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field errors we get
+
+\begin{widetext}
+
+\begin{align}
+	T^K_{l\lambda}(s_i) = 
+		\left. \frac{\partial \beta_l(s_i)}{\partial  K_{1,\lambda}}\right|_{\delta K = 0} =
+		\mp\frac{\beta\m(s_i)\beta\m(s_\lambda)}{\cot\phi_{ij_l}\m - \cot\phi_{ik_l}\m}\left(
+		\frac{\sin^2\phi_{\lambda j_l}\m}{\sin^2\phi_{ij_l}\m}A_{ij_l}(\lambda) - \frac{\sin^2\phi_{\lambda k_l}\m}{\sin^2\phi_{ik_l}\m}A_{jk_l}(\lambda)\right)\quad ,
+\label{eq:TK}
+\end{align}
+  with 
+  \begin{equation}
+    A_{ij}(\lambda) = \left\{\begin{array}{ll}
+    1&\text{if }i<\lambda<j\\
+    -1&\text{if }j<\lambda<i\\
+    0&\text{else}
+    \end{array}\right. \quad .
+  \end{equation} 
+  The contribution from the BPM misalignment is calculated analogously:
+
+  \begin{align}
+      T^s_{l\lambda}(s_i) &= \left.\frac{\partial \beta_l(s_i)}{\partial s_\lambda}\right|_{\delta s = 0} %\notag \\
+      = -2\alpha^m(s_i)\delta_i^{\lambda}
+      \mp 
+      \frac{
+          \dfrac{\text{sgn}(i-j_l)}{\sin^2 \phi_{ij_l}\m}\left(\dfrac{\beta\m(s_i)}{\beta\m(s_{j_l})}\delta^{j_l}_\lambda - \delta_\lambda^i\right) -
+          \dfrac{\text{sgn}(i-k_l)}{\sin^2 \phi_{ik_l}\m}\left(\dfrac{\beta\m(s_i)}{\beta\m(s_{k_l})}\delta^{k_l}_\lambda - \delta_\lambda^i\right)}
+      {\cot \phi_{ij_l}\m - \cot \phi_{ik_l}\m} \quad .
+      \label{Ts}
+  \end{align}
+  In \eqref{eq:TK}) and~\eqref{Ts} the minus and plus signs refer to the horizontal and vertical case, respectively. 
+\end{widetext}
+%In Equations~(\ref{eq:TK}) and~(\ref{Ts}) $\delta \epsilon = 0$ means \[\delta K_w = \delta s_w = \delta \phi_w = 0,\quad \forall w.\]
+
 \section{Error propagation}
 
 \section{Quadrupolar like errors}

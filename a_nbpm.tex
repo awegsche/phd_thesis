@@ -426,12 +426,14 @@ Moreover \eqref{eq:18} may be easily modified for taking into account a more rea
 	\centering
   \includegraphics[width=.49\linewidth]{hist1518_ONLYQUADS_01}
   \includegraphics[width=.49\linewidth]{hist1518_NAIV_01}
-	\caption{Left: Difference between the real (simulated) horizontal $\beta$-functions and the ones
-    calculated by \eqref{eq_three_bpm} in red and~(\ref{eq:18}) in blue, respectively. Data are from MADX
-    simulations of a lattice with quadrupolar errors only.
-    Right: The same quantities are evaluated for
-    the case with additional magnet misalignments. rms denotes the root mean square of the deviations and
-    p-t-p denotes peak-to-peak deviation.}
+	\caption{
+        Left: Difference between the real (simulated) horizontal $\beta$-functions and the ones
+        calculated by \eqref{eq_three_bpm} in red and~(\ref{eq:18}) in blue, respectively. Data are from MADX
+        simulations of a lattice with quadrupolar errors only.
+        Right: The same quantities are evaluated for the case with additional magnet misalignments.
+        the numbers which figure after the legend label show the root mean square of the deviation
+        and the the peak-to-peak derivation in parenthesis.
+    }
 	\label{fig:hist1518}
 \end{figure}
 
@@ -458,7 +460,11 @@ This {term} can be used in \eqref{eq:h_ij} to include sextupole offsets in $ \ba
 \begin{wrapfigure}{O}[\figborderhang]{8cm}
     \centering
     \includestandalone{quad_misal}
-	\caption{The top sketch shows the displaced quadrupole (solid gray) relative to the original position (dashed). In the bottom sketch one can see the quadrupole at its original position with thin magnets on both ends.}
+	\caption{
+        The top sketch shows the displaced quadrupole (solid gray) relative to the original position
+        (dashed). In the bottom sketch one can see the quadrupole at its original position with thin
+        magnets on both ends.
+    }
 	\label{fig:quadmisal}
 \end{wrapfigure} 
 
@@ -482,26 +488,28 @@ of this area.
 
 An error, $ \delta s_i $, in the longitudinal position of
 a BPM affects the evaluation of \eqref{eq:18} and \eqref{eq:h_ij} which rely on the model
-values of $ \beta $ and $ \phi $ at the nominal position of the BPM. To determine the effect we start with the definition of the phase advance
-
+values of $ \beta $ and $ \phi $ at the nominal position of the BPM. To determine the effect we start
+with the definition of the phase advance
 \begin{equation}
 \phi_{ij} = \int_{s_i}^{s_j} \frac{1}{\beta(s)}\d s\quad .
 \end{equation}
 We can approximate the phase error and the resulting $\beta$ shift at the position $s_i + \delta s_i$ as
-
 
 \begin{align}
 \tilde{\phi}_i &\approx \phi_i + \frac{1}{\beta_i}\delta s_i\quad , 
 \label{eq:Dphi} \\
 \tilde{\beta}_i &\approx \beta_i + \frac{\partial \beta_i}{\partial s} \delta s_i  = \beta_i - 2\alpha_i \delta s_i \quad , \label{eq:Dbeta}
 \end{align}
-up to first order in $ \delta s_i $. By $ \alpha_i $ we denote the $ \alpha $ function at the position of element $ i $, defined as 
+up to first order in $ \delta s_i $. By $ \alpha_i $ we denote the $ \alpha $ function at the position
+of element $ i $, defined as 
 
 \begin{equation}
 \alpha = -\frac{1}{2}\frac{\partial \beta}{ \partial s}\quad .
 \end{equation}
 
-We have to re-derive an equation similar to Eq.~(\ref{eq:18}) by taking into account the considerations of the preceding sections. The steps of the derivation are elaborated in appendix~\ref{app:derivation}. The final formula up to first order reads:
+We have to re-derive an equation similar to Eq.~(\ref{eq:18}) by taking into account the considerations
+of the preceding sections. The steps of the derivation are elaborated in appendix~\ref{app:derivation}.
+The final formula up to first order reads:
 
 \begin{align}
 \beta_l(s_i) \approx& \frac{\cot\phi_{i{j_l}} - \cot\phi_{i{k_l}}}{\cot\phi_{i{j_l}}\m - \cot\phi_{i{k_l}}\m +\bar{g}_{i{j_l}} - \bar{g}_{i{k_l}}} \left[\beta\m(s_i) - 2 \alpha\m(s_i) \delta s_i\right] \quad ,
@@ -513,8 +521,8 @@ with
 \sumw\beta_w\m\delta K_{w,1}\sin^2\phi_{wj}\m}{\sin^2\phi_{ij}\m}\quad ,
 \label{eq:g_ij}
 \end{equation} 
-where $\delta K_{w,1} $ now includes quadrupolar-like errors coming from sextupole misalignments and quadrupole longitudinal misalignments, as described in the previous sections. 
-
+where $\delta K_{w,1} $ now includes quadrupolar-like errors coming from sextupole misalignments and
+quadrupole longitudinal misalignments, as described in the previous sections. 
 
 Having defined the set I as
  \begin{equation}
@@ -574,8 +582,8 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
   The contribution from the BPM misalignment is calculated analogously:
 
   \begin{align}
-      T^s_{l\lambda}(s_i) &= \left.\frac{\partial \beta_l(s_i)}{\partial s_\lambda}\right|_{\delta s = 0} %\notag \\
-      = -2\alpha^m(s_i)\delta_i^{\lambda}
+      T^s_{l\lambda}(s_i) &= \left.\frac{\partial \beta_l(s_i)}{\partial s_\lambda}\right|_{\delta s = 0} \notag \\
+      &= -2\alpha^m(s_i)\delta_i^{\lambda}
       \mp 
       \frac{
           \dfrac{\text{sgn}(i-j_l)}{\sin^2 \phi_{ij_l}\m}\left(\dfrac{\beta\m(s_i)}{\beta\m(s_{j_l})}\delta^{j_l}_\lambda - \delta_\lambda^i\right) -
@@ -583,7 +591,7 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
       {\cot \phi_{ij_l}\m - \cot \phi_{ik_l}\m} \quad .
       \label{Ts}
   \end{align}
-  In \eqref{eq:TK}) and~\eqref{Ts} the minus and plus signs refer to the horizontal and vertical case, respectively. 
+  In \eqref{eq:TK} and~\eqref{Ts} the minus and plus signs refer to the horizontal and vertical case, respectively. 
 %In Equations~(\ref{eq:TK}) and~(\ref{Ts}) $\delta \epsilon = 0$ means \[\delta K_w = \delta s_w = \delta \phi_w = 0,\quad \forall w.\]
 
 \section{Error propagation}

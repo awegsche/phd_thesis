@@ -139,6 +139,71 @@ For convenience later we introduce the following short-hand notation:
 \end{equation}
 which is the \emph{phase advance} between position $s_a$ and $s_b$.
 
+Solutions of \eqref{eq_hills} for linear lattice elements can be expressed in matrix form
+
+\begin{equation}
+    \begin{pmatrix}
+        q_1\\
+        q_1'
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        m_{11} & m_{12} \\
+        m_{21} & m_{22}
+    \end{pmatrix}
+    \begin{pmatrix}
+        q_0\\
+        q_0'
+    \end{pmatrix}
+    \fstop
+    \label{eq_matrix_element}
+\end{equation}
+The matrix 
+\begin{equation}
+    \mat{M} = 
+    \begin{pmatrix}
+        m_{11} & m_{12} \\
+        m_{21} & m_{22}
+    \end{pmatrix}
+    \label{eq_trmat}
+\end{equation}
+is called the \emph{transfer matrix}. It describes the transformation
+of phase space when going from one position $s_0$ in the lattice to another $s_1$.
+
+A general form of \eqref{eq_trmat} is 
+
+\begin{equation}
+    \begin{pmatrix}
+        \sqrt{\frac{\beta_b}{\beta_a}}(\cos\phi_{ab} + \alpha_a \sin\phi_{ab}) &
+        \sqrt{\beta_a\beta_b} \sin\phi_{ab} \\
+        \frac{\alpha_a - \alpha_b}{\sqrt{\beta_a\beta_b}}\cos\phi_{ab} - \frac{b+\alpha_a\alpha_b}{\sqrt{\beta_a\beta_b}}\sin\phi_{ab} &
+        \sqrt{\frac{\beta_a}{\beta_b}}(\cos\phi_{ab} - \alpha_b\sin\phi_{ab})
+    \end{pmatrix}
+    \label{eq_trmat_01}
+\end{equation}
+where the quantity
+
+\begin{equation}
+    \alpha(s) = -\frac{\der \beta(s)}{2 \der s}
+    \label{eq_alpha}
+\end{equation}
+
+is called $\alpha$~\emph{function}.
+
+A special example of the transfermatrix is the one between a position $s_i$ and the position but in
+the following turn, called \emph{one-turn map}, which can be retrieved by setting $\beta_a = \beta_b $
+and $\alpha_a = \alpha_b$ in \eqref{eq_trmat_01}:
+
+\begin{equation}
+    M_i = \begin{pmatrix}
+        \cos(2\pi Q_q) + \alpha_a \sin(2\pi Q_q) & \beta_a\sin(2\pi Q_q) \\
+        -\frac{1+\alpha_a^2}{\beta_a}\sin(2\pi Q_q) & \cos(2\pi Q_q) - \alpha_a\sin(2\pi Q_q)
+    \end{pmatrix}
+    \fstop
+\end{equation}
+The value $Q_q$ is an important lattice paramter called the \emph{betatron tune}.
+
+
 
 \section{Resonance driving terms}
 

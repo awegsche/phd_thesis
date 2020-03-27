@@ -594,14 +594,71 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
   In \eqref{eq:TK} and~\eqref{Ts} the minus and plus signs refer to the horizontal and vertical case, respectively. 
 %In Equations~(\ref{eq:TK}) and~(\ref{Ts}) $\delta \epsilon = 0$ means \[\delta K_w = \delta s_w = \delta \phi_w = 0,\quad \forall w.\]
 
-\section{Error propagation}
-
-\section{Quadrupolar like errors}
-
-%\addtolength{\wrapoverhang}{0.5\marginparsep}
+\subsection{Removal of bad BPM combinations}
 
 
-\section{Routine $\beta$ measurement in LHC}
+\begin{figure}
+	\centering
+  \includegraphics[width=\linewidth]{comparison_statistics_007_bars}
+	
+    \includegraphics[width=\linewidth]{comparison_statistics_006}
+	\caption{Comparison of the 3-BPM method, the original N-BPM method and the analytical N-BPM method (denoted as \texttt{A.N-BPM}) for the nominal LHC lattice at collision, with $ \beta^*=40\,\text{cm} $. BOTTOM: histogram of the difference to the real $\beta$-function in percent. TOP: the average of the error bars and the accuracy spread (width of a standard distribution fit to the distribution in the bottom plot) in percent.  The analytical N-BPM method has the best accuracy both in the arcs and in the IRs. Data have been cleaned of outliers.}
+	\label{fig:compare_NBPM_to_3BPM}
+\end{figure}
 
-\section{HL-LHC simulations}
+\begin{figure}
+	\centering
+  \includegraphics[width=\linewidth]{comparison_statistics_HL007_bars}
+	
+    \includegraphics[width=\linewidth]{comparison_statistics_HL006}
+	
+	\caption{Same comparison of Figure~\ref{fig:compare_NBPM_to_3BPM} between the three methods for the HL-LHC $ \beta^*= 15\,\text{cm} $ ATS optics. The analytical N-BPM method yields clearly better results, both in the IRs and in the arcs. Compared to the $ \beta^*=40\,\text{cm} $ optics shown in Figure~\ref{fig:compare_NBPM_to_3BPM}, the $ \beta $ function reconstruction is less accurate: This was also demonstrated for the $ \beta^*=20\,\text{cm} $ optics in \cite{nbpm}. }
+	\label{fig:compare_ATS}
+\end{figure}
 
+
+
+\begin{figure}
+	\centering
+  \includegraphics[width=\linewidth]{10cm_b1_x_3bpm}
+    \includegraphics[width=\linewidth]{10cm_b1_x_nbpm}
+	\caption{Horizontal $ \beta $ beating of beam 1 at $ \beta^*=10\,\text{cm} $ during the ATS MD 2016. TOP: 3-BPM method. BOTTOM: analytical N-BPM method. The 3-BPM method suffers from bad phase advances and has many outliers. The regions of high $ \beta $ beating at around $ \SI{8000}{m} $ and $ \SI{23000}{m} $ lie in the telescopic arcs. }
+	\label{fig:10cm_beam1_hor_3bpm}
+\end{figure}
+
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{comparison_errorbars_Beam1}
+	
+	\includegraphics[width=\linewidth]{comparison_errorbars_Beam2}
+	
+	\includegraphics[width=\linewidth]{mean_errorbars}
+	
+	\caption{A comparison of the error bars of the $ \beta^*=10\,\text{cm} $ optics of the October 2016 MD. TOP: histogram of the errorbars of beam 1. CENTER: histogram of the errorbars of beam 2. BOTTOM: mean of the size the errorbars. The mean of the analytical N- BPM method is a factor 4 more accurate than the 3 BPM method. The third set of values shows the mean of the errorbars of the simulations as shown in Figure~\ref{fig:compare_ATS} but for the whole ring.}
+	\label{fig:HL_report/comparison_errorbars}
+\end{figure}
+Since a phase advance $ \phi_{ij} \approx n\pi $ results in an enhancement of phase measurement errors and in the extreme case numerically unstable values, a filtering was introduced. Instead of keeping a constant number of combinations as in \cite{nbpm} we set a threshold for \emph{bad} phase advances. A phase advance $ \Delta \phi $ is considered \emph{bad} if $ \Delta \phi \in [ n\pi - \delta, n\pi + \delta ] $ for $ n\in \mathbb{N} $ and a given threshold $ \delta $. If any of the four phase advances $ \phi_{ij_l}, \phi_{ik_l},\phi_{ij_l}\m,\phi_{ik_l}\m $ in Eq.~\eqref{eq.3bpm} is bad, the corresponding BPM combination is disregarded in the calculation of the weighted mean. This allows us to still use several combinations but skipping those which are numerically unstable. The current value for the threshold is $ \delta = 2\pi \cdot 10^{-2}$. The use of fewer combinations results in a lower computation time. 
+
+
+To test the analytical N-BPM method and compare it to the original 3-BPM and the Monte Carlo N-BPM method, a large set of LHC lattices with $ \beta^*=40\,\text{cm} $ with randomly distributed errors is generated and a measurement is simulated by tracking a single particle via polymorphic tracking code (PTC) \cite{Schmidt:573082}. The random errors are created from table \ref{tab:unc_estimates} and a Gaussian noise of $ \sigma_x = 0.1\,\text{mm} $ is applied to the BPM signal. No singular value decomposition cleaning is applied since it would clean the artificial noise too efficiently \cite{Langner:2016uiy}. The excitation amplitude is $\SI{0.8}{mm}$ at a $ \beta $ function of about $ \SI{120}{m} $. The tracked particle positions are then analyzed by the three methods (3-BPM, N-BPM and analytical N-BPM) and the respective deviation from the real horizontal $ \beta $ function is shown in the bottom plot of Figure~\ref{fig:compare_NBPM_to_3BPM}. The analytial N-BPM method includes the filtering of phase advances. Especially in the IR, where neighbouring BPMs have often unsuitable phase advances, the N-BPM and analytical N-BPM method yield more accurate values.
+
+The top diagram of Figure~\ref{fig:compare_NBPM_to_3BPM} shows that the error of the 3-BPM method is considerable larger, whereas the N-BPM and analytical N-BPM method are very accurate with similar accuracies in the IR and arcs.
+
+
+\subsection{HL-LHC}
+The ATS optics \cite{Fartoukh:2013jna} is the baseline choice for the HL-LHC and our optics measurement tools have to be prepared for the challenges imposed by such an optics. In Figure~\ref{fig:compare_ATS} the three methods are compared in the same way as in Figure~\ref{fig:compare_NBPM_to_3BPM}. The excitation amplitude was $ \SI{0.8}{mm} $ at a $ \beta $ function of $ \SI{127}{m} $. For the current HL-LHC collision optics ($ \beta^* =15\,\text{cm}$) the performance of N-BPM and analytical N-BPM method is again better than the 3-BPM method, especially in the IRs. All three methods are, however, about a factor two more inaccurate than for the $ \beta^*=\SI{40}{cm} $ optics of LHC, in agreement with Figure~7 of \cite{nbpm}.
+
+In the post-processing of the data taken during the LHC Machine Development
+measurement (MD) \cite{mdpubl} for testing the ATS principle with a $ \beta^* = 10$ cm optics, the analytical N-BPM method was used for the first time with filtering of bad phase advances. Figure 7 demonstrates that the analytical N-BPM
+method deals well with the ATS MD optics. Monte Carlo simulations were
+not possible for this optics.
+
+Figure~\ref{fig:HL_report/comparison_errorbars} shows the precision of the final results for the $ \beta^*=10\,\text{cm} $ optics of both beams compared to the simulations of the HL-LHC lattice with $ \beta^*=\SI{15}{cm} $. To ease the comparison the errorbars are
+shown in the bottom plot. They are slightly larger for the real measurement than those in simulations. We believe that the use of lower beam excitation   to ensure machine protection is behind these larger errorbars. Figure~\ref{fig:10cm_beam1_hor_3bpm} shows also that the 3-BPM method has many outliers and errorbars up to several kilometers caused by bad phase advances. Large error bars have been excluded for the mean shown in Figure~\ref{fig:HL_report/comparison_errorbars}.
+
+
+
+The Monte Carlo simulations failed for low $ \beta^* $ optics and so we were not able to use the original N-BPM method during ATS MDs. This is another advantage of the analytical N-BPM method that it is
+able to evaluate the systematic errors independently of the success of particle tracking.

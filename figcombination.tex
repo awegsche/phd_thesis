@@ -1,0 +1,30 @@
+\documentclass{standalone}
+
+\input{./image_defs}
+
+\begin{document}
+  \begin{tikzpicture}[x=.9cm, y=.9cm]
+    \usedbpm{(0,0)}{$i$}{(A)}
+    \tquadrupole{(A)}{(B1)}
+    \quadrupole{(B1)}{(B2)}
+    \otherelem{(B2)}{(C)}
+    \notusedbpm{(C)}{(C1)}
+    \tquadrupole{(C1)}{(C2)}
+    \quadrupole{(C2)}{(C3)}
+    \otherelem{(C3)}{(D)}
+    \usedbpm{(D)}{$j$}{(D1)}
+    \tquadrupole{(D1)}{(D2)}
+    \quadrupole{(D2)}{(D3)}
+    \otherelem{(D3)}{(E)}
+    \usedbpm{(E)}{$k$}{(E1)}
+    \quadrupole{(E1)}{(E2)}
+    \otherelem{(E2)}{(F)}
+    \notusedbpm{(F)}{(F1)}
+    \quadrupole{(F1)}{(F2)}
+    \otherelem{(F2)}{(G)}
+    \usedbpm{(G)}{$l$}{(end)}
+    \begin{pgfonlayer}{bg}
+      \draw[very thick] (-.5,0) --  (end);
+    \end{pgfonlayer}
+  \end{tikzpicture}
+\end{document}

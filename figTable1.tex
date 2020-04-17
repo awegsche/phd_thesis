@@ -1,0 +1,18 @@
+\documentclass{standalone}
+
+\input{./image_defs}
+
+
+\begin{document}
+\begin{tabular}{l @{\extracolsep{\fill}} r}
+  \hline
+  sketch of combination & $\varphi_{jl}-\varphi_{jk}-\varphi_{ik}-\varphi_{il}$ \\
+  \hline
+\printcomb{i,j,k,l,-,-,-} & $\SI{90}{\degree}-\SI{45}{\degree}-\SI{90}{\degree}-\SI{135}{\degree}$ \\
+\printcomb{i,-,j,k,l,-,-} & $\SI{90}{\degree}-\SI{45}{\degree}-\SI{135}{\degree}-{\color{red}\SI{180}{\degree}}$ \\
+\printcomb{i,j,-,k,l,-,-} & $\SI{135}{\degree}-\SI{90}{\degree}-\SI{135}{\degree}-{\color{red}\SI{180}{\degree}}$ \\
+%\printcomb{i,j,k,-,l,-,-} & $\SI{135}{\degree}-\SI{45}{\degree}-\SI{90}{\degree}-\SI{180}{\degree}$ \\
+\printcomb{i,-,j,k,-,l,-} & $\SI{135}{\degree}-\SI{45}{\degree}-\SI{135}{\degree}-\SI{225}{\degree}$ \\
+  \hline
+\end{tabular}
+\end{document}

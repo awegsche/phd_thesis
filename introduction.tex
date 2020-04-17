@@ -170,13 +170,30 @@ The matrix
 is called the \emph{transfer matrix}. It describes the transformation
 of phase space when going from one position $s_0$ in the lattice to another $s_1$.
 
+For illustration it is usual to give a couple of particular examples for solutions of \eqref{eq_hills}
+in the transfer matrix formalism.
+For a focusing quadrupole, we get $k(s) = k_1$ for $s$ inside the magnet. The solution of Hill's equation is
+\begin{equation}
+    q(s) = \cos \left[ \sqrt{k}(s-s_0)\right] q_0 + \frac{1}{\sqrt{k}}\sin\left[\sqrt{k}(s-s_0)\right]q_0'
+\end{equation}
+
+The transfer matrix of a focusing quadrupole reads
+
+\begin{equation}
+    \mat{M}_{QF} =
+    \begin{pmatrix}
+        \cos K & \frac{1}{\sqrt{k}} \sin K \\
+        -\sqrt{k}\sin K & \cos K
+    \end{pmatrix}
+\end{equation}
+
 A general form of \eqref{eq_trmat} is 
 
 \begin{equation}
     \begin{pmatrix}
         \sqrt{\frac{\beta_b}{\beta_a}}(\cos\phi_{ab} + \alpha_a \sin\phi_{ab}) &
         \sqrt{\beta_a\beta_b} \sin\phi_{ab} \\
-        \frac{\alpha_a - \alpha_b}{\sqrt{\beta_a\beta_b}}\cos\phi_{ab} - \frac{b+\alpha_a\alpha_b}{\sqrt{\beta_a\beta_b}}\sin\phi_{ab} &
+        \frac{\alpha_a - \alpha_b}{\sqrt{\beta_a\beta_b}}\cos\phi_{ab} - \frac{\beta+\alpha_a\alpha_b}{\sqrt{\beta_a\beta_b}}\sin\phi_{ab} &
         \sqrt{\frac{\beta_a}{\beta_b}}(\cos\phi_{ab} - \alpha_b\sin\phi_{ab})
     \end{pmatrix}
     \label{eq_trmat_01}
@@ -190,7 +207,7 @@ where the quantity
 
 is called $\alpha$~\emph{function}.
 
-A special example of the transfermatrix is the one between a position $s_i$ and the position but in
+A special example of the transfer matrix is the one between a position $s_i$ and the position but in
 the following turn, called \emph{one-turn map}, which can be retrieved by setting $\beta_a = \beta_b $
 and $\alpha_a = \alpha_b$ in \eqref{eq_trmat_01}:
 
@@ -201,8 +218,29 @@ and $\alpha_a = \alpha_b$ in \eqref{eq_trmat_01}:
     \end{pmatrix}
     \fstop
 \end{equation}
-The value $Q_q$ is an important lattice paramter called the \emph{betatron tune}.
+The value $Q_q$ is an important lattice parameter called the \emph{betatron tune}.
 
+\subsection{$\beta$ beating}
+
+For optimal operation of the machine a precise control of the $\beta$~function is needed. On the one
+hand, the particles must stay within the boundaries of the physical aperture and 
+at the interaction point the beam size has to be as small as possible to increase luminosity.
+On the other hand a too large deviation from the optical axis inside a higher order magnet may leed to an undesirable
+feed-down of the orbit offset.
+
+The deviation of the $\beta$~function from its design value is called \emph{beta beating} and defined as 
+\begin{equation}
+    \frac{\Delta\beta}{\beta\m} = \frac{\beta - \beta\m}{\beta\m}
+    \label{eq_def_beta_beat}
+    \fstop
+\end{equation}
+The $\beta$~beating is often expressed in percent.
+The effect of $\beta$~beating is particularly problematic in strong amgnetic fields where only small
+deviations from the design orbit create large perturbations the particle dynamics.
+
+
+
+The measurement and control of the $\beta$~function is the central topic of this thesis. 
 
 
 \section{Resonance driving terms}

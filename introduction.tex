@@ -45,6 +45,34 @@
 %
 %\textbf{Matrices} are denoted by bold face letters, usually capital latin $\mat{M}, \mat{V}$.
 
+% --------------------------------------------------------------------------------------------------
+% CERN and LHC
+% --------------------------------------------------------------------------------------------------
+\section{The Large Hadron Collider}
+
+<general description of the accelerator complex and of LHC in more detail>
+%The Large Hadron Collider is the world's largest particle accelerator with the highest center of mass
+%energy per charge unit. It has a circumference of $\SI{27}{km}$ and is situated at the French-Swiss 
+%border near Geneva. The top energy for protons is $\SI{7}{TeV}$
+%and in the lead ion run of 2018 a beam energy of $\SI{6.37}{Z TeV}$ was achieved.
+%
+%The particles pass through various pre-accelerators where they are accelerated in steps before being
+%injected in the LHC at $\SI{450}{GeV}$. The complete accelerator complex at CERN is sketched in
+%\figref{fig_cern_acc_cmplx}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{CCC-v2019-final-white_small}
+    \caption{CERN has various accelerators and decelerators. H$^-$ ions are pre-accelerated
+    in LINAC2 (LINAC4 in the future) and passed to PSBooster, PS, SPS and finally injected into
+    the LHC. Image credit: \cite{CERN_AccCmplx}}
+    \label{fig_cern_acc_cmplx}
+\end{figure}
+
+
+% --------------------------------------------------------------------------------------------------
+% beam optics
+% --------------------------------------------------------------------------------------------------
 \section{Beam Optics}
 
 Very much like light beams, charged particle beams in an accelerator can be bent, focused, defocused
@@ -295,6 +323,9 @@ and the one turn map simplifies further to
     \fstop
 \end{equation}
 
+% --------------------------------------------------------------------------------------------------
+% Normal forms and RDTs
+% --------------------------------------------------------------------------------------------------
 \section{Resonance driving terms}
 
 In order to derive optics parameters from Hamiltonian terms the normal form approach -- classically
@@ -460,9 +491,9 @@ and \eqref{eq_FfromH} has to hold for each polynomial order seperately. Thus one
     \fstop
 \end{equation}
 
-%---------------------------------------------------------------------------------------------------
-%---- phase beating --------------------------------------------------------------------------------
-%---------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------
+% phase beating
+% --------------------------------------------------------------------------------------------------
 \section{Influence of linear lattice imperfections on betatron phases}
 \label{sec:deriv}
 \label{sec_phase_beating}
@@ -643,27 +674,9 @@ $\bar{h}_{ij}$ only depends on quadrupole errors inside the range $[i,j]$ and is
 term. The RDTs $f_i$ in \eqref{eq_phasebeating_1st}, on the other hand, contain global contributions.
 
 
-\section{The Large Hadron Collider}
-
-<general description of the accelerator complex and of LHC in more detail>
-%The Large Hadron Collider is the world's largest particle accelerator with the highest center of mass
-%energy per charge unit. It has a circumference of $\SI{27}{km}$ and is situated at the French-Swiss 
-%border near Geneva. The top energy for protons is $\SI{7}{TeV}$
-%and in the lead ion run of 2018 a beam energy of $\SI{6.37}{Z TeV}$ was achieved.
-%
-%The particles pass through various pre-accelerators where they are accelerated in steps before being
-%injected in the LHC at $\SI{450}{GeV}$. The complete accelerator complex at CERN is sketched in
-%\figref{fig_cern_acc_cmplx}.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{CCC-v2019-final-white_small}
-    \caption{CERN has various accelerators and decelerators. H$^-$ ions are pre-accelerated
-    in LINAC2 (LINAC4 in the future) and passed to PSBooster, PS, SPS and finally injected into
-    the LHC. Image credit: \cite{CERN_AccCmplx}}
-    \label{fig_cern_acc_cmplx}
-\end{figure}
-
+% --------------------------------------------------------------------------------------------------
+% Intro to OMC
+% --------------------------------------------------------------------------------------------------
 \section{Optics measurements and corrections}
 
 There are two areas for which the continued measurement and correction of optics parameters is of
@@ -839,7 +852,9 @@ deviations from the design orbit create large perturbations the particle dynamic
 
 
 
-
+% --------------------------------------------------------------------------------------------------
+% Forced motion
+% --------------------------------------------------------------------------------------------------
 \section{Forced motion}
 
 

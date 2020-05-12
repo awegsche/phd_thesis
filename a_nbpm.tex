@@ -20,30 +20,16 @@ detail the improvements made by the \emph{analytical N-BPM method}.
 \subsection{Three BPM method}
 
 The classical method to measure the $\beta$~function in hadron machines is the \emph{Three BPM Method}
-where the transfer matrix element \eqref{eq_transfermatrix_beta_alpha} can be used. By equating
-the model and real transfer matrix elements the $\beta$~function can be infered from measured phase
-and model values:
-\begin{align}
-    \frac{1}{\beta_i} \left( \cot\phi_{ij} + \alpha_i\right)
-    &= \frac{1}{\beta\m_i} \left(\cot\phi_{ij}\m + \alpha_i\m\right)
-    \label{eq_transfm12}\\
-    \frac{1}{\beta_i} \left( \cot\phi_{ik} + \alpha_i\right)
-    &= \frac{1}{\beta\m_i} \left(\cot\phi_{ik}\m + \alpha_i\m\right)
-    \label{eq_transfm13}
-\end{align}
-Subtracting \eqref{eq_transfm13} from \eqref{eq_transfm12} and solving for $\beta_i$ yields
-\begin{equation}
-    \beta_i = \frac{\cot\phi_{ij} - \cot{\phi_{ik}}}{\cot\phi_{ij}\m - \cot{\phi_{ik}\m}}\beta_i\m
-    \label{eq_three_bpm}
-    \fstop
-\end{equation}
+introduced in section~\ref{sec_beta_meas}.
+
+
 
 With this method one can use the phase advance between three BPMs $i,j,k$ to calculate the $\beta$~function
 of the probed BPM $i$. It is a model dependent approach, the greater the difference between the model
 and the real accelerator the less accurate will be the result. A good knowledge of the actual accelerator
 is crucial for this approach to work.
 
-\equationref{eq_three_bpm} has been developped for LEP and it has been used for optics measurements in LEP
+\equationref{eq_3bpm_method} has been developped for LEP and it has been used for optics measurements in LEP
 and LHC during run I.
 But it has two shortcomings: it assumes that the actual $\beta$~beating is very low and it
 diverges for phase advances close to $n\pi$, $n \in \mathbb{N}$. The latter makes measurements at
@@ -115,7 +101,7 @@ and $j_l,\,k_l$ pairs of BPMs around the probed BPM.
 
 Furthermore the $\beta$~function values calculated from different combinations are not statistically
 independent and correlation has to be taken into account when calculating the weights.
-The N-BPM method \cite{AndyNBPM, AndyThesis} was developped to implement this feature.
+The N-BPM method \cite{LangnerNBPM, Langner2017} was developped to implement this feature.
 It was successfully used in the LHC during run II and for the re-analysis of run I data
 as well as in the storage rings of ALBA and ESRF.
 
@@ -373,8 +359,8 @@ This is a limiting factor when the N-BPM method is used for pushed optics with v
 
 
 \section{Corrected $\beta$ from phase formula}
-\equationref{eq_three_bpm} assumes that no error is present in the region between the involved BPMs.
-A new formula has been developed in \cite{Franchi:2016tfi} that takes quadrupolar errors into account,
+\equationref{eq_3bpm_method} assumes that no error is present in the region between the involved BPMs.
+A new formula has been developed in \cite{Franchi2016} that takes quadrupolar errors into account,
 
 \begin{equation}
 \beta(s_1) = \frac{\cot\phi_{12} - \cot\phi_{13}}{\cot\phi_{12}\m - \cot\phi_{13}\m +\bar{h}_{12} - \bar{h}_{13}}\beta\m(s_1) + O(\delta K_1^2)\quad ,
@@ -386,17 +372,18 @@ with
 \bar{h}_{ij} =  \dfrac{\sum\limits_{i<w<j}\beta_w\m\delta K_{w,1}\sin^2\phi_{wj}\m}{\sin^2\phi_{ij}\m}\;.
 \label{eq:h_ij}
 \end{equation}
-The sum runs over all elements $ w $ between BPMs $i$ and $j$. $\delta K_{w,1}$ is the integrated quadrupolar field error of element $w$. The definition of $ K_n $ follows the MAD \cite{madx} convention.
+The sum runs over all elements $ w $ between BPMs $i$ and $j$. $\delta K_{w,1}$ is the integrated quadrupolar field error
+of element $w$. The definition of $ K_n $ follows the MAD \cite{madx} convention.
 Note that \eqref{eq:h_ij} is only defined for the case $ s_1 <\nobreak s_2 < s_3 $ i.e.~the
 $ \beta $~function is calculated at the position of the first BPM. Since we want to use as many BPM
 combinations as possible we will derive below a form of \eqref{eq:18} without this constraint.
 
-In \cite{Franchi:2016tfi} the quality of \eqref{eq:18} has been assessed for the ESRF storage ring by
+In \cite{Franchi2016} the quality of \eqref{eq:18} has been assessed for the ESRF storage ring by
 simulating a lattice with errors and comparing the results of \eqref{eq:18} to the beta beating of
 the simulated lattice. In this paper the same study is repeated for the LHC and its future upgrade the HL-LHC.
 Table~\ref{tab:unc_estimates} summarizes those uncertainty estimates for the LHC elements that are
 relevant for this study. 
-In Figure~\ref{fig:hist1518} a comparison between Eqs.~(\ref{eq_three_bpm}) and~(\ref{eq:18}) is shown
+In Figure~\ref{fig:hist1518} a comparison between Eqs.~(\ref{eq_3bpm_method}) and~(\ref{eq:18}) is shown
 in the horizontal plane. The plot shows a histogram of the deviation of the formulas (1) and (11)
 from the real (i.e. simulated) $ \beta $ function values. The histogram contains the values of all the
 individual BPMs for one simulated lattice. The top plot shows the case with only quadrupolar field
@@ -420,7 +407,10 @@ still yields a clearly better estimate.
 		MS & -& - & $ 0.3   $ \\
 		BPM & -& $ 1.0   $ & - 
 	\end{tabular}
-	\caption{Estimates for the LHC gradient and misalignment errors. MQ are focusing and defocusing quadrupoles, MS are sextupoles. The values of the magnet errors are derived from magnetic measurements of \cite{ref:15} \cite{ref:16} . }
+    \caption{Estimates for the LHC gradient and misalignment errors. MQ are focusing and defocusing
+    quadrupoles, MS are sextupoles.
+    The values of the magnet errors are derived from magnetic measurements of \cite{wise1, wise2}.
+    }
 	\label{tab:unc_estimates}
 \end{table}
 
@@ -433,7 +423,7 @@ Moreover \eqref{eq:18} may be easily modified for taking into account a more rea
   \includegraphics[width=.49\linewidth]{hist1518_NAIV_01}
 	\caption{
         Left: Difference between the real (simulated) horizontal $\beta$-functions and the ones
-        calculated by \eqref{eq_three_bpm} in red and~(\ref{eq:18}) in blue, respectively. Data are from MADX
+        calculated by \eqref{eq_3bpm_method} in red and~(\ref{eq:18}) in blue, respectively. Data are from MADX
         simulations of a lattice with quadrupolar errors only.
         Right: The same quantities are evaluated for the case with additional magnet misalignments.
         the numbers which figure after the legend label show the root mean square of the deviation
@@ -539,7 +529,7 @@ Having defined the set I as
 \begin{figure}
 	\centering
   \includegraphics[width=.7\linewidth]{hist1518_EVERYTHING_01}
-    \caption{Accuracy of the horizontal $\beta$-function evaluated via \eqref{eq_three_bpm} and~\eqref{eq:beta_g} with the effect of magnets and BPM misalignments taken into account. The accuracy of
+    \caption{Accuracy of the horizontal $\beta$-function evaluated via \eqref{eq_3bpm_method} and~\eqref{eq:beta_g} with the effect of magnets and BPM misalignments taken into account. The accuracy of
  \eqref{eq:beta_g} is similar to the one of \eqref{eq:18} with quadrupolar field errors only (Figure~\ref{fig:hist1518}).}
 	\label{fig:hist1518_with_everything}
 %\end{wrapfigure}
@@ -553,11 +543,11 @@ and~\eqref{eq:g_ij} hold for every combination $ i $, $ j $, $ k $ of the BPMs.
 All these considerations can be put into \eqref{eq:beta_g} and used to get a more accurate
 $ \beta $ function.
 To verify the validity of \eqref{eq:beta_g}, its horizontal $\beta$-functions are compared to the
-ones simulated by MADX along with the ones inferred from \eqref{eq_three_bpm}, this time including
+ones simulated by MADX along with the ones inferred from \eqref{eq_3bpm_method}, this time including
 sextupole radial offsets and BPMs longitudinal shifts.
 
 The result is shown in Figure~\ref{fig:hist1518_with_everything}. The accuracy is now as good as the one of \eqref{eq:18}  when only quadrupolar field errors were introduced in the
-lattice, which in turn is much greater than the old formula, \eqref{eq_three_bpm}.
+lattice, which in turn is much greater than the old formula, \eqref{eq_3bpm_method}.
 
 \section{Calculation of the correlation matrix}
 
@@ -616,7 +606,13 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
   \includegraphics[width=.49\linewidth]{comparison_statistics_HL007_bars}
     \includegraphics[width=.49\linewidth]{comparison_statistics_HL006}
 	
-	\caption{Same comparison of Figure~\ref{fig:compare_NBPM_to_3BPM} between the three methods for the HL-LHC $ \beta^*= 15\,\text{cm} $ ATS optics. The analytical N-BPM method yields clearly better results, both in the IRs and in the arcs. Compared to the $ \beta^*=40\,\text{cm} $ optics shown in Figure~\ref{fig:compare_NBPM_to_3BPM}, the $ \beta $ function reconstruction is less accurate: This was also demonstrated for the $ \beta^*=20\,\text{cm} $ optics in \cite{nbpm}. }
+	\caption{
+        Same comparison of Figure~\ref{fig:compare_NBPM_to_3BPM} between the three methods for the
+        HL-LHC $ \beta^*= 15\,\text{cm} $ ATS optics. The analytical N-BPM method yields clearly
+        better results, both in the IRs and in the arcs. Compared to the $ \beta^*=40\,\text{cm} $
+        optics shown in Figure~\ref{fig:compare_NBPM_to_3BPM}, the $ \beta $ function reconstruction
+        is less accurate: This was also demonstrated for the $ \beta^*=20\,\text{cm} $ optics in
+        \cite{LangnerNBPM}. }
 	\label{fig:compare_ATS}
 \end{figure}
 
@@ -639,19 +635,44 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
 	
 	\includegraphics[width=.7\linewidth]{mean_errorbars}
 	
-	\caption{A comparison of the error bars of the $ \beta^*=10\,\text{cm} $ optics of the October 2016 MD. TOP: histogram of the errorbars of beam 1. CENTER: histogram of the errorbars of beam 2. BOTTOM: mean of the size the errorbars. The mean of the analytical N- BPM method is a factor 4 more accurate than the 3 BPM method. The third set of values shows the mean of the errorbars of the simulations as shown in Figure~\ref{fig:compare_ATS} but for the whole ring.}
+	\caption{
+        A comparison of the error bars of the $ \beta^*=10\,\text{cm} $ optics of the October 2016 MD.
+        TOP: histogram of the errorbars of beam 1. CENTER: histogram of the errorbars of beam 2.
+        BOTTOM: mean of the size the errorbars. The mean of the analytical N-BPM method is a factor
+        4 more accurate than the 3 BPM method. The third set of values shows the mean of the errorbars
+        of the simulations as shown in Figure~\ref{fig:compare_ATS} but for the whole ring.
+        }
 	\label{fig:HL_report/comparison_errorbars}
 \end{figure}
 Since a phase advance $ \phi_{ij} \approx n\pi $ results in an enhancement of phase measurement errors and in the extreme case numerically unstable values, a filtering was introduced. Instead of keeping a constant number of combinations as in \cite{nbpm} we set a threshold for \emph{bad} phase advances. A phase advance $ \Delta \phi $ is considered \emph{bad} if $ \Delta \phi \in [ n\pi - \delta, n\pi + \delta ] $ for $ n\in \mathbb{N} $ and a given threshold $ \delta $. If any of the four phase advances $ \phi_{ij_l}, \phi_{ik_l},\phi_{ij_l}\m,\phi_{ik_l}\m $ in Eq.~\eqref{eq.3bpm} is bad, the corresponding BPM combination is disregarded in the calculation of the weighted mean. This allows us to still use several combinations but skipping those which are numerically unstable. The current value for the threshold is $ \delta = 2\pi \cdot 10^{-2}$. The use of fewer combinations results in a lower computation time. 
 
 
-To test the analytical N-BPM method and compare it to the original 3-BPM and the Monte Carlo N-BPM method, a large set of LHC lattices with $ \beta^*=40\,\text{cm} $ with randomly distributed errors is generated and a measurement is simulated by tracking a single particle via polymorphic tracking code (PTC) \cite{Schmidt:573082}. The random errors are created from table \ref{tab:unc_estimates} and a Gaussian noise of $ \sigma_x = 0.1\,\text{mm} $ is applied to the BPM signal. No singular value decomposition cleaning is applied since it would clean the artificial noise too efficiently \cite{Langner:2016uiy}. The excitation amplitude is $\SI{0.8}{mm}$ at a $ \beta $ function of about $ \SI{120}{m} $. The tracked particle positions are then analyzed by the three methods (3-BPM, N-BPM and analytical N-BPM) and the respective deviation from the real horizontal $ \beta $ function is shown in the bottom plot of Figure~\ref{fig:compare_NBPM_to_3BPM}. The analytial N-BPM method includes the filtering of phase advances. Especially in the IR, where neighbouring BPMs have often unsuitable phase advances, the N-BPM and analytical N-BPM method yield more accurate values.
+To test the analytical N-BPM method and compare it to the original 3-BPM and the Monte Carlo N-BPM
+method, a large set of LHC lattices with $ \beta^*=40\,\text{cm} $ with randomly distributed errors
+is generated and a measurement is simulated by tracking a single particle via polymorphic tracking
+code (PTC) \cite{Schmidt2002}. The random errors are created from table \ref{tab:unc_estimates}
+and a Gaussian noise of $ \sigma_x = 0.1\,\text{mm} $ is applied to the BPM signal. No singular value
+decomposition cleaning is applied since it would clean the artificial noise too efficiently
+\cite{Langner2016}. The excitation amplitude is $\SI{0.8}{mm}$ at a $ \beta $ function of about
+$ \SI{120}{m} $. The tracked particle positions are then analyzed by the three methods
+(3-BPM, N-BPM and analytical N-BPM) and the respective deviation from the real horizontal
+$ \beta $ function is shown in the bottom plot of Figure~\ref{fig:compare_NBPM_to_3BPM}.
+The analytial N-BPM method includes the filtering of phase advances. Especially in the IR, where
+neighbouring BPMs have often unsuitable phase advances, the N-BPM and analytical N-BPM method yield
+more accurate values.
 
 The top diagram of Figure~\ref{fig:compare_NBPM_to_3BPM} shows that the error of the 3-BPM method is considerable larger, whereas the N-BPM and analytical N-BPM method are very accurate with similar accuracies in the IR and arcs.
 
 
 \section{HL-LHC}
-The ATS optics \cite{Fartoukh:2013jna} is the baseline choice for the HL-LHC and our optics measurement tools have to be prepared for the challenges imposed by such an optics. In Figure~\ref{fig:compare_ATS} the three methods are compared in the same way as in Figure~\ref{fig:compare_NBPM_to_3BPM}. The excitation amplitude was $ \SI{0.8}{mm} $ at a $ \beta $ function of $ \SI{127}{m} $. For the current HL-LHC collision optics ($ \beta^* =15\,\text{cm}$) the performance of N-BPM and analytical N-BPM method is again better than the 3-BPM method, especially in the IRs. All three methods are, however, about a factor two more inaccurate than for the $ \beta^*=\SI{40}{cm} $ optics of LHC, in agreement with Figure~7 of \cite{nbpm}.
+The ATS optics \cite{Fartoukh2013} is the baseline choice for the HL-LHC and our optics measurement
+tools have to be prepared for the challenges imposed by such an optics. In Figure~\ref{fig:compare_ATS}
+the three methods are compared in the same way as in Figure~\ref{fig:compare_NBPM_to_3BPM}.
+The excitation amplitude was $ \SI{0.8}{mm} $ at a $ \beta $ function of $ \SI{127}{m} $.
+For the current HL-LHC collision optics ($ \beta^* =15\,\text{cm}$) the performance of N-BPM and
+analytical N-BPM method is again better than the 3-BPM method, especially in the IRs. All three
+methods are, however, about a factor two more inaccurate than for the $ \beta^*=\SI{40}{cm} $ optics
+of LHC, in agreement with Figure~7 of \cite{LangnerNBPM}.
 
 In the post-processing of the data taken during the LHC Machine Development
 measurement (MD) \cite{mdpubl} for testing the ATS principle with a $ \beta^* = 10$ cm optics, the analytical N-BPM method was used for the first time with filtering of bad phase advances. Figure 7 demonstrates that the analytical N-BPM

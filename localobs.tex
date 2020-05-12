@@ -1,23 +1,6 @@
 \chapter{A local observable for linear lattice imperfections}
 \label{ch_localobs}
 
-\newcommand{\atan}{\mathrm{atan}}
-
-\newcommand{\zxp}{\zeta_x^+}
-\newcommand{\zxm}{\zeta_x^-}
-\newcommand{\zyp}{\zeta_y^+}
-\newcommand{\zym}{\zeta_y^-}
-
-\newcommand{\ave}[2]
-{
-  \left\langle #1 \right\rangle_{#2}
-}
-\newcommand{\phiave}[1]{
-  \ave{#1}{\varphi}
-}
-
-\newcommand{\liemap}[1] {{:}#1{:}\,}
-
 \newcommand{\combtoangle}[3]{
   $\SI{#1}{\degree} - \SI{#2}{\degree} - \SI{#3}{\degree}$
 }
@@ -33,7 +16,7 @@
 The measurement and control of the optics of an accelerator is a critical task for machine
 performance. In the LHC, machine protection also imposes constraints on optics aberrations.
 Linear optics corrections have achieved remarkable performance in the last years
-\cite{Tomas:optics_review, Tomas2012, Persson2017, optics_sls, optics_cornell, optics_isr, nbpm_alba},
+\cite{Tomas2017, Tomas2012, Persson2017, Aiba2013, Sagan2000, Borer1983, Langner2015},
 pushing the precision and accuracy of $\beta$ function and transverse coupling
 measurements further.
 
@@ -53,7 +36,7 @@ In order to locate error sources we are interested in local
 observables, i.e. terms that only depend on lattice parameters and error sources in a localised
 region. Such a local observable does not exist for linear lattice imperfections. For the non-linear
 ones one has been found so far
-\cite{Tomas2005, magnetic_str}: 
+\cite{Tomas2005, Franchi2007}: 
 
 \begin{align}
   \chi(N) =& \frac{\hat{x}_1(N)}{\cos \left( \varphi_{x,12} - \frac{\pi}{2} \right)} 
@@ -91,10 +74,10 @@ An extension of $\chi(N)$ into the linear regime does not seem possible since me
 and phase are used in a way to remove information on the linear beam dynamics.
 
 Certain optics parameters (e.g. the $\beta$ function or coupling) can be calculated from the phase
-advances between two or three BPMs \cite{Franchi2010, Miyamoto2010, Castro:316609}
-independently from BPM calibration errors \cite{calibration}
+advances between two or three BPMs \cite{Franchi2010, Miyamoto2010, Castro1996}
+independently from BPM calibration errors \cite{Calaga2007}
 . 
-The phase advance measured from a Fourier Transform \cite{Guo_phase_meas,Laskar} turn-by-turn data is independent of the amplitude
+The phase advance measured from a Fourier Transform \cite{Guo2016} turn-by-turn data is independent of the amplitude
 of the signal and, thus, not affected by calibration errors.
 %For coupling measurements, a reconstruction of the complex signal is necessary which requires using
 %the amplitude \cite{Miyamoto2010}. The dependence on calibration can, in this case, be eliminated by using normalising
@@ -117,11 +100,11 @@ for phase beating but global contributions cannot be eliminated.
 
 The focus of this work lies on circular machines where phase advance can be measured accurately by
 exciting an oscillation of the beam.
-Excitation methods include single kicks and driven oscillation by an AC-dipole \cite{ac-dipole} which
+Excitation methods include single kicks and driven oscillation by an AC-dipole \cite{Miyamoto2008} which
 generate a stable coherent motion of the beam.
 Conceptually the local observable described in this work applies also to linear machines but accurate measurements
 of phase advances remain challenging and the application of the proposed technique might not be practical.
-Instead model-based fitting methods \cite{linearHuang}
+Instead model-based fitting methods \cite{Zhang2018}
 might be more suited to retrieve optics parameters directly.
 
 This article is organised in the following structure:
@@ -192,17 +175,19 @@ phase advance of $\pi$.
 \subsection{The general case -- phase advances different from \texorpdfstring{$n\pi$}{n*pi}}
 \label{sec_generalcase}
 
+\begin{figure}[htbp]
+%\begin{wrapfigure}{O}[\figborderhang]{5cm}
+  \centering
+    \includegraphics[width=.3\linewidth]{figIntervPhiIj}
+  \caption{The interval of BPMs with corresponding phase advances.}
+  \label{fig_interv_phi_ij}
+%\end{wrapfigure}
+\end{figure}
 \equationref{eq_phasebeating_1st} still carries a dependence on the global error distribution in the form
 of the terms $f_i$. We can eliminate those terms by carefully summing up phase advances between
 different pairs of BPMs as described in appendix~\ref{sec_resummation} and illustrated in
 Fig.~\ref{fig_interv_phi_ij}.
 
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[width=.4\linewidth]{figIntervPhiIj}
-  \caption{The interval of BPMs with corresponding phase advances.}
-  \label{fig_interv_phi_ij}
-\end{figure}
 The resummation yields an observable
 \begin{align}
   \Phi^{\mathrm{meas}}_{ijkl} =&
@@ -224,14 +209,16 @@ There are no global contributions left and the two quantities defined in Eqs. (\
 (\ref{eq_analyticalphi_firstorder}) are truly local up to first order.
 
 \begin{figure}
+%\begin{wrapfigure}{O}[\figborderhang]{5cm}
   \centering
-  \includegraphics[width=.4\linewidth]{figThetaComb}
+  \includegraphics[width=.3\linewidth]{figThetaComb}
 \caption{
   The phase advances appearing in Eqs.~(\ref{eq_deltaphi_firstorder}) and (\ref{eq_analyticalphi_firstorder}).
   The phase advances $\varphi_{ij}$ and $\varphi_{kl}$ do not appear in the final form of the local
   observable.
 }
   \label{fig_thetacomb}
+%\end{wrapfigure}
 \end{figure}
 
 The measurement uncertainty can be propagated to $\Phi_{ijkl}^\text{meas}$:
@@ -253,7 +240,7 @@ BPM calibration errors.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\linewidth]{./sim_locality.pdf}
+  \includegraphics[width=.6\linewidth]{./sim_locality.pdf}
   \caption{The impact of a focusing error on the local observable. The plot shows an LHC arc with a
     relative error of $\SI{0.1}{\percent}$ of the magnetic field of focusing quadrupole \texttt{MQ.22R4}
     which is marked by a vertical line.
@@ -289,7 +276,7 @@ In this case the number of BPMs is reduced to two at positions $i$ and
 $j$.
 In general, phase advances that are sufficiently close to multiples of $\pi$ might not be present in
 standard operation of an accelerator -- an exception is for example the ATS optics
-\cite{fartoukh2013} that is now used
+\cite{Fartoukh2013} that is now used
 in LHC and which is the proposed baseline for its high luminosity upgrade --, but it would be conceivable to prepare
 special optics settings for a corresponding measurement in any acclerator.
 The error of the local observable in this case,
@@ -369,7 +356,8 @@ $\beta^*=\SI{30}{\centi\metre}$.
 Figure~\ref{fig_combination} shows a sketch of a typical LHC arc section. BPMs are placed directly in
 front of the quadrupoles of FODO cells. Additional trim quadrupoles (e.g. MQT) may be present.
 
-\begin{figure}[htbp]
+%\begin{figure}[htbp]
+\begin{wrapfigure}{O}[\figborderhang]{6cm}
   \centering
   \includegraphics[width=\linewidth]{figcombination}
   \caption{The probed interval $I_p$ for a typical section inside an LHC arc.
@@ -381,7 +369,8 @@ front of the quadrupoles of FODO cells. Additional trim quadrupoles (e.g. MQT) m
     bending dipoles are omitted.
   }
   \label{fig_combination}
-\end{figure}
+\end{wrapfigure}
+%\end{figure}
 
 Four cases will be studied: the first one is a set of LHC design field
 errors from WISE~\cite{wise1,wise2}, shown in Tab.~\ref{tab_design}, in the absence of phase noise.
@@ -458,7 +447,7 @@ The case \combtoangle{45}{90}{45} is sketched in Fig.~\ref{fig_thetacomb_ij-kl}.
 
 \begin{figure}
   \centering
-  \includegraphics[width=.45\linewidth]{figThetacombijkl}
+  \includegraphics[width=.3\linewidth]{figThetacombijkl}
   \caption{The phase advances of the combination
     $\varphi_{ij}=\SI{45}{\degree}$, $\varphi_{jk}=\SI{90}{\degree}$, $ \varphi_{kl}=\SI{45}{\degree}$.
 The phase advance $\varphi_{il} = \SI{180}{\degree}$ causes $\cot\varphi_{jl}\m$ to diverge.
@@ -469,9 +458,9 @@ The phase advance $\varphi_{il} = \SI{180}{\degree}$ causes $\cot\varphi_{jl}\m$
 
 \begin{table}[htbp]
     \begin{center}
-    \end{center}
     % #publish_picture figTable1
     \includegraphics{figTable1}
+    \end{center}
     % #end publish_picture
     \caption{Indices $i,j,k,l$ and phases appearing model phase advances for the closest combinations.
       The actual model phase advances depend on the respective model settings and differ slightly from
@@ -498,7 +487,7 @@ Eqs.~(\ref{eq_deltaphi_firstorder}), (\ref{eq_analyticalphi_firstorder}) and (\r
 
 \begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{sim_no_noise}
+  \includegraphics[width=.5\linewidth]{sim_no_noise}
   %\includegraphics[width=\linewidth]{./73_plots/sim_ij-kl_design_IP4}
   \caption{
     This figure shows the first two combinations of Tab.~\ref{tab_combs} and the case $\varphi_{ij}\m = \pi$
@@ -541,7 +530,7 @@ both BPMs have high $\beta$ function, only one of them has high $\beta$ and both
 
 For this set of simulations we introduce phase noise which
 corresponds to noise values of the LHC signal that we typically achieve taking five data acquisitions
-and after cleaning \cite{svdclean} and harmonic analysis.
+and after cleaning \cite{Calaga2004} and harmonic analysis.
 We group BPMs into the before mentionned categories and apply a Gaussian error distribution
 to the phase values according to measurement statistics.
 
@@ -568,7 +557,7 @@ BPMs there are always two with low $\beta$ function.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{sim_noise}
+  \includegraphics[width=.6\linewidth]{sim_noise}
   %\includegraphics[width=\linewidth]{./73_plots/sim_ij-kl_design_IP4_noise}
   \caption{
     Similar plots as in Fig.~\ref{fig_design_nonoise} but including a phase error of \noiserms{} for
@@ -600,13 +589,13 @@ Fig.~\ref{fig_design_noise}).
 The simulations above show that strong quadrupolar error sources ($\geq 1\%$) can be detected with the local
 observables under the studied phase resolution.
 For the detection of smaller errors a higher precision of the phase measurement would be needed.
-More precise BPMs like DOROS-BPMs \cite{doros} currently installed in the LHC interaction region and a higher excitation
+More precise BPMs like DOROS-BPMs \cite{Gasior2011} currently installed in the LHC interaction region and a higher excitation
 amplitude as well as the acquisition of a higher number of turns
 can increase the resolution of the phase measurement. 
 
 \begin{figure}
   \centering
-\includegraphics[width=\linewidth]{sim_peak}
+\includegraphics[width=.6\linewidth]{sim_peak}
 \caption{The local observable with the error distribution of Tab.~\ref{tab_design_peak}, including
     a strong error source at \texttt{MQ.22R4.B1} and phase
     noise of \noiserms.
@@ -721,204 +710,6 @@ Education and Research (grant no. 05E15CHA)
 % --------------------------------------------------------------------------------------------------
 \clearpage
 \appendix
-
-\section{Influence of linear lattice imperfections on betatron phases}
-\label{sec:deriv}
-\label{sec_phase_beating}
-
-This section revises the derivation of phase advance beating from quadrupolar field errors
-by reproducing the steps of \cite{Franchi2014} and \cite{Franchi2016}. 
-We consider normal quadrupolar
-field errors only.
-In this case the generating function $F$ reads
-\begin{equation}
-  F(s_j) = f_{2000,j} \left( \zeta_{x,s_j}^+ \right) ^2 + f_{0200,j} \left( \zeta_{x,s_j}^- \right)^2 \notag
-  %\\
-  %&f_{0020,j} \left( \zeta_y^+ \right)^2 + f_{0002,j} \left( \zeta_y^- \right)^2
-  \komma
-  \label{eq_F_quad}
-\end{equation}
-where the RDT $f_{jklm}$ up to first order at the position $i$ is given by 
-
-\begin{equation}
-  \label{eq_rdt}
-  f_{jklm,a} = \frac{
-    -\sum\limits_w h_{w,jklm}\e{i\left[(j-k)\varphi_{x,wa}+(l-m)\varphi_{y,wa}\right]}
-  }{
-      1- \e{i \left[ (j-k)Q_x + (l-m)Q_y\right]}
-  }\fstop
-\end{equation}
-For normal multipole components $K_{n} $ the coefficient $h_{w,jklm}$ reads:
-
-\begin{equation}
-  h_{w,jklm} = \frac{
-    -K_{w,n-1} i^{l+m}\left( \beta_{w,x} \right)^{\frac{j+k}{2}} \left( \beta_{w,y}
-    \right)^{\frac{l+m}{2}}
-  }{
-    j!\;k!\;l!\;m!\; 2^{j+k+l+m}
-  }
-  \fstop
-  \label{eq_h_jklm}
-\end{equation}
-The complex Courant-Snyder coordinates can be calculated from the normal form coordinates by \cite{Bartolini1997, Bazzani1994}
-\begin{align}
-  h_x^+(s_j, N) &= e^{:F:}\zeta_{x,s_j}^+(N) \notag \\
-  &= \zeta_{x,s_j}^+(N) + 4if_{2000,j}^* \zeta_{x,s_j}^-(N) 
-  + \left| 4 f_{2000,j} \right|^2 \zeta_{x, s_j}^+(N) +
-  O(f^3)
-  \label{eq_h_2ndorder}
-\end{align}
-where $\liemap{F}x = [F,x]$ and the normal form coordinate in turn $N$ is
-$ \zeta_{x,s_j}^\pm(N) = \zeta_{x,s_j}^\pm e^{2\pi NQ_x}$.
-The normal form coordinates $\zeta_z^\pm$ are given by \cite{Tomas2005}
-\begin{align}
-  \zeta_{z,s}^{\pm} &=  \sqrt{2I_z}\e{\mp i\left( \psi_{z} + \psi_0 \right)}\quad,  z\in \{x,y\}
-  \label{eq_normalformidentities}
-\end{align}
-where $s$ is the longitudinal position in the ring, $I_z$ is the linear
-invariant, $Q_z$ is the tune of plane $z$.
-
-We used the fact that $f_{2000}^* = f_{0200}$ to simplify the expression.
-The $O(f^3) $ term collects all third order contributions of $\re{f_{2000,j}},\,\im{f_{2000,j}}$ and 
-$\left| f_{2000,j}\right|$.
-
-We are interested in the phase of the real signal $\hat{x}_j = \re{h_x^+(s_j)}$ which reads,
-up to first order,
-\begin{equation}
-    \hat{x}_j = \re{\left( 1+4if_{2000,j}^* \right) \sqrt{2I_x}\e{-i[ N Q_x+\psi_{x,0j}]}}
-  \fstop
-  \label{eq_real_H10}
-\end{equation}
-The effect of the RDTs $f_{jklm,i}$ on the phase of the main tune
-line is the argument of the term in parenthesis in \eqref{eq_real_H10}:
-\begin{align}
- \arg\left( 1+4if_{2000,j}^* \right)
-  &=   \atan \left(
-   \frac{
-     -4\re{ f_{2000,i}}
-   }{
-     1 +4\im{f_{2000,j} + \left| 4 f_{2000,j}\right|^2 }
-   } \right) \notag \\
-  &\approx  -4 \re{f_{2000,i}} - 16 \re{f_{2000,i}}\im{f_{2000,i}}
- \fstop
-\label{eq_thetaH}
-\end{align}
-
-Since only $f_{2000}$ appears in the phase beating we will suppress the indices $2000$ from now on.
-A detuning $\Delta Q_z$ is generated by the phase independent Hamiltonian terms $h_{w, iijj}$.
-The only quadrupolar contribution comes from the term
-$h_{1100}$.
-The tune in \eqref{eq_real_H10} consists of
-\begin{equation}
-  \label{eq_tune_dshift}
-  Q_x = Q_{x}\m + \Delta Q_x
-\end{equation}
-where $Q_{x}\m$ is the model horizontal tune and
-\begin{align}
-  2\pi\Delta Q_x &= -\frac{\partial \langle H \rangle_\varphi}{\partial J_x}
-  = -\frac{\partial 2 J_x
-    h_{1100}}{\partial J_x} = -2h_{1100} + O(J_x) 
-    \fstop 
-  \label{eq_tune_shift_h1100}
-\end{align}
-The Hamiltonian of the whole accelerator reads
-\begin{align}
-  H(s_a) =& \sum\limits_{w}^{W}\sum\limits_{n}\sum\limits_{j+k+l+m=n} h_{w,jklm}
-  \e{i\left[ (j-k)\varphi_{x,wa} + (l-m)\varphi_{y,wa} \right]}
-  %\notag \\
-  %& \times
-  \left( h_x^+ \right)^j
-  \left( h_x^- \right)^k
-  \left( h_y^+ \right)^l
-  \left( h_y^- \right)^m
-  \label{eq_Hamil}
-\end{align}
-with $h_z^\pm$ being the normalised complex Courant-Snyder coordinate
-\begin{equation}
-  h_z^\pm = \hat{z} \pm i \hat{p}_z
-    \komma
-    \label{eq_courantsnyder}
-\end{equation}
-and $n$ denotes the order of the magnetic component (2 for quadrupole, 3 for sextupole,
-etc.).
-The sum over $w$ in Eqs.~(\ref{eq_rdt}) and (\ref{eq_Hamil}) runs over each element $w$ in the accelerator.
-The accumulated phase shift due to the detuning between elements $i$ and
-$j$ reads:
-\begin{equation}
-  h_{1100,ij} \equiv -\frac{\text{sgn}\left( j - i \right)}{4}\sum\limits_{I}\beta_{w,x}\m \delta K_{w,1} + O(\delta
-  K_1^2)\fstop
-  \label{eq_h11000-j}
-\end{equation}
-$I$ is the interval $[\min(i,j), \max (i,j)]$ and $\text{sgn}(x)$ denotes the sign function:
-\begin{equation}
-    \text{sgn}(x) =
-    \begin{cases}
-        -1 & \text{if } x<0\\
-        0 &\text{if } x=0\\
-        1 &\text{if } x >0
-    \end{cases}
-    \fstop
-    \label{eq_def_sgn_fun}
-\end{equation}
-
-
-% --------------------------------------------------------------------------------------------------
-% ---- Local observable -- first order -------------------------------------------------------------
-% --------------------------------------------------------------------------------------------------
-%\subsection{Phase advance beating due to quadrupolar field errors}
-\label{sec:phasebeating_K1_first}
-
-The total phase advance beating is then the sum of the accumulated detuning from Hamiltonian
-terms and the phase beating from the RDTs:
-\begin{equation}
-  \Delta \varphi_{x,ij} = -2h_{1100,ij} - 4\re{f_{j} - f_{i}} + O \left( f^2 \right)
-  \fstop
-  \label{eq_tune_shift_quad}
-\end{equation}
-
- With the following identity \cite{Tomas2005, Franchi2007}: 
-\begin{align}
-  f_j &= \text{sgn}(j-i) \frac{1}{8}\sum\limits_{w\in I}\beta_w \m \delta K_{w,1}
-  \e{2i\varphi_{wj}\m}+f_{i}\e{2i\varphi_{ij}\m}\; ,
-  \label{eq_rogelio_fjfromfi} 
-\end{align}
-we can eliminate $f_j$ from \eqref{eq_tune_shift_quad}.
-Here and in the following we consider only the horizontal plane and thus we omit the index $x$ in the optical
-functions $\phi_{ab}, \beta_a$ and the quadrupole field $K_{1,a}$.
-For compactness we rename the first part of $f_j$ to
-\begin{equation}
-  A_{ij} = \text{sgn} \left( j-i \right) \frac{1}{8} \sum\limits_{w \in I} \beta_w\m \delta
-  K_{w,1} \e{2i\varphi_{wj}\m}
-  \fstop
-  \label{eq_Aij}
-\end{equation}
-We can simplify the last term of \eqref{eq_tune_shift_quad} \cite{Franchi2014}:
-\begin{align}
-  \label{eq_simplify_Re(f)}
-  \re{f_j-f_i} &= 
-  -\re{A_{ij}} + \re{\e{2i\varphi_{ij}\m}}\im{f_i} + \im{\e{2i\varphi_{ij}\m}}\re{f_i} -
-  \re{f_i} \notag \\ 
-  &= -\re{A_{ij}} + \left( 1-2\sin^2\varphi_{ij}\m \right)\re{f_i} -
-  2\sin\varphi_{ij}\m \cos\varphi_{ij}\m \im{f_i} - \re{f_i} \notag \\
-  &= -\re{A_{ij}} + \re{f_i}(-2\sin^2\varphi_{ij}\m) - \mathcal{I}\left[f_i\right]2 \sin\varphi_{ij}\m\cos\varphi_{ij}\m
-\end{align}
-\equationref{eq_tune_shift_quad} now reads
-\begin{align}
-  \Delta\varphi_{ij} =& -2h_{1100,ij} - 4\re{A_{ij}} - 8 \sin^2\varphi_{ij}\m\re{f_i}
-- 8\sin\varphi_{ij}\m \cos\varphi_{ij}\m\im{f_i}+O(f^2) \notag \\
-=&\, \bar{h}_{ij} - 8 \sin^2\varphi_{ij}\m\re{f_i} - 8\sin\varphi_{ij}\m \cos\varphi_{ij}\m\im{f_i} 
- +O(f^2)
-\fstop
-\label{eq_phasebeating_1st_app}
-\end{align}
-We simplified the equation with the definition
-\begin{align}
-  \bar{h}_{ij} &\equiv -2h_{1100,ij} - 4\re{A_{ij}} 
-= \sum\limits_{w \in I}\beta_w\m \delta K_{w,1}\sin ^ 2 \varphi_{wj}\m\fstop
-\label{eq_hbar_app}
-\end{align}
-$\bar{h}_{ij}$ only depends on quadrupole errors inside the range $[i,j]$ and is therefore a local
-term. The RDTs $f_i$ in \eqref{eq_phasebeating_1st}, on the other hand, contain global contributions.
 
 \section{Eliminating global contributions}
 \label{sec_resummation}

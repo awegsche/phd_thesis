@@ -31,11 +31,24 @@
 \usepackage{lipsum}
 
 % --------------------------------------------------------------------------------------------------
+% fontawesome
+% --------------------------------------------------------------------------------------------------
+%\usepackage{fa}
+\newfontfamily{\afont}{Font Awesome 5 Brands-Regular-400.otf}
+\newfontfamily{\awfont}{Font Awesome 5 Free-Regular-400.otf}
+\newfontfamily{\asfont}{Font Awesome 5 Free-Solid-900.otf}
+\newcommand{\FAb}[1] {{\afont \symbol{"#1}}\hspace{.5em}}
+\newcommand{\FA}[1] {{\awfont \symbol{"#1}}\hspace{.5em}}
+\newcommand{\FAs}[1] {{\asfont \symbol{"#1}}\hspace{.5em}}
+
+% --------------------------------------------------------------------------------------------------
 % fonts
 % --------------------------------------------------------------------------------------------------
 \setmainfont{STIX Two Text}[RawFeature={+liga}]
 \setmathfont{STIX Two Math}
 \setsansfont{TeX Gyre Heros}
+
+
 
 % fix phi, why do they use the ugly print face phi as standard?
 \AtBeginDocument{
@@ -125,6 +138,28 @@
 \newcommand{\mat}[1]{\mathbf{#1}}
 \newcommand{\betastar}{\beta^*}
 \newcommand{\sumw}{\sum\limits_{w \in I}}
+\newcommand{\liemap}[1] {{:}#1{:}\,}
+\newcommand{\atan}{\mathrm{atan}}
+
+\newcommand{\zxp}{\zeta_x^+}
+\newcommand{\zxm}{\zeta_x^-}
+\newcommand{\zyp}{\zeta_y^+}
+\newcommand{\zym}{\zeta_y^-}
+
+\newcommand{\zxpto}[1]{\left(\zeta_x^+\right)^{#1}}
+\newcommand{\zxmto}[1]{\left(\zeta_x^-\right)^{#1}}
+\newcommand{\zypto}[1]{\left(\zeta_y^+\right)^{#1}}
+\newcommand{\zymto}[1]{\left(\zeta_y^-\right)^{#1}}
+
+\newcommand{\ave}[2]
+{
+  \left\langle #1 \right\rangle_{#2}
+}
+\newcommand{\phiave}[1]{
+  \ave{#1}{\varphi}
+}
+
+
 
 \newcommand{\re}[1]{\mathcal{Re} \left\{ #1 \right\} }
 \newcommand{\im}[1]{\mathcal{Im} \left\{ #1 \right\} }
@@ -160,7 +195,7 @@
 \parindent0pt
 \parskip0.5em
 
-\input{acknowledgments}
+%\input{acknowledgments}
 
 % --------------------------------------------------------------------------------------------------
 % Content
@@ -172,7 +207,7 @@
 
 \input{localobs}
 
-\input{coupling}
+%\input{coupling}
 
 \bibliography{literature}
 \bibliographystyle{thesis_bib_style}

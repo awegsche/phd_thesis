@@ -1,0 +1,126 @@
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{siunitx}
+
+%\usepackage{xparse}
+\pgfdeclarelayer{bg}    
+\pgfsetlayers{bg,main}  
+
+\definecolor{bpmused}{RGB}{225,120,0}
+\definecolor{bpmnot}{RGB}{180,180,180}
+\definecolor{bar}{RGB}{50,50,50}
+\definecolor{quadblue}{RGB}{50,150,255}
+\definecolor{sextclr}{RGB}{250,50,255}
+\definecolor{otherclr}{RGB}{10,205,100}
+\newcommand{\bpmthickness}{0.15}
+\newcommand{\sextheight}{0.0}
+\newcommand{\otherelemfactor}{4}
+\newcommand{\drawbpm}[3]{
+  \coordinate #3 at ($#1 + (0.4, 0)$);
+  \fill[#2]  
+  ($#1 + (-\bpmthickness, -.5)$)
+  rectangle
+  ($#1 + ( \bpmthickness,  .5)$);
+}
+\newcommand{\usedbpm}[3]{
+  \drawbpm{#1}{bpmused}{#3};
+  \node at #1 {#2};
+}
+\newcommand{\notusedbpm}[2]{
+  \drawbpm{#1}{bpmnot}{#2}
+}
+\newcommand{\quadrupole}[2]{
+  \fill[quadblue]
+  ($#1 - (\bpmthickness, 0)$) --
+  ($#1 - (0, \bpmthickness + .1)$) --
+  ($#1 + (\bpmthickness, 0)$) -- 
+  ($#1 + (0, \bpmthickness + .1)$);
+  \coordinate #2 at ($#1 + (0.4, 0)$);
+}
+\newcommand{\tquadrupole}[2]{
+  \quadrupole{#1}{#2}
+  \node at #1 { {\tiny T} };
+}
+\newcommand{\otherelem}[2]{
+  %\coordinate (Pcenter) at ($#1 + {(\otherelemfactor - 1)*\bpmthickness }*(1,0)$);
+  %\fill[otherclr]
+  %($(Pcenter) - (\otherelemfactor*\bpmthickness, 0)$) --
+  %($(Pcenter) - (\otherelemfactor*\bpmthickness*.75, \bpmthickness + \sextheight)$) --
+  %($(Pcenter) - (-\otherelemfactor*\bpmthickness*.75, \bpmthickness + \sextheight)$) --
+  %($(Pcenter) + (\otherelemfactor*\bpmthickness, 0)$) -- 
+  %($(Pcenter) + (\otherelemfactor*\bpmthickness*.75, \bpmthickness + \sextheight)$) -- 
+  %($(Pcenter) + (-\otherelemfactor*\bpmthickness*.75, \bpmthickness + \sextheight)$);
+  %\coordinate #2 at ($#1 + (0.4,0) + {(\otherelemfactor-1)*2*\bpmthickness}*(1,0) $);
+  % do nothing, but create the next coordinate:
+  \coordinate #2 at ($#1 + (0.4,0) + {(\otherelemfactor-1)*2*\bpmthickness}*(1,0) $);
+}
+\newcommand{\sextupole}[2]{
+  \fill[sextclr]
+  ($#1 - (\bpmthickness, 0)$) --
+  ($#1 - (\bpmthickness*.5, \bpmthickness + \sextheight)$) --
+  ($#1 - (-\bpmthickness*.5, \bpmthickness + \sextheight)$) --
+  ($#1 + (\bpmthickness, 0)$) -- 
+  ($#1 + (\bpmthickness*.5, \bpmthickness + \sextheight)$) -- 
+  ($#1 + (-\bpmthickness*.5, \bpmthickness + \sextheight)$);
+\coordinate #2 at ($#1 + (0.4, 0)$);
+}
+
+\newcommand{\printcomb}[1]
+{
+  \begin{tikzpicture}[y=.4cm,x=.8cm, baseline=-\the\dimexpr\fontdimen22\textfont2\relax]
+    \foreach \b [count=\bi] in {#1}
+    {
+      \if\b -
+        \notusedbpm{(\bi*.4,0)}{(a)};
+      \else
+        \usedbpm{(\bi*.4,0)}{$\b$}{(a)};
+      \fi
+    }
+  \end{tikzpicture}
+}
+
+% --------------------------------------------------------------------------------------------------
+% --- sketches -------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------
+
+\newcommand{\divh}{0.1}
+\newcommand{\drawdiv}[1]{
+  \draw[thick] (#1,-\divh) -- (#1,\divh);
+}
+\newcommand{\drawphi}[5]{
+  \draw (#2,#1) -- (#3,#1)
+    node[above, midway]  {$\varphi_{#4#5}$};
+  \draw[thick] ($ (#2,#1) + (0,\divh) $) -- ($ (#2,#1) - (0,\divh) $);
+  \draw[thick] ($ (#3,#1) + (0,\divh) $) -- ($ (#3,#1) - (0,\divh) $);
+  \draw[dotted]  (#2, 0) -- (#2, #1);
+  \draw[dotted]  (#3, 0) -- (#3, #1);
+}
+\newcommand{\drawphaseline}[4]{
+  \draw (0,0) -- (#4,0);
+  \drawdiv{#1}
+  \drawdiv{#2}
+  \drawdiv{#3}
+  \drawdiv{#4}
+  \node[above] at ($(#1,\divh)$) {$i$};
+  \node[above] at ($(#2,\divh)$) {$j$};
+  \node[above] at ($(#3,\divh)$) {$k$};
+  \node[above] at ($(#4,\divh)$) {$l$};
+}
+\newcommand{\drawphicomb}[4]{
+  \drawphaseline{#1}{#2}{#3}{#4}
+  \drawphi{-0.5}{#1}{#2}{i}{j};
+  \drawphi{-1}{#1}{#3}{i}{k};
+  \drawphi{-1.5}{#1}{#4}{i}{l};
+}
+\newcommand{\drawthetacomb}[4] {
+  \drawphaseline{#1}{#2}{#3}{#4}
+  \drawphi{-0.5}{#2}{#4}{j}{l};
+  \drawphi{-1.0}{#2}{#3}{j}{k};
+  \drawphi{-1.5}{#1}{#3}{i}{k};
+  \drawphi{-2.0}{#1}{#4}{i}{l};
+}
+\newcommand{\drawphase}[2] {
+  \draw ($(#1+0.9, 0.1)$) arc (45:135:0.5657)
+  node[above, midway] {$\SI{#2}{\degree}$};
+}

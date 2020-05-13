@@ -37,13 +37,14 @@ exact $n\pi$ phase advances impossible and strongly enhances phase measurement e
 Unfortunately especially in the IR phase advances are very small and precise $\beta$~function measurements
 are not feasible.
 
-\begin{wrapfigure}{O}[\figborderhang]{6cm}
+%\begin{wrapfigure}{O}[\figborderhang]{6cm}
+\begin{figure}
     \centering
     \includestandalone{figThreeBPM} 
     \caption{A sketch of the three BPM method. The probed BPM is shown in blue. For LHC arcs the
     combination with the probed BPM in the center is the most stable against phase measurement errors.}
     \label{fig_threebpm}
-\end{wrapfigure}
+\end{figure}
 
 \figureref{fig_threebpm} displays a sketch of the Three BPM Method. The probed BPM is shown in blue,
 BPMs $j$ and $k$ are shown in red.
@@ -90,14 +91,15 @@ $%\end{equation}
 and $j_l,\,k_l$ pairs of BPMs around the probed BPM.
 
 
-\begin{wrapfigure}{O}[\figborderhang]{7cm}
+%\begin{wrapfigure}{O}[\figborderhang]{7cm}
+\begin{figure}
     \centering
     \includestandalone{figSkipOneBpm}
     \caption{In the LHC arcs skipping one BPM for the non-center cases of the Three BPM Method
     is of advantage since the phase advance $\phi_{14}$
     is more suitable regarding error propagation.}
     \label{fig_skip_one_BPM}
-\end{wrapfigure}
+\end{figure}
 
 Furthermore the $\beta$~function values calculated from different combinations are not statistically
 independent and correlation has to be taken into account when calculating the weights.
@@ -108,7 +110,9 @@ as well as in the storage rings of ALBA and ESRF.
 The name originates in the fact that the BPMs $i$, $j_l$ and $k_l$ are taken in a range of $N$ BPMs.
 This generates $n = (N-2)(N-1)/2$ combinations.
 
-
+% --------------------------------------------------------------------------------------------------
+% Generalised least squares
+% --------------------------------------------------------------------------------------------------
 \section{A take on generalised least squares}
 
 To get the correct estimate for the weights $g_l$ the study of some statistics is in order.
@@ -358,9 +362,16 @@ the Monte Carlo simulations fail if, for some combinations of errors, no closed 
 This is a limiting factor when the N-BPM method is used for pushed optics with very low $ \beta^* $ like the HL-LHC. 
 
 
+% --------------------------------------------------------------------------------------------------
+% Corrected beta from phase
+% --------------------------------------------------------------------------------------------------
+
 \section{Corrected $\beta$ from phase formula}
 \equationref{eq_3bpm_method} assumes that no error is present in the region between the involved BPMs.
-A new formula has been developed in \cite{Franchi2016} that takes quadrupolar errors into account,
+A new formula has been developed in \cite{Franchi2016} that takes quadrupolar errors into account.
+
+Using this formula it is possible to improve the N-BPM method by calculating the correlation matrix
+analytically. First, the derivation of the improved formula is revised.
 
 \begin{equation}
 \beta(s_1) = \frac{\cot\phi_{12} - \cot\phi_{13}}{\cot\phi_{12}\m - \cot\phi_{13}\m +\bar{h}_{12} - \bar{h}_{13}}\beta\m(s_1) + O(\delta K_1^2)\quad ,
@@ -452,7 +463,8 @@ This {term} can be used in \eqref{eq:h_ij} to include sextupole offsets in $ \ba
 
 \subsection{Effect of longitudinal quadrupole misalignments}
 
-\begin{wrapfigure}{O}[\figborderhang]{8cm}
+%\begin{wrapfigure}{O}[\figborderhang]{8cm}
+\begin{figure}
     \centering
     \includestandalone{quad_misal}
 	\caption{
@@ -461,7 +473,7 @@ This {term} can be used in \eqref{eq:h_ij} to include sextupole offsets in $ \ba
         magnets on both ends.
     }
 	\label{fig:quadmisal}
-\end{wrapfigure} 
+\end{figure} 
 
 The effect of a longitudinal displacement $ \delta s $ of a quadrupole magnet can be approximated by
 leaving the magnet at its original position and introducing two thin magnets at its edges to mimic

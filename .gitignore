@@ -5,5 +5,8 @@ thesis.pdf
 *.log
 *.blg
 *.out
+*.idx
+*.idl
+*.ind
 tags
 courant_snyder/

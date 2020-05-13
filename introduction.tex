@@ -69,7 +69,6 @@
     \label{fig_cern_acc_cmplx}
 \end{figure}
 
-
 % --------------------------------------------------------------------------------------------------
 % beam optics
 % --------------------------------------------------------------------------------------------------
@@ -104,7 +103,7 @@ A dipole with a constant magnetic field $B_y$ bends a particle's trajectory into
 \end{equation}
 
 It is useful to describe the motion in a circular accelerator in a co-moving reference frame as
-depictet in \figref{fig_frenet_serret} where the cartesian coordinates $\{x', y', z'\}$ are
+depictet in \figref{fig_frenet_serret}\index{Frenet-Serret coordinates} where the cartesian coordinates $\{x', y', z'\}$ are
 transformed into a system $\{x,y,s\}$ with the properties:
 
 \begin{align}
@@ -112,7 +111,6 @@ transformed into a system $\{x,y,s\}$ with the properties:
     \hat{y} &= \hat{y}'\notag\\
     \hat{x} &= \hat{y} \times \hat{s}
 \end{align}
-
 
 \begin{figure}[h]
     \includestandalone{frenetserret}
@@ -126,7 +124,7 @@ As reference orbit the so called closed orbit is normally used. The properties o
 will be explained in a moment.
 
 In this coordinate system the motion of a particle in a circular accelerator is described by Hill's
-differential equation:
+differential equation\index{Hill's equation}:
 
 \begin{equation}
     \frac{\der^2 z}{\der s^2} + k(s)z = 0
@@ -149,8 +147,8 @@ where the $s$-dependent amplitude of the oscillation can be split:
     \fstop
     \label{eq_betatron_ampl}
 \end{equation}
-$\beta_z(s)$ is the $s$-dependent part of the amplitude, called $\beta$~function. $\beta(s)$ and 
-$\phi(s)$ are periodic with the circumference of the ring $C$.
+$\beta_z(s)$ is the $s$-dependent part of the amplitude, called $\beta$~function\index{$\beta$ function}.
+$\beta(s)$ and $\phi(s)$\index{betatron phase}\index{phase} are periodic with the circumference of the ring $C$.
 
 $\phi(s)$ is called the \emph{betatron phase} and satisfies the following property:
 
@@ -165,7 +163,7 @@ For convenience and later usage we introduce the following short-hand notation:
 \begin{equation}
     \phi_{z,ab} = \phi_z(s_b) - \phi_z(s_a)
 \end{equation}
-which is the \emph{phase advance} between position $s_a$ and $s_b$.
+which is the \emph{phase advance}\index{phase advance} between position $s_a$ and $s_b$.
 
 The trajectories of particles with an action $J$ are limited by an envelope function $\sqrt{2J\beta}$
 as illustrated in Fig.~\ref{fig_part_traj}.
@@ -208,7 +206,7 @@ The matrix
     \end{pmatrix}
     \label{eq_trmat}
 \end{equation}
-is called the \emph{transfer matrix}. It describes the transformation
+is called the \emph{transfer matrix}\index{transfer matrix}. It describes the transformation
 of phase space when going from one position $s_0$ in the lattice to another $s_1$.
 
 For illustration the transfer matrix of a focusing quadrupole will be given.
@@ -230,7 +228,7 @@ The transfer matrix of a focusing quadrupole reads
 A purely linear accelerator can than be constructed by the composition of the transfer matrices of 
 all its elements. This composition yields a special example of the transfer matrix, the one that
 transforms the phase space coordinates of a particle at a given position to the same position in the
-next turn:
+next turn\index{one turn map}:
 
 \begin{equation}
     \mat{M}_\text{OT} = \prod\limits_{w=0}^W \mat{M}_i
@@ -243,7 +241,7 @@ The phase advance of one turn
 \begin{equation}
     Q_z \equiv \frac{1}{2\pi}\int\limits_{s_0}^{s_0+C} \frac{\der s}{\beta_z(s)}
 \end{equation}
-is called the \emph{betatron tune}.
+is called the \emph{betatron tune}\index{tune}\index{betatron tune}.
 
 A general form of \eqref{eq_trmat} is 
 
@@ -263,7 +261,7 @@ where the quantity
     \label{eq_alpha}
 \end{equation}
 
-is called $\alpha$~\emph{function}.
+is called $\alpha$~\emph{function}\index{$\alpha$ function}.
 
 
 The one turn map in this form can be retrieved by setting $\beta_a = \beta_b $, $\alpha_a = \alpha_b$
@@ -328,7 +326,8 @@ and the one turn map simplifies further to
 % --------------------------------------------------------------------------------------------------
 \section{Resonance driving terms}
 
-In order to derive optics parameters from Hamiltonian terms the normal form approach -- classically
+In order to derive optics parameters from Hamiltonian terms the normal form approach\index{normal form}
+\cite{Bartolini1997,Tomas2005} -- classically
 used to describe non-linear optics -- is useful. 
 
 The transformation to Courant-Snyder coordinates flattens the phase space of linear optics to a circle.
@@ -390,13 +389,13 @@ $K$ and $J$ are the normal and skew integrated magnetic strengths and
 \end{equation}
 
 
-The Lie map is defined as
+The \emph{Lie map}\index{Lie map} is defined as
 \begin{equation}
     \e{\liemap{f}}g \equiv g + [f,g] + [f, [f,g]] + \ldots
     \komma
     \label{eq_liemap}
 \end{equation}
-and $[f,g]$ is the Poisson bracket
+and $[f,g]$ is the Poisson bracket\index{Poisson bracket}
 \begin{equation}
     [f,g] = 
     \frac{\partial f}{\partial x} \frac{\partial g}{\partial y}
@@ -419,13 +418,12 @@ using the generating function $F$:
     \label{eq_hfromz}
 \end{equation}
 
-The \emph{normal form coordinates} $\zeta_z^\pm$ can be expressed in terms of the normal form phase $\psi$
-and normal form invariant $J_z$:
+The \emph{normal form coordinates}\index{normal form!coordinates} $\zeta_z^\pm$
+can be expressed in terms of the normal form phase $\psi$ and normal form invariant $J_z$:
 \begin{equation}
-    \zeta_z^\pm(s_i) = \sqrt{2J_z}\e{i\left[\mp \psi(s_i) + \psi_{z,0} \right]}
+    \zeta_z^\pm(s_i) = \sqrt{2J_z}\e{i\left[\mp \psi_z(s_i) + \psi_{z,0} \right]}
     \fstop
 \end{equation}
-
 
 The following commutative diagram shows the transformation from the Courant-Snyder one turn map to 
 the normal form one turn map:
@@ -435,20 +433,20 @@ the normal form one turn map:
 
 \begin{equation}
     \centering
-        \begin{tikzcd} [row sep=large,column sep=huge]
-            \zeta(N) \arrow[r, "\nfMotion=\e{\liemap{\phiave{H}}}"]
-                & \zeta(N+1) \\
-            h(N) \arrow[r, "\mathscr{M}_\text{OT}"'] \arrow[u, "\e{\liemap{F}}"]
-                & h(N+1) \arrow[u, "\e{\liemap{F}}"']
+        \begin{tikzcd} [row sep=large,column sep=8em]
+            \vec{\zeta}(N) \arrow[r, "\nfMotion=\e{\liemap{\phiave{H}}}R"]
+                & \vec{\zeta}(N+1) \\
+            \vec{h(N)} \arrow[r, "\mathscr{M}_\text{OT}"'] \arrow[u, "\e{\liemap{F}}"]
+                & \vec{h(N+1)} \arrow[u, "\e{\liemap{F}}"']
         \end{tikzcd} 
     \label{}
 \end{equation}
 The motion in normal form coordinates $\nfMotion$ consists of a pure rotation about the phase $\phi$
-and the action of the phase-independent Hamiltonian $\phiave{H}$:
+and the action of the phase-independent Hamiltonian $\phiave{H}$. 
 
-\begin{equation}
-     \zxp(N+1) = \zxp(N)
-\end{equation}
+\begin{align}
+     \zeta_z^\pm(N) &= \sqrt{2J_z} \e{\mp i \left[  \psi_{z,0} + NQ_z \right]}
+\end{align}
 
 
 Since the diagram is commutative one can propagate the complex Courant-Snyder coordinates from one
@@ -466,7 +464,7 @@ From that one can derive the relation between the Hamiltonian and the generating
     \label{eq_FfromH}
 \end{equation}
 
-where $h^{\ddagger}$ denotes the phase-dependent part of $H$:
+where $H^{\ddagger}$ denotes the phase-dependent part of $H$:
 
 
 \begin{equation}
@@ -490,6 +488,8 @@ and \eqref{eq_FfromH} has to hold for each polynomial order seperately. Thus one
     }
     \fstop
 \end{equation}
+
+The terms $f_{jklm}$ are referred to as \emph{resonance driving terms}\index{resonance driving terms}.
 
 % --------------------------------------------------------------------------------------------------
 % phase beating
@@ -521,15 +521,6 @@ The complex Courant-Snyder coordinates can be calculated from the normal form co
   O(f^3)
   \label{eq_h_2ndorder}
 \end{align}
-where $\liemap{F}x = [F,x]$ and the normal form coordinate in turn $N$ is
-$ \zeta_{x,s_j}^\pm(N) = \zeta_{x,s_j}^\pm e^{2\pi NQ_x}$.
-The normal form coordinates $\zeta_z^\pm$ are given by \cite{Tomas2005}
-\begin{align}
-  \zeta_{z,s}^{\pm} &=  \sqrt{2I_z}\e{\mp i\left( \psi_{z} + \psi_0 \right)}\quad,  z\in \{x,y\}
-  \label{eq_normalformidentities}
-\end{align}
-where $s$ is the longitudinal position in the ring, $I_z$ is the linear
-invariant, $Q_z$ is the tune of plane $z$.
 
 We used the fact that $f_{2000}^* = f_{0200}$ to simplify the expression.
 The $O(f^3) $ term collects all third order contributions of $\re{f_{2000,j}},\,\im{f_{2000,j}}$ and 
@@ -614,11 +605,6 @@ $I$ is the interval $[\min(i,j), \max (i,j)]$ and $\text{sgn}(x)$ denotes the si
     \label{eq_def_sgn_fun}
 \end{equation}
 
-
-% --------------------------------------------------------------------------------------------------
-% ---- Local observable -- first order -------------------------------------------------------------
-% --------------------------------------------------------------------------------------------------
-%\subsection{Phase advance beating due to quadrupolar field errors}
 \label{sec:phasebeating_K1_first}
 
 The total phase advance beating is then the sum of the accumulated detuning from Hamiltonian
@@ -672,7 +658,6 @@ We simplified the equation with the definition
 \end{align}
 $\bar{h}_{ij}$ only depends on quadrupole errors inside the range $[i,j]$ and is therefore a local
 term. The RDTs $f_i$ in \eqref{eq_phasebeating_1st}, on the other hand, contain global contributions.
-
 
 % --------------------------------------------------------------------------------------------------
 % Intro to OMC
@@ -756,7 +741,6 @@ motion is needed.
 %Another disadvantage of the AC-dipole in its current form in the LHC is a cooldown time of about
 %one minute that can slow down the measurement process.
 
-
 \subsubsection{Beam Position Monitors}
 
 To record the turn-by-turn position of the beam, the LHC possesses more than 500 dual-plane
@@ -778,8 +762,6 @@ in the first section of this chapter.
 
 The phase $\varphi_z(s)$ and amplitude $\sqrt{2I_z\beta_z(s)}$ can be obtained by a Fourier transformation of
 the particle positions.
-
-
 
 \subsubsection{$\beta$ function measurement}
 \label{sec_beta_meas}
@@ -830,8 +812,6 @@ $\mat{M}_{ij} = \mat{M}_{ij}\m$ and, consequently,
 
 \equationref{eq_3bpm_method} was developped in \cite{Castro1996} and used for LEP and in run I of LHC.
 
-
-
 For optimal operation of the machine a precise control of the $\beta$~function is needed. On the one
 hand, the particles must stay within the boundaries of the physical aperture and 
 at the interaction point the beam size has to be as small as possible to increase luminosity.
@@ -848,15 +828,7 @@ The $\beta$~beating is often expressed in percent.
 The effect of $\beta$~beating is particularly problematic in strong magnetic fields where only small
 deviations from the design orbit create large perturbations the particle dynamics.
 
-
-
-
-
 % --------------------------------------------------------------------------------------------------
 % Forced motion
 % --------------------------------------------------------------------------------------------------
 \section{Forced motion}
-
-
-
-

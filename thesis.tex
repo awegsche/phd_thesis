@@ -6,6 +6,8 @@
 \usepackage[paper=a4paper, margin=2cm, top=5cm]{geometry}
 \usepackage{graphicx}
 \usepackage{siunitx}
+\usepackage{makeidx}
+
 
 \usepackage{unicode-math}
 \usepackage{fontspec}
@@ -26,9 +28,10 @@
     psdextra,
     colorlinks=true
 ]{hyperref}
-\usepackage{caption}
+\usepackage[format=hang]{caption}
 
 \graphicspath{{figures/}}
+\makeindex
 
 
 % debug
@@ -212,6 +215,8 @@
 \input{localobs}
 
 %\input{coupling}
+
+%\printindex
 
 \bibliography{literature}
 \bibliographystyle{thesis_bib_style}

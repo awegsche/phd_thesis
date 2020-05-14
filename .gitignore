@@ -8,5 +8,6 @@ thesis.pdf
 *.idx
 *.idl
 *.ind
+*.ilg
 tags
 courant_snyder/

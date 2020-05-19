@@ -50,15 +50,29 @@
 % --------------------------------------------------------------------------------------------------
 \section{The Large Hadron Collider}
 
-<general description of the accelerator complex and of LHC in more detail>
-%The Large Hadron Collider is the world's largest particle accelerator with the highest center of mass
-%energy per charge unit. It has a circumference of $\SI{27}{km}$ and is situated at the French-Swiss 
-%border near Geneva. The top energy for protons is $\SI{7}{TeV}$
-%and in the lead ion run of 2018 a beam energy of $\SI{6.37}{Z TeV}$ was achieved.
-%
-%The particles pass through various pre-accelerators where they are accelerated in steps before being
-%injected in the LHC at $\SI{450}{GeV}$. The complete accelerator complex at CERN is sketched in
-%\figref{fig_cern_acc_cmplx}.
+The \emph{Large Hadron Collider}\index{LHC} (LHC) is the world's largest particle accelerator with a circumference
+of $\SI{27}{\kilo\meter}$. It is situated at the french-swiss border near Geneva as part of the
+\emph{European Organization for Nuclear Research} (CERN)\index{CERN}.
+The initial purpose of the LHC was to discover the Higgs Boson and to study rare high energy events 
+with a centre of mass energy up to $\SI{14}{GeV}$.
+
+The number of collision events is proportional to the \emph{luminosity}\index{luminosity}
+\begin{equation}
+    \mathscr{L} = \frac{N^2 n_b f}{4\pi\sigma_x\sigma_y}
+\end{equation}
+where $N$ is the number of particles per bunch, $n_b$ the number of bunches, $f$ is
+the revolution frequency and $\sigma_z$ is the beam size in direction $z$.
+
+The discovery of the Higgs Boson was officially confirmed in 2012 \cite{higgs} and since then the
+purpose of the LHC lies in providing luminosity for more precise measurements of Higgs channels and
+other high energy particle events. 
+
+Particles that enter the LHC are accelerated in several pre-accelerators, forming the so called
+\emph{injector chain}\cite{Schindl1999} which is illustrated in \figref{fig_cern_acc_cmplx}.
+Protons start their journey as $H^-$ ions in LINAC2 (LINAC4 in the future) where
+they are accelerated to $\SI{50}{MeV}$. They are furhter accelerated in the PS Booster to $\SI{1.4}{GeV}$,
+in the Proton Synchroton (PS) to $\SI{25}{GeV}$ and finally to $\SI{450}{GeV}$ in the Super Proton Synchrotron
+before they are injected into the LHC.
 
 \begin{figure}[h]
     \centering
@@ -68,6 +82,46 @@
     the LHC. Image credit: \cite{CERN_AccCmplx}}
     \label{fig_cern_acc_cmplx}
 \end{figure}
+
+
+Heavy ions start in the LINAC3 and are then accelerated in the Low Energy Ion Ring (LEIR) before they are injected into
+the PS from where they continue as described for protons.
+
+The LHC consists of eight identical arcs for bending of the beams and eight straight sections between the
+arcs which contain the experiments, injection and extraction region and accelerating structures.
+
+An arc consists of 23 so called \emph{FODO}~cells containing two bending sections interleaved with
+a focusing and a defocusing quadrupole\footnote{
+    The acronym FBDB for focusing-bending-defocusing-bending would be more precise but this work will follow
+    the common denomination.
+}.
+To correct for magnet imperfections, corrector magnets are also installed in the cell.
+\figureref{fig_fodo} shows a schematic of an LHC FODO cell.
+\begin{figure}[h]
+    \centering
+    \includestandalone[width=\linewidth]{fodo} 
+    \caption{
+        Schematic of an LHC FODO cell. Two bending sections, consisting of 3 bending dipoles each
+        are interleaved by one focusing and one defocusing quadrupole.
+    }
+    \label{fig_fodo}
+\end{figure}
+
+
+During long shutdown 2, from 2019 until 2021, the CERN accelerator complex undergoes an extensive upgrade process 
+preparing it already partly for the high luminosity upgrade of LHC. Part of this upgrade is a
+fundamental improvement of the injector chain \cite{Hanke2017,Bartosik2017}.
+
+
+
+%The Large Hadron Collider is the world's largest particle accelerator with the highest center of mass
+%energy per charge unit. It has a circumference of $\SI{27}{km}$ and is situated at the French-Swiss 
+%border near Geneva. The top energy for protons is $\SI{7}{TeV}$
+%and in the lead ion run of 2018 a beam energy of $\SI{6.37}{Z TeV}$ was achieved.
+%
+%The particles pass through various pre-accelerators where they are accelerated in steps before being
+%injected in the LHC at $\SI{450}{GeV}$. The complete accelerator complex at CERN is sketched in
+%\figref{fig_cern_acc_cmplx}.
 
 % --------------------------------------------------------------------------------------------------
 % beam optics

@@ -124,3 +124,33 @@
   \draw ($(#1+0.9, 0.1)$) arc (45:135:0.5657)
   node[above, midway] {$\SI{#2}{\degree}$};
 }
+
+\newcommand{\mpad}{0.2}
+\newcommand{\quadlength}{0.4}
+\newcommand{\bpmlength}{0.1}
+\newcommand{\bendlength}{2.75*\quadlength}
+\newcommand{\magpad}{0.1}
+\newcommand{\bpmpad}{0.025}
+\newcommand{\fodolength}{10}
+
+\newcommand{\fodoquad}{
+  \filldraw[quadblue!50!black, fill=quadblue, thick] ($(A) + (\magpad, -\mpad)$) rectangle ($ (A) + (\quadlength + \magpad, .5 + \mpad)$);
+  \coordinate (temp) at (A);
+  \node at ($(A) + (\magpad + 0.5*\quadlength, 0.25)$) {{\tiny Q}};
+  \coordinate (A) at ($(temp) + (\quadlength + 2.0*\magpad, 0)$);
+}
+
+\newcommand{\fodobend}{
+  \filldraw[otherclr!50!black, fill=otherclr, thick] ($(A) + (\magpad, -\mpad)$) rectangle ($ (A) + (\bendlength + \magpad, 0.5 + \mpad)$);
+  \node at ($(A) + (\magpad + 0.5*\bendlength, 0.25)$) {{\tiny bend}};
+  \coordinate (temp) at (A);
+  \coordinate (A) at ($(temp) + (\bendlength + 2.0*\magpad, 0)$);
+}
+
+\newcommand{\fodobpm}{
+  \filldraw[bpmused!50!black, fill=bpmused, thick] ($(A) + (\bpmpad, -0.5*\mpad)$) rectangle ($ (A) + (\bpmlength + \bpmpad, 0.5*\mpad)$);
+  \filldraw[bpmused!50!black, fill=bpmused, thick] ($(A) + (\bpmpad, 0.5-0.5*\mpad)$) rectangle ($ (A) + (\bpmlength + \bpmpad, 0.5+0.5*\mpad)$);
+  \node[below] at ($(A) + (\bpmpad + 0.5*\bpmlength, -0.25)$) {{\tiny BPM}};
+  \coordinate (temp) at (A);
+  \coordinate (A) at ($(temp) + (\bpmlength + 2.0*\bpmpad, 0)$);
+}

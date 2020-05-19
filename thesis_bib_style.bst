@@ -501,6 +501,13 @@ FUNCTION {format.paddress}
   if$
 }
 
+FUNCTION {url.format}
+{ url empty$
+  { "\DBGNolink" }
+  { "\href{" url * "}{\FAs{F35D}}" * }
+  if$
+}
+
 FUNCTION {url.begin}
 { url empty$
     { "" }
@@ -597,6 +604,9 @@ FUNCTION {format.incoll.inproc.crossref}
   " \cite{" * crossref * "}" *
 }
 
+
+% --------------------------------------------------------------------------------------------------
+
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
@@ -604,7 +614,6 @@ FUNCTION {article}
   blank.sep
   crossref missing$
     { 
-      url.begin  output
       blank.sep
       journal "journal" output.check
       format.volume output
@@ -615,8 +624,7 @@ FUNCTION {article}
       format.pages output
       format.date "year" output.check
       blank.sep
-      url.end output
-
+      url.format  output
     }
     { format.article.crossref output.nonnull
       format.pages output.check
@@ -639,8 +647,7 @@ FUNCTION {book}
     }
   if$
   format.btitle "title" output.check
-  blank.sep
-  url.begin output
+  %blank.sep
   crossref missing$
     { format.bvolume output
       new.block
@@ -652,9 +659,9 @@ FUNCTION {book}
     }
   if$
   blank.sep
-  url.end output
   format.edition output
   format.date "year" output.check
+  url.format output
   new.block
   note output
   fin.entry

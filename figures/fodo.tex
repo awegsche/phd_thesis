@@ -1,0 +1,26 @@
+\documentclass{standalone}
+
+\input{image_header.tex}
+
+\begin{document}
+    \begin{tikzpicture}
+        \draw[->] (\fodolength,0) -- (0,0);
+        \node[right] at  (\fodolength,0) {{\tiny Beam 2}};
+        \draw[->] (0,.5) -- (\fodolength,.5);
+        \node[right]  at (\fodolength,.5) {{\tiny Beam 1}};
+        \coordinate (A) at (0.25, 0);
+
+        \fodobpm;
+        \fodoquad;
+        \fodobend;
+        \fodobend;
+        \fodobend;
+
+        \fodobpm;
+        \fodoquad;
+        \fodobend;
+        \fodobend;
+        \fodobend;
+
+    \end{tikzpicture}
+\end{document}

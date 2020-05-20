@@ -1,4 +1,5 @@
 \chapter{The Analytical N-BPM method}
+\label{ch_anbpm}
 
 \begin{chapterinfo}
 One of the most important figures of merit of optics correction is the deviation of the real $\beta$~function
@@ -113,7 +114,7 @@ This generates $n = (N-2)(N-1)/2$ combinations.
 % --------------------------------------------------------------------------------------------------
 % Generalised least squares
 % --------------------------------------------------------------------------------------------------
-\section{A take on generalised least squares}
+\section{Generalised least squares}
 
 To get the correct estimate for the weights $g_l$ the study of some statistics is in order.
 The weights can be determined using a least-squares optimisation. The weighted mean \eqref{eq_beta_wmean}
@@ -369,9 +370,11 @@ This is a limiting factor when the N-BPM method is used for pushed optics with v
 \section{Corrected $\beta$ from phase formula}
 \equationref{eq_3bpm_method} assumes that no error is present in the region between the involved BPMs.
 A new formula has been developed in \cite{Franchi2016} that takes quadrupolar errors into account.
+This formula has the constraint that only the $\beta$~function at the position of the first BPM can
+be calculated.
 
 Using this formula it is possible to improve the N-BPM method by calculating the correlation matrix
-analytically. First, the derivation of the improved formula is revised.
+analytically.
 
 \begin{equation}
 \beta(s_1) = \frac{\cot\phi_{12} - \cot\phi_{13}}{\cot\phi_{12}\m - \cot\phi_{13}\m +\bar{h}_{12} - \bar{h}_{13}}\beta\m(s_1) + O(\delta K_1^2)\quad ,
@@ -496,32 +499,71 @@ of this area.
 An error, $ \delta s_i $, in the longitudinal position of
 a BPM affects the evaluation of \eqref{eq:18} and \eqref{eq:h_ij} which rely on the model
 values of $ \beta $ and $ \phi $ at the nominal position of the BPM.
-To determine the effect we start
-with the definition of the phase advance
-\begin{equation}
-\phi_{ij} = \int_{s_i}^{s_j} \frac{1}{\beta(s)}\d s\quad .
-\end{equation}
-We can approximate the phase error and the resulting $\beta$ shift at the position $s_i + \delta s_i$ as
+Using \eqref{eq_phase} the phase error and the resulting $\beta$ shift at the position $s_i + \delta s_i$ can be approximated as
 
 \begin{align}
 \tilde{\phi}_i &\approx \phi_i + \frac{1}{\beta_i}\delta s_i\quad , 
 \label{eq:Dphi} \\
 \tilde{\beta}_i &\approx \beta_i + \frac{\partial \beta_i}{\partial s} \delta s_i  = \beta_i - 2\alpha_i \delta s_i \quad , \label{eq:Dbeta}
 \end{align}
-up to first order in $ \delta s_i $. By $ \alpha_i $ we denote the $ \alpha $ function at the position
-of element $ i $, defined as 
+up to first order in $ \delta s_i $.
 
-\begin{equation}
-\alpha = -\frac{1}{2}\frac{\partial \beta}{ \partial s}\quad .
-\end{equation}
+\subsection{Derivation of a corrected $\beta$ from phase formula}
 
-We have to re-derive an equation similar to Eq.~(\ref{eq:18}) by taking into account the considerations
-of the preceding sections. The steps of the derivation are elaborated in appendix~\ref{app:derivation}.
-The final formula up to first order reads:
+An equation similar to Eq.~(\ref{eq:18}) has to be re-derived by taking into account the considerations
+of the preceding sections.
+
+First, focusing errors, \eqref{eq_phasebeating_1st_app},
+and BPM misalignments, \eqref{eq:Dphi}, are incorporated in the phase advance $\varphi_{ij}$:
 
 \begin{align}
-\beta_l(s_i) \approx& \frac{\cot\phi_{i{j_l}} - \cot\phi_{i{k_l}}}{\cot\phi_{i{j_l}}\m - \cot\phi_{i{k_l}}\m +\bar{g}_{i{j_l}} - \bar{g}_{i{k_l}}} \left[\beta\m(s_i) - 2 \alpha\m(s_i) \delta s_i\right] \quad ,
-\label{eq:beta_g}
+    \varphi^\text{err}_{ij}  &=
+    \varphi_{ij}\m + \bar{h}_{ij} - 8\sin^2\varphi_{ij}\m\re{f_i} - 8 \sin\varphi_{ij}\m\cos\varphi_{ij}\m
+    + \frac{1}{\beta_j\m}\delta s_j - \frac{1}{\beta_i\m}\delta s_i \notag \\
+    &= \varphi_{ij}\m + \Delta\varphi_{ij}
+    \fstop
+    \label{eq_phi_err}
+\end{align}
+
+Together with the $\beta$~shift of \eqref{eq:Dbeta}, the $\beta$~beating \eqref{eq_betabeat} and the
+$\alpha$~beating,
+the quotient of the first row elements of the transfer matrix, \eqref{eq_trmat_quot}, reads
+
+\begin{equation}
+    \frac{
+        \left(m_{ij}\right)_{11}
+    }{
+        \left(m_{ij}\right)_{12}
+    }
+    =
+    \frac{1}{
+        (\beta_i\m - 2\alpha_i\m\delta s_i)(1-8\im{f_i})} 
+    \left(
+        \cot \varphi_{ij}^\text{err} +  \alpha_i(1-8\im{f_i} -8\re{f_i}) \m
+    \right)
+    \fstop
+    \label{eq_trmat_quot_gij}
+\end{equation}
+
+The cotangent above can be expanded in a Taylor series around $\varphi_{ij}\m$:
+
+\begin{equation}
+        \cot\varphi_{ij}^\text{err}
+        =\cot\varphi_{ij}\m \left( 1 - 8\im{f_i}\right) + \frac{\bar{h}_{ij}}{\sin^2\varphi_{ij}\m} - 8 \re{f_i}
+        + \frac{\frac{1}{\beta_i\m}\delta s_i + \frac{1}{\beta_j\m}\delta s_j}{\sin^2\varphi_{ij}\m}
+\end{equation}
+and \eqref{eq_trmat_quot_gij} can be simplified:
+\begin{align}
+    \frac{
+        \left(m_{ij}\right)_{11}
+    }{
+        \left(m_{ij}\right)_{12}
+    }
+    =
+    \frac{1}{\beta_i\m - 2\alpha_i\m\delta s_i} 
+    \left(
+        \cot \varphi_{ij}^\text{err} + \alpha_i \m + \bar{g}_{ij}
+    \right)
 \end{align}
 with 
 \begin{equation}
@@ -529,8 +571,32 @@ with
 \sumw\beta_w\m\delta K_{w,1}\sin^2\phi_{wj}\m}{\sin^2\phi_{ij}\m}\quad ,
 \label{eq:g_ij}
 \end{equation} 
-where $\delta K_{w,1} $ now includes quadrupolar-like errors coming from sextupole misalignments and
-quadrupole longitudinal misalignments, as described in the previous sections. 
+
+To get the corrected $\beta$ from phase formula one has to follow the same steps as in section~\ref{sec_beta_meas}:
+\begin{align}
+    \frac{\left(m_{ij}\right)_{11}}{\left(m_{ij}\right)_{12}} - \frac{\left(m_{ik}\right)_{11}}{\left(m_{ik}\right)_{12}}
+    =&
+    \frac{1}{\beta_i} \left( \cot\varphi_{ij} - \cot\varphi_{ik}\right)
+    %\notag \\
+    -
+    \frac{1}{\left(\beta_i\m - 2\alpha_i\m \right) } 
+    \notag \\
+    &\times\left[
+        \cot\varphi_{ij}\m  + \bar{g}_{ij}
+        -
+        \cot\varphi_{ik}\m  - \bar{g}_{ik}
+    \right]
+\end{align}
+and the final expression for the $\beta$~function at position $s_i$ from the combination $l$ reads
+\begin{align}
+\beta_l(s_i) \approx& \frac{\cot\phi_{i{j_l}} - \cot\phi_{i{k_l}}}{\cot\phi_{i{j_l}}\m - \cot\phi_{i{k_l}}\m +\bar{g}_{i{j_l}} - \bar{g}_{i{k_l}}} \left[\beta\m(s_i) - 2 \alpha\m(s_i) \delta s_i\right]
+    \fstop
+\label{eq:beta_g}
+\end{align}
+
+In order to account for sextupole misalignments and quadrupole longitudinal misalignments, it suffices
+to add the corresponding effective $\delta K_1$ to the sum in $\bar{g}_{ij}$,
+as described in the previous sections. 
 
 Having defined the set I as
  \begin{equation}

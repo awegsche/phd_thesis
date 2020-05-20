@@ -13,8 +13,6 @@
 
 \section{Introduction}
 
-The measurement and control of the optics of an accelerator is a critical task for machine
-performance. In the LHC, machine protection also imposes constraints on optics aberrations.
 Linear optics corrections have achieved remarkable performance in the last years
 \cite{Tomas2017, Tomas2012, Persson2017, Aiba2013, Sagan2000, Borer1983, Langner2015},
 pushing the precision and accuracy of $\beta$ function and transverse coupling
@@ -60,23 +58,14 @@ ones one has been found so far
 %  \end{cases}
 %  \label{eq_chi_jklm}
 %\end{align}
-$\chi (N)$ is built with the signal of three beam position monitors at positions $s_1, s_2, s_3$. In the
-equation above $\hat{x}_i\equiv \frac{x_i}{\sqrt{\beta_i}}$, $\varphi_{x,ij}$ is
-the horizontal betatron phase advance between the BPMs at positions $i$ and $j$ and
-in this work we adopt the notation
-\begin{equation}
-  \varphi_{z,ab} = \varphi_{z,b} - \varphi_{z,a}
-  \label{eq_phase_advance}
-\end{equation}
-as the phase advance of plane $z$ between elements $a$ and $b$.
+$\chi (N)$ is built with the signal of three beam position monitors at positions $s_1, s_2, s_3$.
 
 An extension of $\chi(N)$ into the linear regime does not seem possible since measured amplitude
 and phase are used in a way to remove information on the linear beam dynamics.
 
 Certain optics parameters (e.g. the $\beta$ function or coupling) can be calculated from the phase
 advances between two or three BPMs \cite{Franchi2010, Miyamoto2010, Castro1996}
-independently from BPM calibration errors \cite{Calaga2007}
-. 
+independently from BPM calibration errors \cite{Calaga2007}. 
 The phase advance measured from a Fourier Transform \cite{Guo2016} turn-by-turn data is independent of the amplitude
 of the signal and, thus, not affected by calibration errors.
 %For coupling measurements, a reconstruction of the complex signal is necessary which requires using
@@ -107,18 +96,18 @@ of phase advances remain challenging and the application of the proposed techniq
 Instead model-based fitting methods \cite{Zhang2018}
 might be more suited to retrieve optics parameters directly.
 
-This article is organised in the following structure:
-
-Section \ref{sec:localobs} derives a local expression from the phase advance beating. This
-expression depends solely on the phase advances between four different BPMs.
-It reduces to just two BPMs if their mutual
-model phase advance is an exact multiple of $\pi$. 
-
-Section \ref{sec:robustness_check} examines the robustness of the local observable against noise and
-explores the visibility of strong error sources in the arc.
-
-Section \ref{sec:measurements} shows an example of a real LHC measurement of the local observable
-and the results are discussed.
+%This article is organised in the following structure:
+%
+%Section \ref{sec:localobs} derives a local expression from the phase advance beating. This
+%expression depends solely on the phase advances between four different BPMs.
+%It reduces to just two BPMs if their mutual
+%model phase advance is an exact multiple of $\pi$. 
+%
+%Section \ref{sec:robustness_check} examines the robustness of the local observable against noise and
+%explores the visibility of strong error sources in the arc.
+%
+%Section \ref{sec:measurements} shows an example of a real LHC measurement of the local observable
+%and the results are discussed.
 
 
 % --------------------------------------------------------------------------------------------------
@@ -129,43 +118,15 @@ and the results are discussed.
 \label{sec:localobs}
 
 
-We define the \emph{phase advance beating} between element $a$ and element $b$ as
-\begin{equation}
-  \Delta\varphi_{z,ab} = \varphi_{z,ab} - \varphi_{z,ab}\m
-  \fstop
-  \label{eq_def_phadv_beat}
-\end{equation}
-A superscript (m) denotes model values.
 The effect of linear
 lattice imperfections on the resonance driving terms (RDTs) and their impact on the betatron phase is
 studied.
 We express the betatron motion in the language of normal form and Courant-Snyder coordinates
 \cite{Bartolini1997}.
 
-The phase beating due to quadrupolar field errors is given by
-\begin{align}
-  \Delta\varphi_{ij} =&\, \bar{h}_{ij} - 8 \sin^2\varphi_{ij}\m\re{f_i} - 8\sin\varphi_{ij}\m \cos\varphi_{ij}\m\im{f_i} \notag
-\\
-& +O(f^2)
-\label{eq_phasebeating_1st}
-\end{align}
-with
-\begin{align}
-  \bar{h}_{ij} 
-&= \sum\limits_{w \in I}\beta_w\m \delta K_{w,1}\sin ^ 2 \varphi_{wj}\m \komma\\
-f_i &= f_{2000,i} = \frac{
-    \sum\limits_w^W K_{1,w} \beta_{x,w} \e{2i\varphi_{x,wj}}
-    }{
-        8\left(1- \e{4\pi i Q_x}\right)
-    }
-\fstop
-\label{eq_hbar}
-\end{align}
-
+The phase beating due to quadrupolar field errors is given by \eqref{eq_phasebeating_1st_app}.
 $\bar{h}_{ij}$ only depends on quadrupole errors inside the range $[i,j]$ and is therefore a local
-term. The RDTs $f_i$ in \eqref{eq_phasebeating_1st}, on the other hand, contain global contributions.
-In appendix \ref{sec_phase_beating} the details of the derivation of \eqref{eq_phasebeating_1st} are
-carried out.
+term. The RDTs $f_i$ in \eqref{eq_phasebeating_1st_app}, on the other hand, contain global contributions.
 
 The following subsections describe the derivation of an expression for local phase beating in two distinct
 cases: The first is the general case with arbitrary phase advances between the BPMs. A combination of
@@ -183,10 +144,181 @@ phase advance of $\pi$.
   \label{fig_interv_phi_ij}
 %\end{wrapfigure}
 \end{figure}
-\equationref{eq_phasebeating_1st} still carries a dependence on the global error distribution in the form
+\equationref{eq_phasebeating_1st_app} still carries a dependence on the global error distribution in the form
 of the terms $f_i$. We can eliminate those terms by carefully summing up phase advances between
-different pairs of BPMs as described in appendix~\ref{sec_resummation} and illustrated in
-Fig.~\ref{fig_interv_phi_ij}.
+different pairs of BPMs.
+
+
+% --------------------------------------------------------------------------------------------------
+\section{Eliminating global contributions}
+\label{sec_resummation}
+The goal of this section is to eliminate global contributions to \eqref{eq_phasebeating_1st_app}.
+This can be achieved a careful resummation of phase advances between four BPMs.
+
+The global term $\re{f_i}$ can be eliminated by taking a third BPM $k$ and divide by the respective factor:
+\begin{equation}
+	\frac{\Delta\varphi_{ij}}{\sin^2\varphi_{ij}\m} - \frac{\Delta\varphi_{ik}}{\sin ^2\varphi_{ik}\m}
+  =
+	\frac{
+    \bar{h}_{ij}
+  }{
+    \sin^2\varphi_{ij}\m
+  } -
+  \frac{
+    \bar{h}_{ik }
+  }{
+    \sin^2\varphi_{ik}\m
+  }
+  - 8\left(\cot\varphi_{ij}\m - \cot\varphi_{ik}\m\right)\im{f_i}
+    \fstop
+    \label{eq_Deltaphi_first_step}
+\end{equation} 
+Proceeding similarly with the factor in front of $\im{f_i}$:
+\begin{equation}
+  \frac{
+    \frac{\Delta\varphi_{ij}}{\sin^2\varphi_{ij}\m} - \frac{\Delta\varphi_{ik}}{\sin ^2\varphi_{ik}\m}
+  }{
+    \cot\varphi_{ij}\m - \cot\varphi_{ik}\m } =
+  \frac{
+    \frac{ \bar{h}_{ij} }{ \sin^2\varphi_{ij}\m } -
+    \frac{ \bar{h}_{ik } }{ \sin^2\varphi_{ik}\m }
+  }{
+    \cot\varphi_{ij}\m - \cot\varphi_{ik}\m
+  }
+  - 8\im{f_i}
+    \fstop
+    \label{eq_Deltaphi_second_step}
+\end{equation} 
+We can simplify the lhs to:
+{
+\small
+  \begin{align}
+  \frac{
+    \frac{\Delta\varphi_{ij}}{\sin^2\varphi_{ij}\m} - \frac{\Delta\varphi_{ik}}{\sin ^2\varphi_{ik}\m}
+  }{
+  \cot\varphi_{ij}\m - \cot\varphi_{ik}\m }
+  =&  \frac{\Delta\varphi_{ij}}{
+    \sin^2\varphi_{ij}\m \left( \cot\varphi_{ij}\m - \cot\varphi_{ik}\m \right)
+  }
+  -
+  \frac{\Delta\varphi_{ik}}{
+    \sin^2\varphi_{ik}\m \left( \cot\varphi_{ij}\m - \cot\varphi_{ik}\m \right)
+  } \notag \\
+  =&
+  \frac{
+    \Delta\varphi_{ij}\sin\varphi_{ij}\m \sin\varphi_{ik}\m
+  }{
+    \sin^2\varphi_{ij}\m \left( \cos\varphi_{ij}\m \sin\varphi_{ik}\m - \cos\varphi_{ik}\m\sin\varphi_{ij}\m \right)
+  }\notag \\
+  &-
+  \frac{
+    \Delta\varphi_{ik}\sin\varphi_{ij}\m \sin\varphi_{ik}\m
+  }{
+    \sin^2\varphi_{ik}\m \left( \cos\varphi_{ij}\m \sin\varphi_{ik}\m - \cos\varphi_{ik}\m\sin\varphi_{ij}\m \right)
+  } \notag  \\
+  =& 
+  \frac{
+    \Delta\varphi_{ij}\left( 
+    \sin \varphi_{ij}\m \cos \varphi_{jk}\m + \cos \varphi_{ij}\m \sin\varphi_{jk}\m\right)
+  }{
+    \sin\varphi_{ij}\m \sin \varphi_{jk}\m
+  } \notag \\
+  &-
+  \frac{
+    \Delta\varphi_{ik}\left( 
+    \sin \varphi_{ik}\m \cos \varphi_{jk}\m - \cos \varphi_{ik}\m \sin\varphi_{jk}\m\right)
+  }{
+    \sin\varphi_{ik}\m \sin \varphi_{jk}\m
+  } \notag \\
+  =&
+  \Delta\varphi_{ij} \left( 
+    \cot \varphi_{ij}\m + \cot\varphi_{jk}\m
+  \right)
+  -
+  \Delta\varphi_{jk} \left( 
+    \cot\varphi_{jk}\m - \cot\varphi_{ik}\m
+  \right)
+  \fstop
+\end{align}
+}
+The rhs of \eqref{eq_Deltaphi_second_step} can be simplified analogously and we can rewrite it to
+\begin{align}
+  & \Delta\varphi_{ij} \left( 
+    \cot \varphi_{ij}\m + \cot\varphi_{jk}\m
+  \right)
+  -
+  \Delta\varphi_{jk} \left( 
+    \cot\varphi_{jk}\m - \cot\varphi_{ik}\m
+  \right) \notag \\
+  =& 
+  \bar{h}_{ij} \left( 
+    \cot \varphi_{ij}\m + \cot\varphi_{jk}\m
+  \right)
+  -
+  \bar{h}_{jk} \left( 
+    \cot\varphi_{jk}\m - \cot\varphi_{ik}\m
+  \right)
+  - \im{f_i}
+  \fstop
+  \label{eq_simplify_second_step}
+\end{align}
+To finally eliminate $\im{f_i}$ we take a fourth BPM, $l$, and subtract 
+\begin{equation}
+   \Delta\varphi_{ij} \left( 
+    \cot \varphi_{ij}\m + \cot\varphi_{jl}\m
+  \right)
+  -
+  \Delta\varphi_{jl} \left( 
+    \cot\varphi_{jl}\m - \cot\varphi_{il}\m
+  \right) \notag \\
+  \label{eq_fourth_bpm}
+\end{equation}
+from \eqref{eq_simplify_second_step} and end up with
+\begin{align}
+ &\cot\varphi_{jl}\m \left( \Delta\varphi_{il} - \Delta\varphi_{ij} \right) 
+ + \cot\varphi_{jk}\m \left( \Delta\varphi_{ij} - \Delta\varphi_{ik} \right) 
+ - \cot\varphi_{ki}\m \Delta \varphi_{ik} + \cot\varphi_{li}\m\Delta\varphi_{il}\notag  \\
+ =& 
+ \cot\varphi_{jl}\m \left( \bar{h}_{il} - \bar{h}_{ij} \right) 
+ + \cot\varphi_{jk}\m \left( \bar{h}_{ij} - \bar{h}_{ik} \right)
+ - \cot\varphi_{ki}\m \Delta \varphi_{ik} + \cot\varphi_{li}\m\bar{h}_{il} 
+\fstop
+\label{eq_full_lhs_rhs}
+\end{align}
+Figure~\ref{fig_thetacomb} illustrates the collection of four BPMs used to construct
+\eqref{eq_full_lhs_rhs}.
+The left hand side of \eqref{eq_full_lhs_rhs} can be further simplified to
+  \begin{align}
+ &\cot\varphi_{jl}\m \left( \Delta\varphi_{il} - \Delta\varphi_{ij} \right) 
+ + \cot\varphi_{jk}\m \left( \Delta\varphi_{ij} - \Delta\varphi_{ik} \right) 
+ - \cot\varphi_{ki}\m \Delta \varphi_{ik} + \cot\varphi_{li}\m\Delta\varphi_{il} \notag\\
+ =&\cot\varphi_{jl}\m \Delta\varphi_{jl} - \cot\varphi_{jk}\m \Delta\varphi_{jk}
++ \cot\varphi_{ik}\m\Delta\varphi_{ik} - \cot\varphi_{il}\m\Delta\varphi_{il}
+\fstop
+  \end{align}
+  Now we can rewrite \eqref{eq_full_lhs_rhs} as
+\begin{equation}
+  \Phi_{ijkl}^{\mathrm{meas}} = \Phi_{ijkl}^{\mathrm{model}} 
+  \label{eq_Deltaphi_model_meas_app}
+\end{equation}
+by defining
+\begin{align}
+  \Phi^{\mathrm{meas}}_{ijkl} \equiv&
+  \cot\varphi_{jl}\m\Delta\varphi_{jl} - \cot\varphi_{jk}\m\Delta\varphi_{jk}
+  + \cot\varphi_{ik}\m\Delta\varphi_{ik} - \cot\varphi_{il}\m\Delta\varphi_{il} 
+  \label{eq_deltaphi_firstorder_app}
+\end{align}
+and
+\begin{align}
+  \Phi_{ijkl}^\text{model} \equiv&
+  \cot\varphi_{jl}\m\left(\bar{h}_{il} - \bar{h}_{ij}\right) 
+  -\cot\varphi_{jk}\m\left( \bar{h}_{ij} - \bar{h}_{ik} \right)
+  + \cot\varphi_{ik}\m \bar{h}_{ik} - \cot\varphi_{il}\m\bar{h}_{il}
+  \fstop
+  \label{eq_analyticalphi_firstorder_app}
+\end{align}
+Those terms are truly local to the region in between the four BPMs.
+
 
 The resummation yields an observable
 \begin{align}
@@ -262,7 +394,7 @@ to the BPM.
 \subsection{Exact multiples of \texorpdfstring{$\pi$}{pi}}
 
 If the model phase advance is $\varphi_{ij}\m = n\pi$, the phase advance beating between two positions,
-\eqref{eq_phasebeating_1st} reduces to
+\eqref{eq_phasebeating_1st_app} reduces to
 
 \begin{equation}
  % \phi_{ij}^\text{model} \equiv
@@ -635,8 +767,8 @@ advance of the error source.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\linewidth]{sim_disp}\\
-  \includegraphics[width=\linewidth]{sim_orbit_x_noise_disp}
+  \includegraphics[width=.6\linewidth]{sim_disp}\\
+  \includegraphics[width=.6\linewidth]{sim_orbit_x_noise_disp}
   \caption{The local observable with the error distribution of Tab.~\ref{tab_design} and phase noise
     of \noiserms. Additionally the orbit has been changed by dispersion bumps. The orbit offset creates
   feed-down from sextupoles.}
@@ -648,7 +780,7 @@ advance of the error source.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=\linewidth]{meas}
+  \includegraphics[width=.6\linewidth]{meas}
   %\includegraphics[width=\linewidth]{best_design_errors_meas_--l__ij-kl---}
   \caption{Plot of measurement data of the LHC commissionning 2018 at $\beta^*=\SI{30}{\centi\metre}$.
     The errorbars include statistical errors
@@ -680,199 +812,3 @@ error sources (like normal quadrupole imperfections) the difference between mode
 then the actual local observable created by those error sources.
 The center region of the arc is free of a high peak because, as in the simulation, no sextupole is 
 active at high orbit offsets.
-
-
-\section{Conclusion and Outlook}
-
-We showed the existence of a local observable for linear lattice imperfections in circular
-accelerators. The locality of the observable holds up to first order in the quadrupole error
-$\delta K_1$. 
-
-Phase measurement noise is an issue with the current precision of turn-by-turn measurements and a
-higher resolution in the measurement would be of advantage. Simulations show that strong
-error sources can be identified as they generate distinguishable peaks.
-
-The calculated local observable of an actual measurement shows a picture that is compatible with simulations.
-Feed-down of orbit offsets via sextupoles can be seen in measurement data and be reproduced in simulations.
-
-\section*{Acknowledgments}
-We thank the LHC optics measurements and corrections team, especially T. Persson, E. Maclean and M. Hofer
-for fruitful discussions and A. Franchi for discussions concerning resonance driving terms.
-This work has been sponsored by the Wolfgang Gentner Programme of the German Federal Ministry of
-Education and Research (grant no. 05E15CHA)
-
-% --------------------------------------------------------------------------------------------------
-% --- APPENDIX -------------------------------------------------------------------------------------
-% --------------------------------------------------------------------------------------------------
-
-% --------------------------------------------------------------------------------------------------
-% ---- 2nd order -- remove ? -----------------------------------------------------------------------
-% --------------------------------------------------------------------------------------------------
-\clearpage
-\appendix
-
-\section{Eliminating global contributions}
-\label{sec_resummation}
-The goal of this section is to eliminate global contributions to \eqref{eq_phasebeating_1st}.
-This can be achieved a careful resummation of phase advances between four BPMs.
-
-The global term $\re{f_i}$ can be eliminated by taking a third BPM $k$ and divide by the respective factor:
-\begin{equation}
-	\frac{\Delta\varphi_{ij}}{\sin^2\varphi_{ij}\m} - \frac{\Delta\varphi_{ik}}{\sin ^2\varphi_{ik}\m}
-  =
-	\frac{
-    \bar{h}_{ij}
-  }{
-    \sin^2\varphi_{ij}\m
-  } -
-  \frac{
-    \bar{h}_{ik }
-  }{
-    \sin^2\varphi_{ik}\m
-  }
-  - 8\left(\cot\varphi_{ij}\m - \cot\varphi_{ik}\m\right)\im{f_i}
-    \fstop
-    \label{eq_Deltaphi_first_step}
-\end{equation} 
-Proceeding similarly with the factor in front of $\im{f_i}$:
-\begin{equation}
-  \frac{
-    \frac{\Delta\varphi_{ij}}{\sin^2\varphi_{ij}\m} - \frac{\Delta\varphi_{ik}}{\sin ^2\varphi_{ik}\m}
-  }{
-    \cot\varphi_{ij}\m - \cot\varphi_{ik}\m } =
-  \frac{
-    \frac{ \bar{h}_{ij} }{ \sin^2\varphi_{ij}\m } -
-    \frac{ \bar{h}_{ik } }{ \sin^2\varphi_{ik}\m }
-  }{
-    \cot\varphi_{ij}\m - \cot\varphi_{ik}\m
-  }
-  - 8\im{f_i}
-    \fstop
-    \label{eq_Deltaphi_second_step}
-\end{equation} 
-We can simplify the lhs to:
-  \begin{align}
-  \frac{
-    \frac{\Delta\varphi_{ij}}{\sin^2\varphi_{ij}\m} - \frac{\Delta\varphi_{ik}}{\sin ^2\varphi_{ik}\m}
-  }{
-  \cot\varphi_{ij}\m - \cot\varphi_{ik}\m }
-  &=  \frac{\Delta\varphi_{ij}}{
-    \sin^2\varphi_{ij}\m \left( \cot\varphi_{ij}\m - \cot\varphi_{ik}\m \right)
-  }
-  -
-  \frac{\Delta\varphi_{ik}}{
-    \sin^2\varphi_{ik}\m \left( \cot\varphi_{ij}\m - \cot\varphi_{ik}\m \right)
-  } \notag \\
-  &=
-  \frac{
-    \Delta\varphi_{ij}\sin\varphi_{ij}\m \sin\varphi_{ik}\m
-  }{
-    \sin^2\varphi_{ij}\m \left( \cos\varphi_{ij}\m \sin\varphi_{ik}\m - \cos\varphi_{ik}\m\sin\varphi_{ij}\m \right)
-  }
-  -
-  \frac{
-    \Delta\varphi_{ik}\sin\varphi_{ij}\m \sin\varphi_{ik}\m
-  }{
-    \sin^2\varphi_{ik}\m \left( \cos\varphi_{ij}\m \sin\varphi_{ik}\m - \cos\varphi_{ik}\m\sin\varphi_{ij}\m \right)
-  } \notag  \\
-  &= 
-  \frac{
-    \Delta\varphi_{ij}\left( 
-    \sin \varphi_{ij}\m \cos \varphi_{jk}\m + \cos \varphi_{ij}\m \sin\varphi_{jk}\m\right)
-  }{
-    \sin\varphi_{ij}\m \sin \varphi_{jk}\m
-  } 
-  -
-  \frac{
-    \Delta\varphi_{ik}\left( 
-    \sin \varphi_{ik}\m \cos \varphi_{jk}\m - \cos \varphi_{ik}\m \sin\varphi_{jk}\m\right)
-  }{
-    \sin\varphi_{ik}\m \sin \varphi_{jk}\m
-  } \notag \\
-  &=
-  \Delta\varphi_{ij} \left( 
-    \cot \varphi_{ij}\m + \cot\varphi_{jk}\m
-  \right)
-  -
-  \Delta\varphi_{jk} \left( 
-    \cot\varphi_{jk}\m - \cot\varphi_{ik}\m
-  \right)
-  \fstop
-\end{align}
-The rhs of \eqref{eq_Deltaphi_second_step} can be simplified analogously and we can rewrite it to
-\begin{align}
-  & \Delta\varphi_{ij} \left( 
-    \cot \varphi_{ij}\m + \cot\varphi_{jk}\m
-  \right)
-  -
-  \Delta\varphi_{jk} \left( 
-    \cot\varphi_{jk}\m - \cot\varphi_{ik}\m
-  \right) \notag \\
-  =& 
-  \bar{h}_{ij} \left( 
-    \cot \varphi_{ij}\m + \cot\varphi_{jk}\m
-  \right)
-  -
-  \bar{h}_{jk} \left( 
-    \cot\varphi_{jk}\m - \cot\varphi_{ik}\m
-  \right)
-  - \im{f_i}
-  \fstop
-  \label{eq_simplify_second_step}
-\end{align}
-To finally eliminate $\im{f_i}$ we take a fourth BPM, $l$, and subtract 
-\begin{equation}
-   \Delta\varphi_{ij} \left( 
-    \cot \varphi_{ij}\m + \cot\varphi_{jl}\m
-  \right)
-  -
-  \Delta\varphi_{jl} \left( 
-    \cot\varphi_{jl}\m - \cot\varphi_{il}\m
-  \right) \notag \\
-  \label{eq_fourth_bpm}
-\end{equation}
-from \eqref{eq_simplify_second_step} and end up with
-\begin{align}
- &\cot\varphi_{jl}\m \left( \Delta\varphi_{il} - \Delta\varphi_{ij} \right) 
- + \cot\varphi_{jk}\m \left( \Delta\varphi_{ij} - \Delta\varphi_{ik} \right) 
- - \cot\varphi_{ki}\m \Delta \varphi_{ik} + \cot\varphi_{li}\m\Delta\varphi_{il}\notag  \\
- =& 
- \cot\varphi_{jl}\m \left( \bar{h}_{il} - \bar{h}_{ij} \right) 
- + \cot\varphi_{jk}\m \left( \bar{h}_{ij} - \bar{h}_{ik} \right)
- - \cot\varphi_{ki}\m \Delta \varphi_{ik} + \cot\varphi_{li}\m\bar{h}_{il} 
-\fstop
-\label{eq_full_lhs_rhs}
-\end{align}
-Figure~\ref{fig_thetacomb} illustrates the collection of four BPMs used to construct
-\eqref{eq_full_lhs_rhs}.
-The left hand side of \eqref{eq_full_lhs_rhs} can be further simplified to
-  \begin{align}
- &\cot\varphi_{jl}\m \left( \Delta\varphi_{il} - \Delta\varphi_{ij} \right) 
- + \cot\varphi_{jk}\m \left( \Delta\varphi_{ij} - \Delta\varphi_{ik} \right) 
- - \cot\varphi_{ki}\m \Delta \varphi_{ik} + \cot\varphi_{li}\m\Delta\varphi_{il} \notag\\
- =&\cot\varphi_{jl}\m \Delta\varphi_{jl} - \cot\varphi_{jk}\m \Delta\varphi_{jk}
-+ \cot\varphi_{ik}\m\Delta\varphi_{ik} - \cot\varphi_{il}\m\Delta\varphi_{il}
-\fstop
-  \end{align}
-  Now we can rewrite \eqref{eq_full_lhs_rhs} as
-\begin{equation}
-  \Phi_{ijkl}^{\mathrm{meas}} = \Phi_{ijkl}^{\mathrm{model}} 
-  \label{eq_Deltaphi_model_meas_app}
-\end{equation}
-by defining
-\begin{align}
-  \Phi^{\mathrm{meas}}_{ijkl} \equiv&
-  \cot\varphi_{jl}\m\Delta\varphi_{jl} - \cot\varphi_{jk}\m\Delta\varphi_{jk}
-  + \cot\varphi_{ik}\m\Delta\varphi_{ik} - \cot\varphi_{il}\m\Delta\varphi_{il} 
-  \label{eq_deltaphi_firstorder_app}
-\end{align}
-and
-\begin{align}
-  \Phi_{ijkl}^\text{model} \equiv&
-  \cot\varphi_{jl}\m\left(\bar{h}_{il} - \bar{h}_{ij}\right) 
-  -\cot\varphi_{jk}\m\left( \bar{h}_{ij} - \bar{h}_{ik} \right)
-  + \cot\varphi_{ik}\m \bar{h}_{ik} - \cot\varphi_{il}\m\bar{h}_{il}
-  \fstop
-  \label{eq_analyticalphi_firstorder_app}
-\end{align}
-Those terms are truly local to the region in between the four BPMs.

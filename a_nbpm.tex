@@ -46,7 +46,7 @@ are not feasible.
     combination with the probed BPM in the center is the most stable against phase measurement errors.}
     \label{fig_threebpm}
 \end{figure}
-
+%
 \figureref{fig_threebpm} displays a sketch of the Three BPM Method. The probed BPM is shown in blue,
 BPMs $j$ and $k$ are shown in red.
 Classically the arithmetic mean of all three adjacent cases -- as shown in the figure -- were used.
@@ -85,11 +85,13 @@ uncertainties can be used to calculate a weighted mean.
     \beta_l(s_i) &= \frac{\cot\phi_{ij_l} - \cot\phi_{ik_l}}{\cot\phi_{ij_l}\m - \cot\phi_{ik}l} \beta(s_i)\m
     \label{eq_beta_l}
 \end{align}
+%
 with the weights $g_l$ satisfying
 %
 \begin{equation}
     \sum\limits_l g_l = 1
 \end{equation}
+%
 and $j_l,\,k_l$ pairs of BPMs around the probed BPM.
 
 
@@ -102,7 +104,7 @@ and $j_l,\,k_l$ pairs of BPMs around the probed BPM.
     is more suitable regarding error propagation.}
     \label{fig_skip_one_BPM}
 \end{figure}
-
+%
 Furthermore the $\beta$~function values calculated from different combinations are not statistically
 independent and correlation has to be taken into account when calculating the weights.
 The N-BPM method \cite{LangnerNBPM, Langner2017} was developped to implement this feature.
@@ -143,13 +145,14 @@ can be rewritten in vector notation:
         \vec{\beta}^T
     \end{pmatrix}
 \end{align}
+%
 where each line of the equation system is just the same.
 The difference between measurement $l$ and the mean value $\hat{\beta}$ is denoted by $\epsilon_l$:
 %
 \begin{equation}
     \vec{\epsilon} = \vec{\hat{\beta}} - \vec{\beta}
 \end{equation}
-
+%
 The least square minimisation seeks a set of weights $g_i$ for which the squared errors are minimal. Since the different $\beta_l$
 are correlated and have a covariance matrix $\mat{Cov}[\vec{\beta}] \neq \mat{diag}(\sigma_1^2, \ldots, \sigma_n^2)$
 the theory of generalised least-squares estimation has to be applied.
@@ -162,6 +165,7 @@ The \emph{covariance matrix} of a set of random variables $\Omega_i$ is defined 
     &= \mat{E}[\vec{\Omega}\vec{\Omega}^T] - E[\vec{\Omega}]E[\vec{\Omega}]^T
     \label{eq_def_cov}
 \end{align}
+%
 where $E[\vec{\Omega}]$ is the \emph{expected value} of the random variables $\vec{\Omega}$. And the
 notation is chosen such that the expected value of a vector is a vector
 of expected values of each component and similar for matrices.
@@ -172,7 +176,7 @@ of expected values of each component and similar for matrices.
     \left(Cov[\vec{\Omega}]\right)_{ij} = E[\Omega_i\Omega_j] - E[\Omega_i]E[\Omega_j]
     \fstop
 \end{equation}
-
+%
 \subsection{Error Propagation}
 
 Consider a set of unperturbed phase measurements $ \{\phi_1, \ldots, \phi_n\} $ and non-observable  parameters $  \{ K_{1,1} , \ldots , K_{1,m}, s_1, \ldots, s_{\nu}, x_1, \ldots x_{\mu} \} $ with corresponding errors $ \Delta \phi_\alpha,\, \Delta K_{1,\beta}, \,\Delta s_\gamma,\, \Delta x_\kappa  $.
@@ -194,13 +198,14 @@ Collecting all parameters into a vector
 \vec{\Delta x}
 \end{pmatrix}.
 \end{equation}
-
+%
 Using a Taylor expansion the errors in these parameters can be propagated
 %
 \begin{equation}
 \beta_l (\vec{\Omega}) = \beta_l(\vec{\Omega}_0) + \partial^i\beta_l(\vec{\Omega}_0)\Delta\Omega_i +  \partial^i\partial^j\beta_l(\vec{\Omega}_0)\Delta\Omega_i\Delta\Omega_j + O(\Delta\Omega^3)\;,
 \label{eq:err_prop}
 \end{equation}
+%
 where the Einstein summation convention is used and the derivatives are w.r.t. $ \Omega_i $: $ \partial^i\beta_l \equiv \frac{\partial \beta_l}{\partial \Omega_i} $.
 The argument $ (\vec{\Omega}_0) $ is omitted in the following for the $ \beta $ function and its derivatives at the unperturbed position $ \vec{\Omega}_0 $. For the calculation of the covariance matrix,
 \eqref{eq:err_prop} is truncated to second order and derive the two summands of \eqref{eq:cov} separately.
@@ -210,7 +215,9 @@ E[\beta_l(\vec{\Omega})] \approx E\left[
 \beta_l + \partial^i\beta_l\Delta\Omega_i +  \partial^i\partial^j\beta_l\Delta\Omega_i\Delta\Omega_j 
 \right] =
 \beta_l + \partial^i\beta_l E[\Delta\Omega_i] +  \partial^i\partial^j\beta_l E\left[\Delta\Omega_i\Delta\Omega_j \right]\;.
-\end{equation} It is assumed that there are no systematic errors in the measurement instruments and so $ {E}[{\Delta\Omega_i}] =0$ and the middle term vanishes.
+\end{equation}
+%
+ It is assumed that there are no systematic errors in the measurement instruments and so $ {E}[{\Delta\Omega_i}] =0$ and the middle term vanishes.
 One can conclude
 %
 \begin{equation}
@@ -218,7 +225,9 @@ E[\beta_l(\vec{\Omega})]E[\beta_m(\vec{\Omega})] \approx \beta_l\beta_m +
  \left(\beta_l\partial^i\partial^j\beta_m +
  \beta_m\partial^i\partial^j\beta_l\right) E\left[\Delta\Omega_i\Delta\Omega_j \right]\;,
  \label{eq:Eb_Eb}
-\end{equation} where terms proportional to the square of the variance go into the reminder $ O(\Delta\Omega^3) $.
+\end{equation}
+%
+ where terms proportional to the square of the variance go into the reminder $ O(\Delta\Omega^3) $.
 
 To calculate the term $ {E}[{\beta_l}{\beta_m}] $ more steps are needed:
 %
@@ -244,49 +253,57 @@ E\left[
 	\left(\beta_l\partial^i\partial^j\beta_m +
 	\beta_m\partial^i\partial^j\beta_l\right) E\left[\Delta\Omega_i\Delta\Omega_j \right]\;.
 	\label{eq:Ebb}
-\end{align} 
-
+\end{align}
+%
 Finally, subtracting \eqref{eq:Eb_Eb} from \eqref{eq:Ebb}, yields
 %
 \begin{equation}
 (\text{Cov}[\v{\beta}])_{lm} = \partial^i\beta_l\partial^j\beta_mE[\Delta\Omega_i\Delta\Omega_j] = \partial^i\beta_l\partial^j\beta_m \text{Cov}[\vec{\Delta\Omega}]_{ij}\;.
 \label{eq:covbb}
 \end{equation}
+%
 In the last step again the assumption $ E(\Delta\Omega_i)=0 $ is made, implying
 %
 \begin{equation}\label{key}
 \text{Cov}[\vec{\Delta\Omega}]_{ij} =  E\left[\Delta\Omega_i \right] E[\Delta\Omega_j ] -  E\left[\Delta\Omega_i\Delta\Omega_j \right] =  E\left[\Delta\Omega_i\Delta\Omega_j \right]\;.
 \end{equation}
+%
 In matrix notation \eqref{eq:covbb} reads
 %
 \begin{equation}\label{key}
 \mat{Cov}\left[\vec{\beta}\right] = \mat{T}\; \mat{Cov}\left[\vec{\Delta\Omega}\right] \;\mat{T}^T,
-\end{equation} where 
+\end{equation}
+%
+ where 
 %
 \begin{equation}\label{key}
 T_{ij} = \frac{\partial \beta_i}{\partial \Omega_j}\;.
 \end{equation}
+%
 If the parameters $ \vec{\Omega} $ are uncorrelated, the covariance matrix of $\vec{ \Delta\Omega} $ simplifies to
 %
 \begin{align}\label{key}
 \left(\text{Cov}\left[\vec{\Delta\Omega}\right] \right)_{ij}&= 0 \quad  \text{ if } i\neq j \;,\\
  \left(\text{Cov}\left[\vec{\Delta\Omega}\right] \right)_{ii}&= \sigma_i^2\;,
-\end{align} 
+\end{align}
+%
 %
 \begin{equation}\label{key}
 \Rightarrow E\left[\Delta\Omega_i\Delta\Omega_j\right] = E\left[\Delta\Omega_i\right]E\left[\Delta\Omega_j\right]\quad \text{ if } i \neq j\;,
 \end{equation}
+%
 and \eqref{eq:covbb} reads
 %
 \begin{equation}\label{key}
 (\text{Cov}[\vec{\beta}])_{lm} = \partial^i\beta_l\partial^i\beta_mE[\Delta\Omega_i^2] = \partial^i\beta_l\partial^i\beta_m \sigma_i^2\;,
 \end{equation}
+%
 with the variance being defined by
 %
 \begin{equation}\label{key}
 \sigma_i^2 = E\left[\Delta\Omega_i^2\right].
 \end{equation}
-
+%
 \subsection{The generalized least-squares estimator}
 
 After computing the covariance matrix of $ \beta $, the generalized least-squares estimator can be calculated
@@ -295,12 +312,15 @@ by solving the translated system
 \begin{equation}
 \mat{X}^{-1} \vec{\beta} = \mat{X}^{-1}\mat{B}\vec{\gamma} + \mat{X}^{-1}\vec{\epsilon}
 \end{equation}
+%
 where the translation $ \mat{X} $ is such that $ \mat{X}^T\mat{X} = \mat{V} = \mat{Cov}[\vec{\beta}] $. The least-squares estimation searches for a minimum of 
 %
 \begin{equation}
 \left\|\mat{X}^{-1}\left(\vec{\beta} - \mat{B}\vec{\gamma}\right)\right\|^2 = \left(\vec{\beta} - \mat{B}\vec{\gamma}\right)^T \mat{V}^{-1}\left(\vec{\beta} - \mat{B}\vec{\gamma}\right)\;.
 \label{eq:corr_syst}
-\end{equation} %Deriving~(\ref{eq:corr_syst}) with respect to $ \vec{\gamma} $ yields
+\end{equation}
+%
+ %Deriving~(\ref{eq:corr_syst}) with respect to $ \vec{\gamma} $ yields
 \eqref{eq:corr_syst} can be solved in the index notation:
 
 \[\frac{\partial}{\partial g_k}\sum\limits_{i,j} \left(\beta_i - \sum_l\beta_lg_l\right) V_{ij}^{-1} \left(\beta_j-\sum_m\beta_mg_m\right) = 2\sum_{i,j}\beta_kV_{ij}^{-1}\left(\beta_j - \sum_m\beta_mg_m\right) = 0\]
@@ -308,17 +328,20 @@ where the translation $ \mat{X} $ is such that $ \mat{X}^T\mat{X} = \mat{V} = \m
 \begin{align}
 \Rightarrow \sum_{i,j}V_{ij}^{-1}\beta_j&=\sum_{i,j}V_{ij}^{-1}\sum_m\beta_mg_m\notag \\
 \Rightarrow\sum_mg_m\beta_m &= \frac{\sum\limits_{i,j}V_{ij}^{-1}\beta_j}{\sum\limits_{i,j}V_{ij}^{-1}}=\sum_m \frac{\sum\limits_i V_{im}^{-1}}{\sum\limits_{i,j}V_{ij}^{-1}}\beta_m
-\end{align} where the summation index can be renamed in the numerator to highlight a solution of the system:
+\end{align}
+%
+ where the summation index can be renamed in the numerator to highlight a solution of the system:
 %
 \begin{equation}
 g_i(\mat{V}) = \frac{\sum\limits_k V_{ik}^{-1}}{\sum\limits_{j,k}V_{jk}^{-1}}\; .
 \end{equation}
+%
 The uncertainty of the weighted average is then
 %
 \begin{equation}
 \sigma^2(\mat{X}^{-1}\vec{\beta}) = \vec{g}^T\mat{V}\vec{g} = \sum\limits_{i,j}g_iV_{ij}g_j\;.
 \end{equation}
-
+%
 \subsection{Error matrix for N-BPM method}
 
 The error matrix $ \mathbf{V} $ can be optained from the single variances by
@@ -327,12 +350,14 @@ The error matrix $ \mathbf{V} $ can be optained from the single variances by
 \mathbf{V} = \mathbf{T}\mathbf{M}\mathbf{T}^{-1}\quad ,
 \label{eq:V}
 \end{equation}
+%
 where $ \mathbf{M}=\text{diag}(\sigma^2_{\phi_1}, \ldots, \sigma^2_{\phi_n}) $ is a diagonal matrix consisting of the variances of the phases and $ \mathbf{T} $ is the Jacobian matrix
 %
 \begin{equation}
 T_{l\lambda}(s_i) = \left.\frac{\partial \beta_l(s_i)}{\partial \phi_\lambda} \right|_{\delta\phi=0}\quad ,
 \label{eq:Tij}
 \end{equation}
+%
 $ \delta\phi=0 $ meaning that the derivatives are evaluated with all phase advance errors set to zero. The correlation of statistical errors (coming from BPM noise) is
 %
 \begin{align}
@@ -346,19 +371,21 @@ $ \delta\phi=0 $ meaning that the derivatives are evaluated with all phase advan
 	}
 \beta\m(s_i)\quad .
 \label{eq:Tphiij}
-\end{align}  
+\end{align}
+%
 A superscript $ \phi $ is placed here intentionally to highlight that the $ \mat{T} $ matrix only includes statistical errors coming from the uncertainty of the phase measurement. $\delta^\alpha_\beta $ denotes the Kronecker~$\delta$. Including systematic errors, the total error matrix is
 %
 \begin{equation}
 \mathbf{V} = \mathbf{V_\text{stat}} + \mathbf{V}_\text{syst}\quad ,
 \label{eq:V1}
 \end{equation}
+%
 where $ \mathbf{V}_\text{stat} = \mathbf{T}^\phi \mathbf{M} {\mathbf{T}^{\phi}}^{-1}$ and the total uncertainty of the averaged $ \hat{\beta} $ is then given by
 %
 \begin{equation}
 \sigma_{\hat{\beta}}^2 = \sigma_\text{stat}^2 + \sigma_\text{syst}^2\quad .
 \end{equation}
-
+%
 \subsection{Extension of the N-BPM method}
 
 In the existing numerical N-BPM method only the statistical errors are calculated analytically while
@@ -396,12 +423,14 @@ analytically.
 \beta(s_1) = \frac{\cot\phi_{12} - \cot\phi_{13}}{\cot\phi_{12}\m - \cot\phi_{13}\m +\bar{h}_{12} - \bar{h}_{13}}\beta\m(s_1) + O(\delta K_1^2)\quad ,
 \label{eq:18}
 \end{equation}
+%
 with 
 %
 \begin{equation}
 \bar{h}_{ij} =  \dfrac{\sum\limits_{i<w<j}\beta_w\m\delta K_{w,1}\sin^2\phi_{wj}\m}{\sin^2\phi_{ij}\m}\;.
 \label{eq:h_ij}
 \end{equation}
+%
 The sum runs over all elements $ w $ between BPMs $i$ and $j$. $\delta K_{w,1}$ is the integrated quadrupolar field error
 of element $w$. The definition of $ K_n $ follows the MAD \cite{madx} convention.
 Note that \eqref{eq:h_ij} is only defined for the case $ s_1 <\nobreak s_2 < s_3 $ i.e.~the
@@ -461,7 +490,7 @@ Moreover \eqref{eq:18} may be easily modified for taking into account a more rea
     }
 	\label{fig:hist1518}
 \end{figure}
-
+%
 While the magnet misalignment errors can be approximated as \emph{effective} quadrupolar field errors
 and integrated in \eqref{eq:h_ij} the BPM misalignments need a different approach as shown in the
 next paragraph.
@@ -473,12 +502,14 @@ The magnetic field of a sextupole displaced horizontally by $ \Delta x $ reads
 \begin{equation}
 B_y = \frac{B}{2}((x + \Delta x)^2 - y^2)\quad .
 \end{equation}
+%
 {This induces a quadrupolar field error whose strength $ \delta K_1 $ is}
 %
 \begin{equation}
 \delta K_1 =  \left.\frac{1}{B_0\rho_0}\frac{\partial B_y}{\partial x}\right|_{x=y=0}
   = \frac{B}{B_0\rho_0}\Delta x \quad .
 \end{equation}
+%
 This {term} can be used in \eqref{eq:h_ij} to include sextupole offsets in $ \bar{h}_{ij} $.
 
 \subsection{Effect of longitudinal quadrupole misalignments}
@@ -493,8 +524,8 @@ This {term} can be used in \eqref{eq:h_ij} to include sextupole offsets in $ \ba
         magnets on both ends.
     }
 	\label{fig:quadmisal}
-\end{figure} 
-
+\end{figure}
+%
 The effect of a longitudinal displacement $ \delta s $ of a quadrupole magnet can be approximated by
 leaving the magnet at its original position and introducing two thin magnets at its edges to mimic
 the displacement, as shown in Figure~\ref{fig:quadmisal}.
@@ -523,6 +554,7 @@ Using \eqref{eq_phase} the phase error and the resulting $\beta$ shift at the po
 \label{eq:Dphi} \\
 \tilde{\beta}_i &\approx \beta_i + \frac{\partial \beta_i}{\partial s} \delta s_i  = \beta_i - 2\alpha_i \delta s_i \quad , \label{eq:Dbeta}
 \end{align}
+%
 up to first order in $ \delta s_i $.
 
 \subsection{Derivation of a corrected $\beta$ from phase formula}
@@ -541,7 +573,7 @@ and BPM misalignments, \eqref{eq:Dphi}, are incorporated in the phase advance $\
     \fstop
     \label{eq_phi_err}
 \end{align}
-
+%
 Together with the $\beta$~shift of \eqref{eq:Dbeta}, the $\beta$~beating \eqref{eq_betabeat} and the
 $\alpha$~beating,
 the quotient of the first row elements of the transfer matrix, \eqref{eq_trmat_quot}, reads
@@ -561,7 +593,7 @@ the quotient of the first row elements of the transfer matrix, \eqref{eq_trmat_q
     \fstop
     \label{eq_trmat_quot_gij}
 \end{equation}
-
+%
 The cotangent above can be expanded in a Taylor series around $\varphi_{ij}\m$:
 %
 \begin{equation}
@@ -569,6 +601,7 @@ The cotangent above can be expanded in a Taylor series around $\varphi_{ij}\m$:
         =\cot\varphi_{ij}\m \left( 1 - 8\im{f_i}\right) + \frac{\bar{h}_{ij}}{\sin^2\varphi_{ij}\m} - 8 \re{f_i}
         + \frac{\frac{1}{\beta_i\m}\delta s_i + \frac{1}{\beta_j\m}\delta s_j}{\sin^2\varphi_{ij}\m}
 \end{equation}
+%
 and \eqref{eq_trmat_quot_gij} can be simplified:
 %
 \begin{align}
@@ -583,14 +616,15 @@ and \eqref{eq_trmat_quot_gij} can be simplified:
         \cot \varphi_{ij}^\text{err} + \alpha_i \m + \bar{g}_{ij}
     \right)
 \end{align}
+%
 with 
 %
 \begin{equation}
 \bar{g}_{ij} = \text{sgn}(i-j)\dfrac{ \frac{1}{\beta\m(s_j)}\delta s_j - \frac{1}{\beta\m(s_i)}\delta s_i +
 \sumw\beta_w\m\delta K_{w,1}\sin^2\phi_{wj}\m}{\sin^2\phi_{ij}\m}\quad ,
 \label{eq:g_ij}
-\end{equation} 
-
+\end{equation}
+%
 To get the corrected $\beta$ from phase formula one has to follow the same steps as in section~\ref{sec_beta_meas}:
 %
 \begin{align}
@@ -607,6 +641,7 @@ To get the corrected $\beta$ from phase formula one has to follow the same steps
         \cot\varphi_{ik}\m  - \bar{g}_{ik}
     \right]
 \end{align}
+%
 and the final expression for the $\beta$~function at position $s_i$ from the combination $l$ reads
 %
 \begin{align}
@@ -614,7 +649,7 @@ and the final expression for the $\beta$~function at position $s_i$ from the com
     \fstop
 \label{eq:beta_g}
 \end{align}
-
+%
 In order to account for sextupole misalignments and quadrupole longitudinal misalignments, it suffices
 to add the corresponding effective $\delta K_1$ to the sum in $\bar{g}_{ij}$,
 as described in the previous sections. 
@@ -624,7 +659,7 @@ Having defined the set I as
 \begin{equation}
  I = \left[\min(i,j), \max(i,j)\right] \subset \mathbb{N}\quad ,
  \end{equation}
-
+%
 %\begin{wrapfigure}{O}[\figborderhang]{9cm}
 \begin{figure}
 	\centering
@@ -634,7 +669,7 @@ Having defined the set I as
 	\label{fig:hist1518_with_everything}
 %\end{wrapfigure}
 \end{figure}
-
+%
 so that an element with index $ w \in I$ lies between elements $ i $ and $ j $, \eqref{eq:beta_g}
 and~\eqref{eq:g_ij} hold for every combination $ i $, $ j $, $ k $ of the BPMs.
  By doing so, we do not need to distinguish the three cases where the probed BPM is in the middle, left or right.
@@ -655,7 +690,8 @@ The Jacobian $ \mathbf{T} $ of \eqref{eq:Tij} can be split into blocks
 %
 \begin{equation}
 \mathbf{T} = \left( \mathbf{T}^\phi \quad \mathbf{T}^K \quad \mathbf{T}^s\right),
-\end{equation} 
+\end{equation}
+%
 for the uncertainties of phase $ \mathbf{T}^\phi$, quadrupole field  $\mathbf{T}^K$ and BPM misalignment $\mathbf{T}^s$.
 $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field errors we get
 %
@@ -666,6 +702,7 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
 		\frac{\sin^2\phi_{\lambda j_l}\m}{\sin^2\phi_{ij_l}\m}A_{ij_l}(\lambda) - \frac{\sin^2\phi_{\lambda k_l}\m}{\sin^2\phi_{ik_l}\m}A_{jk_l}(\lambda)\right)\quad ,
 \label{eq:TK}
 \end{align}
+%
   with 
 %
 \begin{equation}
@@ -674,7 +711,8 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
     -1&\text{if }j<\lambda<i\\
     0&\text{else}
     \end{array}\right. \quad .
-  \end{equation} 
+  \end{equation}
+%
   The contribution from the BPM misalignment is calculated analogously:
 %
 \begin{align}
@@ -687,6 +725,7 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
       {\cot \phi_{ij_l}\m - \cot \phi_{ik_l}\m} \quad .
       \label{Ts}
   \end{align}
+%
   In \eqref{eq:TK} and~\eqref{Ts} the minus and plus signs refer to the horizontal and vertical case, respectively. 
 %In Equations~(\ref{eq:TK}) and~(\ref{Ts}) $\delta \epsilon = 0$ means \[\delta K_w = \delta s_w = \delta \phi_w = 0,\quad \forall w.\]
 
@@ -700,7 +739,7 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
 	\caption{Comparison of the 3-BPM method, the original N-BPM method and the analytical N-BPM method (denoted as \texttt{A.N-BPM}) for the nominal LHC lattice at collision, with $ \beta^*=40\,\text{cm} $. BOTTOM: histogram of the difference to the real $\beta$-function in percent. TOP: the average of the error bars and the accuracy spread (width of a standard distribution fit to the distribution in the bottom plot) in percent.  The analytical N-BPM method has the best accuracy both in the arcs and in the IRs. Data have been cleaned of outliers.}
 	\label{fig:compare_NBPM_to_3BPM}
 \end{figure}
-
+%
 \begin{figure}
 	\centering
   \includegraphics[width=.49\linewidth]{comparison_statistics_HL007_bars}
@@ -715,9 +754,7 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
         \cite{LangnerNBPM}. }
 	\label{fig:compare_ATS}
 \end{figure}
-
-
-
+%
 \begin{figure}
 	\centering
   \includegraphics[width=.7\linewidth]{10cm_b1_x_3bpm}
@@ -725,9 +762,7 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
 	\caption{Horizontal $ \beta $ beating of beam 1 at $ \beta^*=10\,\text{cm} $ during the ATS MD 2016. TOP: 3-BPM method. BOTTOM: analytical N-BPM method. The 3-BPM method suffers from bad phase advances and has many outliers. The regions of high $ \beta $ beating at around $ \SI{8000}{m} $ and $ \SI{23000}{m} $ lie in the telescopic arcs. }
 	\label{fig:10cm_beam1_hor_3bpm}
 \end{figure}
-
-
-
+%
 \begin{figure}
 	\centering
 	\includegraphics[width=.49\linewidth]{comparison_errorbars_Beam1}
@@ -744,6 +779,7 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
         }
 	\label{fig:HL_report/comparison_errorbars}
 \end{figure}
+%
 Since a phase advance $ \phi_{ij} \approx n\pi $ results in an enhancement of phase measurement errors and in the extreme case numerically unstable values, a filtering was introduced. Instead of keeping a constant number of combinations as in \cite{nbpm} we set a threshold for \emph{bad} phase advances. A phase advance $ \Delta \phi $ is considered \emph{bad} if $ \Delta \phi \in [ n\pi - \delta, n\pi + \delta ] $ for $ n\in \mathbb{N} $ and a given threshold $ \delta $. If any of the four phase advances $ \phi_{ij_l}, \phi_{ik_l},\phi_{ij_l}\m,\phi_{ik_l}\m $ in Eq.~\eqref{eq.3bpm} is bad, the corresponding BPM combination is disregarded in the calculation of the weighted mean. This allows us to still use several combinations but skipping those which are numerically unstable. The current value for the threshold is $ \delta = 2\pi \cdot 10^{-2}$. The use of fewer combinations results in a lower computation time. 
 
 

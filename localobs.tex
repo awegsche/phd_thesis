@@ -35,7 +35,7 @@ observables, i.e. terms that only depend on lattice parameters and error sources
 region. Such a local observable does not exist for linear lattice imperfections. For the non-linear
 ones one has been found so far
 \cite{Tomas2005, Franchi2007}: 
-
+%
 \begin{align}
   \chi(N) =& \frac{\hat{x}_1(N)}{\cos \left( \varphi_{x,12} - \frac{\pi}{2} \right)} 
   + \frac{\hat{x}_3(N)}{\cos\left( \varphi_{x,23}-\frac{\pi}{2} \right)} \notag \\
@@ -46,18 +46,7 @@ ones one has been found so far
   \fstop
   \label{eq_chi}
 \end{align}
-
-%\begin{align}
-%  \chi_{jklm} = \sum\limits_{w\in I} \e{i\left[ 
-%  (1-j+k)\varphi_{x,w} + (m-l)\varphi_{y,w}\right]} \notag \\
-%  \times
-%  \begin{cases}
-%    \sin\varphi_{x,q} \sqrt{1+\tan^2\delta_1}& \text{if } \varphi_{x,w} < \varphi_{x,12}\\
-%    \sin(\varphi_{x,q}-\delta_1 -\delta_2) \sqrt{1+\tan^2\delta_2}
-%    & \text{if } \varphi_{x,w} > \varphi_{x,12} 
-%  \end{cases}
-%  \label{eq_chi_jklm}
-%\end{align}
+%
 $\chi (N)$ is built with the signal of three beam position monitors at positions $s_1, s_2, s_3$.
 
 An extension of $\chi(N)$ into the linear regime does not seem possible since measured amplitude
@@ -135,7 +124,7 @@ phase advance of $\pi$.
 
 \subsection{The general case -- phase advances different from \texorpdfstring{$n\pi$}{n*pi}}
 \label{sec_generalcase}
-
+%
 \begin{figure}[htbp]
 %\begin{wrapfigure}{O}[\figborderhang]{5cm}
   \centering
@@ -144,6 +133,7 @@ phase advance of $\pi$.
   \label{fig_interv_phi_ij}
 %\end{wrapfigure}
 \end{figure}
+%
 \equationref{eq_phasebeating_1st_app} still carries a dependence on the global error distribution in the form
 of the terms $f_i$. We can eliminate those terms by carefully summing up phase advances between
 different pairs of BPMs.
@@ -156,6 +146,7 @@ The goal of this section is to eliminate global contributions to \eqref{eq_phase
 This can be achieved a careful resummation of phase advances between four BPMs.
 
 The global term $\re{f_i}$ can be eliminated by taking a third BPM $k$ and divide by the respective factor:
+%
 \begin{equation}
 	\frac{\Delta\varphi_{ij}}{\sin^2\varphi_{ij}\m} - \frac{\Delta\varphi_{ik}}{\sin ^2\varphi_{ik}\m}
   =
@@ -172,8 +163,10 @@ The global term $\re{f_i}$ can be eliminated by taking a third BPM $k$ and divid
   - 8\left(\cot\varphi_{ij}\m - \cot\varphi_{ik}\m\right)\im{f_i}
     \fstop
     \label{eq_Deltaphi_first_step}
-\end{equation} 
+\end{equation}
+%
 Proceeding similarly with the factor in front of $\im{f_i}$:
+%
 \begin{equation}
   \frac{
     \frac{\Delta\varphi_{ij}}{\sin^2\varphi_{ij}\m} - \frac{\Delta\varphi_{ik}}{\sin ^2\varphi_{ik}\m}
@@ -188,11 +181,13 @@ Proceeding similarly with the factor in front of $\im{f_i}$:
   - 8\im{f_i}
     \fstop
     \label{eq_Deltaphi_second_step}
-\end{equation} 
+\end{equation}
+%
 We can simplify the lhs to:
 {
 \small
-  \begin{align}
+%
+\begin{align}
   \frac{
     \frac{\Delta\varphi_{ij}}{\sin^2\varphi_{ij}\m} - \frac{\Delta\varphi_{ik}}{\sin ^2\varphi_{ik}\m}
   }{
@@ -240,8 +235,10 @@ We can simplify the lhs to:
   \right)
   \fstop
 \end{align}
+%
 }
 The rhs of \eqref{eq_Deltaphi_second_step} can be simplified analogously and we can rewrite it to
+%
 \begin{align}
   & \Delta\varphi_{ij} \left( 
     \cot \varphi_{ij}\m + \cot\varphi_{jk}\m
@@ -262,7 +259,9 @@ The rhs of \eqref{eq_Deltaphi_second_step} can be simplified analogously and we 
   \fstop
   \label{eq_simplify_second_step}
 \end{align}
+%
 To finally eliminate $\im{f_i}$ we take a fourth BPM, $l$, and subtract 
+%
 \begin{equation}
    \Delta\varphi_{ij} \left( 
     \cot \varphi_{ij}\m + \cot\varphi_{jl}\m
@@ -273,7 +272,9 @@ To finally eliminate $\im{f_i}$ we take a fourth BPM, $l$, and subtract
   \right) \notag \\
   \label{eq_fourth_bpm}
 \end{equation}
+%
 from \eqref{eq_simplify_second_step} and end up with
+%
 \begin{align}
  &\cot\varphi_{jl}\m \left( \Delta\varphi_{il} - \Delta\varphi_{ij} \right) 
  + \cot\varphi_{jk}\m \left( \Delta\varphi_{ij} - \Delta\varphi_{ik} \right) 
@@ -285,10 +286,12 @@ from \eqref{eq_simplify_second_step} and end up with
 \fstop
 \label{eq_full_lhs_rhs}
 \end{align}
+%
 Figure~\ref{fig_thetacomb} illustrates the collection of four BPMs used to construct
 \eqref{eq_full_lhs_rhs}.
 The left hand side of \eqref{eq_full_lhs_rhs} can be further simplified to
-  \begin{align}
+%
+\begin{align}
  &\cot\varphi_{jl}\m \left( \Delta\varphi_{il} - \Delta\varphi_{ij} \right) 
  + \cot\varphi_{jk}\m \left( \Delta\varphi_{ij} - \Delta\varphi_{ik} \right) 
  - \cot\varphi_{ki}\m \Delta \varphi_{ik} + \cot\varphi_{li}\m\Delta\varphi_{il} \notag\\
@@ -296,19 +299,25 @@ The left hand side of \eqref{eq_full_lhs_rhs} can be further simplified to
 + \cot\varphi_{ik}\m\Delta\varphi_{ik} - \cot\varphi_{il}\m\Delta\varphi_{il}
 \fstop
   \end{align}
+%
   Now we can rewrite \eqref{eq_full_lhs_rhs} as
+%
 \begin{equation}
   \Phi_{ijkl}^{\mathrm{meas}} = \Phi_{ijkl}^{\mathrm{model}} 
   \label{eq_Deltaphi_model_meas_app}
 \end{equation}
+%
 by defining
+%
 \begin{align}
   \Phi^{\mathrm{meas}}_{ijkl} \equiv&
   \cot\varphi_{jl}\m\Delta\varphi_{jl} - \cot\varphi_{jk}\m\Delta\varphi_{jk}
   + \cot\varphi_{ik}\m\Delta\varphi_{ik} - \cot\varphi_{il}\m\Delta\varphi_{il} 
   \label{eq_deltaphi_firstorder_app}
 \end{align}
+%
 and
+%
 \begin{align}
   \Phi_{ijkl}^\text{model} \equiv&
   \cot\varphi_{jl}\m\left(\bar{h}_{il} - \bar{h}_{ij}\right) 
@@ -317,18 +326,22 @@ and
   \fstop
   \label{eq_analyticalphi_firstorder_app}
 \end{align}
+%
 Those terms are truly local to the region in between the four BPMs.
 
 
 The resummation yields an observable
+%
 \begin{align}
   \Phi^{\mathrm{meas}}_{ijkl} =&
   \cot\varphi_{jl}\m\Delta\varphi_{jl} - \cot\varphi_{jk}\m\Delta\varphi_{jk} \notag \\
   &+ \cot\varphi_{ik}\m\Delta\varphi_{ik} - \cot\varphi_{il}\m\Delta\varphi_{il} 
   \label{eq_deltaphi_firstorder}
 \end{align}
+%
 which only depends on measured phase advances between the four BPMs $i$, $j$, $k$ and $l$.
 Up to first order it is equal to an analytic expression
+%
 \begin{align}
   \Phi_{ijkl}^\text{model} =&
   \cot\varphi_{jl}\m\left(\bar{h}_{il} - \bar{h}_{ij}\right) 
@@ -336,10 +349,11 @@ Up to first order it is equal to an analytic expression
   &+ \cot\varphi_{ik}\m \bar{h}_{ik} - \cot\varphi_{il}\m\bar{h}_{il}
   \label{eq_analyticalphi_firstorder}
 \end{align}
+%
 which depends only on local error sources.
 There are no global contributions left and the two quantities defined in Eqs. (\ref{eq_deltaphi_firstorder}) and 
 (\ref{eq_analyticalphi_firstorder}) are truly local up to first order.
-
+%
 \begin{figure}
 %\begin{wrapfigure}{O}[\figborderhang]{5cm}
   \centering
@@ -352,8 +366,9 @@ There are no global contributions left and the two quantities defined in Eqs. (\
   \label{fig_thetacomb}
 %\end{wrapfigure}
 \end{figure}
-
+%
 The measurement uncertainty can be propagated to $\Phi_{ijkl}^\text{meas}$:
+%
 \begin{align}
   \sigma_\Phi^2 =& 
     \cot^2\varphi_{jl}\m \sigma_{\varphi_{jl}}^2
@@ -363,13 +378,14 @@ The measurement uncertainty can be propagated to $\Phi_{ijkl}^\text{meas}$:
   \fstop
   \label{eq_Phi_err}
 \end{align}
+%
 Equation~(\ref{eq_Phi_err}) is used to calculate the size of the errorbars in local observable plots.
 
 A consideration of degrees of freedom suggests that three BPMs should suffice to reconstruct
 the local linear optics errors. However, this reconstruction would depend on the amplitude which,
 in turn, may suffer from calibration errors. The local observable presented here is independent of
 BPM calibration errors.
-
+%
 \begin{figure}[h]
   \centering
   \includegraphics[width=.6\linewidth]{./sim_locality.pdf}
@@ -379,7 +395,7 @@ BPM calibration errors.
   }
   \label{fig_locality}
 \end{figure}
-
+%
 Figure~\ref{fig_locality} illustrates the impact of a quadrupole error on the local observable.
 The plot shows an LHC arc with $\SI{90}{\degree}$ FODO cells. Two BPMs are placed in one FODO cell, directly
 in front of the focusing or defocusing quadrupoles, respectively.
@@ -395,13 +411,14 @@ to the BPM.
 
 If the model phase advance is $\varphi_{ij}\m = n\pi$, the phase advance beating between two positions,
 \eqref{eq_phasebeating_1st_app} reduces to
-
+%
 \begin{equation}
  % \phi_{ij}^\text{model} \equiv
   \Delta\varphi_{ij} = \bar{h}_{ij}
   \komma
   \label{eq_npi_localobs}
 \end{equation}
+%
 which implies that $\Delta \varphi_{ij}$ is directly a local observable when
 $\varphi_{ij}^\text{m}=n\pi$.
 In this case the number of BPMs is reduced to two at positions $i$ and
@@ -412,11 +429,13 @@ standard operation of an accelerator -- an exception is for example the ATS opti
 in LHC and which is the proposed baseline for its high luminosity upgrade --, but it would be conceivable to prepare
 special optics settings for a corresponding measurement in any acclerator.
 The error of the local observable in this case,
+%
 \begin{equation}
     \sigma_{\Delta\varphi_{ij}} = \sigma_{\varphi_{ij}}
     \komma
     \label{eq_error_npi}
 \end{equation}
+%
 is smaller than for the general local observable.
 
 \subsection{Exploring the second order}
@@ -424,14 +443,16 @@ is smaller than for the general local observable.
 
 The details of the second order calculations can be found in the appendix. Here we summarise the results.
 The detuning hamiltonian term $h_{1100,ij} $ as well as the RDT $f_{i} $ have to be extended to second order:
-
+%
 \begin{align}
   h_{1100,ij} &\rightarrow h_{1100,ij}^{(1)} + h_{1100,ij}^{(2)}\\
   f_{i} &\rightarrow f_{i}^{(1)} + f_{i}^{(2)}
   \fstop
   \label{eq_1st--2nd}
 \end{align}
+%
 The total phase advance beating is, then,
+%
 \begin{align}
   \Delta\varphi_{ij} = &-2h_{1100,ij}^{(1)} 
   - 2h^{(2)}_{1100,ij}
@@ -442,10 +463,11 @@ The total phase advance beating is, then,
   \fstop
   \label{eq_phadvbeating_2nd_inline}
 \end{align}
-
+%
 The same resummation techniques as for the first order will not suffice to eliminate
 global RDTs $f_i$ and $f_j$.
 If we reformulate the third line of \eqref{eq_phadvbeating_2nd_inline} as
+%
 \begin{align}
    \re{f_j} \im{f_j} - \re{f_i} \im{f_i}  = 
    \frac{1}{2}\im{f_j^2} - \frac{1}{2}\im{f_i^2} \notag \\
@@ -454,17 +476,19 @@ If we reformulate the third line of \eqref{eq_phadvbeating_2nd_inline} as
      \left( \e{4i\varphi_{ij}\m} - 1 \right) f_{i}^2}
   \label{eq_expanding2ndorder}
 \end{align}
+%
 we see that it is not possible to separate the global $f_i$ from the local term $A_{ij}$. This
 separation was the key to be able to eliminate the global terms in the first order approximation.
 
 For $\varphi_{ij}\m = n\pi$ a second order term can be derived analogously:
-
+%
 \begin{align}
   \Delta\varphi_{ij} = & \bar{h}_{ij} - 2h_{1100,ij}^{(2)} \notag \\
   &+ 4\re{f_j^{(2)}-f_i^{(2)}} + 8\im{A_{ij}^{2}+ 2A_{ij}f_i}
   \fstop
   \label{eq_npi_second}
 \end{align}
+%
 This term also contains the global $f_1$ and $f_2$ and there are no common factors that can be exploited
 to eliminate them.
 
@@ -487,7 +511,7 @@ $\beta^*=\SI{30}{\centi\metre}$.
 
 Figure~\ref{fig_combination} shows a sketch of a typical LHC arc section. BPMs are placed directly in
 front of the quadrupoles of FODO cells. Additional trim quadrupoles (e.g. MQT) may be present.
-
+%
 \begin{figure}[htbp]
 %\begin{wrapfigure}{O}[\figborderhang]{6cm}
   \centering
@@ -502,8 +526,9 @@ front of the quadrupoles of FODO cells. Additional trim quadrupoles (e.g. MQT) m
   }
   \label{fig_combination}
 \end{figure}
+%
 %\end{figure}
-
+%
 Four cases will be studied: the first one is a set of LHC design field
 errors from WISE~\cite{wise1,wise2}, shown in Tab.~\ref{tab_design}, in the absence of phase noise.
 This setup will let us verify the equality of Eqs.~(\ref{eq_deltaphi_firstorder}) and (\ref{eq_analyticalphi_firstorder}).
@@ -576,7 +601,7 @@ Since we still want to study these cases and avoid divergences and the resulting
 we impose a filter on the phase advances. 
 Those which are closer to $n\pi$ than $10^{-6}\times 2\pi$ are excluded. 
 The case \combtoangle{45}{90}{45} is sketched in Fig.~\ref{fig_thetacomb_ij-kl}.
-
+%
 \begin{figure}
   \centering
   \includegraphics[width=.3\linewidth]{figThetacombijkl}
@@ -586,6 +611,7 @@ The phase advance $\varphi_{il} = \SI{180}{\degree}$ causes $\cot\varphi_{jl}\m$
   }
   \label{fig_thetacomb_ij-kl}
 \end{figure}
+%
 %$cot n\pi = \infty$ for $n \in \mathbb{Z} $, so 
 
 \begin{table}[htbp]
@@ -616,7 +642,7 @@ The agreement between analytical and measurement values is excellent, showing th
 Eqs.~(\ref{eq_deltaphi_firstorder}), (\ref{eq_analyticalphi_firstorder}) and (\ref{eq_npi_localobs}).
 
 \newcommand{\errdist}{design}
-
+%
 \begin{figure}
   \centering
   \includegraphics[width=.5\linewidth]{sim_no_noise}
@@ -639,7 +665,7 @@ Eqs.~(\ref{eq_deltaphi_firstorder}), (\ref{eq_analyticalphi_firstorder}) and (\r
   }
   \label{fig_design_nonoise}
 \end{figure}
-
+%
 To examine the behaviour of the local observable in the vicinity of $n\pi$ we have to scan the accelerator
 for available model phase advances. For each BPM $i$ we are looking for a second one -- BPM $j$ -- that
 is placed at $\Delta\varphi_{ij} = \pi\pm\delta\phi$ downstream.
@@ -666,27 +692,13 @@ and after cleaning \cite{Calaga2004} and harmonic analysis.
 We group BPMs into the before mentionned categories and apply a Gaussian error distribution
 to the phase values according to measurement statistics.
 
-%\begin{figure}
-%  \centering
-%  \includegraphics[width=\linewidth]{x_histo_x}
-%  \includegraphics[width=\linewidth]{y_histo_x}
-%  \caption{
-%    Statistical phase advance uncertainty of the LHC beam commissioning of 2018. The data was taken
-%    at {$\beta^*=\SI{30}{\centi\meter}$} with four data acquisitions.
-%    The blue graph shows the phase advance uncertainty $\sigma_{\varphi_{ij}}$, where the $\beta$
-%    function is high both at position $i$ and $j$. The yellow graph shows the phase advance uncertainty
-%    with only $\beta_i$ being high.
-%  }
-%  \label{fig_phase_precision}
-%\end{figure}
-%
 With the introduced phase noise the agreement decreases significantly (cf. Fig.~\ref{fig_design_noise}). The noise is of the same order of magnitude
 as $\Phi_{ijkl}^\text{meas}$ itself.
 Therefore the LHC arc quadrupolar errors cannot be identified with this phase advance resolution.
 The combination \combtoangle{45}{45}{45} shows the worst behaviour under noise because the $\beta$
 function alternates between high and low values from BPM to BPM and so within the four neighbouring
 BPMs there are always two with low $\beta$ function.
-
+%
 \begin{figure}
   \centering
   \includegraphics[width=.6\linewidth]{sim_noise}
@@ -701,7 +713,7 @@ BPMs there are always two with low $\beta$ function.
   }
   \label{fig_design_noise}
 \end{figure}
-
+%
 The case of exact $\pi$ phase advances shows the smallest errors as only one phase advance
 error enters in the error propagation.
 
@@ -724,7 +736,7 @@ For the detection of smaller errors a higher precision of the phase measurement 
 More precise BPMs like DOROS-BPMs \cite{Gasior2011} currently installed in the LHC interaction region and a higher excitation
 amplitude as well as the acquisition of a higher number of turns
 can increase the resolution of the phase measurement. 
-
+%
 \begin{figure}
   \centering
 \includegraphics[width=.6\linewidth]{sim_peak}
@@ -736,17 +748,18 @@ can increase the resolution of the phase measurement.
   }
   \label{fig_peak_noise}
 \end{figure}
-
+%
 \subsection{Feed-down from sextupoles}
 
 As final test case we introduce orbit offset into the machine around the IPs by activating dedicated dispersion
 bumps. These are used in the ATS optics to compensate dispersion created by the crossing angles at the IPs.
 The transverse displacement of the beam creates quadrupolar-like errors inside sextupoles via feed-down:
-
+%
 \begin{equation}
   \Delta K_{1,\text{sext}} = \delta x K_2
   \label{eq_sext_fedddown}
 \end{equation}
+%
 where $\delta x$ denotes horizontal offset and $K_2$ is the strength of the sextupole. $K_{1,\text{sext}}$
 can now be used for the calculation of the local observable.
 
@@ -764,7 +777,7 @@ The bottom plot of Fig.~\ref{fig_disp_noise} shows the changed orbit for referen
 The peaks of the local observable can be identified with the peaks in the orbit.
 Again the local obsevable is in 
 advance of the error source.
-
+%
 \begin{figure}[t]
   \centering
   \includegraphics[width=.6\linewidth]{sim_disp}\\
@@ -774,7 +787,7 @@ advance of the error source.
   feed-down from sextupoles.}
   \label{fig_disp_noise}
 \end{figure}
-
+%
 \section{Experimental verification}
 \label{sec:measurements}
 
@@ -790,7 +803,7 @@ advance of the error source.
   }
   \label{fig_measlobster002}
 \end{figure}
-
+%
 We calculate the local observable from a measurement taken during the LHC beam commissionning in 2018.
 
 The measurement can be seen in Fig.~\ref{fig_measlobster002} for the combinations \combtoangle{45}{45}{45}

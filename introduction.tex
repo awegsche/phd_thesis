@@ -141,32 +141,32 @@ neglected.
 Linear beam dynamics studies the effect of linear electromagnetic fields on the particles.
 This includes primarily only drift spaces, bending magnets and (de)focusing magnets. Under the presence
 of electromagnetic fields $\vec{E}$ and $\vec{B}$, the Lorentz force acts on the particles with charge
-$q$ and velocity $\vec{v}$.
-
+$q$ and velocity $\vec{v}$,
+%
 \begin{equation}
     \vec{F} = q\left(\vec{E} + \vec{v} \times \vec{B}\right)
     \fstop
     \label{eq_lorentz_force}
 \end{equation}
-
+%
 A dipole with a constant magnetic field $B_y$ bends a particle's trajectory into an arc of radius $\rho$
-
+%
 \begin{equation}
     \rho = \frac{p}{qB_y}
     \fstop
     \label{eq_acc_radius}
 \end{equation}
-
+%
 It is useful to describe the motion in a circular accelerator in a co-moving reference frame as
 depictet in \figref{fig_frenet_serret}\index{Frenet-Serret coordinates} where the cartesian coordinates $\{x', y', z'\}$ are
 transformed into a system $\{x,y,s\}$ with the properties:
-
+%
 \begin{align}
     \hat{s} &\parallel \text{reference orbit}\notag\\
     \hat{y} &= \hat{y}'\notag\\
     \hat{x} &= \hat{y} \times \hat{s}
 \end{align}
-
+%
 \begin{figure}[h]
     \includestandalone{frenetserret}
     \caption{
@@ -180,18 +180,18 @@ will be explained in a moment.
 
 In this coordinate system the motion of a particle in a circular accelerator is described by Hill's
 differential equation\index{Hill's equation}:
-
+%
 \begin{equation}
     \frac{\der^2 z}{\der s^2} + k(s)z = 0
     %\fstop
     \label{eq_hills}
 \end{equation}
-
+%
 where $z \in \{x,y\}$ is the transverse coordinate and $k(s)$ is the linear magnet strength at
 position $s$.
 
 A solution that satisfies \eqref{eq_hills} is
-
+%
 \begin{equation}
     z(s) = A_z(s) \cos\left(\phi_z(s) + \phi_{z,0} \right)
     \label{eq_betatron_osc}
@@ -206,15 +206,15 @@ $\beta_z(s)$ is the $s$-dependent part of the amplitude, called $\beta$~function
 $\beta(s)$ and $\phi(s)$\index{betatron phase}\index{phase} are periodic with the circumference of the ring $C$.
 
 $\phi(s)$ is called the \emph{betatron phase} and satisfies the following property:
-
+%
 \begin{equation}
     \phi(s_1) - \phi(s_0) = \int\limits_{s_0}^{s_1} \frac{1}{\beta(s)}\der s
     \fstop
     \label{eq_phase}
 \end{equation}
-
+%
 For convenience and later usage we introduce the following short-hand notation:
-
+%
 \begin{equation}
     \phi_{z,ab} = \phi_z(s_b) - \phi_z(s_a)
 \end{equation}
@@ -299,7 +299,7 @@ The phase advance of one turn
 is called the \emph{betatron tune}\index{tune}\index{betatron tune}.
 
 A general form of \eqref{eq_trmat} is 
-
+%
 \begin{equation}
     \begin{pmatrix}
         \sqrt{\frac{\beta_b}{\beta_a}}(\cos\phi_{ab} + \alpha_a \sin\phi_{ab}) &
@@ -310,12 +310,12 @@ A general form of \eqref{eq_trmat} is
     \label{eq_trmat_01}
 \end{equation}
 where the quantity
-
+%
 \begin{equation}
     \alpha(s) = -\frac{\der \beta(s)}{2 \der s}
     \label{eq_alpha}
 \end{equation}
-
+%
 is called $\alpha$~\emph{function}\index{$\alpha$ function}.
 
 

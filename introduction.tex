@@ -214,11 +214,24 @@ $\phi(s)$ is called the \emph{betatron phase} and satisfies the following proper
 For convenience and later usage we introduce the following short-hand notation:
 %
 \begin{equation}
-    \phi_{z,ab} = \phi_z(s_b) - \phi_z(s_a)
+    \phi_{z,ab} = \phi_z(s_b) - \phi_z(s_a) + 2\pi Q_z \Theta(s_a, s_b)
 \end{equation}
 %
-which is the \emph{phase advance}\index{phase advance} between position $s_a$ and $s_b$.
-
+which is the \emph{phase advance}\index{phase advance} between position $s_a$ and $s_b$, taking into
+account the relative position of $s_a$ to $s_b$.
+If element $b$ lies upstream from element $a$, the interval \emph{wraps around} the end of the
+lattice definition and the tune
+has to be added to the phase advance. For this the following definition is used:
+%
+\begin{equation}
+    \Theta(s_a, s_b) =
+    \begin{cases}
+        1 & \text{if } s_a > s_b \\
+        0 & \text{else} \\
+    \end{cases}
+    \fstop
+\end{equation}
+%
 The trajectories of particles with an action $J$ are limited by an envelope function $\sqrt{2J\beta}$
 as illustrated in Fig.~\ref{fig_part_traj}.
 %
@@ -469,8 +482,9 @@ and $[f,g]$ is the Poisson bracket\index{Poisson bracket}
     [f,g] = 
     \frac{\partial f}{\partial x} \frac{\partial g}{\partial y}
     - \frac{\partial f}{\partial y}\frac{\partial g}{\partial x}
-    \fstop
+    \komma
 \end{equation}
+for canonical variables $x$ and $y$.
 %
 The one-turn map of an accelerator now reads
 %
@@ -494,6 +508,16 @@ can be expressed in terms of the normal form phase $\psi$ and normal form invari
     \zeta_z^\pm(s_i) = \sqrt{2J_z}\e{i\left[\mp \psi_z(s_i) + \psi_{z,0} \right]}
     \fstop
 \end{equation}
+%
+Since $\psi$ and $J_z$ are canonical variables, the Poisson bracket between any of the normal form
+coordinates can be calculated easily:
+%
+\begin{equation}
+    \left[ \zxpto{n}, \zxmto{m}\right] = -2i\,nm\zxpto{n-1}\zxmto{m-1}
+    \fstop
+    \label{eq_poiss_br_ident}
+\end{equation}
+All combinations that cannot be derived from the general form above are zero.
 %
 The following commutative diagram shows the transformation from the Courant-Snyder one turn map to 
 the normal form one turn map:
@@ -556,6 +580,7 @@ and \eqref{eq_FfromH} has to hold for each polynomial order seperately. Thus one
         1-\e{2\pi i [(j-k)Q_x+(l-m)Q_y]}
     }
     \fstop
+    \label{eq_fijkl_from_h}
 \end{equation}
 %
 The terms $f_{jklm}$ are referred to as \emph{resonance driving terms}\index{resonance driving terms}.
@@ -583,6 +608,22 @@ In this case the generating function $F$ reads
 The complex Courant-Snyder coordinates can be calculated from the normal form coordinates by
 \eqref{eq_hfromz}
 %
+\begin{equation}
+    h_x^+ = \zxp + \left[ F, \zxp \right] + \left[ F \left[ F, zxp \right] \right]
+    \fstop
+\end{equation}
+%
+Using the Poisson bracket identity \eqref{eq_poiss_br_ident} one can calculate
+%
+\begin{align}
+     \left[ F, \zxp \right]  &= \left[f_{0200} \zxmto{2}, \zxp \right] & &= 2i f_{0200} \zxm \komma\notag \\
+     \left[ F, \left[ F, \zxp \right]\right] &= \left[f_{2000} \zxpto{2}, 2i f_{0200} \zxm \right]
+     & &= -4 \left| f_{2000}\right|^2 \zxp
+     \fstop
+\end{align}
+%
+This can be used to calculate the C-S coordinate at position $s_j$ and turn $N$:
+%
 \begin{align}
   h_x^+(s_j, N) &= e^{:F:}\zeta_{x,s_j}^+(N) \notag \\
   &= \zeta_{x,s_j}^+(N) + 4if_{2000,j}^* \zeta_{x,s_j}^-(N) 
@@ -591,7 +632,7 @@ The complex Courant-Snyder coordinates can be calculated from the normal form co
   \label{eq_h_2ndorder}
 \end{align}
 %
-Which made use of the fact that $f_{2000}^* = f_{0200}$ to simplify the expression.
+which made use of the fact that $f_{2000}^* = f_{0200}$ to simplify the expression.
 The $O(f^3) $ term collects all third order contributions of $\re{f_{2000,j}},\,\im{f_{2000,j}}$ and 
 $\left| f_{2000,j}\right|$.
 
@@ -775,8 +816,43 @@ Linear transverse coupling is the effect that the linear optics of one plane inf
 parameters of the other plane. This can have undesired impact on the optics quality and optics
 control.
 
+The generating function with only skew quadrupoles reads
+%
+\begin{equation}
+    F = f_{1010} \zxp \zyp  + f_{1001} \zxp \zxm + f_{0101} \zxm \zym + f_{0110} \zxm \zyp
+    \fstop
+\end{equation}
+%
+Following the same steps as in the previous section one gets the coupled motion:
+%
+\begin{equation}
+    h_x(s_j,N) = \zxp(s_j,N) + 2i f_{0101}(s_j) \zym(s_j,N) + 2i f_{0110}(s_j) \zyp(s_j,N)
+    \label{eq_coupled_h_from_z}
+\end{equation}
+%
+with
+%
+\begin{align}
+    f_{0101}(s_j) &= \frac{
+        \sum\limits_w J_{1,w} \sqrt{\beta_{x,w}\beta_{y,w}}\e{i\left[\varphi_{wj,x} + \varphi_{wj,y}\right]}
+    }{
+        4\left( 1- \e{2\pi i (Qx+Qy)} \right)
+    } \notag \\
+    f_{0110}(s_j) &= \frac{
+        \sum\limits_w J_{1,w} \sqrt{\beta_{x,w}\beta_{y,w}}\e{i\left[\varphi_{wj,x} - \varphi_{wj,y}\right]}
+    }{
+        4\left( 1- \e{2\pi i (Qx-Qy)} \right)
+    }
+    \fstop
+    \label{eq_f0101_f0110}
+\end{align}
+%
+using equations~(\ref{eq_hamiltonianterm}) and (\ref{eq_fijkl_from_h}).
+The value of the coupling resonance driving terms $f_{1010}$ and $f_{1001}$ and their complex conjugates
+determines the strength of the coupling between the planes. 
+If both are zero there is no coupled motion.
 
-
+% --------------------------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------------------------
 % Intro to OMC
 % --------------------------------------------------------------------------------------------------
@@ -794,6 +870,9 @@ The two main LHC experiments, ATLAS and CMS demand a luminosity imbalance below 
 To achieve this an optics correction up to the percent level is needed.
 High quality optics also improve operational control.
 
+% --------------------------------------------------------------------------------------------------
+% Measurement tools and techniques
+% --------------------------------------------------------------------------------------------------
 \subsection{Measurement tools and techniques}
 
 The most important tool for beam based optics measurements that is applied in the LHC is the excitation
@@ -806,6 +885,7 @@ To obtain said excitation there are two methods that will be introduced in this 
 which provokes a free oscillation of the bunch and an AC-dipoles which drives a forced oscillation of
 the beam. 
 
+% --------------------------------------------------------------------------------------------------
 \subsubsection{Free Kick}
 
 If the beam experiences a kick it will perform a dampted free oscillation.
@@ -859,6 +939,7 @@ motion is needed.
 %Another disadvantage of the AC-dipole in its current form in the LHC is a cooldown time of about
 %one minute that can slow down the measurement process.
 
+% --------------------------------------------------------------------------------------------------
 \subsubsection{Beam Position Monitors}
 
 To record the turn-by-turn position of the beam, the LHC possesses more than 500 dual-plane
@@ -882,6 +963,12 @@ in the first section of this chapter.
 The phase $\varphi_z(s)$ and amplitude $\sqrt{2I_z\beta_z(s)}$ can be obtained by a Fourier transformation of
 the particle positions.
 
+% --------------------------------------------------------------------------------------------------
+% Calculation of optics functions
+% --------------------------------------------------------------------------------------------------
+\subsection{Calculation of optics functions}
+
+% --------------------------------------------------------------------------------------------------
 \subsubsection{$\beta$ function measurement}
 \label{sec_beta_meas}
 
@@ -952,6 +1039,162 @@ The effect of $\beta$~beating is particularly problematic in strong magnetic fie
 deviations from the design orbit create large perturbations the particle dynamics.
 
 % --------------------------------------------------------------------------------------------------
+\subsubsection{Coupling measurement}
+
+One possible method to calculate coupling used for LHC which is independent of BPM calibration errors
+makes use of two nearby BPMs in order to cancel out calibration factors. It is therefore called
+the \emph{two BPM method}. This method is described in this section.
+
+Repeating the calculations of section~\ref{sec_coupling_rdts} for all transverse C-S coordinates yields
+%
+\begin{align}
+    \hxp &= \zxp + 2i\conj{f_{1010}} \zym + 2i\conj{f_{1001}}\zyp  \notag\\  
+    \hyp &= \zyp + 2i\conj{f_{1010}} \zxm + 2i{f_{1001}}\zxp   \notag\\ 
+    \hxm &= \zxm - 2i{f_{1010}} \zyp - 2i{f_{1001}}\zym   \notag\\ 
+    \hym &= \zym - 2i{f_{1010}} \zxp - 2i\conj{f_{1001}}\zxm    
+    \fstop
+\end{align}
+%
+The Fourier transform of normal form coordinates reads
+%
+\begin{equation}
+    \four{\zeta_z^\pm}(\nu) = \sqrt{2I_z}\e{i\varphi_{z,0}} \delta(Q_z \pm \nu)
+    \komma
+\end{equation}
+%
+where $\delta(x)$ denotes the Dirac delta~function.
+With this one can introduce a shorthand notation for the spectral lines $\four{h_z^\pm}(n_xQ_x+n_yQ_y)$:
+%
+\begin{align}
+    H^\pm(n_x,n_y) &= \four{h_x^\pm}(n_xQ_x+n_yQ_y) \notag\\
+    V^\pm(n_x,n_y) &= \four{h_y^\pm}(n_xQ_x+n_yQ_y) 
+    \fstop
+\end{align}
+%
+If the BPM calibration is not perfect the measured $H$ and $V$ lines are not proportional w.r.t each other:
+\newcommand{\meas}{^\text{meas}}
+%
+\begin{align}
+   x\meas &= C_x x \notag \\ 
+   y\meas &= C_y y
+   \fstop
+\end{align}
+%
+The calibration factors $C_{x/y}$ cancel out if one devides the spectral line by the main line:
+%
+\begin{align}
+    A_{0,n_y} &= \frac{H^+(0,n_y)}{H^+(1,0)} \notag \\
+    B_{n_x,0} &= \frac{V^+(n_x,0)}{V^+(0,1)} 
+    \fstop
+\end{align}
+%
+Important for the coupling calculation are the following normalised spectral lines:
+%
+\begin{align}
+    A_{0,1}&=\frac{H^+(0,1)}{H^+(1,0)}  &= 2i\sqrt{\frac{I_y}{I_x}}\conj{f_{1001}} \e{i\varphi_{x,0}-i\varphi_{y,0}}
+    \label{eq_A01} \\
+    B_{1,0}&=\frac{V^+(1,0)}{V^+(0,1)}  &= 2i\sqrt{\frac{I_x}{I_y}}\conj{f_{1001}} \e{i\varphi_{y,0}-i\varphi_{x,0}}
+    \label{eq_B10}
+\end{align}
+which contain $f_{1001}$ and
+\begin{align}
+    A_{0,-1}&=\frac{H^+(0,-1)}{H^+(1,0)}  &= 2i\sqrt{\frac{I_y}{I_x}}\conj{f_{1010}} \e{i\varphi_{x,0}+i\varphi_{y,0}}
+    \label{eq_A0-1} \\
+    B_{-1,0}&=\frac{V^+(-1,0)}{V^+(0,1)}  &= 2i\sqrt{\frac{I_x}{I_y}}\conj{f_{1010}} \e{i\varphi_{y,0}+i\varphi_{x,0}}
+    \label{eq_B-10}
+\end{align}
+%
+which contain $f_{1010}$.
+
+The coupling RDTs $f_{1010}$ and $f_{1001}$ can then be calculated by combining Eqs~(\ref{eq_A01}) with (\ref{eq_B10})
+and Eqs~(\ref{eq_A0-1}) with (\ref{eq_B-10}), respectively:
+%
+\begin{align}
+    \left|f_{1001}\right| &= \frac{1}{2}\sqrt{A_{0,1}B_{1,0}} \notag \\
+    \left|f_{1010}\right| &= \frac{1}{2}\sqrt{A_{0,-1}B_{-1,0}}
+    \fstop
+\end{align}
+%
+The normalised spectral lines $A_{0,n_y}$ and $B_{n_x,0}$ are the Fourier components of the complex
+coordinates. But only the projections onto the real axis can be measured. The next step is to calculate
+the complex coordinates from the measured ones.
+
+Since $h_z^\pm = z \pm ip_z$ the complex coordinate can be obtained from positon and momentum.
+BPMs can only measure position but using the position data from a second BPM one can reconstruct the momentum.
+The propagation of complex C-S coordinates through a region that is empty of nonlilnearities reads
+%
+\begin{equation}
+    \begin{pmatrix}
+        z\\p_z
+    \end{pmatrix}_b = \mat{R}_{ab} 
+    \begin{pmatrix}
+        z\\p_z
+    \end{pmatrix}_a
+\end{equation}
+%
+where the transfer matrix $\mat{R}_{ab}$ is a simple rotation matrix as discussed in section~\ref{sec_intro_cs}.
+From this one can reconstruct the momentum:
+%
+\begin{equation}
+    p_a = \frac{x_b}{\cos\Delta} + x_a \tan\Delta
+\end{equation}
+%
+where $\Delta$ is the deviation from $\pi/2$ of the phase advance between the two positions $s_a$ and $s_b$.
+Therefore:
+%
+\begin{equation}
+    h_z^\pm(s_a) = z_a - i \left(\frac{z_b}{\cos\Delta} + z_a\tan\Delta \right) = z_a(1-i\tan\Delta) - i \frac{z_b}{\cos\Delta}
+    \fstop
+\end{equation}
+%
+Since the Fourier transform is linear, this identity can be propagated to the spectral lines:
+%
+\begin{equation}
+    H^+(n_x,n_y)_a = (1-i\tan\Delta)H(n_x,n_y)_a - \frac{i}{\cos\Delta}H(n_x,n_y)_b
+    \label{eq_reconstr_cplx}
+\end{equation}
+where $H(n_x,n_y)$ is the measured spectral line which is just the real projection of the complex line. 
+%
+Under the assumption that the region between $s_a$ and $s_b$ is free from non-linearities and coupling
+the action $I_z$ does not change between the two positions and
+%
+\begin{align}
+    |H(1,0)_a| &= |H(1,0)_b| = \sqrt{2I_x} \notag\\
+    |V(0,1)_a| &= |V(0,1)_b| = \sqrt{2I_y}
+    \fstop
+\end{align}
+%
+This allows to express the real normalised spectral lines as
+%
+\begin{align}
+    A(0,n_y)_a &= \frac{H(0,n_y)_a}{H(1,0)_a} = \frac{H(0,n_y)_a}{H(1,0)_b} \notag \\
+    B(n_x,0)_a &= \frac{V(n_x,0)_a}{V(0,1)_a} = \frac{V(n_x,0)_a}{V(0,1)_b} 
+    \fstop
+\end{align}
+%
+This can be plugged into the reconstruction formula \eqref{eq_reconstr_cplx}
+%
+\begin{equation}
+    \frac{H^+(n_x,n_y)_a}{H(1,0)_i} = (1-i\tan\Delta)A(n_x,n_y)_a - \frac{i}{\cos\Delta}A(n_x,n_y)_b
+    \label{eq_reconstr_from_norm}
+\end{equation}
+%
+Together with the identity
+%
+\begin{equation}
+    H(1,0) = \frac{1}{2} \left( H^+(1,0) + \conj{H^+(-1,0)}\right) = \frac{1}{2}H^+(1,0)
+\end{equation}
+%
+because $H^+(-1,0) = 0$, one can express $A^+(0,n_y)$ and $B(n_x, 0)$ in terms of normalised real spectral lines
+%
+\begin{align}
+    2A^+(n_x,n_y)_a = (1-i\tan\Delta)A(n_x,n_y)_a - \frac{i}{\cos\Delta}A(n_x,n_y)_b \notag \\
+    2B^+(n_x,n_y)_a = (1-i\tan\Delta)B(n_x,n_y)_a - \frac{i}{\cos\Delta}B(n_x,n_y)_b
+\end{align}
+%
+
+% --------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------
 % Forced motion
 % --------------------------------------------------------------------------------------------------
 \section{Forced motion}
@@ -960,6 +1203,9 @@ This section will introduce the process of optics measurements with an AC-dipole
 the effect of the driving of the beam motion has to be compensated and the foundation for this
 compensation will be explained in the following subsections.
 
+% --------------------------------------------------------------------------------------------------
+% Linear motion with AC dipole
+% --------------------------------------------------------------------------------------------------
 \subsection{Linear motion with AC dipole}
 \newcommand{\Qd}[1]{Q^{d}_{#1}}
 
@@ -986,14 +1232,14 @@ a schematic of the beam deflection for several turns.
     \label{fig_ac_kick}
 \end{figure}
 %
-For a small $\epsilon$ the C-S coordinates of the beam directly after the AC-dipole reader
+For a small $\epsilon$ the C-S coordinates of the beam directly after the AC-dipole reads
 %
 \begin{equation}
     h_z(s_d + \epsilon, N=0) = h_z(s_d+\epsilon) + \Delta h_z(N=0)
     \label{eq_ackick}
 \end{equation}
 %
-in first turn where the AC dipole is active.
+in the first turn where the AC dipole is active. This turn will be denoted with $N=0$.
 
 By repeatedly adding the kick for each turn and propagating
 to an arbitrary position $s$ in the ring one gets the following coordinates
@@ -1012,7 +1258,7 @@ with $R$ being the rotation map of the linear motion. For simplicity, the follow
 %
 \begin{align}
     R^N &\equiv \e{2\pi i Q N} \notag\\
-    R_{s-s_d} &\equiv \e{i [\varphi(s) - \varphi(s_d)]}
+    R_{s-s_d} &\equiv \e{i [\varphi_{s_ds}]}
     \fstop
 \end{align}
 %
@@ -1078,18 +1324,7 @@ and
 \end{align}
 %
 The two cases of \eqref{eq_ackick} differ only in one additional exponent of $R^{-1}\delta_\pm$.
-To generalise both, the following definition is used:
-%
-\begin{equation}
-    \Theta(s,s_d) =
-    \begin{cases}
-        1 & \text{if } s > s_d \\
-        0 & \text{else} \\
-    \end{cases}
-    \komma
-\end{equation}
-%
-and \eqref{eq_ackick} can be written as
+\equationref{eq_ackick} can be written as
 %
 \begin{align}
     h_z(s, N) = R_{s-s_d}R^N 
@@ -1126,13 +1361,13 @@ Those identities can be used to simplify the exponentials
     \label{eq_delta_written_out}
 \end{align}
 %
-The constant part of \eqref{eq_delta_written_out} can be put into the new closed orbit
+The constant part of \eqref{eq_delta_written_out} can be put into 
 %
 \begin{equation}
     \tilde{h}_z(s_d) \equiv h_z(s_d) + 
     \left(
-    \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{-i\pi Q_z^+}
-    + \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}\lambda_z \e{-i \pi Q_z^-}
+    \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}\lambda_z \e{-i \pi Q_z^-}
+    -\frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{-i\pi Q_z^+}
     \right)
     \fstop
 \end{equation}
@@ -1143,8 +1378,9 @@ Now, the driven motion is seperated off:
     h_z(s, N) = R_{s-s_d}R^N 
     \Bigg[&\tilde{h}_z(s_d) 
     \notag \\
-        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{-\pi i Q_z^+(2N+2\Theta(s,s_d) -1)}  \notag \\
         &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)} \e{-\pi i Q_z^-(2N+2\Theta(s,s_d)-1)} 
+         \notag \\
+        &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{-\pi i Q_z^+(2N+2\Theta(s,s_d) -1)}
     \Bigg]
     \fstop
     \label{eq_driven_simpl}
@@ -1155,8 +1391,9 @@ and the linear rotation can be integrated into the terms:
 \begin{align}
     h_z(s, N) =
         &\tilde{h}_z(s, N) \notag \\
-        &+\frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}R_{s-s_d}  \e{2\pi i N\Qd{z} + \pi i Q_z^+(2\Theta(s,s_d) -1)}  \notag\\
-        &+\frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}R_{s-s_d}  \e{-2\pi i \Qd{z} + \pi i Q_z^-(2N+2\Theta(s,s_d)-1)} 
+        &+\frac{A_\theta}{4\sin\left( \pi Q_z^-\right)} \e{-2\pi i \Qd{z} + \varphi_{s_ds}+ \pi i Q_z^-(2N+2\Theta(s,s_d)-1)} 
+        \notag\\
+        &-\frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{2\pi i N\Qd{z} + \varphi_{s_ds}+ \pi i Q_z^+(2\Theta(s,s_d) -1)} 
     \fstop
     \label{eq_driven_simpl}
 \end{align}
@@ -1177,12 +1414,39 @@ Noting that
 \begin{align}
     h_z(s, N) =
         &\tilde{h}_z(s, N) \notag \\
-        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}R_{s-s_d} \e{2N\pi i \Qd{z} +Q_z^+\text{sgn}(s-s_d)}  \notag \\
-        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}R_{s-s_d} \e{-2N\pi i \Qd{z} + Q_z^-\text{sgn}(s-s_d)} 
+        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)} \e{-2N\pi i \Qd{z} + \varphi_{s_ds} + Q_z^-\text{sgn}(s-s_d)} 
+        \notag \\
+        &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{ 2N\pi i \Qd{z} + \varphi_{s_ds} + Q_z^+\text{sgn}(s-s_d)} 
     \fstop
     \label{eq_driven_simpl2}
 \end{align}
 %
-\subsection{Compensation for linear parameters}
+The free motion of the beam is perturbed by two driving modes corresponding to the sum and difference
+of natural tune and driven tune. In most applications the ac-dipole strength much greater than the free 
+oscillation amplitude $A_\theta \gg |\bar{h}_z(s,N)|$.
 
-This section briefly summarises the compensation of the driven motion for the optics parameters $\beta, \phi$.
+All derivations in this section have been made for $h_z^+$. It shall be noted here that the negatively turning
+coordinate $h_z^-$ hase the form
+%
+\begin{align}
+    h_z^-(s, N) =
+        &\tilde{h}_z^-(s, N) \notag \\
+        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)} \e{+2N\pi i \Qd{z} - \varphi_{s_ds} - Q_z^-\text{sgn}(s-s_d)} 
+        \notag \\
+        &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{-2N\pi i \Qd{z} - \varphi_{s_ds} - Q_z^+\text{sgn}(s-s_d)} 
+    \fstop
+    \label{eq_driven_simpl2_minus}
+\end{align}
+%
+For later convenience one can introduce the definition
+%
+\begin{equation}
+    g_{z,\pm}(s) = \frac{A_\theta}{4\sin(\pi Q_z^\pm)} \e{i\varphi_{s_ds} + Q_z^\pm\text{sgn}(s-s_d)}\notag \\
+\end{equation}
+%
+
+\subsection{Compensation of linear parameters}
+
+This section briefly summarises the compensation of the driven motion for the optics parameters
+$\beta$ and $\phi$.
+

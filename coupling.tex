@@ -1,1 +1,131 @@
 \chapter{Advanced transverse coupling measurement}
+
+\begin{chapterinfo}
+    This chapter introduces methods to compensate for driven beam motion in the calculation of
+    coupling resonance driving terms. 
+\end{chapterinfo}
+
+\section{Driven coupled motion}
+
+\subsection{AC-dipole as skew quadrupole}
+
+To start the section about the beam motion that is driven \emph{and} coupled, we state a curious
+analogy. Throughout this chapter we use the following convention:
+%
+\begin{align}
+    f_+ &\equiv f_{0101} \text{ and}\notag \\
+    f_- &\equiv f_{0110} 
+    \fstop
+\end{align}
+%
+The RDTs in \eqref{eq_f0101_f0110} can be reformulated:
+%
+\begin{equation}
+    f_\pm = 
+    \frac{
+        \sum\limits_w J_{1,w} \sqrt{\beta_{x,w}\beta_{y,w}}
+        \e{
+            i\left[\varphi_{wj,x} \pm \varphi_{wj,y}\right]
+            -i\pi\left[Q_x\pm Q_y\right]
+        }
+    }{
+        8i\sin[\pi(Q_x\pm Q_y)]
+    }
+    \fstop
+\end{equation}
+%
+The coupled motion for a single coupling source now reads
+%
+\begin{align}
+    h_x(s_j,N) =& \zxp(s_j,N) \notag \\
+    &+2i\frac{
+         J_{1,w} \sqrt{\beta_{x,w}\beta_{y,w}}
+    }{
+        8i\sin[\pi(Q_x + Q_y)]
+    }
+    \zyp(s_j,N)
+        \e{
+            i\left[\Delta\phi_x^+ + 2\pi Q_x \Theta(s_j,s_w) + 2\pi Q_y \Theta(s_j,s_w)\right]
+            -i\pi\left[Q_x + Q_y\right]
+        }
+        \notag \\
+    &+2i\frac{
+         J_{1,w} \sqrt{\beta_{x,w}\beta_{y,w}}
+    }{
+        8i\sin[\pi(Q_x - Q_y)]
+    }
+    \zym(s_j,N)
+        \e{
+            i\left[\Delta\phi_x^- + 2\pi Q_x \Theta(s_j,s_w) - 2\pi Q_y \Theta(s_j,s_w)\right]
+            -i\pi\left[Q_x - Q_y\right]
+        }
+        \komma
+\end{align}
+%
+with 
+%
+\begin{equation}
+    \Delta\phi_x^\pm = \varphi_x(s_j) - \varphi_x(s_w) \pm \left(\varphi_y(s_j) - \varphi_y(s_w)\right)
+    \fstop
+\end{equation}
+%
+The $\Theta(s_j,s_w)$ terms come from the wrapping around of the phase advance. Noting that 
+$\zyp(s_j,N) = \sqrt{2I_y}\e{2\pi i N Q_y + \varphi(s_j)}$
+one can bring this in a form similar to \eqref{eq_forced_motion}
+%
+\begin{align}
+    h_x(s_j,N) =& \zxp(s_j,N) \notag \\
+    &+\frac{
+         J_{1,w} \sqrt{\beta_{x,w}\beta_{y,w}}
+    }{
+        4\sin[\pi(Q_x + Q_y)]
+    }
+    \sqrt{2I_y}
+    \e{
+        2\pi i N Q_y + \varphi(s_j)
+        +i\left[\Delta\phi_x^+ + 2\pi (Q_x+Q_y) \text{sgn}(s_w-s_j)\right]
+    }
+        \notag \\
+    &+\frac{
+        J_{1,w} \sqrt{\beta_{x,w}\beta_{y,w}}
+    }{
+        4\sin[\pi(Q_x - Q_y)]
+    }
+    \sqrt{2I_y}
+    \e{
+        -2\pi i N Q_y + \varphi(s_j)
+        +i\left[\Delta\phi_x^- + 2\pi (Q_x-Q_y) \text{sgn}(s_w-s_j)\right]
+    }
+    \fstop
+\end{align}
+%
+The following table summarises which quantities get replaced
+\begin{center}
+\begin{tabular}{ll}
+    AC dipole & coupling \\
+    \hline
+    \hline
+    $ A_\theta $        & $ J_{1,w} $ \\
+    $ \varphi_x(s_d) $  & $ \varphi_y(s_j) - \varphi_y(s_w) \mp \varphi_x(s_w)$ \\
+    $ \Qd{x} $          & $ Q_y $\\
+    \hline
+\end{tabular}
+\end{center}
+Thus, a single coupling source acts like an AC dipole with the tune of the other plane as driving frequency.
+From another perspective, the AC dipole couples the beam's motion to its oscillation.
+
+\subsection{Derivation of the coupled driven motion}
+
+
+
+To derive coupled driven motion, driven normal form coordinates, Eqs~(\ref{eq_driven_simpl2}) and
+(\ref{eq_driven_simpl2_minus}) are inserted into \eqref{eq_coupled_h_from_z}. The driven normal form 
+coordinates can easily be retrieved from the driven C-S coordinates:
+%
+\begin{align}
+    \zeta_z^\pm
+    &= \liemap{-F} = h_z^\pm + [-F, h_z^\pm] + O(2nd) \notag
+    &= h
+\end{align}
+%
+

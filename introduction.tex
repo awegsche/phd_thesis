@@ -1391,9 +1391,11 @@ and the linear rotation can be integrated into the terms:
 \begin{align}
     h_z(s, N) =
         &\tilde{h}_z(s, N) \notag \\
-        &+\frac{A_\theta}{4\sin\left( \pi Q_z^-\right)} \e{-2\pi i \Qd{z} + \varphi_{s_ds}+ \pi i Q_z^-(2N+2\Theta(s,s_d)-1)} 
+        &+\frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
+        \e{-i\left[2\pi NQ_{z} + \varphi_{s_ds}+ \pi Q_z^-(2N+2\Theta(s,s_d)-1)\right]}
         \notag\\
-        &-\frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{2\pi i N\Qd{z} + \varphi_{s_ds}+ \pi i Q_z^+(2\Theta(s,s_d) -1)} 
+        &-\frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}
+        \e{i\left[2\pi NQ_{z} + \varphi_{s_ds}+ \pi Q_z^+(2N + 2\Theta(s,s_d) -1)\right]}
     \fstop
     \label{eq_driven_simpl}
 \end{align}
@@ -1414,9 +1416,11 @@ Noting that
 \begin{align}
     h_z(s, N) =
         &\tilde{h}_z(s, N) \notag \\
-        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)} \e{-2N\pi i \Qd{z} + \varphi_{s_ds} + Q_z^-\text{sgn}(s-s_d)} 
+        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
+        \e{-i\left[2N\pi \Qd{z} + \varphi_{s_ds} + Q_z^-\text{sgn}(s-s_d)\right]} 
         \notag \\
-        &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{ 2N\pi i \Qd{z} + \varphi_{s_ds} + Q_z^+\text{sgn}(s-s_d)} 
+        &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}
+        \e{ i\left[2N\pi \Qd{z} + \varphi_{s_ds} + Q_z^+\text{sgn}(s-s_d)\right]} 
     \fstop
     \label{eq_driven_simpl2}
 \end{align}
@@ -1431,9 +1435,11 @@ coordinate $h_z^-$ hase the form
 \begin{align}
     h_z^-(s, N) =
         &\tilde{h}_z^-(s, N) \notag \\
-        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)} \e{+2N\pi i \Qd{z} - \varphi_{s_ds} - Q_z^-\text{sgn}(s-s_d)} 
+        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
+        \e{i\left[2N\pi \Qd{z} - \varphi_{s_ds} - \pi Q_z^-\text{sgn}(s-s_d)\right]}
         \notag \\
-        &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{-2N\pi i \Qd{z} - \varphi_{s_ds} - Q_z^+\text{sgn}(s-s_d)} 
+        &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}
+        \e{-\left[2N\pi  \Qd{z} - \varphi_{s_ds} - Q_z^+\text{sgn}(s-s_d)\right]}
     \fstop
     \label{eq_driven_simpl2_minus}
 \end{align}
@@ -1441,9 +1447,27 @@ coordinate $h_z^-$ hase the form
 For later convenience one can introduce the definition
 %
 \begin{equation}
-    g_{z,\pm}(s) = \frac{A_\theta}{4\sin(\pi Q_z^\pm)} \e{i\varphi_{s_ds} + Q_z^\pm\text{sgn}(s-s_d)}\notag \\
+    g_{z}^\pm(s, N) = \frac{A_\theta}{4\sin(\pi Q_z^-)}
+    \e{\pm i\left[2N\pi\Qd{z} + \varphi_{s_ds} \right]}\notag \\
 \end{equation}
 %
+so that Eqs.~(\ref{eq_driven_simpl2}) and (\ref{eq_driven_simpl2_minus}) can be written compactly
+%
+\begin{equation}
+    h_z^\pm(s,N) = \tilde{h}_z^\pm(s,N)
+    + g_z^\pm(s,N)\e{i\pi Q_z^-\text{sgn}(s-s_d)}
+    - \lambda g_z^\mp(s,N)\e{i\pi Q_z^+\text{sgn}(s-s_d)}
+\end{equation}
+%
+with
+%
+\begin{equation}
+    \lambda = \frac{\sin(\pi Q_-)}{\sin(\pi Q_+)}
+    \fstop
+\end{equation}
+%
+
+
 
 \subsection{Compensation of linear parameters}
 

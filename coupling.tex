@@ -1,4 +1,5 @@
 \chapter{Advanced transverse coupling measurement}
+\label{sec_coupling}
 
 \begin{chapterinfo}
     This chapter introduces methods to compensate for driven beam motion in the calculation of
@@ -126,8 +127,9 @@ coordinates can easily be retrieved from the driven C-S coordinates:
 %
 \begin{align}
     \zeta_z^\pm
-    &= \e{\liemap{-F}}h_z^{\pm} = h_z^\pm + [-F, h_z^\pm] + O(2nd) \notag \\
-    &= \tilde{h}_z^\pm + g_{z,+}^\pm - g_{z,-}^\pm + [-F, \tilde{h}_z^\pm] + O(2nd)
+    &= \e{\liemap{-F}}h_z^{\pm} \notag \\
+    &= \e{\liemap{-F}}\tilde{h}_z^\pm + \e{\liemap{-F}}g_{z,+}^\pm - \e{\liemap{-F}}g_{z,-}^\pm \notag\\
+    &= \tilde{\zeta}_z^\pm + g_{z,+} + g
     \label{eq_driven_zeta}
 \end{align}
 %

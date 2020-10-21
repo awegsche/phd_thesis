@@ -10,3 +10,23 @@
 
 \newcommand{\LTRIA}{0.5}
 \newcommand{\triang}[2]{\filldraw[fill=#2!60!white, draw=#2!50!black, very thick] #1 -- ($ #1 + (\LTRIA, 0) $) -- ($ #1 + (0.5*\LTRIA, \LTRIA) $) -- cycle;}
+
+\newcommand{\BZRc}{0.5519}
+
+\newcommand{\bezierc}[1] {
+  \begin{scope}[cm={#1,0,0,#1,(0,0)}]
+  \draw[very thick, CLRemph1] (0,1) .. controls (\BZRc, 1) and (1,\BZRc) .. (1,0);
+  \draw[very thick, CLRemph1] (1,0) .. controls (1, -\BZRc) and (\BZRc, -1) .. (0,-1);
+  \draw[very thick, CLRemph1] (0,-1) .. controls (-\BZRc, -1) and (-1,-\BZRc) .. (-1,0);
+  \draw[very thick, CLRemph1] (-1,0) .. controls (-1, \BZRc) and (-\BZRc,1) .. (0,1);
+\end{scope}
+}
+
+\newcommand{\beziercnl}[2] {
+  \begin{scope}[cm={#1,0,0,#1,(0,0)}]
+    \draw[very thick, CLRemph1] (0,1) .. controls (\BZRc, 1) and ($(1,\BZRc)-(#2,0.0)$) .. (1,0);
+    \draw[very thick, CLRemph1] (1,0) .. controls ($(1, -\BZRc)+(#2,0.0)$) and ($(\BZRc, -1) + (0.0,#2)$) .. (0,-1.1);
+    \draw[very thick, CLRemph1] (0,-1.1) .. controls ($(-\BZRc, -1)-(0.0,#2)$) and ($(-1.2,-\BZRc)-(#2,0.0)$) .. (-1,0);
+    \draw[very thick, CLRemph1] (-1,0) .. controls ($(-.8, \BZRc)+(#2,0.0)$) and (-\BZRc,1) .. (0,1);
+\end{scope}
+}

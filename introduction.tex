@@ -244,6 +244,21 @@ as illustrated in Fig.~\ref{fig_part_traj}.
     \label{fig_part_traj}
 \end{figure}
 %
+Actual $\beta$~functions are shown in Fig.~\ref{fig_beta}.
+%
+\begin{figure}[h]
+  \centering
+  \footnotesize
+  \includestandalone[width=.7\linewidth]{./twiss/IP_beta_x}
+  \includestandalone[width=.7\linewidth]{./twiss/Arc_beta_x}
+  \normalsize
+  \caption{
+    TOP: The $\beta$~function around IP1 with $\beta^*=\SI{30}{cm}$.
+    BOTTOM: The $\beta$~functions in an LHC arc, the plot ranges from IP to IP.
+  }
+  \label{fig_beta}
+\end{figure}
+
 Solutions of \eqref{eq_hills} for linear lattice elements can be expressed in matrix form
 %
 \begin{equation}
@@ -1420,7 +1435,7 @@ and the linear rotation can be integrated into the terms:
 Noting that
 %
 \begin{equation}
-    2\Theta(a) - 1 = \text{sgn}(a) \text{, if a \neq 0}
+  2\Theta(a) - 1 = \text{sgn}(a) \text{, if } a \neq 0
     \komma
 \end{equation}
 %

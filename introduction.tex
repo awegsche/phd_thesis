@@ -1112,27 +1112,32 @@ If the BPM calibration is not perfect the measured $H$ and $V$ lines are not pro
    \fstop
 \end{align}
 %
-The calibration factors $C_{x/y}$ cancel out if one devides the spectral line by the main line:
+The calibration factors $C_{x/y}$ cancel out if one devides the spectral line by the amplitude of
+the main line:
 %
 \begin{align}
-    A_{0,n_y} &= \frac{H^+(0,n_y)}{H^+(1,0)} \notag \\
-    B_{n_x,0} &= \frac{V^+(n_x,0)}{V^+(0,1)} 
+    A_{0,n_y} &= \frac{H^+(0,n_y)}{\left|H^+(1,0)\right|} \notag \\
+    B_{n_x,0} &= \frac{V^+(n_x,0)}{\left|V^+(0,1)\right|} 
     \fstop
 \end{align}
 %
 Important for the coupling calculation are the following normalised spectral lines:
 %
 \begin{align}
-    A_{0,1}&=\frac{H^+(0,1)}{H^+(1,0)}  &= 2i\sqrt{\frac{I_y}{I_x}}\conj{f_{1001}} \e{i\varphi_{x,0}-i\varphi_{y,0}}
+    A_{0,1}&=\frac{H^+(0,1)}{\left|H^+(1,0)\right|}
+      &= 2i\sqrt{\frac{I_y}{I_x}}\conj{f_{1001}} \e{-i\varphi_{y}}
     \label{eq_A01} \\
-    B_{1,0}&=\frac{V^+(1,0)}{V^+(0,1)}  &= 2i\sqrt{\frac{I_x}{I_y}}\conj{f_{1001}} \e{i\varphi_{y,0}-i\varphi_{x,0}}
+    B_{1,0}&=\frac{V^+(1,0)}{\left|V^+(0,1)\right|}
+      &= 2i\sqrt{\frac{I_x}{I_y}}{f_{1001}} \e{-i\varphi_{x}}
     \label{eq_B10}
 \end{align}
 which contain $f_{1001}$ and
 \begin{align}
-    A_{0,-1}&=\frac{H^+(0,-1)}{H^+(1,0)}  &= 2i\sqrt{\frac{I_y}{I_x}}\conj{f_{1010}} \e{i\varphi_{x,0}+i\varphi_{y,0}}
+    A_{0,-1}&=\frac{H^+(0,-1)}{\left|H^+(1,0)\right|}
+      &= 2i\sqrt{\frac{I_y}{I_x}}\conj{f_{1010}} \e{i\varphi_{y}}
     \label{eq_A0-1} \\
-    B_{-1,0}&=\frac{V^+(-1,0)}{V^+(0,1)}  &= 2i\sqrt{\frac{I_x}{I_y}}\conj{f_{1010}} \e{i\varphi_{y,0}+i\varphi_{x,0}}
+    B_{-1,0}&=\frac{V^+(-1,0)}{\left|V^+(0,1)\right|}
+      &= 2i\sqrt{\frac{I_x}{I_y}}\conj{f_{1010}} \e{i\varphi_{x}}
     \label{eq_B-10}
 \end{align}
 %
@@ -1142,8 +1147,9 @@ The coupling RDTs $f_{1010}$ and $f_{1001}$ can then be calculated by combining 
 and Eqs~(\ref{eq_A0-1}) with (\ref{eq_B-10}), respectively:
 %
 \begin{align}
-    \left|f_{1001}\right| &= \frac{1}{2}\sqrt{A_{0,1}B_{1,0}} \notag \\
-    \left|f_{1010}\right| &= \frac{1}{2}\sqrt{A_{0,-1}B_{-1,0}}
+    \left|f_{1001}\right| &= \frac{1}{2}\sqrt{\left| A_{0,1}B_{1,0} \right|} \notag \\
+    \left|f_{1010}\right| &= \frac{1}{2}\sqrt{\left| A_{0,-1}B_{-1,0} \right|}
+    \label{eq_abs_f_from_AB}
     \fstop
 \end{align}
 %
@@ -1199,8 +1205,8 @@ the action $I_z$ does not change between the two positions and
 This allows to express the real normalised spectral lines as
 %
 \begin{align}
-    A(0,n_y)_a &= \frac{H(0,n_y)_a}{H(1,0)_a} = \frac{H(0,n_y)_a}{H(1,0)_b} \notag \\
-    B(n_x,0)_a &= \frac{V(n_x,0)_a}{V(0,1)_a} = \frac{V(n_x,0)_a}{V(0,1)_b} 
+    A(0,n_y)_a &= \frac{H(0,n_y)_a}{\left| H(1,0)_a \right|} = \frac{H(0,n_y)_a}{\left| H(1,0)_b \right|} \notag \\
+    B(n_x,0)_a &= \frac{V(n_x,0)_a}{\left| V(0,1)_a \right|} = \frac{V(n_x,0)_a}{\left| V(0,1)_b \right|} 
     \fstop
 \end{align}
 %
@@ -1224,6 +1230,39 @@ because $H^+(-1,0) = 0$, one can express $A^+(0,n_y)$ and $B(n_x, 0)$ in terms o
     2B^+(n_x,n_y)_a = (1-i\tan\Delta)B(n_x,n_y)_a - \frac{i}{\cos\Delta}B(n_x,n_y)_b
 \end{align}
 %
+
+Which can now be plugged in Eq~(\ref{eq_f0101_f0110}) to calculate the amplitude of the coupling RDTs
+$f_{1001}$ and $f_{1010}$. To get the phase the starting point is, again, Eqs~(\ref{eq_A01}) -- (\ref{eq_B-10}).
+The phases of $A_{0.1},\,B_{1,0},\,A_{0,-1},\,B_{-1,0}$ contain the phases of the RDTs:
+%
+\begin{align}
+  \text{arg}(A_{0,1}) &= -q_{1001} -\varphi_y +\tfrac{\pi}{2} \\
+  \text{arg}(B_{1,0}) &= q_{1001} -\varphi_x +\tfrac{\pi}{2} \\
+  \text{arg}(A_{0,-1}) &= -q_{1010} +\varphi_y +\tfrac{\pi}{2} \\
+  \text{arg}(B_{-1,0}) &= -q_{1010} +\varphi_x +\tfrac{\pi}{2}
+  \label{eq_argA10B01}
+\end{align}
+%
+where the phase $\frac{\pi}{2}$ comes from the factor $i$ and the phases of the RDTs are defined as
+%
+\begin{align}
+  q_{1001} &\equiv \text{arg}(f_{1001})\\
+  q_{1010} &\equiv \text{arg}(f_{1010})
+  \fstop
+  \label{eq_arg_f1001}
+\end{align}
+%
+From \eqref{eq_argA10B01} one gets two expressions for each RDT phase:
+%
+\begin{equation}
+  \begin{matrix*}[l]
+  q_{1001} &= -\arg{A_{0,1}}-\varphi_y + \tfrac{\pi}{2} &= \arg{B_{1,0}}+\varphi_x -\tfrac{\pi}{2}\\
+  q_{1010} &= -\arg{A_{0,-1}} +\varphi_y + \tfrac{\pi}{2} &= -\arg{B_{-1,0}}+\varphi_x +\tfrac{\pi}{2}
+  \label{eq_q1001q1010}
+  \end{matrix*}
+\end{equation}
+%
+which can finally be used to calculate the RDTs using \eqref{eq_abs_f_from_AB}.
 
 % --------------------------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------------------------

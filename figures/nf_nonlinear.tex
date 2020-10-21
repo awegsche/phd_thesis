@@ -1,0 +1,20 @@
+
+
+\documentclass{standalone}
+\input{image_header}
+\begin{document}
+\begin{tikzpicture}[
+        scale=0.5,
+        axis/.style={->,black}, 
+        vector/.style={-stealth,red,very thick}, 
+        vector guide/.style={dashed,CLRemph1,thick}
+      ]
+        %draw axes
+      \draw[axis] (-3,0,0) -- (3,0,0) node[anchor=west]{\footnotesize$\mathscr{R}[\zeta_x]$};
+    \draw[axis] (0,-3,0) -- (0,3,0) node[anchor=south]{\footnotesize$\mathscr{I}[\zeta_x]x$};
+
+        \draw[very thick, CLRemph1] circle (2.25);
+        \draw[very thick, CLRemph1] circle (1.5);
+        \draw[very thick, CLRemph1] circle (0.75);
+\end{tikzpicture}
+\end{document}

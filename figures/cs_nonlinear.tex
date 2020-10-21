@@ -1,0 +1,20 @@
+
+\documentclass{standalone}
+\input{image_header}
+
+\begin{document}
+\begin{tikzpicture}[
+        scale=0.5,
+        axis/.style={->,black}, 
+        vector/.style={-stealth,red,very thick}, 
+        vector guide/.style={dashed,CLRemph1,thick}
+      ]
+        %draw axes
+      \draw[axis] (-3,0,0) -- (3,0,0) node[anchor=west]{\footnotesize$\mathscr{R}[h_x] = \hat{x}$};
+      \draw[axis] (0,-3,0) -- (0,3,0) node[anchor=south]{\footnotesize$\mathscr{I}[h_x]=\hat{p_x}$};
+
+        \beziercnl{0.75}{0.3};
+        \beziercnl{1.5}{0.6};
+        \beziercnl{2.25}{0.2};
+\end{tikzpicture}
+\end{document}

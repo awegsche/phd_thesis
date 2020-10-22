@@ -394,6 +394,7 @@ Particle motion is easier expressed in Courant-Snyder coordinates
         z\\
         p_z
     \end{pmatrix}
+    \label{eq_cs_matrix}
 \end{equation}
 %
 which transforms the phase space ellipse into a circle with radius $\sqrt{J_z}$.
@@ -403,6 +404,7 @@ It is often convenient to express the Courant-Snyder coordinates in a their comp
 %
 \begin{equation}
     h^\pm_z \equiv \hat{z} \mp i \hat{p}_z
+    \label{eq_courantsnyder}
 \end{equation}
 %
 and the one turn map simplifies further to
@@ -411,6 +413,16 @@ and the one turn map simplifies further to
     \mat{M}_\text{OT} = \e{-i2\pi Q_z}
     \fstop
 \end{equation}
+
+In a linear lattice, the particle motion in complex Courant-Snyder coordinates at turn $N$ and position
+$s$ in the ring reads
+%
+\begin{equation}
+    h_z^\pm(s,N) = \sqrt{J_z} \e{\mp i \left[2N\pi Q_z + \varphi_z(s) + \varphi_{z,0}\right]}
+\end{equation}
+%
+with $\varphi_{z,0}$ being an arbitrary initial phase.
+
 % --------------------------------------------------------------------------------------------------
 % Normal forms and RDTs
 % --------------------------------------------------------------------------------------------------
@@ -485,6 +497,7 @@ The Hamiltonian of the whole lattice is denoted by
 %
 \begin{equation}
     H(s_i) = \sum\limits_w^W H_w(s_i)
+    \label{eq_Hamil_sa}
     \fstop
 \end{equation}
 %
@@ -727,27 +740,11 @@ where $Q_{x}\m$ is the model horizontal tune and
 The Hamiltonian of the whole accelerator reads
 %
 \begin{align}
-  H(s_a) =& \sum\limits_{w}^{W}\sum\limits_{n}\sum\limits_{j+k+l+m=n} h_{w,jklm}
-  \e{i\left[ (j-k)\varphi_{x,wa} + (l-m)\varphi_{y,wa} \right]}
-  %\notag \\
-  %& \times
-  \left( h_x^+ \right)^j
-  \left( h_x^- \right)^k
-  \left( h_y^+ \right)^l
-  \left( h_y^- \right)^m
+  H(s_a) =& \sum\limits_{w}^{W} H_w(s_a)
   \label{eq_Hamil}
 \end{align}
 %
-with $h_z^\pm$ being the normalised complex Courant-Snyder coordinate
-%
-\begin{equation}
-  h_z^\pm = \hat{z} \pm i \hat{p}_z
-    \komma
-    \label{eq_courantsnyder}
-\end{equation}
-%
-and $n$ denotes the order of the magnetic component (2 for quadrupole, 3 for sextupole,
-etc.).
+with $H_w(s_a)$ being the Hamiltonian term from \eqref{eq_Hamil_sa}.
 The sum over $w$ in Eqs.~(\ref{eq_rdt}) and (\ref{eq_Hamil}) runs over each element $w$ in the accelerator.
 The accumulated phase shift due to the detuning between elements $i$ and
 $j$ reads:
@@ -1280,7 +1277,7 @@ compensation will be explained in the following subsections.
 \subsection{Linear motion with AC dipole}
 \newcommand{\Qd}[1]{Q^{d}_{#1}}
 
-In this section the C-S coordinates of the driven linear motion will be derived \cite{Miyamoto2010,Peggs1998}. These forced coordinates
+In this section the C-S coordinates of the driven linear motion will be derived \cite{Miyamoto2010nPeggs1998}. These forced coordinates
 can be used to calculate the effect of the AC dipole on linear optics parameters like betatron phase, 
 $\beta$~function and linear transverse coupling.
 
@@ -1325,11 +1322,11 @@ to an arbitrary position $s$ in the ring one gets the following coordinates
     \label{eq_hz_ackick}
 \end{align}
 %
-with $R$ being the rotation map of the linear motion. For simplicity, the following definitions have been used:
+with $R$ being the rotation map of the linear motion. For simplicity, the following definition has been used:
 %
 \begin{align}
-    R^N &\equiv \e{2\pi i Q N} \notag\\
-    R_{s-s_d} &\equiv \e{i [\varphi_{s_ds}]}
+    &R_{s-s_d} \equiv R(\varphi(s) - \varphi(s_d))\\
+    \Rightarrow &R_{s-s_d} h_x = h_x \e{-i\varphi_{s_d s}}
     \fstop
 \end{align}
 %
@@ -1380,9 +1377,9 @@ Using this, the sums can be brought into the form of a geometric series
 %
 \begin{align}
     \sum\limits_{T=0}^N R^T\delta_\pm^{N-T}
-    &= \sum\limits_{T=0}^N R^{N-T}\delta_\pm^{N} \notag \\
-    &=  R ^N \sum\limits_{T=0}^N \left( R^{-1}\delta_\mp \right)^{T} \notag \\
-    &=  R ^N \frac{1- (R^{-1}\delta_\mp)^{N+1}}{1 - R^{-1}\delta_\mp}
+    &= \sum\limits_{T=0}^N R^{N-T}\delta_\pm^{T} \notag \\
+    &=  R ^N \sum\limits_{T=0}^N \left( R^{-1}\delta_\pm \right)^{T} \notag \\
+    &=  R ^N \frac{1- (R^{-1}\delta_\pm)^{N+1}}{1 - R^{-1}\delta_\pm}
     \komma
 \end{align}
 %
@@ -1390,7 +1387,7 @@ and
 %
 \begin{align}
     \sum\limits_{T=1}^N R^T\delta_\pm^{N-T}
-    &= R^N \frac{1- (R^{-1}\delta_\mp)^{N}}{1 - R^{-1}\delta_\mp}
+    &= R^N \frac{1- (R^{-1}\delta_\pm)^{N}}{1 - R^{-1}\delta_\pm}
     \fstop
 \end{align}
 %
@@ -1400,8 +1397,8 @@ The two cases of \eqref{eq_ackick} differ only in one additional exponent of $R^
 \begin{align}
     h_z(s, N) = R_{s-s_d}R^N 
     \Bigg[&h_z(s_d)  \notag \\
-        &+ \frac{iA_\theta}{2}\frac{1-(R^{-1}\delta_-)^{N+\Theta(s,s_d)}}{1-R^{-1}\delta_-} \notag \\
-        &+ \frac{iA_\theta}{2}\frac{1-(R^{-1}\delta_+)^{N+\Theta(s,s_d)}}{1-R^{-1}\delta_+} 
+        &+ \frac{iA_\theta}{2}\frac{1-(R^{-1}\delta_+)^{N+\Theta(s,s_d)}}{1-R^{-1}\delta_+}  \notag \\
+        &+ \frac{iA_\theta}{2}\frac{1-(R^{-1}\delta_-)^{N+\Theta(s,s_d)}}{1-R^{-1}\delta_-}
     \Bigg]
     \fstop
 \end{align}
@@ -1409,14 +1406,14 @@ The two cases of \eqref{eq_ackick} differ only in one additional exponent of $R^
 Furthermore, the terms $R\delta_\pm$ can be written out:
 %
 \begin{equation}
-    R^{-1}\delta_\pm = \e{-2\pi i (Q_z \mp \Qd{z})} = \e{-2\pi i Q_z^\mp}
+    R^{-1}\delta_\pm = \e{2\pi i (Q_z \pm \Qd{z})} = \e{\pm 2\pi i Q_z^\pm}
     \komma
 \end{equation}
 %
 and
 %
 \begin{equation}
-    1 - \e{-2i\alpha} = \e{i\alpha}\tfrac{1}{2i} \sin\alpha
+    1 - \e{2i\alpha} = -\e{i\alpha}\tfrac{1}{2i} \sin\alpha
     \fstop
 \end{equation}
 %
@@ -1425,8 +1422,8 @@ Those identities can be used to simplify the exponentials
 \begin{align}
     h_z(s, N) = R_{s-s_d}R^N 
     \Bigg[&h_z(s_d)  \notag \\
-        &+ \frac{A_\theta}{4}\frac{1-\e{-2\pi i Q_z^-(N+\Theta(s,s_d))}}{\e{i\pi Q_z^-}\sin\left( \pi Q_z^- \right)} \notag \\
-        &+ \frac{A_\theta}{4}\frac{1-\e{-2\pi i Q_z^+(N+\Theta(s,s_d))}}{\e{i\pi Q_z^+}\sin\left( \pi Q_z^+ \right)} 
+        &+ \frac{A_\theta}{4}\frac{1-\e{2\pi i Q_z^+(N+\Theta(s,s_d))}}{\e{i\pi Q_z^+}\sin\left( \pi Q_z^+ \right)}  \notag \\
+        &- \frac{A_\theta}{4}\frac{1-\e{-2\pi i Q_z^-(N+\Theta(s,s_d))}}{\e{i\pi Q_z^-}\sin\left( \pi Q_z^- \right)}
     \Bigg]
     \fstop
     \label{eq_delta_written_out}
@@ -1437,8 +1434,8 @@ The constant part of \eqref{eq_delta_written_out} can be put into
 \begin{equation}
     \tilde{h}_z(s_d) \equiv h_z(s_d) + 
     \left(
-    \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}\lambda_z \e{-i \pi Q_z^-}
-    -\frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{-i\pi Q_z^+}
+    \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}\lambda_z \e{i \pi Q_z^+}
+    -\frac{A_\theta}{4\sin\left( \pi Q_z^-\right)} \e{-i\pi Q_z^-}
     \right)
     \fstop
 \end{equation}
@@ -1449,9 +1446,9 @@ Now, the driven motion is seperated off:
     h_z(s, N) = R_{s-s_d}R^N 
     \Bigg[&\tilde{h}_z(s_d) 
     \notag \\
-        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)} \e{-\pi i Q_z^-(2N+2\Theta(s,s_d)-1)} 
+        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{-\pi i Q_z^+(2N+2\Theta(s,s_d)-1)} 
          \notag \\
-        &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{-\pi i Q_z^+(2N+2\Theta(s,s_d) -1)}
+        &- \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)} \e{-\pi i Q_z^-(2N+2\Theta(s,s_d) -1)}
     \Bigg]
     \fstop
     \label{eq_driven_simpl}
@@ -1462,11 +1459,11 @@ and the linear rotation can be integrated into the terms:
 \begin{align}
     h_z(s, N) =
         &\tilde{h}_z(s, N) \notag \\
-        &+\frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
-        \e{-i\left[2\pi NQ_{z} + \varphi_{s_ds}+ \pi Q_z^-(2N+2\Theta(s,s_d)-1)\right]}
+        &+\frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}
+        \e{i\left[-2\pi NQ_{z} - \varphi_{s_ds} + \pi Q_z^+(2N+2\Theta(s,s_d)-1)\right]}
         \notag\\
-        &-\frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}
-        \e{i\left[2\pi NQ_{z} + \varphi_{s_ds}+ \pi Q_z^+(2N + 2\Theta(s,s_d) -1)\right]}
+        &-\frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
+        \e{-i\left[2\pi NQ_{z} + \varphi_{s_ds}+ \pi Q_z^-(2N + 2\Theta(s,s_d) -1)\right]}
     \fstop
     \label{eq_driven_simpl}
 \end{align}
@@ -1488,10 +1485,10 @@ Noting that
     h_z(s, N) =
         &\tilde{h}_z(s, N) \notag \\
         &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
-        \e{-i\left[2N\pi \Qd{z} + \varphi_{s_ds} + Q_z^-\text{sgn}(s-s_d)\right]} 
+        \e{i\left[2N\pi \Qd{z} - \varphi_{s_ds} + Q_z^-\text{sgn}(s-s_d)\right]} 
         \notag \\
         &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}
-        \e{ i\left[2N\pi \Qd{z} + \varphi_{s_ds} + Q_z^+\text{sgn}(s-s_d)\right]} 
+        \e{-i\left[2N\pi \Qd{z} + \varphi_{s_ds} + Q_z^+\text{sgn}(s-s_d)\right]} 
     \fstop
     \label{eq_driven_simpl2}
 \end{align}
@@ -1501,51 +1498,122 @@ of natural tune and driven tune. In most applications the ac-dipole strength muc
 oscillation amplitude $A_\theta \gg |\bar{h}_z(s,N)|$.
 
 All derivations in this section have been made for $h_z^+$. It shall be noted here that the negatively turning
-coordinate $h_z^-$ hase the form
+coordinate $h_z^-$ has the form
 %
 \begin{align}
     h_z^-(s, N) =
         &\tilde{h}_z^-(s, N) \notag \\
         &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
-        \e{i\left[2N\pi \Qd{z} - \varphi_{s_ds} - \pi Q_z^-\text{sgn}(s-s_d)\right]}
+        \e{-i\left[2N\pi \Qd{z} - \varphi_{s_ds} + Q_z^-\text{sgn}(s-s_d)\right]} 
         \notag \\
         &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}
-        \e{-\left[2N\pi  \Qd{z} - \varphi_{s_ds} - Q_z^+\text{sgn}(s-s_d)\right]}
+        \e{i\left[2N\pi \Qd{z} + \varphi_{s_ds} + Q_z^+\text{sgn}(s-s_d)\right]} 
     \fstop
     \label{eq_driven_simpl2_minus}
 \end{align}
 %
-For later convenience one can introduce the definition
-%
-\begin{equation}
-    g_{z}^\pm(s, N) = \frac{A_\theta}{4\sin(\pi Q_z^-)}
-    \e{\pm i\left[2N\pi\Qd{z} + \varphi_{s_ds} \right]}\notag \\
-\end{equation}
-%
-so that Eqs.~(\ref{eq_driven_simpl2}) and (\ref{eq_driven_simpl2_minus}) can be written compactly
-%
-\begin{equation}
-    h_z^\pm(s,N) = \tilde{h}_z^\pm(s,N)
-    + g_z^\pm(s,N)\e{i\pi Q_z^-\text{sgn}(s-s_d)}
-    - \lambda g_z^\mp(s,N)\e{i\pi Q_z^+\text{sgn}(s-s_d)}
-\end{equation}
-%
-with
+Subtracting the closed driven closed orbit $\tilde{h}_z$ and with the definition
 %
 \begin{equation}
     \lambda = \frac{\sin(\pi Q_-)}{\sin(\pi Q_+)}
-    \fstop
+    \komma
 \end{equation}
 %
-
+the driven motion can be rewritten in the from
+%
+\begin{align}
+    h_z(s,N) = 
+        \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
+        \Bigg[ 
+            &\e{i\left[2N\pi \Qd{z} - \varphi_{s_ds} + Q_z^+\text{sgn}(s-s_d)\right]} 
+            \notag \\
+            &- \lambda
+            \e{-i\left[2N\pi \Qd{z} + \varphi_{s_ds} + Q_z^-\text{sgn}(s-s_d)\right]} 
+        \Bigg]
+    \komma
+    \label{eq_driven_hz_final}
+\end{align}
+%
+which is used in other works \cite{Miyamoto2008, Miyamoto2010}.
 
 
 \subsection{Compensation of linear parameters}
 
 This section briefly summarises the compensation of the driven motion for the optics parameters
 $\beta$ and $\phi$.
-The relation between free and driven $\beta$ function can be derived by comparing the amplitude of
-both, the free and the driven motion:
-
+From \eqref{eq_courantsnyder} the motion in physical space can be calcuated from the complex Courant-Snyder
+coordinates by taking the real part and transforming back using \eqref{eq_cs_matrix}:
 %
-
+\begin{equation}
+    z^{\text{free}}(s,N)=\sqrt{\beta_z(s)}\re{h_z^{+,\text{free}}}
+    = A\sqrt{\beta_z(s)}\cos\left[ 2\pi N Q_z + \varphi_z(s) + \varphi_{z,0} \right]
+    \label{eq_free_x_from_h}
+\end{equation}
+%
+The driven motion can be reformulated in a similar form \cite{Miyamoto2008}
+%
+\begin{equation}
+    z(s,N) = A_d\sqrt{\beta_{z}^d(s)}\cos\left[ 2\pi N Q_z^d + \varphi_z^d(s) + \varphi_{z,0}^d \right]
+    \fstop
+    \label{eq_drv_x_from_h_tpl}
+\end{equation}
+%
+To bring \eqref{eq_driven_hz_final} into the form \eqref{eq_drv_x_from_h_tpl} some trigonometric reformulations
+are needed\footnote{Ryoichi Miyamoto, \emph{private communication}, Feb. 2017}.
+First the transformation to physical space is performed while those terms in the phase that swap
+sign between the two modes
+are moved to the end:
+%
+\begin{align}
+    z(s,N) = \frac{A_\theta\sqrt{\beta_z(s_d)\beta_z(s)}}{4\sin(\pi Q_z^-)}
+        \Bigg[ 
+            &\cos\left[2N\pi \Qd{z} + \Qd{z}\text{sgn}(s-s_d) + Q_z\text{sgn}(s-s_d)- \varphi_{s_ds}\right]
+            \notag \\
+            &- \lambda
+            \cos\left[2N\pi \Qd{z} + \Qd{z}\text{sgn}(s-s_d) -Q_z\text{sgn}(s-s_d) +\varphi_{s_ds}\right]
+        \Bigg]
+        \fstop
+\end{align}
+%
+Using sum and difference identities for trigonometric functions,
+%
+\begin{equation}
+    \cos(\alpha\pm\beta)  = \cos\alpha\cos\beta \mp \sin\alpha\sin\beta
+    \komma
+\end{equation}
+%
+the above can be rewritten to
+%
+\begin{align}
+    z(s,N) = \frac{A_\theta\sqrt{\beta_z(s_d)\beta_z(s)}}{4\sin(\pi Q_z^-)}
+        \Bigg\{ 
+            &(1-\lambda)\cos\left[2N\pi \Qd{z} + \Qd{z}\text{sgn}(s-s_d)\right] \cos\left[ Q_z\text{sgn}(s-s_d)- \varphi_{s_ds}\right]
+            \notag \\
+            &- (1+\lambda)
+            \sin\left[2N\pi \Qd{z} + \Qd{z}\text{sgn}(s-s_d) \right] \sin\left[Q_z\text{sgn}(s-s_d) -\varphi_{s_ds}\right]
+        \Bigg\}
+        \fstop
+\end{align}
+%
+A linear combination of oscillations with the same frequency forms a single oscillation, in this case 
+%
+\begin{equation}
+    a\cos\\alpha - b\sin\alpha = \sqrt{a^2+b^2} \cos\left[\alpha + \tan(\frac{b}{a})]
+    \komma
+\end{equation}
+%
+with
+%
+\begin{align}
+    a &= \frac{A_\theta \sqrt{\beta_z(s_d)\beta_z(s)}}{4\sin(\pi Q_z^-)} (1-\lambda) \cos(Q_z\text{sgn}(s-s_d)-\varphi_{s_ds}) \notag \\
+    b &= \frac{A_\theta \sqrt{\beta_z(s_d)\beta_z(s)}}{4\sin(\pi Q_z^-)} (1+\lambda) \cos(Q_z\text{sgn}(s-s_d)-\varphi_{s_ds}) \notag \\
+    \alpha &= \Qd{z}\left(2\pi N  + \text{sgn}(s-s_d)\right) 
+    \fstop
+\end{align}
+%
+This combined oscillation reads
+%
+\begin{equation}
+    z(s,N) = \frac{A_\theta\sqrt{\beta_z(s_d)\beta_z(s)}}{4\sin(\pi Q_z^-)} \sqrt(1-2\lambda\cos[+\lambda^2)
+\end{equation}
+%

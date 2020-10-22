@@ -851,6 +851,7 @@ FUNCTION {phdthesis}
   format.date "year" output.check
   new.block
   note output
+  url.format  output
   fin.entry
 }
 

@@ -121,6 +121,48 @@ From another perspective, the AC dipole couples the beam's motion to its oscilla
 
 
 The derivation of the coupled driven motion follows a similar path to the derivation of the 
-coupled free motion.
+coupled free motion but in the regime of driven motion, so the normal form approach has to be used.
+Figure~\ref{fig_sketch_drv_ac} illustrates the procedure. The coordinates are propagated in normal form
+space and transformed to physical space at $s_d-\epsilon$, directly in front of the AC-dipole. Then
+an AC-dipole kick $\Delta h_x(N)$ is performed and the physical coordinate is transformed back to
+normal form space where it is rotated around the ring. This process is repeated for each turn.
 
-Analogously to 
+\begin{figure}
+  \centering
+  tikzpicture
+      \caption{Kick performed in CS-coordinates, transformed to NF-coordinates}
+  \label{fig_sketch_drv_ac}
+\end{figure}
+
+In the first turn, before the beam experiences the AC-dipole kick, the coordinates are those from
+\eqref{eq_coupled_h_from_z}:
+%
+\begin{align}
+  h_x^+(s_d-\epsilon, 0) &=  \e{\liemap{F}} \zeta_x^+(s_d-\epsilon, 0)\notag \\
+  &=  \zeta^+(s_d-\epsilon,0)
+    + 2i\conj{f_{1001}}\zeta_y^+(s_d-\epsilon, 0)
+    + 2i\conj{f_{1010}}\zeta_y^-(s_d-\epsilon,0) \notag \\
+  \label{<+label+>}
+\end{align}
+%
+Then the particle is kicked in $p_x$ direction:
+%
+\begin{equation}
+  h_x^+(s_d+\epsilon, 0) =  h_x^+(s_d - \epsilon,0) + \Delta h_x(0)
+\end{equation}
+%
+For the transformation back to normal form space the inverse of \eqref{eq_h_from_z} has to be applied:
+%
+\begin{equation}
+  \zeta = \e{\liemap{-F}} h = h + [-F,h] + O(h^3)
+  \label{<+label+>}
+\end{equation}<++>
+%
+with
+%
+\begin{equation}
+  F = \sum f_{jklm}\left( h_x^+ \right)^j \left( h_x^- \right)^k \left( h_y^+ \right)^l \left( h_y^- \right)^m
+  \label{<+label+>}
+\end{equation}
+%
+when applied to $h$.

@@ -1309,8 +1309,11 @@ For a small $\epsilon$ the C-S coordinates of the beam directly after the AC-dip
 %
 in the first turn where the AC dipole is active. This turn will be denoted with $N=0$.
 
-By repeatedly adding the kick for each turn and propagating
-to an arbitrary position $s$ in the ring one gets the following coordinates
+Under the assumption that the kick strength of the AC-dipole is ramped up slowly enough, this is an
+adiabatic process and the effect of the kicks can be added repeatedly for each turn.
+
+Then the coordinates can be propagated to an arbitrary position $s$ in the ring to get the following
+expressions:
 %
 \begin{align}
     h_z(s<s_d, N) &= R_{s-s_d}\left[R^N h_z(s_d) + R^N\Delta h_z(0) + \ldots + R\Delta h_z(N-1)\right] \notag\\
@@ -1485,10 +1488,10 @@ Noting that
     h_z(s, N) =
         &\tilde{h}_z(s, N) \notag \\
         &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
-        \e{i\left[2N\pi \Qd{z} - \varphi_{s_ds} + Q_z^-\text{sgn}(s-s_d)\right]} 
+        \e{i\left[2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
         \notag \\
         &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}
-        \e{-i\left[2N\pi \Qd{z} + \varphi_{s_ds} + Q_z^+\text{sgn}(s-s_d)\right]} 
+        \e{-i\left[2N\pi \Qd{z} + \varphi_{s_ds} + \pi Q_z^+\text{sgn}(s-s_d)\right]} 
     \fstop
     \label{eq_driven_simpl2}
 \end{align}
@@ -1504,10 +1507,10 @@ coordinate $h_z^-$ has the form
     h_z^-(s, N) =
         &\tilde{h}_z^-(s, N) \notag \\
         &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
-        \e{-i\left[2N\pi \Qd{z} - \varphi_{s_ds} + Q_z^-\text{sgn}(s-s_d)\right]} 
+        \e{-i\left[2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
         \notag \\
         &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}
-        \e{i\left[2N\pi \Qd{z} + \varphi_{s_ds} + Q_z^+\text{sgn}(s-s_d)\right]} 
+        \e{i\left[2N\pi \Qd{z} + \varphi_{s_ds} + \pi Q_z^+\text{sgn}(s-s_d)\right]} 
     \fstop
     \label{eq_driven_simpl2_minus}
 \end{align}
@@ -1525,10 +1528,10 @@ the driven motion can be rewritten in the from
     h_z(s,N) = 
         \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
         \Bigg[ 
-            &\e{i\left[2N\pi \Qd{z} - \varphi_{s_ds} + Q_z^+\text{sgn}(s-s_d)\right]} 
+            &\e{i\left[2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^+\text{sgn}(s-s_d)\right]} 
             \notag \\
             &- \lambda
-            \e{-i\left[2N\pi \Qd{z} + \varphi_{s_ds} + Q_z^-\text{sgn}(s-s_d)\right]} 
+            \e{-i\left[2N\pi \Qd{z} + \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
         \Bigg]
     \komma
     \label{eq_driven_hz_final}
@@ -1540,80 +1543,156 @@ which is used in other works \cite{Miyamoto2008, Miyamoto2010}.
 \subsection{Compensation of linear parameters}
 
 This section briefly summarises the compensation of the driven motion for the optics parameters
-$\beta$ and $\phi$.
+$\beta$ and $\phi$\footnote{Ryoichi Miyamoto, private communication, Feb. 2017}.
 From \eqref{eq_courantsnyder} the motion in physical space can be calcuated from the complex Courant-Snyder
 coordinates by taking the real part and transforming back using \eqref{eq_cs_matrix}:
 %
 \begin{equation}
     z^{\text{free}}(s,N)=\sqrt{\beta_z(s)}\re{h_z^{+,\text{free}}}
-    = A\sqrt{\beta_z(s)}\cos\left[ 2\pi N Q_z + \varphi_z(s) + \varphi_{z,0} \right]
+    = \sqrt{2J_z \beta_z(s)}\cos\left[ 2\pi N Q_z + \varphi_z(s) + \varphi_{z,0} \right]
     \label{eq_free_x_from_h}
 \end{equation}
 %
 The driven motion can be reformulated in a similar form \cite{Miyamoto2008}
 %
 \begin{equation}
-    z(s,N) = A_d\sqrt{\beta_{z}^d(s)}\cos\left[ 2\pi N Q_z^d + \varphi_z^d(s) + \varphi_{z,0}^d \right]
+    z(s,N) = \sqrt{2J_z^d\beta_{z}^d(s)}\cos\left[ 2\pi N Q_z^d + \varphi_z^d(s) + \varphi_{z,0}^d \right]
     \fstop
     \label{eq_drv_x_from_h_tpl}
 \end{equation}
 %
 To bring \eqref{eq_driven_hz_final} into the form \eqref{eq_drv_x_from_h_tpl} some trigonometric reformulations
-are needed\footnote{Ryoichi Miyamoto, \emph{private communication}, Feb. 2017}.
-First the transformation to physical space is performed while those terms in the phase that swap
-sign between the two modes
-are moved to the end:
-%
-\begin{align}
-    z(s,N) = \frac{A_\theta\sqrt{\beta_z(s_d)\beta_z(s)}}{4\sin(\pi Q_z^-)}
-        \Bigg[ 
-            &\cos\left[2N\pi \Qd{z} + \Qd{z}\text{sgn}(s-s_d) + Q_z\text{sgn}(s-s_d)- \varphi_{s_ds}\right]
-            \notag \\
-            &- \lambda
-            \cos\left[2N\pi \Qd{z} + \Qd{z}\text{sgn}(s-s_d) -Q_z\text{sgn}(s-s_d) +\varphi_{s_ds}\right]
-        \Bigg]
-        \fstop
-\end{align}
-%
-Using sum and difference identities for trigonometric functions,
+are needed:
 %
 \begin{equation}
-    \cos(\alpha\pm\beta)  = \cos\alpha\cos\beta \mp \sin\alpha\sin\beta
-    \komma
+  \e{i\left( \alpha + \beta \right)} - \lambda \e{i\left( \alpha - \beta \right)}
+  = \e{i\alpha} \left(\e{i\beta} - \lambda\e{-i\beta}\right)
+  \fstop
+  \label{eq_e_alpha_lambda}
 \end{equation}
 %
-the above can be rewritten to
-%
-\begin{align}
-    z(s,N) = \frac{A_\theta\sqrt{\beta_z(s_d)\beta_z(s)}}{4\sin(\pi Q_z^-)}
-        \Bigg\{ 
-            &(1-\lambda)\cos\left[2N\pi \Qd{z} + \Qd{z}\text{sgn}(s-s_d)\right] \cos\left[ Q_z\text{sgn}(s-s_d)- \varphi_{s_ds}\right]
-            \notag \\
-            &- (1+\lambda)
-            \sin\left[2N\pi \Qd{z} + \Qd{z}\text{sgn}(s-s_d) \right] \sin\left[Q_z\text{sgn}(s-s_d) -\varphi_{s_ds}\right]
-        \Bigg\}
-        \fstop
-\end{align}
-%
-A linear combination of oscillations with the same frequency forms a single oscillation, in this case 
+The sum of two oscillation with the same frequency forms a single oscillation, so the $\beta$~term can
+be rewritten as
 %
 \begin{equation}
-    a\cos\\alpha - b\sin\alpha = \sqrt{a^2+b^2} \cos\left[\alpha + \tan(\frac{b}{a})]
-    \komma
+  B = |B|\e{i\psi}
 \end{equation}
-%
 with
 %
 \begin{align}
-    a &= \frac{A_\theta \sqrt{\beta_z(s_d)\beta_z(s)}}{4\sin(\pi Q_z^-)} (1-\lambda) \cos(Q_z\text{sgn}(s-s_d)-\varphi_{s_ds}) \notag \\
-    b &= \frac{A_\theta \sqrt{\beta_z(s_d)\beta_z(s)}}{4\sin(\pi Q_z^-)} (1+\lambda) \cos(Q_z\text{sgn}(s-s_d)-\varphi_{s_ds}) \notag \\
-    \alpha &= \Qd{z}\left(2\pi N  + \text{sgn}(s-s_d)\right) 
-    \fstop
+  |B|^2 &=  \left( \e{i\beta}-\lambda\e{-i\beta} \right)\left( \e{-i\beta} - \lambda\e{i\beta} \right)
+  = 1+\lambda^2-2\lambda\cos{2\beta} \notag \\
+  \psi&= \atan \frac{\im{B}}{\re{B}} = \atan\left(\frac{1+\lambda}{1-\lambda}\tan \beta\right)
+  \fstop
 \end{align}
 %
-This combined oscillation reads
+Now \eqref{eq_driven_hz_final} can be put in this form by defining
+%
+\begin{align}
+  \alpha &\equiv 2\pi N \Qd{z} + \pi\Qd{z} \text{sgn}(s-s_d) \notag \\
+  \beta &\equiv \pi Q_z\text{sgn}(s-s_d) - \varphi_{s_ds}
+\end{align}
+%
+This allows for $h_z$ to be rewritten
 %
 \begin{equation}
-    z(s,N) = \frac{A_\theta\sqrt{\beta_z(s_d)\beta_z(s)}}{4\sin(\pi Q_z^-)} \sqrt(1-2\lambda\cos[+\lambda^2)
+  h_z^+(s,n) = \frac{A_\theta}{4\sin(\pi Q_z^-)}
+  \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]}
+  \e{i\left[ 2\pi N \Qd{z} + \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
 \end{equation}
 %
+This is now tranformed to physical space:
+%
+\begin{align}
+  z(s,n) =&\:
+  \frac{A_\theta\sqrt{\beta(s_d)\beta(s)}}{4\sin(\pi Q_z^-)}
+  \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]} \notag \\
+  &\times\cos{\left[ 2\pi N \Qd{z} + \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
+  \label{eq_z_drv}
+\end{align}
+%
+Comparing to \eqref{eq_drv_x_from_h_tpl}, the driven phase is defined as 
+%
+\begin{align}
+  \varphi^d_{s_ds} &=  \Qd{z}\text{sgn}(s-s_d) + \psi\notag\\
+  &=  \Qd{z}\text{sgn}(s-s_d)
+  + \atan\left( \frac{1+\lambda}{1-\lambda}\tan\left( \varphi_{s_ds}-\pi Q_z\text{sgn}(s-s_d \right) \right)
+\end{align}
+%
+which fullfils the symmetric property
+%
+\begin{equation}
+  (1-\lambda)\tan\left( \varphi^d_{s_ds} -\pi \Qd{z}\text{sgn}(s-s_d) \right)
+  =
+  (1+\lambda)\tan\left( \varphi_{s_ds} -\pi Q_z\text{sgn}(s-s_d) \right)
+  \label{eq_drv_phase_sym}
+\end{equation}
+%
+In order to get the driven TWISS parameters $\alpha^d$, $\beta^d$ and $\gamma^d$, the same relation
+between them and the driven phase $\varphi^d$ is imposed:
+\begin{equation}
+  \frac{\der \varphi^d}{\der s} = \frac{1}{\beta^d}
+\end{equation}
+%
+Taking the derivative of  \eqref{eq_drv_phase_sym} w.r.t $s$ yields
+%
+\begin{equation}
+  \frac{(1-\lambda)\varphi'^d(s)}{\cos^2\left[ \varphi^d(s) - \pi\Qd{z}\text{sgn}(s-s_d) \right]}
+  =
+  \frac{(1+\lambda)\varphi'(s)}{\cos^2\left[ \varphi(s) - \pi Q_z\text{sgn}(s-s_d) \right]}
+  \komma
+\end{equation}
+%
+where it is assumed that all phades are w.r.t. the position of the AC-dipole $s_d$ and $f'(x)$ denotes
+the derivative of the function $f$ with respect to $x$.
+Respectively, taking its square yields
+\begin{equation}
+  \frac{(1-\lambda)}{\cos^2\left[ \varphi^d(s) - \pi\Qd{z}\text{sgn}(s-s_d) \right]} +2\lambda
+  =
+  \frac{(1+\lambda)^2}{\cos^2\left[ \varphi(s) - \pi Q_z\text{sgn}(s-s_d) \right]} -2\lambda
+  \fstop
+  \label{<+label+>}
+\end{equation}
+%
+Both equations can be used to cancel $\cos\left[ \varphi^d(s) - \pi \Qd{z}\text{sgn}(s-s_d) \right]$:
+%
+\begin{equation}
+  \frac{1}{\varphi'^d(s)} = 
+  \frac{1+\lambda^2-2\lambda\cos\left[ 2\varphi(s) - 2\pi Q_z\text{sgn}(s-s_d)\right]}{1-\lambda^2}
+  \frac{1}{\varphi'(s)}
+\end{equation}
+%
+which, finally, is the formula to compute the driven $\beta$~function:
+%
+\begin{equation}
+  \beta^d(s) =
+  \frac{1+\lambda^2-2\lambda\cos\left[ 2\varphi(s) - 2\pi Q_z\text{sgn}(s-s_d)\right]}{1-\lambda^2}
+  \beta(s)
+\end{equation}
+%
+The driven $\alpha$ function follows from the definition of the free $\alpha$~function:
+\begin{align}
+  \alpha^d(s) &=  \frac{1}{2}\frac{\der \beta^d}{\der s}\notag \\
+  &= 
+  \frac{1+\lambda^2-2\lambda\cos\left[ 2\varphi(s) - 2\pi Q_z\text{sgn}(s-s_d)\right]}{1-\lambda^2}
+  \alpha(s) \notag \\
+  &\quad- 2\lambda \sin\left[ 2\varphi(s) - 2\pi Q_z\text{sgn}(s-s_d) \right]
+  \label{eq_drv_alpha}
+\end{align}
+%
+Comparing the amplitude of the driven motion \eqref{eq_z_drv} with the form \eqref{eq_drv_x_from_h_tpl}
+the driven action $J_x^d$ can be deduced:
+%
+\begin{align}
+  \sqrt{2J_z^d\beta_z^d(s)} &= 
+  \frac{A_\theta\sqrt{\beta(s_d)\beta(s)}}{4\sin(\pi Q_z^-)}
+  \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]} \notag \\
+  \Rightarrow J_z^d &=  \frac{A_\theta^2\beta(s_d)(1-\lambda^2)}{32 \sin^2(\pi Q_z^-)}
+  \fstop
+  \label{eq_drv_Jy}
+\end{align}
+%
+The expressions for the driven optics parameters $\beta^d$, $\alpha^d$, $\varphi^d$ and $J^d$ derived
+in this section can be used to compensate the effect of the driven motion on the measurement and enable
+an easy measurement leveraging the advantages of an AC-dipole for optics measurements in circular
+accelerators.

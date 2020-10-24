@@ -55,12 +55,21 @@ The number of collision events is proportional to the \emph{luminosity}\index{lu
 %
 \begin{equation}
     \mathscr{L} = \frac{N^2 n_b f}{4\pi\sigma_x\sigma_y}
+    \label{eq_lumi}
 \end{equation}
 %
 where $N$ is the number of particles per bunch, $n_b$ the number of bunches, $f$ is
 the revolution frequency and $\sigma_z$ is the beam size in direction $z$.
 
-The discovery of the Higgs Boson was officially confirmed in 2012 \cite{higgs} and since then the
+\equationref{eq_lumi} assumes that the bunches collide head-on and no deteriorating effects are present. A more realistic form of the luminosity is~\cite{Herr2003}
+%
+\begin{equation}
+    \mathscr{L} = \frac{N^2 n_b f}{4\pi\sigma_x\sigma_y} F
+\end{equation}
+%
+where $F$ is a reduction factor, depending on the exact conditions of the beam and the interaction region such as crossing angle, offset of the beams w.r.t. each other or the optical axis, hourglass effect, non-Gaussian beam profiles etc. In the LHC, $F$ is expected to be around $0.8$. 
+
+The discovery of the Higgs Boson was officially confirmed in 2012~\cite{higgs} and since then the
 purpose of the LHC lies in providing luminosity for more precise measurements of Higgs channels and
 other high energy particle events. 
 
@@ -105,8 +114,8 @@ To correct for magnet imperfections, corrector magnets are also installed in the
 \end{figure}
 %
 During long shutdown 2, from 2019 until 2021, the CERN accelerator complex undergoes an extensive upgrade process 
-preparing it already partly for the high luminosity upgrade of LHC. Part of this upgrade is a
-fundamental improvement of the injector chain \cite{Hanke2017,Bartosik2017}.
+preparing it already partly for the high luminosity upgrade of LHC.
+In addition, the injector chain is upgraded in a separate project called \emph{LHC Injector Upgrade} (LIU) \cite{Hanke2017,Bartosik2017}.
 
 
 
@@ -240,7 +249,7 @@ as illustrated in Fig.~\ref{fig_part_traj}.
     \includegraphics[width=.49\linewidth]{particle_traj_beta_1}
     \hfill
     \includegraphics[width=.49\linewidth]{particle_traj_beta_many_wb} 
-    \caption{The trajectories of particles with action $J$ are shown. }
+    \caption{The trajectories of particles with action $J$ are shown. The width of the beam envelope is $\sqrt{\beta\epsilon}$ with $\epsilon$ being the beam emittance. }
     \label{fig_part_traj}
 \end{figure}
 %
@@ -253,8 +262,9 @@ Actual $\beta$~functions are shown in Fig.~\ref{fig_beta}.
   \includestandalone[width=.7\linewidth]{./twiss/Arc_beta_x}
   \normalsize
   \caption{
-    TOP: The $\beta$~function around IP1 with $\beta^*=\SI{30}{cm}$.
+    TOP: The $\beta$~function around IP1.
     BOTTOM: The $\beta$~functions in an LHC arc, the plot ranges from IP to IP.
+    Both plots show the LHC collision optics at $\beta^*=\SI{30}{cm}$.
   }
   \label{fig_beta}
 \end{figure}
@@ -263,8 +273,8 @@ Solutions of \eqref{eq_hills} for linear lattice elements can be expressed in ma
 %
 \begin{equation}
     \begin{pmatrix}
-        z_1\\
-        z_1'
+        z_b\\
+        z_b'
     \end{pmatrix}
     =
     \begin{pmatrix}
@@ -272,8 +282,8 @@ Solutions of \eqref{eq_hills} for linear lattice elements can be expressed in ma
         m_{21} & m_{22}
     \end{pmatrix}
     \begin{pmatrix}
-        z_0\\
-        z_0'
+        z_a\\
+        z_a'
     \end{pmatrix}
     \fstop
     \label{eq_matrix_element}
@@ -291,7 +301,7 @@ The matrix
 \end{equation}
 %
 is called the \emph{transfer matrix}\index{transfer matrix}. It describes the transformation
-of phase space when going from one position $s_0$ in the lattice to another $s_1$.
+of phase space when going from one position $s_a$ in the lattice to another $s_b$.
 
 For illustration the transfer matrix of a focusing quadrupole will be given.
 For $s$ inside the magnet $k(s) = k_1$ . The solution of Hill's equation is
@@ -310,6 +320,14 @@ The transfer matrix of a focusing quadrupole reads
     \end{pmatrix}
 \end{equation}
 %
+where $K$ is the integrated magnet strength
+%
+\begin{equation}
+    K = \int\limits_{s_i}^{s_i + L} k(s)\der s
+\end{equation}
+%
+for a quadrupole at position $s_i$ with length $L$.
+
 A purely linear accelerator can than be constructed by the composition of the transfer matrices of 
 all its elements. This composition yields a special example of the transfer matrix, the one that
 transforms the phase space coordinates of a particle at a given position to the same position in the
@@ -345,7 +363,7 @@ A general form of \eqref{eq_trmat} is
 where the quantity
 %
 \begin{equation}
-    \alpha(s) = -\frac{\der \beta(s)}{2 \der s}
+    \alpha(s) = -\frac{1}{2}\frac{\der \beta(s)}{ \der s}
     \label{eq_alpha}
 \end{equation}
 %
@@ -397,7 +415,7 @@ Particle motion is easier expressed in Courant-Snyder coordinates
     \label{eq_cs_matrix}
 \end{equation}
 %
-which transforms the phase space ellipse into a circle with radius $\sqrt{J_z}$.
+which transforms the phase space ellipse into a circle with radius $\sqrt{2J_z}$.
 The one turn map is now a rotation of $2\pi Q_z$. 
 
 It is often convenient to express the Courant-Snyder coordinates in a their complex form:
@@ -418,10 +436,10 @@ In a linear lattice, the particle motion in complex Courant-Snyder coordinates a
 $s$ in the ring reads
 %
 \begin{equation}
-    h_z^\pm(s,N) = \sqrt{J_z} \e{\mp i \left[2N\pi Q_z + \varphi_z(s) + \varphi_{z,0}\right]}
+    h_z^\pm(s,N) = \sqrt{2J_z} \e{\mp i \left[2N\pi Q_z + \varphi_z(s) + \varphi_{z,0}\right]}
 \end{equation}
 %
-with $\varphi_{z,0}$ being an arbitrary initial phase.
+with $\varphi_{z,0}$ being a phase offset given by initial conditions.
 
 % --------------------------------------------------------------------------------------------------
 % Normal forms and RDTs
@@ -502,7 +520,8 @@ The Hamiltonian of the whole lattice is denoted by
 \end{equation}
 %
 In \eqref{eq_hamiltonianterm} $\beta_{z,w}$ is the $\beta$ function of the corresponding plane at position $w$,
-$K$ and $J$ are the normal and skew integrated magnetic strengths and 
+$K_{w,n-1}$ and $J_{w,n-1}$ are the normal and skew integrated magnetic strengths of element $w$ and order $n-1$ (1 for quadrupole, 2 for sextupole etc.)
+and 
 %
 \begin{equation}
     \Omega(a) = 
@@ -559,10 +578,10 @@ coordinates can be calculated easily:
 %
 \begin{equation}
     \left[ \zxpto{n}, \zxmto{m}\right] = -2i\,nm\zxpto{n-1}\zxmto{m-1}
-    \fstop
+    \komma
     \label{eq_poiss_br_ident}
 \end{equation}
-All combinations that cannot be derived from the general form above are zero.
+and all other combinations are zero.
 %
 The following commutative diagram shows the transformation from the Courant-Snyder one turn map to 
 the normal form one turn map:
@@ -610,7 +629,7 @@ where $H^{\ddagger}$ denotes the phase-dependent part of $H$:
     \fstop
 \end{equation}
 %
-The generating function F can be expressed in polynomial form
+The generating function $F$ can be expressed in polynomial form
 %
 \begin{equation}
     F(s_i) = \sum\limits_{jklm} f_{jklm}(s_i) \zxpto{j} \zxmto{k} \zypto{l} \zymto{m}
@@ -840,6 +859,7 @@ precise $\beta$~function and in chapter \ref{ch_localobs} to construct a local o
 % Coupling
 % --------------------------------------------------------------------------------------------------
 \subsection{Coupling RDTs}
+\label{sec_coupling_rdts}
 
 Linear transverse coupling is the effect that the linear optics of one plane influences the optics
 parameters of the other plane. This can have undesired impact on the optics quality and optics
@@ -893,11 +913,11 @@ it can deal severe damage to the elements ranging from heating up superconductin
 inducing a magnet quench to physically destroying machine parts by melting (or even evaporating) the
 material.
 
-The second area for which a high optics control is important is the machine performance.
+The second area for which  optics control is highly important is the machine performance.
 The delivered luminosity can be reduced by optics errors.
 The two main LHC experiments, ATLAS and CMS demand a luminosity imbalance below $\SI{5}{\percent}$.
 To achieve this an optics correction up to the percent level is needed.
-High quality optics also improve operational control.
+High quality optics also improve operational efficiency.
 
 % --------------------------------------------------------------------------------------------------
 % Measurement tools and techniques
@@ -917,17 +937,17 @@ the beam.
 % --------------------------------------------------------------------------------------------------
 \subsubsection{Free Kick}
 
-If the beam experiences a kick it will perform a dampted free oscillation.
+If the beam experiences a kick it will perform a damped free oscillation.
 The particle's position at the same location turn after turn is illustrated in \figref{fig_kick_plot}.
 Light particles like electrons
 suffer from a strong damping because of their high synchroton radiation but heavier particles like the
 protons accelerated in the LHC are damped much slower.
 Nevertheless the oscillation amplitude decreases fast and not many turns are available for high
 precision measurements of the turn-by-turn signal. In order to still have as much signal as possible
-the kick strength has to as high as feasible without kicking the beam out of the accelerator.
+the kick strength has to be as high as feasible without kicking the beam strongly enough to damage elements or even kick it out of the accelerator.
 
-Furthermore the excitation by a single kick has the disadvantage of a high probability to deform the
-phase space and blow up the beam emittance by the strength of the initial kick. 
+Furthermore the excitation by a single kick carries the risk of filamenting the
+phase space and blowing up the beam emittance.
 %
 \begin{figure}[h]
     \centering
@@ -1595,11 +1615,12 @@ Now \eqref{eq_driven_hz_final} can be put in this form by defining
 %
 This allows for $h_z$ to be rewritten
 %
-\begin{equation}
-  h_z^+(s,n) = \frac{A_\theta}{4\sin(\pi Q_z^-)}
-  \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]}
-  \e{i\left[ 2\pi N \Qd{z} + \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
-\end{equation}
+\begin{align}
+  h_z^+(s,n) =&\: \frac{A_\theta}{4\sin(\pi Q_z^-)}
+  \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]} \notag \\
+  &\times\e{i\left[ 2\pi N \Qd{z} + \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
+  \fstop
+\end{align}
 %
 This is now tranformed to physical space:
 %
@@ -1608,6 +1629,7 @@ This is now tranformed to physical space:
   \frac{A_\theta\sqrt{\beta(s_d)\beta(s)}}{4\sin(\pi Q_z^-)}
   \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]} \notag \\
   &\times\cos{\left[ 2\pi N \Qd{z} + \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
+  \fstop
   \label{eq_z_drv}
 \end{align}
 %

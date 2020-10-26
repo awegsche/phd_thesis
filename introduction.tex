@@ -69,7 +69,7 @@ the revolution frequency and $\sigma_z$ is the beam size in direction $z$.
 %
 where $F$ is a reduction factor, depending on the exact conditions of the beam and the interaction region such as crossing angle, offset of the beams w.r.t. each other or the optical axis, hourglass effect, non-Gaussian beam profiles etc. In the LHC, $F$ is expected to be around $0.8$. 
 
-The discovery of the Higgs Boson was officially confirmed in 2012~\cite{higgs} and since then the
+The discovery of the Higgs Boson was officially confirmed in 2012~\cite{higgs_1, higgs_2} and since then the
 purpose of the LHC lies in providing luminosity for more precise measurements of Higgs channels and
 other high energy particle events. 
 
@@ -212,6 +212,10 @@ where the $s$-dependent amplitude of the oscillation can be split:
 $\beta_z(s)$ is the $s$-dependent part of the amplitude, called $\beta$~function\index{$\beta$ function}.
 $\beta(s)$ and $\phi(s)$\index{betatron phase}\index{phase} are periodic with the circumference of the ring $C$.
 
+Of special interest for a collider is the value of the $\beta$~function at the interaction point,
+denoted as $\beta^* \equiv \beta(s_\text{IP})$ because it defines the beam size and
+has a high impact on the luminosity, as follows from \eqref{eq_lumi}.
+
 $\phi(s)$ is called the \emph{betatron phase} and satisfies the following property:
 %
 \begin{equation}
@@ -257,8 +261,8 @@ Actual $\beta$~functions are shown in Fig.~\ref{fig_beta}.
 \begin{figure}[h]
   \centering
   \footnotesize
-  \includestandalone[width=.7\linewidth]{./twiss/IP_beta_x}
-  \includestandalone[width=.7\linewidth]{./twiss/Arc_beta_x}
+  \includestandalone[width=.9\linewidth]{./twiss/IP_beta_x}
+  \includestandalone[width=.9\linewidth]{./twiss/Arc_beta_x}
   \normalsize
   \caption{
     TOP: The $\beta$~function around IP1.

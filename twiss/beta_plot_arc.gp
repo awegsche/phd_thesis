@@ -1,4 +1,4 @@
-set terminal cairolatex pdf standalone size 10cm,5cm font 'cmr, 10'header "\\usepackage{amsmath}\n\\usepackage{siunitx}"
+set terminal cairolatex pdf standalone size 15cm,5cm font 'cmr, 10'header "\\usepackage{amsmath}\n\\usepackage{siunitx}"
 set output "Arc_beta_x.tex"
 IP1pos = 2.351936961637767e+04
 IP2pos = 1.929230000000001e+02
@@ -37,5 +37,6 @@ set xlabel '$s$ [m]' font 'cmr, 8'
 #set label 3 "$\\SI{45}{^\\circ} - \\SI{45}{^\\circ} - \\SI{45}{^\\circ}$" at graph 0.75, 0.1 center front
 
 plot \
-    './twiss_elements.dat' using 2:3 w lines t "$\\beta$"  lw 5.5 lc rgb DARKGREEN
+    './twiss_elements.dat' using 2:3 w lines t "$\\beta_x$"  lw 5.5 lc rgb DARKGREEN,\
+    './twiss_elements.dat' using 2:5 w lines t "$\\beta_y$"  lw 5.5 lc rgb GREEN
 

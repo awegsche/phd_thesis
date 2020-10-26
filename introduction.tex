@@ -14,7 +14,7 @@
     $\beta$~function, phase and coupling.
     Only a brief summary of the vast field of accelerator physics can be given in the scope of this
     thesis. The interested reader may consult some of the great introductory works of the field, e.g.
-    \cite{WolskiBook}.
+    \cite{CAS2003, Wiedemann2015, WolskiBook}.
 
     Also the normal form approach shall be introduced here as it is needed to calculate optics
     parameters from Hamiltonian terms in chapter~\ref{ch_localobs}.
@@ -82,7 +82,7 @@ before they are injected into the LHC.
 %
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{CCC-v2019-final-white_small}
+    \includegraphics[width=\textwidth]{CCC-v2019-final-white_small}
     \caption{CERN has various accelerators and decelerators. H$^-$ ions are pre-accelerated
     in LINAC2 (LINAC4 in the future) and passed to PSBooster, PS, SPS and finally injected into
     the LHC. Image credit: \cite{CERN_AccCmplx}}
@@ -261,8 +261,8 @@ Actual $\beta$~functions are shown in Fig.~\ref{fig_beta}.
 \begin{figure}[h]
   \centering
   \footnotesize
-  \includestandalone[width=.9\linewidth]{./twiss/IP_beta_x}
-  \includestandalone[width=.9\linewidth]{./twiss/Arc_beta_x}
+  \includestandalone[width=\linewidth]{./twiss/IP_beta_x}
+  \includestandalone[width=\linewidth]{./twiss/Arc_beta_x}
   \normalsize
   \caption{
     TOP: The $\beta$~function around IP1.
@@ -422,9 +422,9 @@ Particle motion is easier expressed in Courant-Snyder coordinates
 %
 \begin{figure}[h]
     \centering
-    \includestandalone[width=.4\linewidth]{figures/xp_linear}
-    \hspace{1em}
-    \includestandalone[width=.4\linewidth]{figures/cs_linear}
+    \includestandalone{figures/xp_linear}
+    \hspace{1cm}
+    \includestandalone{figures/cs_linear}
     \caption{In physical coordinates the turn-by-turn movement of the particle draws an ellipse.
         Transformation to Courant-Snyder
         coordinates turns this ellipse into a circle.}
@@ -473,9 +473,7 @@ can be used to flatten the phase space motion to a circle.
 \begin{figure}[h]
     \centering
     \includestandalone{figures/xp_nonlinear}
-    \hspace{1em}
     \includestandalone{figures/cs_nonlinear}
-    \hspace{1em}
     \includestandalone{figures/nf_nonlinear}
     \caption{
       If non-linearities are present in the lattice, the phase space motion of the particles is
@@ -981,7 +979,7 @@ The other method to excite the beam that is used in LHC is a dipole connected to
 power amplifier.
 This creates a driven oscillation of the beam \cite{Peggs1998} which can be measured in BPMs \cite{Miyamoto2008, Miyamoto2010}.
 The excitation amplitude is slowly ramped up for 2000 turns in order to stay in an
-adiabatic regime held constant for 6600 turns and then again adiabatically ramped down.
+adiabatic regime \cite{Tomas2005ac} held constant for 6600 turns and then again adiabatically ramped down.
 The particle's turn-by-turn position is illustrated in \figref{fig_ac_plot}.
 
 The adiabatic ramp up and down prevent a blow up of the beam emittance and since the oscillation amplitude
@@ -1318,7 +1316,7 @@ compensation will be explained in the following subsections.
 \subsection{Linear motion with AC dipole}
 \newcommand{\Qd}[1]{Q^{d}_{#1}}
 
-In this section the C-S coordinates of the driven linear motion will be derived \cite{Miyamoto2010nPeggs1998}. These forced coordinates
+In this section the C-S coordinates of the driven linear motion will be derived \cite{Miyamoto2010,Peggs1998}. These forced coordinates
 can be used to calculate the effect of the AC dipole on linear optics parameters like betatron phase, 
 $\beta$~function and linear transverse coupling.
 

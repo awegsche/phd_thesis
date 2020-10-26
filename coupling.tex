@@ -141,8 +141,7 @@ In the first turn, before the beam experiences the AC-dipole kick, the coordinat
   h_x^+(s_d-\epsilon, 0) &=  \e{\liemap{F}} \zeta_x^+(s_d-\epsilon, 0)\notag \\
   &=  \zeta^+(s_d-\epsilon,0)
     + 2i\conj{f_{1001}}\zeta_y^+(s_d-\epsilon, 0)
-    + 2i\conj{f_{1010}}\zeta_y^-(s_d-\epsilon,0) \notag \\
-  \label{<+label+>}
+    + 2i\conj{f_{1010}}\zeta_y^-(s_d-\epsilon,0)
 \end{align}
 %
 Then the particle is kicked in $p_x$ direction:
@@ -155,14 +154,83 @@ For the transformation back to normal form space the inverse of \eqref{eq_h_from
 %
 \begin{equation}
   \zeta = \e{\liemap{-F}} h = h + [-F,h] + O(h^3)
-  \label{<+label+>}
-\end{equation}<++>
+  \label{eq_coupled_h_after_kick}
+\end{equation}
 %
 with
 %
 \begin{equation}
   F = \sum f_{jklm}\left( h_x^+ \right)^j \left( h_x^- \right)^k \left( h_y^+ \right)^l \left( h_y^- \right)^m
-  \label{<+label+>}
 \end{equation}
 %
-when applied to $h$.
+when applied to $h_z^\pm$.
+The normal form of the kicked particle motion now reads
+%
+\begin{align}
+    \zeta_x^+(s_d+\epsilon, 0)
+        &= h_x^+(s_d+\epsilon)
+            - \conj{f_{1001}} \hyp(s_d+\epsilon, 0)
+            - \conj{f_{1010}} \hym(s_d+\epsilon, 0)
+    \notag\\
+        &= \tilde{h}_x^+(s_d+\epsilon,0) + \Delta h_x(0)
+            \notag \\ &\quad - \conj{f_{1001}} \left(\tilde{h}_y^+(s_d+\epsilon, 0) + \Delta h_y(0) \right)
+            \notag \\ &\quad - \conj{f_{1010}} \left(\tilde{h}_y^-(s_d+\epsilon, 0) + \Delta h_y(0) \right)
+    \notag \\
+        &= \tilde{\zeta}_x^+(s_d+\epsilon, 0) + \Delta h_x(0)
+            - \conj{f_{1001}} \Delta h_y(0)
+            - \conj{f_{1010}} \Delta h_y(0)
+\end{align}
+%
+where the tilde denotes undriven coordinates. The next step is to propagate the motion to the next
+turn:
+%
+\begin{align}
+    \zxp(s_d-\epsilon, 1) &= R_x\zxp(s_d+\epsilon, 0) \notag \\
+        &= \tilde{\zeta}_x^+(s_d-\epsilon, 1) + R_x\Delta h_x(0)
+            - \conj{f_{1001}} R_x\Delta h_y(0)
+            - \conj{f_{1010}} R_x\Delta h_y(0)
+\end{align}
+%
+Again, transformed to CS coordinates, before the second AC-dipole kick
+%
+\begin{align}
+    \hxp(s_d-\epsilon, 1) &=R_x\zxp(s_d+\epsilon, 0) \notag \\
+        &=
+        \tilde{\zeta}_x^+(s_d-\epsilon, 1) + R_x\Delta h_x(0)
+            - \conj{f_{1001}} R_x\Delta h_y(0)
+            - \conj{f_{1010}} R_x\Delta h_y(0)
+        \notag \\ &\quad 
+            + \conj{f_{1001}} \left(\tilde{\zeta}_y^+(s_d-\epsilon, 1) + R_y\Delta h_y(0) \right)
+            + \conj{f_{1010}} \left(\tilde{\zeta}_y^-(s_d-\epsilon, 1) + R_y\Delta h_y(0) \right)
+    \fstop
+    \label{eq_cpl_drv_n1}
+\end{align}
+%
+In order to simplify this, the uncoupled driven coordinate from chapter \ref{sec_driven_coords} will
+be introduced here as $h_x^{d\pm}$.
+Now \eqref{eq_cpl_drv_n1} reads
+%
+\begin{equation}
+    \hxp(s_d-\epsilon, 1)
+        = h_x^{d+} + \conj{f_{1001}} h_y^{d+}(s_d+\epsilon, N) + \conj{f_{1010}} h_y^{d-}(s_d+\epsilon, N) 
+            - \conj{f_{1001}} R_x\Delta h_y(0)
+            - \conj{f_{1010}} R_x\Delta h_y(0)
+    \fstop
+\end{equation}
+%
+From this point it is easy to continue to arbitrary turn $N$:
+%
+\begin{align}
+    \hxp(s<s_d, N) &= h_x^{d+}(s,N)
+        + \conj{f_{1001}} h_y^{d+} (s, N)
+        + \conj{f_{1010}} h_y^{d-} (s, N) \notag \\
+        & \quad - \conj{f_{1001}} \sum\limits_{T = 1}^N R_x^{T}\Delta h_y(N-T) \notag \\
+        & \quad - \conj{f_{1010}} \sum\limits_{T = 1}^N R_x^{T}\Delta h_y(N-T)
+        \notag \\
+    \hxp(s>s_d, N) &= h_x^{d+}(s,N)
+        + \conj{f_{1001}} h_y^{d+} (s, N)
+        + \conj{f_{1010}} h_y^{d-} (s, N) \notag \\
+        & \quad - \conj{f_{1001}} \sum\limits_{T = 0}^N R_x^{T}\Delta h_y(N-T) \notag \\
+        & \quad - \conj{f_{1010}} \sum\limits_{T = 0}^N R_x^{T}\Delta h_y(N-T)
+\end{align}
+%

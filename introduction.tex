@@ -311,6 +311,7 @@ For $s$ inside the magnet $k(s) = k_1$ . The solution of Hill's equation is
 %
 \begin{equation}
     z(s) = \cos \left[ \sqrt{k}(s-s_0)\right] z_0 + \frac{1}{\sqrt{k}}\sin\left[\sqrt{k}(s-s_0)\right]z_0'
+    \fstop
 \end{equation}
 %
 The transfer matrix of a focusing quadrupole reads
@@ -523,6 +524,7 @@ and the Hamiltonian term $h_{w,jklm}$ is defined as
     i^{l+m}
     (\beta_{x,w})^{\frac{j+k}{2}}
     (\beta_{y,w})^{\frac{l+m}{2}}
+    \fstop
     \label{eq_hamiltonianterm}
 \end{equation}
 %
@@ -577,6 +579,7 @@ using the generating function $F$:
 %
 \begin{equation}
     \zeta_z^\pm = \e{\liemap{F}} h_z^\pm
+    \fstop
     \label{eq_hfromz}
 \end{equation}
 %
@@ -620,6 +623,7 @@ and the action of the phase-independent Hamiltonian $\phiave{H}$.
 %
 \begin{align}
      \zeta_z^\pm(N) &= \sqrt{2J_z} \e{\mp i \left[  \psi_{z,0} + NQ_z \right]}
+     \fstop
 \end{align}
 %
 Since the diagram is commutative one can propagate the complex Courant-Snyder coordinates from one
@@ -901,7 +905,7 @@ with
         \sum\limits_w J_{1,w} \sqrt{\beta_{x,w}\beta_{y,w}}\e{i\left[\varphi_{wj,x} + \varphi_{wj,y}\right]}
     }{
         4\left( 1- \e{2\pi i (Qx+Qy)} \right)
-    } \notag \\
+    } \komma \notag \\
     f_{0110}(s_j) &= \frac{
         \sum\limits_w J_{1,w} \sqrt{\beta_{x,w}\beta_{y,w}}\e{i\left[\varphi_{wj,x} - \varphi_{wj,y}\right]}
     }{
@@ -974,7 +978,9 @@ phase space and blowing up the beam emittance.
 \subsubsection{AC-dipole}
 
 The other method to excite the beam that is used in LHC is a dipole connected to an alternate current
-power amplifier. The excitation amplitude is slowly ramped up for 2000 turns in order to stay in an
+power amplifier.
+This creates a driven oscillation of the beam \cite{Peggs1998} which can be measured in BPMs \cite{Miyamoto2008, Miyamoto2010}.
+The excitation amplitude is slowly ramped up for 2000 turns in order to stay in an
 adiabatic regime held constant for 6600 turns and then again adiabatically ramped down.
 The particle's turn-by-turn position is illustrated in \figref{fig_ac_plot}.
 

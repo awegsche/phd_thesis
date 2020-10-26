@@ -241,15 +241,14 @@ has to be added to the phase advance. For this the following definition is used:
     \fstop
 \end{equation}
 %
-The trajectories of particles with an action $J$ are limited by an envelope function $\sqrt{2J\beta}$
-as illustrated in Fig.~\ref{fig_part_traj}.
+The trajectories of particles with an action $J$ are limited by an envelope function $\sqrt{2J\beta}$ as illustrated in Fig.~\ref{fig_part_traj}.
 %
 \begin{figure}[h]
     \centering
     \includegraphics[width=.49\linewidth]{particle_traj_beta_1}
     \hfill
     \includegraphics[width=.49\linewidth]{particle_traj_beta_many_wb} 
-    \caption{The trajectories of particles with action $J$ are shown. The width of the beam envelope is $\sqrt{\beta\epsilon}$ with $\epsilon$ being the beam emittance. }
+    \caption{The trajectories of particles with action $J$ are shown.}
     \label{fig_part_traj}
 \end{figure}
 %
@@ -368,32 +367,33 @@ where the quantity
 \end{equation}
 %
 is called $\alpha$~\emph{function}\index{$\alpha$ function}.
+%
+$\alpha$, $\beta$ function and a third quantity
+%
+\begin{equation}
+    \gamma(s) = \frac{1+\alpha^2(s)}{\beta(s)}
+\end{equation}
+%
+are called \emph{Twiss~parameters}. The particles motion in phase space follows a titled ellipse which is described by
+%
+\begin{equation}
+    \gamma^2(s)x(s) + 2\alpha(s)x(s)p_x(s) + \beta(s)p_x^2(s) = \epsilon
+\end{equation}
+%
+where $\epsilon$ is the single particle emittance.
 
-
-The one turn map in this form can be retrieved by setting $\beta_a = \beta_b $, $\alpha_a = \alpha_b$
-and $\phi_{ab} = 2\pi Q$:
+The one turn map in this form can be retrieved by setting $\beta_a = \beta_b $, ${\alpha_a = \alpha_b}$
+and ${\phi_{ab} = 2\pi Q}$:
 %
 \begin{equation}
     M_\text{OT} = \begin{pmatrix}
         \cos(2\pi Q_z) + \alpha_a \sin(2\pi Q_z) & \beta_a\sin(2\pi Q_z) \\
-        -\frac{1+\alpha_a^2}{\beta_a}\sin(2\pi Q_z) & \cos(2\pi Q_z) - \alpha_a\sin(2\pi Q_z)
+        -\gamma\sin(2\pi Q_z) & \cos(2\pi Q_z) - \alpha_a\sin(2\pi Q_z)
     \end{pmatrix}
     \fstop
 \end{equation}
 %
 \subsection{Courant-Snyder coordinates}
-%
-\begin{figure}[h]
-    \centering
-    \includestandalone[width=.4\linewidth]{figures/xp_linear}
-    \hspace{1em}
-    \includestandalone[width=.4\linewidth]{figures/cs_linear}
-    \caption{In physical coordinates the turn-by-turn movement of the particle draws an ellipse.
-        Transformation to Courant-Snyder
-        coordinates turns this ellipse into a circle.}
-    \label{fig_phase_space_ellipse}
-\end{figure}
-%
 If one plots the phase space of a particle at a certain position $s_a$ over many turns, it draws an
 ellipse with area $2J_z\pi$ where $J_z$ is called \emph{action}.
 Particle motion is easier expressed in Courant-Snyder coordinates
@@ -414,6 +414,17 @@ Particle motion is easier expressed in Courant-Snyder coordinates
     \end{pmatrix}
     \label{eq_cs_matrix}
 \end{equation}
+%
+\begin{figure}[h]
+    \centering
+    \includestandalone[width=.4\linewidth]{figures/xp_linear}
+    \hspace{1em}
+    \includestandalone[width=.4\linewidth]{figures/cs_linear}
+    \caption{In physical coordinates the turn-by-turn movement of the particle draws an ellipse.
+        Transformation to Courant-Snyder
+        coordinates turns this ellipse into a circle.}
+    \label{fig_phase_space_ellipse}
+\end{figure}
 %
 which transforms the phase space ellipse into a circle with radius $\sqrt{2J_z}$.
 The one turn map is now a rotation of $2\pi Q_z$. 
@@ -647,7 +658,7 @@ and \eqref{eq_FfromH} has to hold for each polynomial order seperately. Thus one
     \label{eq_fijkl_from_h}
 \end{equation}
 %
-The terms $f_{jklm}$ are referred to as \emph{resonance driving terms}\index{resonance driving terms}.
+The enumerator of $f_{jklm}$ is referred to as \emph{resonance driving term}\index{resonance driving terms}.
 
 % --------------------------------------------------------------------------------------------------
 % phase beating
@@ -924,7 +935,7 @@ High quality optics also improve operational efficiency.
 % --------------------------------------------------------------------------------------------------
 \subsection{Measurement tools and techniques}
 
-The most important tool for beam based optics measurements that is applied in the LHC is the excitation
+The most important technique for beam based optics measurements that is applied in the LHC is the excitation
 of the particle beam.
 If the bunch is excited it performs a betatron oscillation about the closed orbit with a measurable amplitude.
 The position of the beam is recorded at certain positions in the accelerator at each revolution. The
@@ -1006,7 +1017,7 @@ The real position and momentum of the particle can then be calculated by reversi
 in the first section of this chapter.
 %
 \begin{equation}
-    z(s + NC) = \sqrt{2I_z\beta_z(s)}\cos \left( \varphi_z(s) + 2\pi N Q_z\right) + \propto z'
+    z(s + NC) = \sqrt{2I_z\beta_z(s)}\cos \left( \varphi_z(s) + 2\pi N Q_z\right)
 \end{equation}
 %
 The phase $\varphi_z(s)$ and amplitude $\sqrt{2I_z\beta_z(s)}$ can be obtained by a Fourier transformation of

@@ -232,5 +232,38 @@ From this point it is easy to continue to arbitrary turn $N$:
         + \conj{f_{1010}} h_y^{d-} (s, N) \notag \\
         & \quad - \conj{f_{1001}} \sum\limits_{T = 0}^N R_x^{T}\Delta h_y(N-T) \notag \\
         & \quad - \conj{f_{1010}} \sum\limits_{T = 0}^N R_x^{T}\Delta h_y(N-T)
+        \fstop
 \end{align}
 %
+The term $\sum\limits_{T = 0}^N R_x^{T}\Delta h_y(N-T) $ can be simplified as in section~\ref{sec_driven_coords}:
+%
+\begin{align}
+    \sum\limits_{T=0}^N R_x^T \Delta h_y(N-T)
+        &=
+        \sum\limits_{T=0}^N R_x \delta_y+^{N-T}
+        +\sum\limits_{T=0}^N R_x \delta_y-^{N-T} \notag \\
+        &=
+        R_x^N\frac{1-(R_x^{-1}\delta_{y+})}{1-R^{-1}\delta_{y+}}
+        +R_x^N\frac{1-(R_x^{-1}\delta_{y-})}{1-R^{-1}\delta_{y-}}
+        \notag \\
+        &=\frac{1-\e{2\pi i \left[ Q_x + Q_y^d \right]}}{\e{i\pi \left[Q_x+Q_y^d\right]}\sin\left[\pi (Q_x+Q_y^d)\right]}
+        +\frac{1-\e{2\pi i \left[ Q_x - Q_y^d \right]}}{\e{i\pi \left[Q_x-Q_y^d\right] }\sin\left[\pi (Q_x-Q_y^d)\right]}
+        \fstop
+\end{align}
+%
+In order to get the new driven RDT $f_{1001}^\text{drv}$ one has to compare the corresponding
+spectral lines.
+In the free motion, the horizontal spectral line of the vertical tune reads
+%
+\begin{equation}
+    \four{h_x^+}(Q_y^d) = 2i \conj{f_{1001}}\sqrt{2I_y}\e{-i\varphi_y}
+    \fstop
+\end{equation}
+%
+In the driven case, in the other hand, the coordinates change $h+z^pm \rightarrow h_z^{d\pm}$, which
+causes also the generating terms to change $f_{jklm} \rightarrow f^d_{jklm}$ and, finally, the kick
+cross-terms pollute the driven RDTs:
+%
+\begin{align}
+    \four{h_x^+}(Q_y^d) = \conj{f^d_{1001}}\sqrt{A_\theta} \e{-i\varphi_y^d}
+\end{align}

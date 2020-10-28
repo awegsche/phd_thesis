@@ -224,17 +224,18 @@ From this point it is easy to continue to arbitrary turn $N$:
     \hxp(s<s_d, N) &= h_x^{d+}(s,N)
         + \conj{f_{1001}} h_y^{d+} (s, N)
         + \conj{f_{1010}} h_y^{d-} (s, N) \notag \\
-        & \quad - \conj{f_{1001}} \sum\limits_{T = 1}^N R_x^{T}\Delta h_y(N-T) \notag \\
-        & \quad - \conj{f_{1010}} \sum\limits_{T = 1}^N R_x^{T}\Delta h_y(N-T)
+        & \quad - \conj{f_{1001}} \sum\limits_{T = 1}^N R_{s-s_d}R_x^{T}\Delta h_y(N-T) \notag \\
+        & \quad - \conj{f_{1010}} \sum\limits_{T = 1}^N R_{s-s_d}R_x^{T}\Delta h_y(N-T)
         \notag \\
     \hxp(s>s_d, N) &= h_x^{d+}(s,N)
         + \conj{f_{1001}} h_y^{d+} (s, N)
         + \conj{f_{1010}} h_y^{d-} (s, N) \notag \\
-        & \quad - \conj{f_{1001}} \sum\limits_{T = 0}^N R_x^{T}\Delta h_y(N-T) \notag \\
-        & \quad - \conj{f_{1010}} \sum\limits_{T = 0}^N R_x^{T}\Delta h_y(N-T)
-        \fstop
+        & \quad - \conj{f_{1001}} \sum\limits_{T = 0}^N R_{s-s_d}R_x^{T}\Delta h_y(N-T) \notag \\
+        & \quad - \conj{f_{1010}} \sum\limits_{T = 0}^N R_{s-s_d}R_x^{T}\Delta h_y(N-T)
 \end{align}
 %
+where the rotation $R_{s-s_d}$ is caused by the transfer of $\zeta_z^\pm$ to the position $s$,
+before transformation into Courant-Snyder space is performed. 
 The term $\sum\limits_{T = 0}^N R_x^{T}\Delta h_y(N-T) $ can be simplified as in section~\ref{sec_driven_coords}:
 %
 \begin{align}
@@ -246,8 +247,8 @@ The term $\sum\limits_{T = 0}^N R_x^{T}\Delta h_y(N-T) $ can be simplified as in
         R_x^N\frac{1-(R_x^{-1}\delta_{y+})}{1-R^{-1}\delta_{y+}}
         +R_x^N\frac{1-(R_x^{-1}\delta_{y-})}{1-R^{-1}\delta_{y-}}
         \notag \\
-        &=\frac{1-\e{2\pi i \left[ Q_x + Q_y^d \right]}}{\e{i\pi \left[Q_x+Q_y^d\right]}\sin\left[\pi (Q_x+Q_y^d)\right]}
-        +\frac{1-\e{2\pi i \left[ Q_x - Q_y^d \right]}}{\e{i\pi \left[Q_x-Q_y^d\right] }\sin\left[\pi (Q_x-Q_y^d)\right]}
+        &=\frac{1-\e{2\pi i N\left[ Q_x + Q_y^d \right]}}{\e{i\pi \left[Q_x+Q_y^d\right]}\sin\left[\pi (Q_x+Q_y^d)\right]}
+        +\frac{1-\e{2\pi i N\left[ Q_x - Q_y^d \right]}}{\e{i\pi \left[Q_x-Q_y^d\right] }\sin\left[\pi (Q_x-Q_y^d)\right]}
         \fstop
 \end{align}
 %
@@ -265,5 +266,5 @@ causes also the generating terms to change $f_{jklm} \rightarrow f^d_{jklm}$ and
 cross-terms pollute the driven RDTs:
 %
 \begin{align}
-    \four{h_x^+}(Q_y^d) = \conj{f^d_{1001}}\sqrt{A_\theta} \e{-i\varphi_y^d}
+    \four{h_x^+}(Q_y^d) = {f^{d*}_{1001}}\sqrt{A_\theta} \e{-i\varphi_y^d}
 \end{align}

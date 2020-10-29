@@ -241,30 +241,100 @@ The term $\sum\limits_{T = 0}^N R_x^{T}\Delta h_y(N-T) $ can be simplified as in
 \begin{align}
     \sum\limits_{T=0}^N R_x^T \Delta h_y(N-T)
         &=
-        \sum\limits_{T=0}^N R_x \delta_y+^{N-T}
-        +\sum\limits_{T=0}^N R_x \delta_y-^{N-T} \notag \\
-        &=
-        R_x^N\frac{1-(R_x^{-1}\delta_{y+})}{1-R^{-1}\delta_{y+}}
-        +R_x^N\frac{1-(R_x^{-1}\delta_{y-})}{1-R^{-1}\delta_{y-}}
+        i\frac{A_\theta}{2} \left\{
+            \sum\limits_{T=0}^N R_x \delta_{y+}^{N-T}
+            +\sum\limits_{T=0}^N R_x \delta_{y-}^{N-T}
+        \right\}
         \notag \\
-        &=\frac{1-\e{2\pi i N\left[ Q_x + Q_y^d \right]}}{\e{i\pi \left[Q_x+Q_y^d\right]}\sin\left[\pi (Q_x+Q_y^d)\right]}
-        +\frac{1-\e{2\pi i N\left[ Q_x - Q_y^d \right]}}{\e{i\pi \left[Q_x-Q_y^d\right] }\sin\left[\pi (Q_x-Q_y^d)\right]}
-        \fstop
+        &=
+        i\frac{A_\theta}{2} \left\{
+            R_x^N\frac{1-(R_x^{-1}\delta_{y+})}{1-R^{-1}\delta_{y+}}
+            +R_x^N\frac{1-(R_x^{-1}\delta_{y-})}{1-R^{-1}\delta_{y-}}
+        \right\}
+        \notag \\
+        &=
+        \frac{A_\theta}{4} \left\{
+            \frac{1-\e{2\pi i N\left[ Q_x + Q_y^d \right]}}{\e{i\pi \left[Q_x+Q_y^d\right]}\sin\left[\pi (Q_x+Q_y^d)\right]}
+            +\frac{1-\e{2\pi i N\left[ Q_x - Q_y^d \right]}}{\e{i\pi \left[Q_x-Q_y^d\right] }\sin\left[\pi (Q_x-Q_y^d)\right]}
+        \right\}
+        .
 \end{align}
+%
+Combining the above, the expression for the coupled driven motion becomes
+%
+\begin{align}
+    h_x^+(s,N)&=
+    h_x^{d+}(s,N) + f^{*}_{1001}  h_y^{d+}(s,N) + f^{*}_{1010} h_y^{d-} \notag \\
+    &\quad
+    -f^*_{1001} h_{y,x}(s,N)
+    -f^*_{1010} h_{y,x}(s,N)
+    \komma
+\end{align}
+with the definition
+%
+\begin{align}
+    h_{y,x}(s,N) = 
+        \frac{A_\theta}{4} \Bigg\{&
+             \frac{\e{i \left[2N \pi Q_y^d + \pi( Q_x + Q_y^d )\text{sgn}(s-s_d) + \varphi_{s_ds}\right]}}
+                {\sin\left[\pi (Q_x+Q_y^d)\right]}
+                \notag \\  &
+            +\frac{\e{i \left[-2N\pi Q_y^d + \pi( Q_x - Q_y^d )\text{sgn}(s-s_d)+ \varphi_{s_ds}\right]}}
+                {\sin\left[\pi (Q_x-Q_y^d)\right]}
+        \Bigg\} \notag \\
+    %&=
+    %\frac{A_\theta}{4\sin\left[\pi(Q_x +Q_y^d)\right]} 
+    %\notag \\ &\quad \times
+    %\left(
+        %\e{i\left[ \varphi_{s_ds} + (Q_x+Q_y^d)(2N + \text{sgn}(s-s_d))\right]}
+        %+\lambda_c\e{i\left[ \varphi_{s_ds} + (Q_x-Q_y^d)(2N + \text{sgn}(s-s_d))\right]}
+    %\right)
+\end{align}
+%
 %
 In order to get the new driven RDT $f_{1001}^\text{drv}$ one has to compare the corresponding
 spectral lines.
 In the free motion, the horizontal spectral line of the vertical tune reads
 %
 \begin{equation}
-    \four{h_x^+}(Q_y^d) = 2i \conj{f_{1001}}\sqrt{2I_y}\e{-i\varphi_y}
+    \four{h_x^+}(2\pi Q_y^d) = 2i \conj{f_{1001}}\sqrt{2I_y}\e{-i\varphi_y}
     \fstop
 \end{equation}
 %
-In the driven case, in the other hand, the coordinates change $h+z^pm \rightarrow h_z^{d\pm}$, which
+In the driven case, in the other hand, the coordinates change $h_z^\pm \rightarrow h_z^{d\pm}$, which
 causes also the generating terms to change $f_{jklm} \rightarrow f^d_{jklm}$ and, finally, the kick
 cross-terms pollute the driven RDTs:
 %
 \begin{align}
-    \four{h_x^+}(Q_y^d) = {f^{d*}_{1001}}\sqrt{A_\theta} \e{-i\varphi_y^d}
+    \four{h_x^+}(2\pi Q_y^d)
+    &=
+    {f^{d*}_{1001}}\frac{A_\theta}{4 \sin(\pi Q_y^-)}
+        \e{-i\left[ \varphi^d + \pi Q_z^- \text{sgn}(s-s_d)\right]}
+        \notag \\ &\quad
+    + f^*_{1001} \frac{A_\theta}{4\sin\left[ \pi(Q_x-Q_y^d) \right]}
+        \e{-i\left[ \varphi^d + \pi (Q_x-Q_y^d) \text{sgn}(s-s_d)\right]}
+        \notag \\
+   %     &=
+   % {f^{d*}_{1001}}\frac{A_\theta}{4 \sin(\pi Q_x^-)}
+   %     \e{-i\left[ \varphi^d + \pi Q_x^- \text{sgn}(s-s_d)\right]}
+   %     \notag \\ &\quad
+   % {f^{d*}_{1001}}\frac{A_\theta}{4 \sin(\pi Q_x^-)}
+   %     \e{-i\left[ \varphi^d + \pi Q_x^- \text{sgn}(s-s_d)\right]}
+   %     \frac{
+   %         \e{-i\left[ \varphi^d + \pi (Q_x-Q_y^d) \text{sgn}(s-s_d)\right]}
+   %     }{
+   %         \e{-i\pi Q_x^-\text{sgn}(s-s_d)}
+   %     }
+   %     \notag \\
+        &= f^{d*}_{1001} 
+        (
+            1 + 
+        \frac{
+            \sin(\pi Q_y^+)
+            \e{-i\left[ \varphi^d + \pi (Q_x-Q_y^d) \text{sgn}(s-s_d)\right]}
+        }{
+            \e{-i\pi Q_x^-\text{sgn}(s-s_d)}
+        }
+        )
+    \frac{A_\theta}{4 \sin(\pi Q_y^-)}
+        \e{-i\left[ \varphi^d + \pi Q_z^- \text{sgn}(s-s_d)\right]}
 \end{align}

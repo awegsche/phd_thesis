@@ -1,12 +1,30 @@
-\chapter{Advanced transverse coupling measurement}
-\label{sec_coupling}
+\chapter{Advanced transverse coupling measurement} 
+ \label{sec_coupling}
 
 \begin{chapterinfo}
+    The compensation of the driven motion is necessary for a reliable coupling measurement.
     This chapter introduces methods to compensate for driven beam motion in the calculation of
-    coupling resonance driving terms. 
+    coupling resonance driving terms. The methods currently applied in the LHC are revised and
+    recent findings are presented.
 \end{chapterinfo}
 
 \section{Driven coupled motion}
+ In the past two methods were used for coupling measurements in
+the LHC, the first one uses only the difference in tunes to rescale the coupling terms, this is
+a naive approach because it disregards the driven betatron phase but often this approximation is
+good enough to get a first estimate of the coupling in the machine. We refer to this method as the
+\emph{model method}.
+
+The second method \cite{Miyamoto2010} applies a detailled study of the driven particle motion and
+provides a compensation for all optics parameters that enter into the coupling terms. This method will
+be called \emph{formula method} in the following.
+
+Recent findings \cite{Carlier2020} show that the AC-dipole locally effects RDTs and introduces
+a jump at its location. The detailled considerations of the formula method lack such an effect.
+In view of the suggestions of \cite{Carlier2020} this work presents calculations of the terms
+$f_{1001}$ and $f_{1010}$, building upon the techniques introduced in \ref{sec_driven_coords}.
+A comparison between model method, formula method and the newly calculated coupling terms are shown.
+
 
 \subsection{AC-dipole as skew quadrupole}
 
@@ -169,16 +187,16 @@ The normal form of the kicked particle motion now reads
 \begin{align}
     \zeta_x^+(s_d+\epsilon, 0)
         &= h_x^+(s_d+\epsilon)
-            - \conj{f_{1001}} \hyp(s_d+\epsilon, 0)
-            - \conj{f_{1010}} \hym(s_d+\epsilon, 0)
+            - 2i\conj{f_{1001}} \hyp(s_d+\epsilon, 0)
+            - 2i\conj{f_{1010}} \hym(s_d+\epsilon, 0)
     \notag\\
         &= \tilde{h}_x^+(s_d+\epsilon,0) + \Delta h_x(0)
-            \notag \\ &\quad - \conj{f_{1001}} \left(\tilde{h}_y^+(s_d+\epsilon, 0) + \Delta h_y(0) \right)
-            \notag \\ &\quad - \conj{f_{1010}} \left(\tilde{h}_y^-(s_d+\epsilon, 0) + \Delta h_y(0) \right)
+            \notag \\ &\quad - 2i\conj{f_{1001}} \left(\tilde{h}_y^+(s_d+\epsilon, 0) + \Delta h_y(0) \right)
+            \notag \\ &\quad - 2i\conj{f_{1010}} \left(\tilde{h}_y^-(s_d+\epsilon, 0) + \Delta h_y(0) \right)
     \notag \\
         &= \tilde{\zeta}_x^+(s_d+\epsilon, 0) + \Delta h_x(0)
-            - \conj{f_{1001}} \Delta h_y(0)
-            - \conj{f_{1010}} \Delta h_y(0)
+            - 2i\conj{f_{1001}} \Delta h_y(0)
+            - 2i\conj{f_{1010}} \Delta h_y(0)
 \end{align}
 %
 where the tilde denotes undriven coordinates. The next step is to propagate the motion to the next
@@ -187,8 +205,8 @@ turn:
 \begin{align}
     \zxp(s_d-\epsilon, 1) &= R_x\zxp(s_d+\epsilon, 0) \notag \\
         &= \tilde{\zeta}_x^+(s_d-\epsilon, 1) + R_x\Delta h_x(0)
-            - \conj{f_{1001}} R_x\Delta h_y(0)
-            - \conj{f_{1010}} R_x\Delta h_y(0)
+            - 2i\conj{f_{1001}} R_x\Delta h_y(0)
+            - 2i\conj{f_{1010}} R_x\Delta h_y(0)
 \end{align}
 %
 Again, transformed to CS coordinates, before the second AC-dipole kick
@@ -197,11 +215,11 @@ Again, transformed to CS coordinates, before the second AC-dipole kick
     \hxp(s_d-\epsilon, 1) &=R_x\zxp(s_d+\epsilon, 0) \notag \\
         &=
         \tilde{\zeta}_x^+(s_d-\epsilon, 1) + R_x\Delta h_x(0)
-            - \conj{f_{1001}} R_x\Delta h_y(0)
-            - \conj{f_{1010}} R_x\Delta h_y(0)
+            - 2i\conj{f_{1001}} R_x\Delta h_y(0)
+            - 2i\conj{f_{1010}} R_x\Delta h_y(0)
         \notag \\ &\quad 
-            + \conj{f_{1001}} \left(\tilde{\zeta}_y^+(s_d-\epsilon, 1) + R_y\Delta h_y(0) \right)
-            + \conj{f_{1010}} \left(\tilde{\zeta}_y^-(s_d-\epsilon, 1) + R_y\Delta h_y(0) \right)
+            + 2i\conj{f_{1001}} \left(\tilde{\zeta}_y^+(s_d-\epsilon, 1) + R_y\Delta h_y(0) \right)
+            + 2i\conj{f_{1010}} \left(\tilde{\zeta}_y^-(s_d-\epsilon, 1) + R_y\Delta h_y(0) \right)
     \fstop
     \label{eq_cpl_drv_n1}
 \end{align}
@@ -213,8 +231,8 @@ Now \eqref{eq_cpl_drv_n1} reads
 \begin{equation}
     \hxp(s_d-\epsilon, 1)
         = h_x^{d+} + \conj{f_{1001}} h_y^{d+}(s_d+\epsilon, N) + \conj{f_{1010}} h_y^{d-}(s_d+\epsilon, N) 
-            - \conj{f_{1001}} R_x\Delta h_y(0)
-            - \conj{f_{1010}} R_x\Delta h_y(0)
+            - 2i\conj{f_{1001}} R_x\Delta h_y(0)
+            - 2i\conj{f_{1010}} R_x\Delta h_y(0)
     \fstop
 \end{equation}
 %
@@ -222,16 +240,16 @@ From this point it is easy to continue to arbitrary turn $N$:
 %
 \begin{align}
     \hxp(s<s_d, N) &= h_x^{d+}(s,N)
-        + \conj{f_{1001}} h_y^{d+} (s, N)
-        + \conj{f_{1010}} h_y^{d-} (s, N) \notag \\
-        & \quad - \conj{f_{1001}} \sum\limits_{T = 1}^N R_{s-s_d}R_x^{T}\Delta h_y(N-T) \notag \\
-        & \quad - \conj{f_{1010}} \sum\limits_{T = 1}^N R_{s-s_d}R_x^{T}\Delta h_y(N-T)
+        + 2i\conj{f_{1001}} h_y^{d+} (s, N)
+        + 2i\conj{f_{1010}} h_y^{d-} (s, N) \notag \\
+        & \quad - 2i\conj{f_{1001}}(s_d) \sum\limits_{T = 1}^N R_{s-s_d}R_x^{T}\Delta h_y(N-T) \notag \\
+        & \quad - 2i\conj{f_{1010}}(s_d) \sum\limits_{T = 1}^N R_{s-s_d}R_x^{T}\Delta h_y(N-T)
         \notag \\
     \hxp(s>s_d, N) &= h_x^{d+}(s,N)
-        + \conj{f_{1001}} h_y^{d+} (s, N)
-        + \conj{f_{1010}} h_y^{d-} (s, N) \notag \\
-        & \quad - \conj{f_{1001}} \sum\limits_{T = 0}^N R_{s-s_d}R_x^{T}\Delta h_y(N-T) \notag \\
-        & \quad - \conj{f_{1010}} \sum\limits_{T = 0}^N R_{s-s_d}R_x^{T}\Delta h_y(N-T)
+        + 2i\conj{f_{1001}} h_y^{d+} (s, N)
+        + 2i\conj{f_{1010}} h_y^{d-} (s, N) \notag \\
+        & \quad - 2i\conj{f_{1001}}(s_d) \sum\limits_{T = 0}^N R_{s-s_d}R_x^{T}\Delta h_y(N-T) \notag \\
+        & \quad - 2i\conj{f_{1010}}(s_d) \sum\limits_{T = 0}^N R_{s-s_d}R_x^{T}\Delta h_y(N-T)
 \end{align}
 %
 where the rotation $R_{s-s_d}$ is caused by the transfer of $\zeta_z^\pm$ to the position $s$,
@@ -255,7 +273,7 @@ The term $\sum\limits_{T = 0}^N R_x^{T}\Delta h_y(N-T) $ can be simplified as in
         &=
         \frac{A_\theta}{4} \left\{
             \frac{1-\e{2\pi i N\left[ Q_x + Q_y^d \right]}}{\e{i\pi \left[Q_x+Q_y^d\right]}\sin\left[\pi (Q_x+Q_y^d)\right]}
-            +\frac{1-\e{2\pi i N\left[ Q_x - Q_y^d \right]}}{\e{i\pi \left[Q_x-Q_y^d\right] }\sin\left[\pi (Q_x-Q_y^d)\right]}
+            -\frac{1-\e{2\pi i N\left[ Q_y^d - Q_x \right]}}{\e{i\pi \left[Q_y^d-Q_x\right] }\sin\left[\pi (Q_y^d-Q_x)\right]}
         \right\}
         .
 \end{align}
@@ -264,39 +282,45 @@ Combining the above, the expression for the coupled driven motion becomes
 %
 \begin{align}
     h_x^+(s,N)&=
-    h_x^{d+}(s,N) + f^{*}_{1001}  h_y^{d+}(s,N) + f^{*}_{1010} h_y^{d-} \notag \\
+    h_x^{d+}(s,N) + 2if^{*}_{1001}  h_y^{d+}(s,N) + 2if^{*}_{1010} h_y^{d-} \notag \\
     &\quad
-    -f^*_{1001} h_{y,x}(s,N)
-    -f^*_{1010} h_{y,x}(s,N)
+    -2if^*_{1001}(s_d) h_{y,x}(s,N)
+    -2if^*_{1010}(s_d) h_{y,x}(s,N)
     \komma
 \end{align}
 with the definition
 %
 \begin{align}
-    h_{y,x}(s,N) = 
-        \frac{A_\theta}{4} \Bigg\{&
-             \frac{\e{i \left[2N \pi Q_y^d + \pi( Q_x + Q_y^d )\text{sgn}(s-s_d) + \varphi_{s_ds}\right]}}
-                {\sin\left[\pi (Q_x+Q_y^d)\right]}
-                \notag \\  &
-            +\frac{\e{i \left[-2N\pi Q_y^d + \pi( Q_x - Q_y^d )\text{sgn}(s-s_d)+ \varphi_{s_ds}\right]}}
-                {\sin\left[\pi (Q_x-Q_y^d)\right]}
-        \Bigg\} \notag \\
+    h_{y,x}(s,N) &= 
+        \frac{A_\theta}{4} \Bigg\{
+             \frac{\e{i \left[2N \pi Q_y^d + \pi( Q_y^d + Q_x )\text{sgn}(s-s_d) + \varphi_{s_ds}\right]}}
+                {\sin\left[\pi (Q_y^d+Q_x)\right]}
+                \notag \\  & \quad\quad\quad
+            -\frac{\e{i \left[-2N\pi Q_y^d + \pi( Q_y^d - Q_x )\text{sgn}(s-s_d)+ \varphi_{s_ds}\right]}}
+                {\sin\left[\pi (Q_y^d-Q_x)\right]}
+        \Bigg\}
+    %\notag \\
     %&=
-    %\frac{A_\theta}{4\sin\left[\pi(Q_x +Q_y^d)\right]} 
+    %\frac{A_\theta}{4\sin\left[\pi(Q_y^d +Q_x)\right]} 
     %\notag \\ &\quad \times
     %\left(
-        %\e{i\left[ \varphi_{s_ds} + (Q_x+Q_y^d)(2N + \text{sgn}(s-s_d))\right]}
-        %+\lambda_c\e{i\left[ \varphi_{s_ds} + (Q_x-Q_y^d)(2N + \text{sgn}(s-s_d))\right]}
+    %   \e{i \left[2N \pi Q_y^d + \pi( Q_y^d + Q_x )\text{sgn}(s-s_d) + \varphi_{s_ds}\right]}
+    %   +\lambda_c\e{i \left[-2N\pi Q_y^d + \pi( Q_y^d - Q_x )\text{sgn}(s-s_d)+ \varphi_{s_ds}\right]}
     %\right)
 \end{align}
 %
+%with the corresponding $\lambda$. This can be brought into a general from
+%%
+%\begin{align}
+%    h_{y,x}(s,N)= ...
+%\end{align}
 %
 In order to get the new driven RDT $f_{1001}^\text{drv}$ one has to compare the corresponding
 spectral lines.
 In the free motion, the horizontal spectral line of the vertical tune reads
 %
 \begin{equation}
-    \four{h_x^+}(2\pi Q_y^d) = 2i \conj{f_{1001}}\sqrt{2I_y}\e{-i\varphi_y}
+    \four{h_x^+}(2\pi Q_y) = 2i \conj{f_{1001}}\sqrt{2I_y}\e{-i\varphi_y}
     \fstop
 \end{equation}
 %
@@ -307,34 +331,20 @@ cross-terms pollute the driven RDTs:
 \begin{align}
     \four{h_x^+}(2\pi Q_y^d)
     &=
-    {f^{d*}_{1001}}\frac{A_\theta}{4 \sin(\pi Q_y^-)}
-        \e{-i\left[ \varphi^d + \pi Q_z^- \text{sgn}(s-s_d)\right]}
-        \notag \\ &\quad
-    + f^*_{1001} \frac{A_\theta}{4\sin\left[ \pi(Q_x-Q_y^d) \right]}
-        \e{-i\left[ \varphi^d + \pi (Q_x-Q_y^d) \text{sgn}(s-s_d)\right]}
-        \notag \\
-   %     &=
-   % {f^{d*}_{1001}}\frac{A_\theta}{4 \sin(\pi Q_x^-)}
-   %     \e{-i\left[ \varphi^d + \pi Q_x^- \text{sgn}(s-s_d)\right]}
-   %     \notag \\ &\quad
-   % {f^{d*}_{1001}}\frac{A_\theta}{4 \sin(\pi Q_x^-)}
-   %     \e{-i\left[ \varphi^d + \pi Q_x^- \text{sgn}(s-s_d)\right]}
-   %     \frac{
-   %         \e{-i\left[ \varphi^d + \pi (Q_x-Q_y^d) \text{sgn}(s-s_d)\right]}
-   %     }{
-   %         \e{-i\pi Q_x^-\text{sgn}(s-s_d)}
-   %     }
-   %     \notag \\
-        &= f^{d*}_{1001} 
-        (
-            1 + 
-        \frac{
-            \sin(\pi Q_y^+)
-            \e{-i\left[ \varphi^d + \pi (Q_x-Q_y^d) \text{sgn}(s-s_d)\right]}
-        }{
-            \e{-i\pi Q_x^-\text{sgn}(s-s_d)}
-        }
-        )
-    \frac{A_\theta}{4 \sin(\pi Q_y^-)}
-        \e{-i\left[ \varphi^d + \pi Q_z^- \text{sgn}(s-s_d)\right]}
+        f^{d*}_{1001}
+        \frac{A_\theta \beta(s_d)(1-\lambda^2)}{4 \sin\left[\pi Q_y^-\right]}
+            \e{-i\left[ \varphi^d + \pi Q_y^-\text{sgn}(s-s-)d\right]}
+        \notag \\ &\quad 
+        + f^{d*}_{1001}(s_d)\frac{A_\theta\beta(s_d)}{4\sin\left[\pi(Q_y^d - Q_x)\right]} 
+            \e{-i\left[ \varphi^d + \pi (Q_y^d-Q_x)\text{sgn}(s-s_d)\right]}
+    \notag\\&=
+        \frac{A_\theta \beta(s_d)(1-\lambda^2)}{4 \sin\left[\pi Q_y^-\right]}
+        \Bigg\{
+            f^{d*}_{1001}
+            \notag \\ &\quad\quad\quad
+            + f^{d*}_{1001} (s_d)
+            \frac{\sin\left[\pi Q_y^-\right]}{\sin\left[\pi(Q_y^d - Q_x)\right] \sqrt{1-\lambda^2}} 
+                \e{-i\left[ \varphi^d_x - \varphi^d_y + \pi (Q_y-Q_x)\text{sgn}(s-s_d)\right]}
+        \Bigg\}
 \end{align}
+The term in braces is the RDT as measured from the complex coords.

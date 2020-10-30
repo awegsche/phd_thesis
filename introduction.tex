@@ -1325,7 +1325,7 @@ At each turn an AC dipole located at position $s_d$ inflicts a kick to the beam.
 described in Courant-Snyder coordinates as
 %
 \begin{equation}
-    \Delta h_z(N) = i A_\theta \cos(2\pi i \Qd{z} N)
+    \Delta h_z(N) = i A_\theta\beta(s_d) \cos(2\pi i \Qd{z} N)
 \end{equation}
 %
 depending on the AC dipole frequency $\Qd{z}$ and the turn number $N$. Figure~\ref{fig_ac_kick} shows
@@ -1335,7 +1335,7 @@ a schematic of the beam deflection for several turns.
     \centering
     \includestandalone{figACkick}
     \caption{
-        Schematic of an AC-dipole kick. The deflection $\Delta p_z = A_\theta\cos(2\pi i Q_z N)$
+        Schematic of an AC-dipole kick. The deflection $\Delta p_z = A_\theta\beta(s_d)\cos(2\pi i Q_z N)$
         changes with turn number $N$.}
     \label{fig_ac_kick}
 \end{figure}
@@ -1376,11 +1376,11 @@ with $R$ being the rotation map of the linear motion. For simplicity, the follow
 The cosine in \eqref{eq_ackick} can be expressed in complex form
 %
 \begin{align}
-    \Delta h_z(N) &= \frac{iA_\theta}{2} \left(
+    \Delta h_z(N) &= \frac{iA_\theta\beta(s_d)}{2} \left(
         \e{2\pi i \Qd{z} N} +
         \e{-2\pi i \Qd{z} N}
     \right) \notag\\
-    &= \frac{iA_\theta}{2} \left(
+    &= \frac{iA_\theta\beta(s_d)}{2} \left(
         \delta_+^N + \delta_-^N
     \right)
     \fstop
@@ -1399,7 +1399,7 @@ Using the complex form of the cosine, the kick in \eqref{eq_hz_ackick} can be sp
     h_z(s>s_d, N) = \\
     R_{s-s_d}\left[
         R^N h_z(s_d) +
-        \frac{iA_\theta}{2}\left\{
+        \frac{iA_\theta\beta(s_d)}{2}\left\{
             \sum\limits_{T=0}^N R^T \delta_+^{N-T}
             + \sum\limits_{T=0}^N R^T \delta_-^{N-T}
         \right\}
@@ -1440,8 +1440,8 @@ The two cases of \eqref{eq_ackick} differ only in one additional exponent of $R^
 \begin{align}
     h_z(s, N) = R_{s-s_d}R^N 
     \Bigg[&h_z(s_d)  \notag \\
-        &+ \frac{iA_\theta}{2}\frac{1-(R^{-1}\delta_+)^{N+\Theta(s,s_d)}}{1-R^{-1}\delta_+}  \notag \\
-        &+ \frac{iA_\theta}{2}\frac{1-(R^{-1}\delta_-)^{N+\Theta(s,s_d)}}{1-R^{-1}\delta_-}
+        &+ \frac{iA_\theta\beta(s_d)}{2}\frac{1-(R^{-1}\delta_+)^{N+\Theta(s,s_d)}}{1-R^{-1}\delta_+}  \notag \\
+        &+ \frac{iA_\theta\beta(s_d)}{2}\frac{1-(R^{-1}\delta_-)^{N+\Theta(s,s_d)}}{1-R^{-1}\delta_-}
     \Bigg]
     \fstop
 \end{align}
@@ -1465,8 +1465,8 @@ Those identities can be used to simplify the exponentials
 \begin{align}
     h_z(s, N) = R_{s-s_d}R^N 
     \Bigg[&h_z(s_d)  \notag \\
-        &+ \frac{A_\theta}{4}\frac{1-\e{2\pi i Q_z^+(N+\Theta(s,s_d))}}{\e{i\pi Q_z^+}\sin\left( \pi Q_z^+ \right)}  \notag \\
-        &- \frac{A_\theta}{4}\frac{1-\e{-2\pi i Q_z^-(N+\Theta(s,s_d))}}{\e{i\pi Q_z^-}\sin\left( \pi Q_z^- \right)}
+        &+ \frac{A_\theta\beta(s_d)}{4}\frac{1-\e{2\pi i Q_z^+(N+\Theta(s,s_d))}}{\e{i\pi Q_z^+}\sin\left( \pi Q_z^+ \right)}  \notag \\
+        &- \frac{A_\theta\beta(s_d)}{4}\frac{1-\e{-2\pi i Q_z^-(N+\Theta(s,s_d))}}{\e{i\pi Q_z^-}\sin\left( \pi Q_z^- \right)}
     \Bigg]
     \fstop
     \label{eq_delta_written_out}
@@ -1477,8 +1477,8 @@ The constant part of \eqref{eq_delta_written_out} can be put into
 \begin{equation}
     \tilde{h}_z(s_d) \equiv h_z(s_d) + 
     \left(
-    \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}\lambda_z \e{i \pi Q_z^+}
-    -\frac{A_\theta}{4\sin\left( \pi Q_z^-\right)} \e{-i\pi Q_z^-}
+    \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)}\lambda_z \e{i \pi Q_z^+}
+    -\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)} \e{-i\pi Q_z^-}
     \right)
     \fstop
 \end{equation}
@@ -1489,9 +1489,9 @@ Now, the driven motion is seperated off:
     h_z(s, N) = R_{s-s_d}R^N 
     \Bigg[&\tilde{h}_z(s_d) 
     \notag \\
-        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)} \e{-\pi i Q_z^+(2N+2\Theta(s,s_d)-1)} 
+        &+ \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)} \e{-\pi i Q_z^+(2N+2\Theta(s,s_d)-1)} 
          \notag \\
-        &- \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)} \e{-\pi i Q_z^-(2N+2\Theta(s,s_d) -1)}
+        &- \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)} \e{-\pi i Q_z^-(2N+2\Theta(s,s_d) -1)}
     \Bigg]
     \fstop
     \label{eq_driven_simpl}
@@ -1502,10 +1502,10 @@ and the linear rotation can be integrated into the terms:
 \begin{align}
     h_z(s, N) =
         &\tilde{h}_z(s, N) \notag \\
-        &+\frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}
+        &+\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)}
         \e{i\left[-2\pi NQ_{z} - \varphi_{s_ds} + \pi Q_z^+(2N+2\Theta(s,s_d)-1)\right]}
         \notag\\
-        &-\frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
+        &-\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}
         \e{-i\left[2\pi NQ_{z} + \varphi_{s_ds}+ \pi Q_z^-(2N + 2\Theta(s,s_d) -1)\right]}
     \fstop
     \label{eq_driven_simpl}
@@ -1527,10 +1527,10 @@ Noting that
 \begin{align}
     h_z(s, N) =
         &\tilde{h}_z(s, N) \notag \\
-        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
+        &+ \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}
         \e{i\left[2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
         \notag \\
-        &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}
+        &- \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)}
         \e{-i\left[2N\pi \Qd{z} + \varphi_{s_ds} + \pi Q_z^+\text{sgn}(s-s_d)\right]} 
     \fstop
     \label{eq_driven_simpl2}
@@ -1538,7 +1538,7 @@ Noting that
 %
 The free motion of the beam is perturbed by two driving modes corresponding to the sum and difference
 of natural tune and driven tune. In most applications the ac-dipole strength much greater than the free 
-oscillation amplitude $A_\theta \gg |\bar{h}_z(s,N)|$.
+oscillation amplitude $A_\theta\beta(s_d) \gg |\bar{h}_z(s,N)|$.
 
 All derivations in this section have been made for $h_z^+$. It shall be noted here that the negatively turning
 coordinate $h_z^-$ has the form
@@ -1546,10 +1546,10 @@ coordinate $h_z^-$ has the form
 \begin{align}
     h_z^-(s, N) =
         &\tilde{h}_z^-(s, N) \notag \\
-        &+ \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
+        &+ \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}
         \e{-i\left[2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
         \notag \\
-        &- \frac{A_\theta}{4\sin\left( \pi Q_z^+\right)}
+        &- \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)}
         \e{i\left[2N\pi \Qd{z} + \varphi_{s_ds} + \pi Q_z^+\text{sgn}(s-s_d)\right]} 
     \fstop
     \label{eq_driven_simpl2_minus}
@@ -1636,7 +1636,7 @@ Now \eqref{eq_driven_hz_final} can be put in this form by defining
 This allows for $h_z$ to be rewritten
 %
 \begin{align}
-  h_z^+(s,n) =&\: \frac{A_\theta}{4\sin(\pi Q_z^-)}
+  h_z^+(s,n) =&\: \frac{A_\theta\beta(s_d)}{4\sin(\pi Q_z^-)}
   \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]} \notag \\
   &\times\e{i\left[ 2\pi N \Qd{z} + \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
   \fstop

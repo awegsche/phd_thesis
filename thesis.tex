@@ -4,7 +4,7 @@
 
 \usepackage{amsmath}
 \usepackage{mathtools}
-\usepackage[paper=a4paper, margin=2cm, top=5cm]{geometry}
+\usepackage[paper=a4paper, inner=2cm, outer=0.5cm, top=5cm]{geometry}
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage{makeidx}
@@ -77,8 +77,12 @@
 
 \ohead[\pagemark]{\pagemark}
 
-\newdimen{\outermarg}      \setlength{\outermarg}{3.0cm} % leave considerable outer border for images
+% print: 4.0 -- 2.5
+\newdimen{\outermarg}      \setlength{\outermarg}{2.5cm} % leave considerable outer border for images
 \newdimen{\innermarg}      \setlength{\innermarg}{4.0cm} % leave large inner border for binding
+% pdf: 3.5 -- 3.0
+\newdimen{\outermarg}      \setlength{\outermarg}{3.0cm} % leave considerable outer border for images
+\newdimen{\innermarg}      \setlength{\innermarg}{3.5cm} % leave large inner border for binding
 \newlength{\figborderhang} 
 \setlength{\figborderhang}{\outermarg} % aligns images with the outer border (if placement o or O used)
 \addtolength{\figborderhang}{-1.0cm} % and leaves 1cm from the border

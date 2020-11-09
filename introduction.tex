@@ -379,7 +379,7 @@ $\alpha$, $\beta$ function and a third quantity
     \gamma(s) = \frac{1+\alpha^2(s)}{\beta(s)}
 \end{equation}
 %
-are called \emph{Twiss~parameters}. The particles motion in phase space follows a titled ellipse which is described by
+are called \emph{Twiss~parameters}. The particles motion in phase space follows a tilted ellipse which is described by
 %
 \begin{equation}
     \gamma^2(s)x(s) + 2\alpha(s)x(s)p_x(s) + \beta(s)p_x^2(s) = \epsilon
@@ -618,9 +618,23 @@ the normal form one turn map:
 %
 The motion in normal form coordinates $\nfMotion$ consists of a pure rotation about the phase $\phi$
 and the action of the phase-independent Hamiltonian $\phiave{H}$. 
+The one turn rotation advances the phases by $2\pi Q_z$:
+%
+\begin{equation}
+    R_z \psi = \psi + 2\pi Q_z
+\end{equation}
+%
+and an arbitrary rotation may be defined as
+%
+\begin{equation}
+    R(\alpha) \psi = \psi + \alpha
+    \fstop
+\end{equation}
+%
+The normal form coordinate of the particle at position $s$ and turn $N$ reads
 %
 \begin{align}
-     \zeta_z^\pm(N) &= \sqrt{2J_z} \e{\mp i \left[  \psi_{z,0} + NQ_z \right]}
+     \zeta_z^\pm(s, N) &= \sqrt{2J_z} \e{\mp i \left[  \psi_{z,0} + NQ_z +\psi(s) \right]}
      \fstop
 \end{align}
 %
@@ -1108,6 +1122,7 @@ deviations from the design orbit create large perturbations the particle dynamic
 
 % --------------------------------------------------------------------------------------------------
 \subsubsection{Coupling measurement}
+\label{sec_coupling_measurement}
 
 One possible method to calculate coupling used for LHC which is independent of BPM calibration errors
 makes use of two nearby BPMs in order to cancel out calibration factors. It is therefore called
@@ -1121,6 +1136,7 @@ Repeating the calculations of section~\ref{sec_coupling_rdts} for all transverse
     \hxm &= \zxm - 2i{f_{1010}} \zyp - 2i{f_{1001}}\zym   \notag\\ 
     \hym &= \zym - 2i{f_{1010}} \zxp - 2i\conj{f_{1001}}\zxm    
     \fstop
+    \label{eq_hxpm_hypm}
 \end{align}
 %
 The Fourier transform of normal form coordinates reads
@@ -1139,7 +1155,7 @@ With this one can introduce a shorthand notation for the spectral lines $\four{h
     \fstop
 \end{align}
 %
-If the BPM calibration is not perfect the measured $H$ and $V$ lines are not proportional w.r.t each other:
+If the BPM calibration is not perfect the measured $H$ and $V$ lines are not proportional w.r.t. each other:
 \newcommand{\meas}{^\text{meas}}
 %
 \begin{align}
@@ -1256,10 +1272,10 @@ This can be plugged into the reconstruction formula \eqref{eq_reconstr_cplx}
 Together with the identity
 %
 \begin{equation}
-    H(1,0) = \frac{1}{2} \left( H^+(1,0) + \conj{H^+(-1,0)}\right) = \frac{1}{2}H^+(1,0)
+    H(1,0) = \frac{1}{2} \left( H^+(1,0) + {H^-(1,0)}\right) = \frac{1}{2}H^+(1,0)
 \end{equation}
 %
-because $H^+(-1,0) = 0$, one can express $A^+(0,n_y)$ and $B(n_x, 0)$ in terms of normalised real spectral lines
+because $H^-(1,0) = 0$, one can express $A^+(0,n_y)$ and $B(n_x, 0)$ in terms of normalised real spectral lines
 %
 \begin{align}
     2A^+(n_x,n_y)_a = (1-i\tan\Delta)A(n_x,n_y)_a - \frac{i}{\cos\Delta}A(n_x,n_y)_b \notag \\
@@ -1477,8 +1493,8 @@ The constant part of \eqref{eq_delta_written_out} can be put into
 \begin{equation}
     \tilde{h}_z(s_d) \equiv h_z(s_d) + 
     \left(
-    \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)}\lambda_z \e{i \pi Q_z^+}
-    -\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)} \e{-i\pi Q_z^-}
+    \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}\lambda_z \e{i \pi Q_z^-}
+    -\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)} \e{-i\pi Q_z^+}
     \right)
     \fstop
 \end{equation}
@@ -1489,9 +1505,9 @@ Now, the driven motion is seperated off:
     h_z(s, N) = R_{s-s_d}R^N 
     \Bigg[&\tilde{h}_z(s_d) 
     \notag \\
-        &+ \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)} \e{-\pi i Q_z^+(2N+2\Theta(s,s_d)-1)} 
+        &+ \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)} \e{-\pi i Q_z^-(2N+2\Theta(s,s_d)-1)} 
          \notag \\
-        &- \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)} \e{-\pi i Q_z^-(2N+2\Theta(s,s_d) -1)}
+        &- \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)} \e{\pi i Q_z^+(2N+2\Theta(s,s_d) -1)}
     \Bigg]
     \fstop
     \label{eq_driven_simpl}
@@ -1502,11 +1518,11 @@ and the linear rotation can be integrated into the terms:
 \begin{align}
     h_z(s, N) =
         &\tilde{h}_z(s, N) \notag \\
-        &+\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)}
-        \e{i\left[-2\pi NQ_{z} - \varphi_{s_ds} + \pi Q_z^+(2N+2\Theta(s,s_d)-1)\right]}
+        &+\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}
+        \e{i\left[-2\pi NQ_{z} - \varphi_{s_ds} + \pi Q_z^-(2N+2\Theta(s,s_d)-1)\right]}
         \notag\\
-        &-\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}
-        \e{-i\left[2\pi NQ_{z} + \varphi_{s_ds}+ \pi Q_z^-(2N + 2\Theta(s,s_d) -1)\right]}
+        &-\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)}
+        \e{i\left[2\pi NQ_{z} - \varphi_{s_ds}- \pi Q_z^+(2N + 2\Theta(s,s_d) -1)\right]}
     \fstop
     \label{eq_driven_simpl}
 \end{align}
@@ -1528,10 +1544,10 @@ Noting that
     h_z(s, N) =
         &\tilde{h}_z(s, N) \notag \\
         &+ \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}
-        \e{i\left[2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
+        \e{i\left[-2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
         \notag \\
         &- \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)}
-        \e{-i\left[2N\pi \Qd{z} + \varphi_{s_ds} + \pi Q_z^+\text{sgn}(s-s_d)\right]} 
+        \e{i\left[2N\pi \Qd{z} - \varphi_{s_ds} - \pi Q_z^+\text{sgn}(s-s_d)\right]} 
     \fstop
     \label{eq_driven_simpl2}
 \end{align}
@@ -1547,10 +1563,10 @@ coordinate $h_z^-$ has the form
     h_z^-(s, N) =
         &\tilde{h}_z^-(s, N) \notag \\
         &+ \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}
-        \e{-i\left[2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
+        \e{i\left[2N\pi \Qd{z} + \varphi_{s_ds} - \pi Q_z^-\text{sgn}(s-s_d)\right]} 
         \notag \\
         &- \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)}
-        \e{i\left[2N\pi \Qd{z} + \varphi_{s_ds} + \pi Q_z^+\text{sgn}(s-s_d)\right]} 
+        \e{i\left[-2N\pi \Qd{z} + \varphi_{s_ds} + \pi Q_z^+\text{sgn}(s-s_d)\right]} 
     \fstop
     \label{eq_driven_simpl2_minus}
 \end{align}
@@ -1558,32 +1574,33 @@ coordinate $h_z^-$ has the form
 Subtracting the closed driven closed orbit $\tilde{h}_z$ and with the definition
 %
 \begin{equation}
-    \lambda = \frac{\sin(\pi Q_-)}{\sin(\pi Q_+)}
+    \lambda_z = \frac{\sin(\pi Q_z^-)}{\sin(\pi Q_z^+)}
     \komma
 \end{equation}
 %
 the driven motion can be rewritten in the from
 %
 \begin{align}
-    h_z(s,N) = 
+    h_z^\pm(s,N) = 
         \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
         \Bigg[ 
-            &\e{i\left[2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^+\text{sgn}(s-s_d)\right]} 
+            &\e{\pm i\left[-2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
             \notag \\
-            &- \lambda
-            \e{-i\left[2N\pi \Qd{z} + \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
+            &- \lambda_z
+             \e{\pm i\left[2N\pi \Qd{z} - \varphi_{s_ds} - \pi Q_z^+\text{sgn}(s-s_d)\right]} 
         \Bigg]
     \komma
     \label{eq_driven_hz_final}
 \end{align}
 %
-which is used in other works \cite{Miyamoto2008, Miyamoto2010}.
+which is used in other works \cite{Miyamoto2008, Miyamoto2010}. 
 
 
 \subsection{Compensation of linear parameters}
 
 This section briefly summarises the compensation of the driven motion for the optics parameters
-$\beta$ and $\phi$\footnote{Ryoichi Miyamoto, private communication, Feb. 2017}.
+$\beta$, $\alpha$ and $\phi$\footnote{Ryoichi Miyamoto, private communication, Feb. 2017}.
+
 From \eqref{eq_courantsnyder} the motion in physical space can be calcuated from the complex Courant-Snyder
 coordinates by taking the real part and transforming back using \eqref{eq_cs_matrix}:
 %
@@ -1676,7 +1693,7 @@ between them and the driven phase $\varphi^d$ is imposed:
   \frac{\der \varphi^d}{\der s} = \frac{1}{\beta^d}
 \end{equation}
 %
-Taking the derivative of  \eqref{eq_drv_phase_sym} w.r.t $s$ yields
+Taking the derivative of  \eqref{eq_drv_phase_sym} w.r.t. $s$ yields
 %
 \begin{equation}
   \frac{(1-\lambda)\varphi'^d(s)}{\cos^2\left[ \varphi^d(s) - \pi\Qd{z}\text{sgn}(s-s_d) \right]}
@@ -1685,7 +1702,7 @@ Taking the derivative of  \eqref{eq_drv_phase_sym} w.r.t $s$ yields
   \komma
 \end{equation}
 %
-where it is assumed that all phades are w.r.t. the position of the AC-dipole $s_d$ and $f'(x)$ denotes
+where it is assumed that all phases are w.r.t. the position of the AC-dipole $s_d$ and $f'(x)$ denotes
 the derivative of the function $f$ with respect to $x$.
 Respectively, taking its square yields
 \begin{equation}

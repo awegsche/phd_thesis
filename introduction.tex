@@ -1341,7 +1341,7 @@ At each turn an AC dipole located at position $s_d$ inflicts a kick to the beam.
 described in Courant-Snyder coordinates as
 %
 \begin{equation}
-    \Delta h_z(N) = i A_\theta\beta(s_d) \cos(2\pi i \Qd{z} N)
+    \Delta h_z(N) = i A_\theta\beta(s_d) \cos(2\pi \Qd{z} N)
 \end{equation}
 %
 depending on the AC dipole frequency $\Qd{z}$ and the turn number $N$. Figure~\ref{fig_ac_kick} shows
@@ -1599,27 +1599,31 @@ which is used in other works \cite{Miyamoto2008, Miyamoto2010}.
 \subsection{Compensation of linear parameters}
 
 This section briefly summarises the compensation of the driven motion for the optics parameters
-$\beta$, $\alpha$ and $\phi$\footnote{Ryoichi Miyamoto, private communication, Feb. 2017}.
+$\beta$, $\alpha$ and $\phi$ \footnote{\cite{Miyamoto2008} and Ryoichi Miyamoto, private communication, Feb. 2017}.
 
-From \eqref{eq_courantsnyder} the motion in physical space can be calcuated from the complex Courant-Snyder
-coordinates by taking the real part and transforming back using \eqref{eq_cs_matrix}:
+In an actual measurement the phase and amplitude are calculated from the fourier analysis of the
+real signal.
 %
-\begin{equation}
-    z^{\text{free}}(s,N)=\sqrt{\beta_z(s)}\re{h_z^{+,\text{free}}}
-    = \sqrt{2J_z \beta_z(s)}\cos\left[ 2\pi N Q_z + \varphi_z(s) + \varphi_{z,0} \right]
-    \label{eq_free_x_from_h}
-\end{equation}
+\begin{align}
+   H(1,0)^\text{free} &= \frac{1}{2}\left( H^+(1,0)^\text{free} + H^-(1,0)^\text{free} \right)\notag \\
+   &= \sqrt{2 J_z\beta} \left[ \e{-i\varphi(s) } + \e{i\varphi(s)} \right]
+   \label{eq_four_real_free}
+\end{align}
 %
-The driven motion can be reformulated in a similar form \cite{Miyamoto2008}
+for the free motion and
 %
-\begin{equation}
-    z(s,N) = \sqrt{2J_z^d\beta_{z}^d(s)}\cos\left[ 2\pi N Q_z^d + \varphi_z^d(s) + \varphi_{z,0}^d \right]
-    \fstop
-    \label{eq_drv_x_from_h_tpl}
-\end{equation}
+\begin{align}
+   H(1,0)
+   % &= \notag \\
+   &= \frac{A_\theta}{4\sin(\pi Q_z^-)}\left[
+        \e{i\left[-\varphi_{s_ds} + \pi Q_z^-\text{sgn}(s_ds)\right]}
+        -\lambda \e{i\left[\varphi_{s_ds} + \pi Q_z^+\text{sgn}(s_ds)\right]}
+       \right]
+       \label{eq_four_real_driven}
+\end{align}
+for the driven motion.
 %
-To bring \eqref{eq_driven_hz_final} into the form \eqref{eq_drv_x_from_h_tpl} some trigonometric reformulations
-are needed:
+For the next steps the following trigonometric reformulation is needed:
 %
 \begin{equation}
   \e{i\left( \alpha + \beta \right)} - \lambda \e{i\left( \alpha - \beta \right)}
@@ -1628,7 +1632,7 @@ are needed:
   \label{eq_e_alpha_lambda}
 \end{equation}
 %
-The sum of two oscillation with the same frequency forms a single oscillation, so the $\beta$~term can
+The sum of two oscillations with the same frequency forms a single oscillation, so the $\beta$~term can
 be rewritten as
 %
 \begin{equation}
@@ -1643,34 +1647,23 @@ with
   \fstop
 \end{align}
 %
-Now \eqref{eq_driven_hz_final} can be put in this form by defining
+Now \eqref{eq_four_real_driven} can be put in this form by defining
 %
 \begin{align}
-  \alpha &\equiv 2\pi N \Qd{z} + \pi\Qd{z} \text{sgn}(s-s_d) \notag \\
+  \alpha &\equiv \pi\Qd{z} \text{sgn}(s-s_d) \notag \\
   \beta &\equiv \pi Q_z\text{sgn}(s-s_d) - \varphi_{s_ds}
 \end{align}
 %
-This allows for $h_z$ to be rewritten
+This allows for $H(1,0)$ to be rewritten
 %
 \begin{align}
-  h_z^+(s,n) =&\: \frac{A_\theta\beta(s_d)}{4\sin(\pi Q_z^-)}
+  H(1,0) =&\: \frac{A_\theta\beta(s_d)}{4\sin(\pi Q_z^-)}
   \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]} \notag \\
-  &\times\e{i\left[ 2\pi N \Qd{z} + \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
+  &\times\e{i\left[ \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
   \fstop
 \end{align}
 %
-This is now tranformed to physical space:
-%
-\begin{align}
-  z(s,n) =&\:
-  \frac{A_\theta\sqrt{\beta(s_d)\beta(s)}}{4\sin(\pi Q_z^-)}
-  \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]} \notag \\
-  &\times\cos{\left[ 2\pi N \Qd{z} + \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
-  \fstop
-  \label{eq_z_drv}
-\end{align}
-%
-Comparing to \eqref{eq_drv_x_from_h_tpl}, the driven phase is defined as 
+Comparing to the free case, \eqref{eq_four_real_free}, the driven phase is defined as 
 %
 \begin{align}
   \varphi^d_{s_ds} &=  \Qd{z}\text{sgn}(s-s_d) + \psi\notag\\
@@ -1687,7 +1680,7 @@ which fullfils the symmetric property
   \label{eq_drv_phase_sym}
 \end{equation}
 %
-In order to get the driven TWISS parameters $\alpha^d$, $\beta^d$ and $\gamma^d$, the same relation
+In order to get the driven Twiss parameters $\alpha^d$, $\beta^d$ and $\gamma^d$, the same relation
 between them and the driven phase $\varphi^d$ is imposed:
 \begin{equation}
   \frac{\der \varphi^d}{\der s} = \frac{1}{\beta^d}

@@ -533,13 +533,20 @@ coupling will iteratively improve the precision of the coupling measurement.
 %
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.7\linewidth]{forced_rdts_abs}
+  \includegraphics[width=.7\linewidth]{thesis_abs}
   \caption{Comparison of the three methods with the AC-dipole surrounded by a coupling bump.
     The AC-dipole is creating a jump in the coupling term $f_{1001}$ at its location. Only the new
-    formula is able to reproduce this jump.
+    formula is able to reproduce this jump. The position of the AC-dipole is marked by a vertical
+    line. The offset between \emph{meas} and the reconstructed values is due to the reconstruction
+    of the complex signal.
   }
   \label{fig_comp_felix_ryo}
 \end{figure}
 %
 
-Figure~\ref{fig_comp_felix_ryo} shows the comparison between the three methods. Formula and model methods reconstruct the coupling term $f_{1001}$ well but a jump occurs at the position of the AC-dipole. This jump can be reconstructed by the new formula. The overall agreement, for all three methods is still 
+
+Figure~\ref{fig_comp_felix_ryo} shows the comparison between the three methods.
+The measured values show an offset which is due to the reconstruction of the complex signal from the
+momentum \eqref{eq_recon_AB} which picks up coupling sources from in between $s_a$ and $s_b$.
+The new formula yields overall a better accuracy, especially inside of the coupling bump.
+The jump at the position of the AC-dipole is well reproduced.

@@ -237,16 +237,17 @@ Before applying the AC-dipole kick it is again transformed to CS space:
             - 2i\conj{f_{1001}}(s_d) R_x\Delta h_y^+(0)
             - 2i\conj{f_{1010}}(s_d) R_x\Delta h_y^-(0)
         \notag \\ &\quad 
-            + 2i\conj{f_{1001}}(s_d) \left(\tilde{\zeta}_y^+(s_d-\epsilon, 1) + R_x\Delta h_y^+(0) \right)
+            + 2i\conj{f_{1001}}(s_d) \left(\tilde{\zeta}_y^+(s_d-\epsilon, 1) + \frac{1}{2}R_x\Delta h_y^+(0) \right)
         \notag \\ &\quad 
-            + 2i\conj{f_{1010}}(s_d) \left(\tilde{\zeta}_y^-(s_d-\epsilon, 1) + R_x\Delta h_y^-(0) \right)
+            + 2i\conj{f_{1010}}(s_d) \left(\tilde{\zeta}_y^-(s_d-\epsilon, 1) + \frac{1}{2}R_x\Delta h_y^-(0) \right)
         \notag \\ &\quad
             + O(f^2)
         \komma
     \label{eq_cpl_drv_n1}
 \end{align}
 %
-where $O(f^2)$ denotes quadratic and cross terms of $f_{1001}$ and $f_{1010}$. 
+where $O(f^2)$ denotes quadratic and cross terms of $f_{1001}$ and $f_{1010}$ and the factor $\frac{1}{2}$
+in front of the kick terms comes from second order calculations of the Poisson bracket. 
 A kick $\Delta h_x(1)$ is applied and this procedure can be continued to arbitrary order N.
 To avoid lengthy expressions, the driven uncoupled coordinates $h_z^{d\pm}$ are defined as
 %
@@ -269,8 +270,8 @@ $\zeta_y^\pm$ are evaluated at the position $s$. Therefore the coordinate, at po
     \hxp(s<s_d, N) &= h_x^{d+}(s,N)
         + 2i\conj{f_{1001}}(s) h_y^{d+} (s, N)
         + 2i\conj{f_{1010}}(s) h_y^{d-} (s, N) \notag \\
-        & \quad - 2i\conj{f_{1001}}(s_d) \sum\limits_{T = 1}^N R_{s-s_d}R_x^{T}\Delta h_y^+(N-T) \notag \\
-        & \quad - 2i\conj{f_{1010}}(s_d) \sum\limits_{T = 1}^N R_{s-s_d}R_x^{T}\Delta h_y^-(N-T)
+        & \quad - 2i\conj{f_{1001}}(s_d) \frac{1}{2}\sum\limits_{T = 1}^N R_{s-s_d}R_x^{T}\Delta h_y^+(N-T) \notag \\
+        & \quad - 2i\conj{f_{1010}}(s_d) \frac{1}{2}\sum\limits_{T = 1}^N R_{s-s_d}R_x^{T}\Delta h_y^-(N-T)
         \komma
         \notag \\
 \end{align}
@@ -281,8 +282,8 @@ and, after the AC-dipole,
     \hxp(s>s_d, N) &= h_x^{d+}(s,N)
         + 2i\conj{f_{1001}} h_y^{d+} (s, N)
         + 2i\conj{f_{1010}} h_y^{d-} (s, N) \notag \\
-        & \quad - 2i\conj{f_{1001}}(s_d) \sum\limits_{T = 0}^N R_{x,s-s_d}R_x^{T}\Delta h_y^+(N-T) \notag \\
-        & \quad - 2i\conj{f_{1010}}(s_d) \sum\limits_{T = 0}^N R_{x,s-s_d}R_x^{T}\Delta h_y^-(N-T)
+        & \quad - 2i\conj{f_{1001}}(s_d) \frac{1}{2}\sum\limits_{T = 0}^N R_{x,s-s_d}R_x^{T}\Delta h_y^+(N-T) \notag \\
+        & \quad - 2i\conj{f_{1010}}(s_d) \frac{1}{2}\sum\limits_{T = 0}^N R_{x,s-s_d}R_x^{T}\Delta h_y^-(N-T)
         \fstop
 \end{align}
 %
@@ -334,7 +335,7 @@ with the definition
 %
 \begin{align}
     h_{y,x}^\pm(s,N) &= 
-        \frac{A_\theta}{4} \Bigg\{
+        \frac{A_\theta}{8} \Bigg\{
              \frac{\e{\pm i \left[-2N \pi Q_y^d + \pi( Q_y^d - Q_x )\text{sgn}(s-s_d) - \varphi_{s_ds}^{x}\right]}}
                 {\sin\left[\pi (Q_y^d - Q_x)\right]}
                 \notag \\  & \quad\quad\quad
@@ -404,11 +405,11 @@ For readability the fourier transforms are listed seperately:
         \e{i\left[\varphi_{s_ds}^{y} + \pi Q_y^+\text{sgn}(s-s_d)\right]}
     \komma
     \notag \\
-    \four{h_{y,x}^{+}}(Q_y^d) &= \frac{A_\theta}{4\sin\left[\pi (Q_y^d - Q_x)\right]}
+    \four{h_{y,x}^{+}}(Q_y^d) &= \frac{A_\theta}{8\sin\left[\pi (Q_y^d - Q_x)\right]}
         \e{i\left[-\varphi_{s_ds}^{x} + \pi (Q_y^d - Q_x)\text{sgn}(s-s_d)\right]}
     \komma
     \notag \\
-    \four{h_{y,x}^{-}}(Q_y^d) &= \frac{A_\theta}{4\sin\left[\pi (Q_y^d + Q_x)\right]}
+    \four{h_{y,x}^{-}}(Q_y^d) &= \frac{A_\theta}{8\sin\left[\pi (Q_y^d + Q_x)\right]}
         \e{i\left[\varphi_{s_ds}^{x} + \pi (Q_y^d + Q_x)\text{sgn}(s-s_d)\right]}
     \fstop
 \end{align}
@@ -418,12 +419,12 @@ From this it is easy to calculate the driven coupling term,
 \begin{align}
     f_{1001}^{\text{drv}*} &=
     f_{1001}^*
-    + f_{1001}^*(s_d) \frac{\sin\pi Q_y^-}{\sin\left[\pi (Q_y^d-Q_x)\right]}
+    + f_{1001}^*(s_d) \frac{\sin\pi Q_y^-}{2\sin\left[\pi (Q_y^d-Q_x)\right]}
         \e{i\left[\varphi_{s_ds}^{x} -\varphi_{s_ds}^{y} + \pi(Q_y-Q_x)\text{sgn}(s-s_d)\right]}
         \notag \\
     &\quad
     + \lambda_y f_{1010}^*\e{2i\left[ \varphi_{s_ds}^{y} + \pi Q_y\right]}
-    + f_{1010}^*(s_d) \frac{\sin\pi Q_y^-}{\sin\left[\pi (Q_y^d+Q_x)\right]}
+    + f_{1010}^*(s_d) \frac{\sin\pi Q_y^-}{2\sin\left[\pi (Q_y^d+Q_x)\right]}
         \e{i\left[\varphi_{s_ds}^{x} + \varphi_{s_ds}^{y} + \pi(Q_y+Q_x)\text{sgn}(s-s_d)\right]}
         \fstop
     \label{eq_drv_f1001_final}
@@ -546,7 +547,7 @@ coupling will iteratively improve the precision of the coupling measurement.
 \begin{figure}[h]
   \centering
   \includegraphics[width=.49\linewidth]{forcedcoupling/ac_outside}
-  \includegraphics[width=.49\linewidth]{forcedcoupling/ac_outside}
+  \includegraphics[width=.49\linewidth]{forcedcoupling/ac_outside_at_loc}
   \caption{Comparison of the three methods with a coupling bump in the lattice.
     The absolute value of coupling term $f_{1001}$ is shown.
     Formula method and new method (called \emph{new formula}) manage to reproduce well the $f_{1001}$.
@@ -578,9 +579,16 @@ momentum \eqref{eq_recon_AB} which picks up coupling sources from in between $s_
 \end{figure}
 %
 
-Figure~\ref{fig_comp_felix_ryo} shows the comparison between the three methods.
-The new formula yields overall a better accuracy, especially inside of the coupling bump.
+Figure~\ref{fig_comp_felix_ryo} now shows the picture when the AC-dipole is placed \emph{inside} the bump and,
+thus, being in a region with strong coupling. In this case a visible bump is expected and the agreement with the
+conventional methods should decrease because they do not consider the additional source.
+Indeed, the new formula yields overall a better accuracy, especially inside of the coupling bump.
 The jump at the position of the AC-dipole is well reproduced, as expected from \eqref{eq_drv_f1001_final}.
 
+\section{Conclusion}
 
-
+Current methods to calculated the coupling terms $f_{1001}$ and $f_{1010}$ in the LHC have been revised and
+brought into context of recent findings. The AC-dipole create a jump in the RDTs at its location and this jump
+can be demonstrated for the coupling RDTs in simulations. A study of sextupolar RDTs is presented in \cite{Carlier2020}.
+The calculation of a corrected coupling RDT has been performed and its accuracy in the case of small coupling
+has been demonstrated in simulations.

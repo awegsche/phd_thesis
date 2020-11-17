@@ -28,10 +28,14 @@ A comparison between model method, formula method and the newly calculated coupl
 
 \subsection{AC-dipole as skew quadrupole}
 
-To start the section about the beam motion that is driven \emph{and} coupled, we state a curious
-analogy between AC-dipole and skew quadrupoles.
+To start the section about the beam motion that is driven \emph{and} coupled,
+we illustrate the effect of an AC-dipole as coupling source by stating the analogy between the their
+impact on the particles motion.
 
-Throughout this chapter we use the following convention:
+The AC-dipole inflicts a kick on the particle, \eqref{eq_ackick}, exactly like a quadrupole in thin-lens
+approximation. Therefore it is not surprising that the two cases can be regarded as similar effects.
+
+Throughout this chapter the following convention is used:
 %
 \begin{align}
     f_+ &\equiv f_{0101} \text{ and}\notag \\
@@ -257,7 +261,7 @@ To avoid lengthy expressions, the driven uncoupled coordinates $h_z^{d\pm}$ are 
 %
 where the sum up to turn $N$ has already been carried out as in section~\ref{sec_driven_coords}.
 Note that the transformation from CS space to normal form space is carried out directly after the 
-kick, thus fixing $f_{1001}$ and $f_{1010}$ acting on $Delta h_y^\pm$ to this position, i.e. $s_d$.
+kick, thus fixing $f_{1001}$ and $f_{1010}$ acting on $\Delta h_y^\pm$ to this position, i.e. $s_d$.
 When calculating the CS coordinates at arbitrary position $s$, on the other hand, the RDTs acting on
 $\zeta_y^\pm$ are evaluated at the position $s$. Therefore the coordinate, at position $s<s_d$ reads
 %
@@ -409,7 +413,7 @@ For readability the fourier transforms are listed seperately:
     \fstop
 \end{align}
 %
-From this it is easy to calculate the driven coupling term 
+From this it is easy to calculate the driven coupling term,
 %
 \begin{align}
     f_{1001}^{\text{drv}*} &=
@@ -421,8 +425,15 @@ From this it is easy to calculate the driven coupling term
     + \lambda_y f_{1010}^*\e{2i\left[ \varphi_{s_ds}^{y} + \pi Q_y\right]}
     + f_{1010}^*(s_d) \frac{\sin\pi Q_y^-}{\sin\left[\pi (Q_y^d+Q_x)\right]}
         \e{i\left[\varphi_{s_ds}^{x} + \varphi_{s_ds}^{y} + \pi(Q_y+Q_x)\text{sgn}(s-s_d)\right]}
+        \fstop
     \label{eq_drv_f1001_final}
 \end{align}
+%
+From \equationref{eq_drv_f1001_final} it gets apparent that the AC-dipole adds two effects to the $f$~term:
+the first one is creating an additional source at the position of the AC-dipole, proportional to the $f$~term
+at this position
+and the second, minor, one is a mixing of $f_{1001}$ and $f_{1010}$. The mixing in of the other $f$~term is
+suppressed by the factors $\lambda_{y}$ and the denominator $\sin\left[\pi (\Qd{y} + Q_x)\right]$.
 
 % --------------------------------------------------------------------------------------------------
 \subsection{Model and Formula methods}
@@ -485,8 +496,6 @@ from measurements in the vertical plane.
 In order to simplify the expression, some extra definitions were introduced:
 %
 \begin{align}
-    f_+ &= f_{1010}\komma\notag \\
-    f_- &= f_{1001}\komma\notag \\
     \lambda_c &= \frac{\sin\left[\pi(Q_x-Q_y)\right]}{\sin\left[\pi(Q_x+Q_y)\right]}\komma
     \notag \\
     f_{\mp}(s_j;s_a,s_b) &= \frac{
@@ -522,9 +531,12 @@ the measured ones.
 
 \subsection{Comparison of the methods for typical LHC machine configurations}
 
-In this section the effect of the driven motion on the measured RDTs is studied. From \eqref{eq_driven_f1001_final}
-one can see that the effect of the AC-dipole jump is proportional to the strength of the RDTs at the 
-position of the AC-dipole. This means, given a weak initial coupling around the AC-dipole or a sufficient
+In this section the effect of the driven motion on the measured RDTs is studied using an LHC optics with no other
+perturbations than the additional coupling sources and no higher order multipoles active, in order to avoid feed
+down from polluting the results.
+From \eqref{eq_drv_f1001_final} one can see that the effect of the AC-dipole jump is proportional to
+the strength of the RDTs at the  position of the AC-dipole.
+This means, given a weak initial coupling around the AC-dipole or a sufficient
 correction of the local coupling, the effect is expected to be low and further coupling measurements
 are not impacted by it. 
 
@@ -534,19 +546,32 @@ coupling will iteratively improve the precision of the coupling measurement.
 \begin{figure}[h]
   \centering
   \includegraphics[width=.7\linewidth]{thesis_abs}
+  \caption{Comparison of the three methods with a coupling bump in the lattice.
+    Formula method and new method (called \emph{new formula}) manage to reproduce well the $f_{1001}$.
+    The naive model method underestimates the $f$~term in the bump.
+    The offset between \emph{meas} and the reconstructed values is due to the reconstruction
+    of the complex signal.
+  }
+  \label{fig_comp_felix_ryo_ac_outside}
+\end{figure}
+%
+
+The measured values show an offset which is due to the reconstruction of the complex signal from the
+momentum \eqref{eq_recon_AB} which picks up coupling sources from in between $s_a$ and $s_b$.
+%
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.7\linewidth]{thesis_abs}
   \caption{Comparison of the three methods with the AC-dipole surrounded by a coupling bump.
     The AC-dipole is creating a jump in the coupling term $f_{1001}$ at its location. Only the new
     formula is able to reproduce this jump. The position of the AC-dipole is marked by a vertical
-    line. The offset between \emph{meas} and the reconstructed values is due to the reconstruction
-    of the complex signal.
+    line.
   }
   \label{fig_comp_felix_ryo}
 \end{figure}
 %
 
 Figure~\ref{fig_comp_felix_ryo} shows the comparison between the three methods.
-The measured values show an offset which is due to the reconstruction of the complex signal from the
-momentum \eqref{eq_recon_AB} which picks up coupling sources from in between $s_a$ and $s_b$.
 The new formula yields overall a better accuracy, especially inside of the coupling bump.
-The jump at the position of the AC-dipole is well reproduced.
+The jump at the position of the AC-dipole is well reproduced, as expected from \eqref{eq_drv_f1001_final}.
 

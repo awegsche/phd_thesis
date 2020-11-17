@@ -165,11 +165,12 @@ depictet in \figref{fig_frenet_serret}\index{Frenet-Serret coordinates} where th
 transformed into a system $\{x,y,s\}$ with the properties:
 %
 \begin{align}
-    \hat{s} &\parallel \text{reference orbit}\notag\\
+    \Delta s &\parallel \text{reference orbit}\notag\\
     \hat{y} &= \hat{y}'\notag\\
-    \hat{x} &= \hat{y} \times \hat{s}
+    \hat{x} &= \hat{y} \times \Delta s
 \end{align}
 %
+and a longitudinal coordinate $s$ along the reference orbit.
 \begin{figure}[h]
     \includestandalone{frenetserret}
     \caption{
@@ -204,12 +205,13 @@ A solution that satisfies \eqref{eq_hills} is
 where the $s$-dependent amplitude of the oscillation can be split:
 %
 \begin{equation}
-    A_z(s) = \sqrt{2I_z \beta_z(s)}
+    A_z(s) = \sqrt{2J_z \beta_z(s)}
     \fstop
     \label{eq_betatron_ampl}
 \end{equation}
 %
 $\beta_z(s)$ is the $s$-dependent part of the amplitude, called $\beta$~function\index{$\beta$ function}.
+$J_z$ is the action invariant of the particle's motion.
 $\beta(s)$ and $\phi(s)$\index{betatron phase}\index{phase} are periodic with the circumference of the ring $C$.
 
 Of special interest for a collider is the value of the $\beta$~function at the interaction point,
@@ -222,27 +224,6 @@ $\phi(s)$ is called the \emph{betatron phase} and satisfies the following proper
     \phi(s_1) - \phi(s_0) = \int\limits_{s_0}^{s_1} \frac{1}{\beta(s)}\der s
     \fstop
     \label{eq_phase}
-\end{equation}
-%
-For convenience and later usage we introduce the following short-hand notation:
-%
-\begin{equation}
-    \phi_{z,ab} = \phi_z(s_b) - \phi_z(s_a) + 2\pi Q_z \Theta(s_a, s_b)
-\end{equation}
-%
-which is the \emph{phase advance}\index{phase advance} between position $s_a$ and $s_b$, taking into
-account the relative position of $s_a$ to $s_b$.
-If element $b$ lies upstream from element $a$, the interval \emph{wraps around} the end of the
-lattice definition and the tune
-has to be added to the phase advance. For this the following definition is used:
-%
-\begin{equation}
-    \Theta(s_a, s_b) =
-    \begin{cases}
-        1 & \text{if } s_a > s_b \\
-        0 & \text{else} \\
-    \end{cases}
-    \fstop
 \end{equation}
 %
 The trajectories of particles with an action $J$ are limited by an envelope function $\sqrt{2J\beta}$ as illustrated in Fig.~\ref{fig_part_traj}.
@@ -348,9 +329,10 @@ The phase advance of one turn
 %
 \begin{equation}
     Q_z \equiv \frac{1}{2\pi}\int\limits_{s_0}^{s_0+C} \frac{\der s}{\beta_z(s)}
+    \komma
 \end{equation}
 %
-is called the \emph{betatron tune}\index{tune}\index{betatron tune}.
+normalised by $2\pi$, is called the \emph{betatron tune}\index{tune}\index{betatron tune}.
 
 A general form of \eqref{eq_trmat} is 
 %
@@ -379,10 +361,33 @@ $\alpha$, $\beta$ function and a third quantity
     \gamma(s) = \frac{1+\alpha^2(s)}{\beta(s)}
 \end{equation}
 %
-are called \emph{Twiss~parameters}. The particles motion in phase space follows a tilted ellipse which is described by
+are called \emph{Twiss~parameters}.
+
+For convenience and later usage we introduce the following short-hand notation:
 %
 \begin{equation}
-    \gamma^2(s)x(s) + 2\alpha(s)x(s)p_x(s) + \beta(s)p_x^2(s) = \epsilon
+    \phi_{z,ab} = \phi_z(s_b) - \phi_z(s_a) + 2\pi Q_z \Theta(s_a, s_b)
+\end{equation}
+%
+which is the \emph{phase advance}\index{phase advance} between position $s_a$ and $s_b$, taking into
+account the relative position of $s_a$ to $s_b$.
+If element $b$ lies upstream from element $a$, the interval \emph{wraps around} the end of the
+lattice definition and the tune
+has to be added to the phase advance. For this the following definition is used:
+%
+\begin{equation}
+    \Theta(s_a, s_b) =
+    \begin{cases}
+        1 & \text{if } s_a > s_b \\
+        0 & \text{else} \\
+    \end{cases}
+    \fstop
+\end{equation}
+%
+The particles motion in phase space follows a tilted ellipse which is described by
+%
+\begin{equation}
+    \gamma(s)x^2(s) + 2\alpha(s)x(s)p_x(s) + \beta(s)p_x^2(s) = \epsilon
 \end{equation}
 %
 where $\epsilon$ is the single particle emittance.
@@ -585,7 +590,7 @@ The \emph{normal form coordinates}\index{normal form!coordinates} $\zeta_z^\pm$
 can be expressed in terms of the normal form phase $\psi$ and normal form invariant $J_z$:
 %
 \begin{equation}
-    \zeta_z^\pm(s_i) = \sqrt{2J_z}\e{i\left[\mp \psi_z(s_i) + \psi_{z,0} \right]}
+    \zeta_z^\pm(s_i) = \sqrt{2I_z}\e{i\left[\mp \psi_z(s_i) + \psi_{z,0} \right]}
     \fstop
 \end{equation}
 %
@@ -634,7 +639,7 @@ and an arbitrary rotation may be defined as
 The normal form coordinate of the particle at position $s$ and turn $N$ reads
 %
 \begin{align}
-     \zeta_z^\pm(s, N) &= \sqrt{2J_z} \e{\mp i \left[  \psi_{z,0} + NQ_z +\psi(s) \right]}
+     \zeta_z^\pm(s, N) &= \sqrt{2I_z} \e{\mp i \left[  \psi_{z,0} + NQ_z +\psi(s) \right]}
      \fstop
 \end{align}
 %
@@ -735,7 +740,7 @@ The phase of the real signal $\hat{x}_j = \re{h_x^+(s_j)}$ reads,
 up to first order,
 %
 \begin{equation}
-    \hat{x}_j = \re{\left( 1+4if_{2000,j}^* \right) \sqrt{2I_x}\e{-i[ N Q_x+\psi_{x,0j}]}}
+    \hat{x}_j = \re{\left( 1+4if_{2000,j}^* \right) \sqrt{2J_x}\e{-i[ N Q_x+\psi_{x,0j}]}}
   \fstop
   \label{eq_real_H10}
 \end{equation}
@@ -757,10 +762,10 @@ line is the argument of the term in parenthesis in \eqref{eq_real_H10}:
 \end{align}
 %
 To get the $\beta$~function under the effect of focusing errors, one can compare the amplitude
-$\sqrt{\beta_zI_z}$ of the coordinate by considering the change in $I_z$ negligible:
+$\sqrt{\beta_zJ_z}$ of the coordinate by considering the change in $J_z$ negligible:
 %
 \begin{align}
-    \sqrt{2\beta_xI_x} &= \sqrt{2\beta_x\m I_x}\re{ 1 + 4if_{2000,i}} \notag \\
+    \sqrt{2\beta_xJ_x} &= \sqrt{2\beta_x\m J_x}\re{ 1 + 4if_{2000,i}} \notag \\
     \beta_x &= \beta_x\m \left( 1 + 8\im{f_{2000,i}}\right) + O(f^2)
     \fstop
     \label{eq_betabeat}
@@ -1031,7 +1036,7 @@ The particle's transverse position in Complex Courant-Snyder coordinates at a lo
 $N$ can be optained by applying repeatedly the one turn map:
 %
 \begin{equation}
-    \hat{h}_z^\pm(s + NC) = \sqrt{2I_z} \e{i \left( \varphi_z(s) + 2\pi N Q_z\right)} 
+    \hat{h}_z^\pm(s + NC) = \sqrt{2J_z} \e{i \left( \varphi_z(s) + 2\pi N Q_z\right)} 
     \fstop
 \end{equation}
 %
@@ -1039,10 +1044,10 @@ The real position and momentum of the particle can then be calculated by reversi
 in the first section of this chapter.
 %
 \begin{equation}
-    z(s + NC) = \sqrt{2I_z\beta_z(s)}\cos \left( \varphi_z(s) + 2\pi N Q_z\right)
+    z(s + NC) = \sqrt{2J_z\beta_z(s)}\cos \left( \varphi_z(s) + 2\pi N Q_z\right)
 \end{equation}
 %
-The phase $\varphi_z(s)$ and amplitude $\sqrt{2I_z\beta_z(s)}$ can be obtained by a Fourier transformation of
+The phase $\varphi_z(s)$ and amplitude $\sqrt{2J_z\beta_z(s)}$ can be obtained by a Fourier transformation of
 the particle positions.
 
 % --------------------------------------------------------------------------------------------------
@@ -1177,19 +1182,19 @@ Important for the coupling calculation are the following normalised spectral lin
 %
 \begin{align}
     A_{0,1}&=\frac{H^+(0,1)}{\left|H^+(1,0)\right|}
-      &= 2i\sqrt{\frac{I_y}{I_x}}\conj{f_{1001}} \e{-i\varphi_{y}}
+      &= 2i\sqrt{\frac{J_y}{J_x}}\conj{f_{1001}} \e{-i\varphi_{y}}
     \label{eq_A01} \\
     B_{1,0}&=\frac{V^+(1,0)}{\left|V^+(0,1)\right|}
-      &= 2i\sqrt{\frac{I_x}{I_y}}{f_{1001}} \e{-i\varphi_{x}}
+      &= 2i\sqrt{\frac{J_x}{J_y}}{f_{1001}} \e{-i\varphi_{x}}
     \label{eq_B10}
 \end{align}
 which contain $f_{1001}$ and
 \begin{align}
     A_{0,-1}&=\frac{H^+(0,-1)}{\left|H^+(1,0)\right|}
-      &= 2i\sqrt{\frac{I_y}{I_x}}\conj{f_{1010}} \e{i\varphi_{y}}
+      &= 2i\sqrt{\frac{J_y}{J_x}}\conj{f_{1010}} \e{i\varphi_{y}}
     \label{eq_A0-1} \\
     B_{-1,0}&=\frac{V^+(-1,0)}{\left|V^+(0,1)\right|}
-      &= 2i\sqrt{\frac{I_x}{I_y}}\conj{f_{1010}} \e{i\varphi_{x}}
+      &= 2i\sqrt{\frac{J_x}{J_y}}\conj{f_{1010}} \e{i\varphi_{x}}
     \label{eq_B-10}
 \end{align}
 %
@@ -1246,11 +1251,11 @@ Since the Fourier transform is linear, this identity can be propagated to the sp
 where $H(n_x,n_y)$ is the measured spectral line which is just the real projection of the complex line. 
 %
 Under the assumption that the region between $s_a$ and $s_b$ is free from non-linearities and coupling
-the action $I_z$ does not change between the two positions and
+the action $J_z$ does not change between the two positions and
 %
 \begin{align}
-    |H(1,0)_a| &= |H(1,0)_b| = \sqrt{2I_x} \notag\\
-    |V(0,1)_a| &= |V(0,1)_b| = \sqrt{2I_y}
+    |H(1,0)_a| &= |H(1,0)_b| = \sqrt{2J_x} \notag\\
+    |V(0,1)_a| &= |V(0,1)_b| = \sqrt{2J_y}
     \fstop
 \end{align}
 %

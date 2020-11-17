@@ -545,26 +545,30 @@ coupling will iteratively improve the precision of the coupling measurement.
 %
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.49\linewidth]{forcedcoupling/thesis_ac_outside}
-  \includegraphics[width=.49\linewidth]{forcedcoupling/thesis_ac_outside}
+  \includegraphics[width=.49\linewidth]{forcedcoupling/ac_outside}
+  \includegraphics[width=.49\linewidth]{forcedcoupling/ac_outside}
   \caption{Comparison of the three methods with a coupling bump in the lattice.
     The absolute value of coupling term $f_{1001}$ is shown.
     Formula method and new method (called \emph{new formula}) manage to reproduce well the $f_{1001}$.
     The naive model method underestimates the $f$~term in the bump.
     The offset between \emph{meas} and the reconstructed values is due to the reconstruction
     of the complex signal.
+    The right plot shows the location of the AC-dipole. The jump is negligible.
   }
   \label{fig_comp_felix_ryo_ac_outside}
 \end{figure}
 %
 In Figure~\ref{fig_comp_felix_ryo_ac_outside} the case of a coupling bump in the lattice is shown.
-The AC-dipole is located at $s=\SI{10000}{m}$ in a region with low coupling. 
+The AC-dipole is located at $s=\SI{9846}{m}$ in a region with low coupling. As can be seen on the right plot
+the jump at the location of the AC-dipole is negligibly small. The formula method and the new method show a good
+agreement with the measured values. The model method underestimates the $f$~term inside the bump but outside
+it's accuracy is also excellent.
 The measured values show an offset which is due to the reconstruction of the complex signal from the
 momentum \eqref{eq_recon_AB} which picks up coupling sources from in between $s_a$ and $s_b$.
 %
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.7\linewidth]{thesis_abs}
+  \includegraphics[width=.7\linewidth]{abs}
   \caption{Comparison of the three methods with the AC-dipole surrounded by a coupling bump.
     The AC-dipole is creating a jump in the coupling term $f_{1001}$ at its location. Only the new
     formula is able to reproduce this jump. The position of the AC-dipole is marked by a vertical
@@ -577,4 +581,6 @@ momentum \eqref{eq_recon_AB} which picks up coupling sources from in between $s_
 Figure~\ref{fig_comp_felix_ryo} shows the comparison between the three methods.
 The new formula yields overall a better accuracy, especially inside of the coupling bump.
 The jump at the position of the AC-dipole is well reproduced, as expected from \eqref{eq_drv_f1001_final}.
+
+
 

@@ -529,7 +529,7 @@ that adjacent BPMs are used for the reconstruction, the combined $f$~terms read
 It is important to take into account this fact when finally reconstructing the driven $f$~terms from
 the measured ones.
 
-\subsection{Comparison of the methods for typical LHC machine configurations}
+\section{Comparison of the methods for typical LHC machine configurations}
 
 In this section the effect of the driven motion on the measured RDTs is studied using an LHC optics with no other
 perturbations than the additional coupling sources and no higher order multipoles active, in order to avoid feed
@@ -545,8 +545,10 @@ coupling will iteratively improve the precision of the coupling measurement.
 %
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.7\linewidth]{thesis_abs}
+  \includegraphics[width=.49\linewidth]{forcedcoupling/thesis_ac_outside}
+  \includegraphics[width=.49\linewidth]{forcedcoupling/thesis_ac_outside}
   \caption{Comparison of the three methods with a coupling bump in the lattice.
+    The absolute value of coupling term $f_{1001}$ is shown.
     Formula method and new method (called \emph{new formula}) manage to reproduce well the $f_{1001}$.
     The naive model method underestimates the $f$~term in the bump.
     The offset between \emph{meas} and the reconstructed values is due to the reconstruction
@@ -555,7 +557,8 @@ coupling will iteratively improve the precision of the coupling measurement.
   \label{fig_comp_felix_ryo_ac_outside}
 \end{figure}
 %
-
+In Figure~\ref{fig_comp_felix_ryo_ac_outside} the case of a coupling bump in the lattice is shown.
+The AC-dipole is located at $s=\SI{10000}{m}$ in a region with low coupling. 
 The measured values show an offset which is due to the reconstruction of the complex signal from the
 momentum \eqref{eq_recon_AB} which picks up coupling sources from in between $s_a$ and $s_b$.
 %

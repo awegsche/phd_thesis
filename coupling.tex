@@ -1,39 +1,38 @@
-\chapter{Advanced transverse coupling measurement} 
+\chapter{Forced Coupling Resonance Driving Terms} 
  \label{sec_coupling}
 
 \begin{chapterinfo}
-    The compensation of the driven motion is necessary for a reliable coupling measurement.
-    This chapter introduces methods to compensate for driven beam motion in the calculation of
-    coupling resonance driving terms. The methods currently applied in the LHC are revised and
-    recent findings are presented.
+    The goal of this chapter is the study of the form of resonance driving terms when measured from driven motion.
+    Since the driving force of the AC-dipole changes the particle's motion, measured quantities are changed as well.
+    Recent findings suggest that the current models describing the forced RDTs are neglecting a local effect
+    of the AC-dipole on RDTs.
 \end{chapterinfo}
 
 \section{Driven coupled motion}
-In the past, two methods were used for coupling measurements in
-the LHC, the first one uses only the difference in tunes to rescale the coupling terms. This is
-a naive approach because it disregards the driven betatron phase but often this approximation is
-good enough to get a first estimate of the coupling in the machine. We refer to this method as the
-\emph{model method}.
+Resonance driving terms are calculated from the spectral lines of the turn-by-turn data as shown in
+section~\ref{sec_coupling_measurement} for the coupling RDTs. Since the particle's motion is affected
+by the driving of forced oscillation by the AC-dipole, the spectrum also undergoes a change and the
+measured RDTs are not equal to the free ones.
 
-The second method \cite{Miyamoto2010} applies the findings of a detailled study of the driven particle motion
+In the past, two methods were used to model the effect of the driven motion, the first is a simple
+rescaling of the tune dependent denominators of the RDTs, this method will therefore be called \emph{rescaling} method.
+
+The second one \cite{Miyamoto2010} applies the findings of a detailed study of the driven particle motion
 which provides a compensation formula for all optics parameters that enter into the coupling terms. This method will
 be called \emph{formula method} in the following.
 
-Recent findings \cite{Carlier2020} show that the AC-dipole locally effects RDTs and introduces
-a jump at its location. The detailled considerations of the formula method lack such an effect.
+Recent findings \cite{Carlier2020} show that the AC-dipole locally affects RDTs and introduces
+a jump in amplitude of the RDTs at its location. The detailed considerations of the formula method lack such an effect.
 In view of the suggestions of \cite{Carlier2020} this work presents calculations of the terms
 $f_{1001}$ and $f_{1010}$, building upon the techniques introduced in \ref{sec_driven_coords}.
-A comparison between model method, formula method and the newly calculated coupling terms are shown.
+A comparison between rescaling method, formula method and the newly calculated coupling terms is shown.
 
 
 \subsection{AC-dipole as skew quadrupole}
 
 To start the section about the beam motion that is driven \emph{and} coupled,
-we illustrate the effect of an AC-dipole as coupling source by stating the analogy between the their
+we illustrate the effect of an AC-dipole as coupling source by stating the analogy between their
 impact on the particles motion.
-
-The AC-dipole inflicts a kick on the particle, \eqref{eq_ackick}, exactly like a quadrupole in thin-lens
-approximation. Therefore it is not surprising that the two cases can be regarded as similar effects.
 
 Throughout this chapter the following convention is used:
 %
@@ -70,7 +69,7 @@ The coupled motion for a single coupling source now reads
     }
     \zyp(s_j,N)
         \e{
-            i\left[\Delta\phi_x^+ + 2\pi Q_x \Theta(s_j,s_w) + 2\pi Q_y \Theta(s_j,s_w)\right]
+            i\left[\Delta\phi_x^+ + 2\pi (Q_x+Q_y) \Theta(s_j,s_w)\right]
             -i\pi\left[Q_x + Q_y\right]
         }
         \notag \\
@@ -81,7 +80,7 @@ The coupled motion for a single coupling source now reads
     }
     \zym(s_j,N)
         \e{
-            i\left[\Delta\phi_x^- + 2\pi Q_x \Theta(s_j,s_w) - 2\pi Q_y \Theta(s_j,s_w)\right]
+            i\left[\Delta\phi_x^- + 2\pi( Q_x-Q_y) \Theta(s_j,s_w)\right]
             -i\pi\left[Q_x - Q_y\right]
         }
         \komma
@@ -96,7 +95,7 @@ with
 %
 The $\Theta(s_j,s_w)$ terms come from the wrapping around of the phase advance. Noting that 
 $\zyp(s_j,N) = \sqrt{2I_y}\e{2\pi i N Q_y + \varphi(s_j)}$
-one can bring this in a form similar to \eqref{eq_forced_motion}
+one can bring this in a form similar to \eqref{eq_driven_simpl2}
 %
 \begin{align}
     h_x(s_j,N) =& \zxp(s_j,N) \notag \\
@@ -130,22 +129,23 @@ The following table summarises which quantities get replaced
     AC dipole & coupling \\
     \hline
     \hline
-    $ A_\theta $        & $ J_{1,w} $ \\
+    $ A_\theta $        & $ J_{1,w}\sqrt{J_y\beta_y}$ \\
     $ \varphi_x(s_d) $  & $ \varphi_y(s_j) - \varphi_y(s_w) \mp \varphi_x(s_w)$ \\
     $ \Qd{x} $          & $ Q_y $\\
     \hline
 \end{tabular}
 \end{center}
-Thus, a single coupling source acts like an AC dipole with the tune of the other plane as driving frequency.
-From another perspective, the AC dipole couples the beam's motion to its oscillation.
+Thus, the AC dipole couples the beam's motion to its oscillation, similar to a skew quadrupole which couples
+horizontal and vertical motion.
 
 % --------------------------------------------------------------------------------------------------
 % --- main part ------------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------------------------
 \subsection{Derivation of the coupled driven motion}
 
-The derivation of the coupled driven motion follows a similar path to the derivation of the 
-coupled free motion but in the regime of driven motion, so the normal form approach has to be used.
+The derivation of the coupled driven motion presented in this section follows a similar path to the derivation of the 
+coupled free motion but in the regime of driven motion. As in section~\ref{sec_coupling_rdts} the normal form approach is
+used.
 Figure~\ref{fig_sketch_drv_ac} illustrates the procedure. The coordinates are propagated in normal form
 space and transformed to physical space at $s_d-\epsilon$, directly in front of the AC-dipole. Then
 an AC-dipole kick $\Delta h_x(N)$ is performed and the physical coordinate is transformed back to
@@ -183,7 +183,7 @@ the kick. The following holds:
     \fstop
 \end{equation}
 %
-For the transformation back to normal form space the inverse of \eqref{eq_h_from_z} has to be applied:
+For the transformation back to normal form space \eqref{eq_z_from_h} has to be applied:
 %
 \begin{equation}
   \zeta = \e{\liemap{-F}} h = h + [-F,h] + O(h^3)
@@ -217,7 +217,7 @@ The normal form of the kicked particle motion now reads
 where the tilde denotes undriven coordinates.
 Propagation to the next turn is just a simple application of the transformation $R_x$, turning the
 coordinate $\tilde{\zeta}_z^+(s,0)$ into $\tilde{\zeta}_z^+(s,1)$. The operator in front of $\Delta h_z$
-is written out explicitely for now to avoid confusion. Its effect will be calculated later.
+is written out explicitly for now to avoid confusion. Its effect will be calculated later.
 At turn 1, just in front of the AC-dipole, the particle's coordinate reads
 %
 \begin{align}
@@ -414,7 +414,7 @@ For readability the fourier transforms are listed seperately:
     \fstop
 \end{align}
 %
-From this it is easy to calculate the driven coupling term,
+From this it is easy to calculate the driven coupling term, as obtained from a measurement of the horizontal signal
 %
 \begin{align}
     f_{1001}^{\text{drv}*} &=
@@ -433,25 +433,26 @@ From this it is easy to calculate the driven coupling term,
 From \equationref{eq_drv_f1001_final} it gets apparent that the AC-dipole adds two effects to the $f$~term:
 the first one is creating an additional source at the position of the AC-dipole, proportional to the $f$~term
 at this position
-and the second, minor, one is a mixing of $f_{1001}$ and $f_{1010}$. The mixing in of the other $f$~term is
+and the second, minor, one is a mixing of $f_{1001}$ and $f_{1010}$. The mixing of the other $f$~term is
 suppressed by the factors $\lambda_{y}$ and the denominator $\sin\left[\pi (\Qd{y} + Q_x)\right]$.
 
 % --------------------------------------------------------------------------------------------------
-\subsection{Model and Formula methods}
+\subsection{Rescaling and Formula methods}
 
-For the sake of completeness, model and formula methods will be stated here. The detailled derivation
-can be looked up in the respective publications \cite{Miyamoto2008}.
+For the sake of completeness, rescaling and formula methods will be stated here. The detailed derivation
+can be looked up in the respective publications~\cite{Tomas2002, Miyamoto2008}.
 
-The compensation by model simply rescales the coupling terms $f_{1001}$ and $f_{1010}$ by their expected
+The compensation by rescaling simply rescales the coupling terms $f_{1001}$ and $f_{1010}$ by their expected
 denominators:
 %
 \begin{align}
-    f_{1001} &= \frac{\sin(\Qd{y} - Q_x) \sin(\Qd{x} - Q_y)}{\sin(Q_x-Q_y)}f_{1001}^\text{drv}
+    f_{\pm,x}^\text{drv} &= \frac{\sin(Q_x\pm Q_y)}{\sin(\Qd{x} \pm  Q_y)}f_{\pm}
     \notag \\
-    f_{1010} &= \frac{\sin(\Qd{y} + Q_x) \sin(\Qd{x} + Q_y)}{\sin(Q_x+Q_y)}f_{1010}^\text{drv}
+    f_{\pm,y}^\text{drv} &= \frac{\sin(Q_x\pm Q_y)}{\sin(\Q_x \pm  \Qd{y})}f_{\pm}
     \fstop
 \end{align}
 %
+The index $x/y$ refers to the plane in which the $f$~term is measured.
 For the formula method, a complete expression for the driven RDTs can be derived:
 %
 \begin{align}
@@ -473,7 +474,7 @@ For the formula method, a complete expression for the driven RDTs can be derived
 \end{align}
 %
 for the $f$~terms as measured from the signal in the horizontal plane, and
-%
+
 \begin{align}
     f_{\pm,y} = \frac{1}{\sqrt{1-\lambda_y^2}}
         \frac{
@@ -551,7 +552,7 @@ coupling will iteratively improve the precision of the coupling measurement.
   \caption{Comparison of the three methods with a coupling bump in the lattice.
     The absolute value of coupling term $f_{1001}$ is shown.
     Formula method and new method (called \emph{new formula}) manage to reproduce well the $f_{1001}$.
-    The naive model method underestimates the $f$~term in the bump.
+    The naive rescaling method underestimates the $f$~term in the bump.
     The offset between \emph{meas} and the reconstructed values is due to the reconstruction
     of the complex signal.
     The right plot shows the region in which the AC-dipole is located.
@@ -562,9 +563,9 @@ coupling will iteratively improve the precision of the coupling measurement.
 %
 In Figure~\ref{fig_comp_felix_ryo_ac_outside} the case of a coupling bump in the lattice is shown.
 The AC-dipole is located at $s=\SI{9846}{m}$ in a region with low coupling. As can be seen on the right plot
-the jump at the location of the AC-dipole non-existing. The formula method and the new method show a good
-agreement with the measured values. The model method underestimates the $f$~term inside the bump but outside
-it's accuracy is also excellent.
+the jump at the location of the AC-dipole is non-existing. The formula method and the new method show a good
+agreement with the measured values. The rescaling method underestimates the $f$~term inside the bump but outside
+its accuracy is also excellent.
 The measured values show an offset which is due to the reconstruction of the complex signal from the
 momentum \eqref{eq_recon_AB} which picks up coupling sources from in between $s_a$ and $s_b$.
 %
@@ -589,7 +590,7 @@ The jump at the position of the AC-dipole is well reproduced, as expected from \
 \section{Conclusion}
 
 Current methods to calculated the coupling terms $f_{1001}$ and $f_{1010}$ in the LHC have been revised and
-brought into context of recent findings. The AC-dipole create a jump in the RDTs at its location and this jump
-can be demonstrated for the coupling RDTs in simulations. A study of sextupolar RDTs is presented in \cite{Carlier2020}.
+brought into context of recent findings. The AC-dipole creates a jump in the RDTs at its location and this jump
+can be demonstrated for the coupling RDTs in simulations. A study of sextupolar RDTs is presented in~\cite{Carlier2020}.
 The calculation of a corrected coupling RDT has been performed and its accuracy in the case of small coupling
 has been demonstrated in simulations.

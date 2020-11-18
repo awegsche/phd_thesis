@@ -506,9 +506,9 @@ The transformation from complex Courant-Snyder coordinates to normal form coordi
 using the generating function $F$:
 %
 \begin{equation}
-    \zeta_z^\pm = \e{\liemap{F}} h_z^\pm
+    \zeta_z^\pm = \e{-\liemap{F}} h_z^\pm
     \fstop
-    \label{eq_hfromz}
+    \label{eq_z_from_h}
 \end{equation}
 %
 The \emph{normal form coordinates}\index{normal form!coordinates} $\zeta_z^\pm$
@@ -540,8 +540,8 @@ the normal form one turn map:
         \begin{tikzcd} [row sep=large,column sep=8em]
             \vec{\zeta}(N) \arrow[r, "\nfMotion=\e{\liemap{\phiave{H}}}R"]
                 & \vec{\zeta}(N+1) \\
-            \vec{h(N)} \arrow[r, "\mathscr{M}_\text{OT}"'] \arrow[u, "\e{\liemap{F}}"]
-                & \vec{h(N+1)} \arrow[u, "\e{\liemap{F}}"']
+            \vec{h(N)} \arrow[r, "\mathscr{M}_\text{OT}"'] \arrow[u, "\e{-\liemap{F}}"]
+                & \vec{h(N+1)} \arrow[u, "\e{-\liemap{F}}"']
         \end{tikzcd} 
     \label{}
 \end{equation}

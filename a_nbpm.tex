@@ -6,17 +6,26 @@ One of the most important figures of merit of optics correction is the deviation
 from the model values,
 the $\beta$~\emph{beating}. A deviation from the ideal values has a negative effect on machine performance.
 Too high $\beta$~beating can even put machine components in danger and a threshold for operation with
-physics filling scheme have to be imposed for machine protection reasons.
+physics filling scheme has to be imposed for machine protection reasons.
 
 Furthermore, large $\beta$~beating deteriorates other linear and especially non-linear optics measurements
 and correction methods. Therefore a good control of the $\beta$~beating can be essential for higher-order
 correction steps.
 
-This chapter summarises classical $\beta$~beating methods from turn-by-turn data and describes in
-detail the improvements made by the \emph{analytical N-BPM method}.
+This chapter summarises classical $\beta$~beating methods from turn-by-turn data in section~\ref{sec_classical_beta_meas}
+and describes in detail a new algorithm, the \emph{analytical N-BPM method},
+which improves speed and performance by calculating analytically the error propagation
+in sections~\ref{sec_corrected_beta_from_phase} through \ref{sec_corr_matr}.
+Accuracy and precision of the new method are assessed using simulations of current LHC optics and design
+optics for the High-Luminosity upgrade of the LHC in sections~\ref{sec_bad_combs} and \ref{sec_hllhc_nbpm}.
+
+With the exception of the first two sections, which set the context of the present study and introduce the
+mathematical tools, this chapter represents original work.
+
 \end{chapterinfo}
 
 \section{$\beta$~function measurement from turn-by-turn data}
+\label{sec_classical_beta_meas}
 
 \subsection{Three BPM method}
 
@@ -411,6 +420,7 @@ This is a limiting factor when the N-BPM method is used for pushed optics with v
 % --------------------------------------------------------------------------------------------------
 
 \section{Corrected $\beta$ from phase formula}
+\label{sec_corrected_beta_from_phase}
 \equationref{eq_3bpm_method} assumes that no error is present in the region between the involved BPMs.
 A new formula has been developed in \cite{Franchi2016} that takes quadrupolar errors into account.
 This formula has the constraint that only the $\beta$~function at the position of the first BPM can
@@ -685,6 +695,7 @@ The result is shown in Figure~\ref{fig:hist1518_with_everything}. The accuracy i
 lattice, which in turn is much greater than the old formula, \eqref{eq_3bpm_method}.
 
 \section{Calculation of the correlation matrix}
+\label{sec_corr_matr}
 
 The Jacobian $ \mathbf{T} $ of \eqref{eq:Tij} can be split into blocks 
 %
@@ -730,6 +741,7 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
 %In Equations~(\ref{eq:TK}) and~(\ref{Ts}) $\delta \epsilon = 0$ means \[\delta K_w = \delta s_w = \delta \phi_w = 0,\quad \forall w.\]
 
 \section{Removal of bad BPM combinations}
+\label{sec_bad_combs}
 
 
 \begin{figure}
@@ -801,6 +813,7 @@ The top diagram of Figure~\ref{fig:compare_NBPM_to_3BPM} shows that the error of
 
 
 \section{HL-LHC}
+\label{sec_hllhc_nbpm}
 The ATS optics \cite{Fartoukh2013} is the baseline choice for the HL-LHC and our optics measurement
 tools have to be prepared for the challenges imposed by such an optics. In Figure~\ref{fig:compare_ATS}
 the three methods are compared in the same way as in Figure~\ref{fig:compare_NBPM_to_3BPM}.
@@ -824,6 +837,7 @@ The Monte Carlo simulations failed for low $ \beta^* $ optics and so we were not
 able to evaluate the systematic errors independently of the success of particle tracking.
 
 \section{Conclusion}
+\label{sec_nbpm_concl}
 
 A new method for the measurement of beta and alfa functions has been
 developed based on the existing N-BPM method.

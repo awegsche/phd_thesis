@@ -1,11 +1,17 @@
 \chapter{Forced Coupling Resonance Driving Terms} 
- \label{sec_coupling}
+ \label{ch_forced_coupling}
 
 \begin{chapterinfo}
     The goal of this chapter is the study of the form of resonance driving terms when measured from driven motion.
-    Since the driving force of the AC-dipole changes the particle's motion, measured quantities are changed as well.
+    The driving of the particle motion by an AC-dipole changes measured quantities like the optics functions $\beta$, $\alpha$
+    and the phase but also resonance driving terms. 
     Recent findings suggest that the current models describing the forced RDTs are neglecting a local effect
-    of the AC-dipole on RDTs.
+    of the AC-dipole, creating a jump of the amplitude of the RDTs $f_{jklm}$. The case of sextupolar RDTs has been studied.
+    In this work, coupling RDTs are calculated for the first time in view of the new findings.
+    
+    Original work is presented in form of the derivation of the driven RDT $f_{1001}$ and the simulation study
+    of the new formula, including comparisons to existing descriptions.
+    Sections~\ref{sec_acd_as_skew} and \ref{sec_rescaling_and_ryo} review existing work.
 \end{chapterinfo}
 
 \section{Driven coupled motion}
@@ -17,18 +23,19 @@ measured RDTs are not equal to the free ones.
 In the past, two methods were used to model the effect of the driven motion, the first is a simple
 rescaling of the tune dependent denominators of the RDTs, this method will therefore be called \emph{rescaling} method.
 
-The second one \cite{Miyamoto2010} applies the findings of a detailed study of the driven particle motion
-which provides a compensation formula for all optics parameters that enter into the coupling terms. This method will
-be called \emph{formula method} in the following.
+The second one \cite{Miyamoto2010} applies the findings of a detailed study of the driven particle motion using the equations of motion of the particle in the accelerator with AC-dipole.
+This method provides reconstruction and compensation formulae for all optics parameters,
+including those that enter into the coupling terms. This method will be called \emph{formula method} in the following.
 
 Recent findings \cite{Carlier2020} show that the AC-dipole locally affects RDTs and introduces
-a jump in amplitude of the RDTs at its location. The detailed considerations of the formula method lack such an effect.
+a jump in amplitude of the RDTs at its location. Even the detailed considerations of the formula method lack such an effect.
 In view of the suggestions of \cite{Carlier2020} this work presents calculations of the terms
 $f_{1001}$ and $f_{1010}$, building upon the techniques introduced in \ref{sec_driven_coords}.
 A comparison between rescaling method, formula method and the newly calculated coupling terms is shown.
 
 
 \subsection{AC-dipole as skew quadrupole}
+\label{sec_acd_as_skew}
 
 To start the section about the beam motion that is driven \emph{and} coupled,
 we illustrate the effect of an AC-dipole as coupling source by stating the analogy between their
@@ -144,8 +151,9 @@ horizontal and vertical motion.
 \subsection{Derivation of the coupled driven motion}
 
 The derivation of the coupled driven motion presented in this section follows a similar path to the derivation of the 
-coupled free motion but in the regime of driven motion. As in section~\ref{sec_coupling_rdts} the normal form approach is
-used.
+coupled free motion, leveraging the normal form approach as in section~\ref{sec_coupling_rdts}.
+The major difference is the presence of AC-dipole kicks, \eqref{eq_ackick} that appear in each turn.
+These kicks have to be interleaved with the particles turn-by-turn motion in the normal form space.
 Figure~\ref{fig_sketch_drv_ac} illustrates the procedure. The coordinates are propagated in normal form
 space and transformed to physical space at $s_d-\epsilon$, directly in front of the AC-dipole. Then
 an AC-dipole kick $\Delta h_x(N)$ is performed and the physical coordinate is transformed back to
@@ -438,6 +446,7 @@ suppressed by the factors $\lambda_{y}$ and the denominator $\sin\left[\pi (\Qd{
 
 % --------------------------------------------------------------------------------------------------
 \subsection{Rescaling and Formula methods}
+\label{sec_rescaling_and_ryo}
 
 For the sake of completeness, rescaling and formula methods will be stated here. The detailed derivation
 can be looked up in the respective publications~\cite{Tomas2002, Miyamoto2008}.

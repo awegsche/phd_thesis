@@ -1,12 +1,6 @@
 \chapter{Theoretical Foundations}
 \label{ch_introduction}
 
-\KOMAoptions{headsepline=true}
-\lohead{\leftmark}
-\rehead{\rightmark}
-\pagenumbering{arabic}
-\setcounter{page}{1}
-
 \begin{chapterinfo}
     This chapter is a general introduction to accelerator physics.
     The goal of this introduction is to collect all the necessary tools that are needed to develop
@@ -225,8 +219,8 @@ The transfer matrix of a focusing quadrupole reads
 \begin{equation}
     \mat{M}_{QF} =
     \begin{pmatrix}
-        \cos K & \frac{1}{\sqrt{k}} \sin K \\
-        -\sqrt{k}\sin K & \cos K
+        \cos \sqrt{K} & \frac{1}{\sqrt{k}} \sin \sqrt{K} \\
+        -\sqrt{k}\sin \sqrt{K} & \cos \sqrt{K}
     \end{pmatrix}
 \end{equation}
 %

@@ -955,11 +955,24 @@ Repeating the calculations of section~\ref{sec_coupling_rdts} for all transverse
 The Fourier transform of normal form coordinates reads
 %
 \begin{equation}
-    \four{\zeta_z^\pm}(\nu) = \sqrt{2I_z}\e{i\varphi_{z,0}} \delta(Q_z \pm \nu)
+    \four{\zeta_z^\pm}(\omega) = \sqrt{2I_z}\e{i\varphi_{z,0}} \delta(Q_z \pm \omega)
     \komma
 \end{equation}
 %
 where $\delta(x)$ denotes the Dirac delta~function.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/spectrum_plot}
+    \caption{
+        This example plot shows the fourier transform of horizontal and vertical particle motion
+        from simulations with an AC-dipole and coupling sources. The vertical and horizontal fractional 
+        driven tunes are $Q_x^d=0.270$ and $Q_y^d=0.322$.
+    }
+    \label{fig_cplx_spctr}
+\end{figure}
+Figure~\ref{fig_cplx_spctr} shows the spectrum of $h_x^+$ and $h_y^+$ excited by an AC-dipole and with coupling.
+The driven fractional tunes are $Q_x^d=0.270$, $Q_y^d=0.322$. The respective main lines are well dominating the spectrum
+and the secondary lines induced by coupling are clearly visible at the position of the respective other plane's tune.
 With this one can introduce a shorthand notation for the spectral lines $\four{h_z^\pm}(n_xQ_x+n_yQ_y)$:
 %
 \begin{align}

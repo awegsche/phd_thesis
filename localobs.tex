@@ -10,9 +10,29 @@
 
 \newcommand{\maxfigwidth}{8.5cm}
 
+\begin{chapterinfo}
+  Finding a truly local observable for perturbations of the linear beam dynamics is a nontrivial task,
+  contrary to the nonlinear regime, where local resonance driving terms already exist.
+  The phase beating between two locations depends on errors outside of this region.
+  However, phase advances between four nearby locations can be arranged in a way to cancel
+  the contributions from errors outside of this region up to first order.
+  The resulting local observable contains valuable information about quadrupolar lattice imperfections.
+  This report seeks to explore this local phase beating observable and to test its usefulness
+  for gaining insight in the linear optics imperfections of a circular accelerator. 
+
+  This chapter is entirely based on original work of the author. Section~\ref{sec_lobster_intro}
+  gives a brief introduction and motivation for the presented work. Section~\ref{sec:localobs} presents
+  the main part with a rather technical derivation of the local observable.
+  A thorough verification of the vailidity and possible use cases are presented
+  in section~\ref{sec:robustness_check}, using the LHC as example.
+  In section~\ref{sec:measurements} actual measurement data, acquired during LHC beam commissionning,
+  conducted by the OMC team, is compared to the simulated results.  
+\end{chapterinfo}
+
+
 
 \section{Introduction}
-
+\label{sec_lobster_intro}
 
 Special accelerator segments like the interaction regions of colliders
 need a precise control of local optics which becomes a challenging task
@@ -76,19 +96,30 @@ located at popsition $s_1$:
 \begin{figure}
   \centering
   \includestandalone[width=0.7\linewidth]{fig_local_error}
+  \\[1.5em]
+  \includestandalone[width=0.7\linewidth]{fig_local_error_inside}
   \caption{
-    Sketch of the effect of a focus error $\Delta k$ on $f_{2000}$.
+    Sketch of the effect of a focus error $\Delta K$ on $f_{2000}$.
     The error creates a phase advance beating $\propto \e{2i\varphi\m}$.
-    If the model phase advance between two BPMs is exactly $\pi$, the effect is the same and the
-    phase advance beating is unaffected by this error.
     The incontinuity at the position of the source is caused by the propagation of the phase
     beating around the ring.
+    TOP:
+    If the error lies outside the interval from BPM1 to BPM2 and
+    the model phase advance between the two BPMs is exactly $\pi$, the effect is the same and the
+    phase advance beating is unaffected by this error.
+    BOTTOM:
+    If the error lies in between the two BPMs no cancellation is possible.
   }
   \label{fig_local_error}
 \end{figure}
 %
-Figure~\ref{fig_local_error} illustrates the effect of a single focusing error on the RDT.
+The top plot of Figure~\ref{fig_local_error} illustrates the effect of a single focusing error on the RDT.
+In the case of a model phase advance of $\pi$ or a multiple of it, the effect is identical on both
+BPMs, if the error does not occur in between them. In the other case both BPMs experience different effects
+on their RDTs as shown in the bottom plot.
 
+From \eqref{eq_tune_shift_quad} one can see that the effect on the phase advance depends,
+up to first order, on global terms only in the form of $\re{f_j - f_i}$.
 
 
 Under the assumption that coupling and higher order imperfections are negligible we
@@ -632,7 +663,7 @@ The case \combtoangle{45}{90}{45} is sketched in Fig.~\ref{fig_thetacomb_ij-kl}.
 %
 \begin{figure}
   \centering
-  \includegraphics[width=.3\linewidth]{figThetacombijkl}
+  \includegraphics[width=.4\linewidth]{figThetacombijkl}
   \caption{The phase advances of the combination
     $\varphi_{ij}=\SI{45}{\degree}$, $\varphi_{jk}=\SI{90}{\degree}$, $ \varphi_{kl}=\SI{45}{\degree}$.
 The phase advance $\varphi_{il} = \SI{180}{\degree}$ causes $\cot\varphi_{jl}\m$ to diverge.

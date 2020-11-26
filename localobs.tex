@@ -20,7 +20,7 @@ if the optics are pushed to more extreme settings. New methods and more
 precise hardware are required to measure and correct machine
 imperfections such as quadrupole errors. In the case of a collider the
 exact measurement and control of the $\beta$ function at the interaction point is important for operation of
-the machine and to optimise luminosity~\cite{jaime}.
+the machine and to optimise luminosity~\cite{Coello2020}.
 
 %For the correction of nonlinear lattice imperfections, resonance driving terms can successfully be
 %used. This technique is performed successfully in the routine optics measurement and correction of
@@ -63,8 +63,32 @@ of the signal and, thus, not affected by calibration errors.
 
 The phase advance between two elements of an accelerator depends, in general, on all the elements in
 the ring.
+Focusing errors are of particular interest with their first order influence on the $\beta$~function.
+The impact they cause on RDTs can be seen in \eqref{eq_f2000}, explicitly for a single error source
+located at popsition $s_1$:
+%
+\begin{equation}
+  f_{2000,j} = \delta K \beta_x(s_1) \e{2i\left[\varphi(s_j) - \varphi(s_1)\right]}
+\end{equation}
+%
 %Therefore, all lattice imperfections in the machine alter the phase advance between two
 %arbitrary positions.
+\begin{figure}
+  \centering
+  \includestandalone[width=0.7\linewidth]{fig_local_error}
+  \caption{
+    Sketch of the effect of a focus error $\Delta k$ on $f_{2000}$.
+    The error creates a phase advance beating $\propto \e{2i\varphi\m}$.
+    If the model phase advance between two BPMs is exactly $\pi$, the effect is the same and the
+    phase advance beating is unaffected by this error.
+    The incontinuity at the position of the source is caused by the propagation of the phase
+    beating around the ring.
+  }
+  \label{fig_local_error}
+\end{figure}
+%
+Figure~\ref{fig_local_error} illustrates the effect of a single focusing error on the RDT.
+
 
 
 Under the assumption that coupling and higher order imperfections are negligible we
@@ -109,7 +133,16 @@ studied.
 We express the betatron motion in the language of normal form and Courant-Snyder coordinates
 \cite{Bartolini1997}.
 
-The phase beating due to quadrupolar field errors is given by \eqref{eq_phasebeating_1st_app}.
+The phase beating due to quadrupolar field errors is given by \eqref{eq_phasebeating_1st_app}
+which is repeated here for convenience:
+%
+\begin{align}
+  \Delta\varphi_{ij} = \bar{h}_{ij} - 8 \sin^2\varphi_{ij}\m\re{f_i} - 8\sin\varphi_{ij}\m \cos\varphi_{ij}\m\im{f_i} 
+ +O(f^2)
+\fstop
+\label{eq_phasebeating_1st_app_again}
+\end{align}
+%
 $\bar{h}_{ij}$ only depends on quadrupole errors inside the range $[i,j]$ and is therefore a local
 term. The RDTs $f_i$ in \eqref{eq_phasebeating_1st_app}, on the other hand, contain global contributions.
 
@@ -117,8 +150,6 @@ The following subsections describe the derivation of an expression for local pha
 cases: The first is the general case with arbitrary phase advances between the BPMs. A combination of
 four BPMs is necessary to calculate a pure local term. The second case considers only two BPMs with a
 phase advance of $\pi$.
-
-
 
 % --------------------------------------------------------------------------------------------------
 \subsection{The general case -- phase advances different from \texorpdfstring{$n\pi$}{n*pi}}

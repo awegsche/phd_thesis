@@ -521,9 +521,9 @@ Then we can use the exponential parameterisation of Lie groups to move away from
 with Hamiltonian $H$%
 \footnote{
     Actually, \eqref{eq_exponential_map} is valid for a Hamiltonian of thin elements only.
-    But the Lie map formalism is valid for the full thick lens description. The exponential
+    But the Lie map formalism applies also to the full thick lens description. The exponential
     map just becomes 
-    $x(s_b) = \e{\liemap{LH^\text{thick}}}x(s_a)$ for a thick lens Hamiltonian.
+    $x(s_b) = \e{\liemap{LH^\text{thick}}}x(s_a)$ for a thick lens Hamiltonian $H^\text{thick}$.
 }:
 %
 \begin{equation}
@@ -829,11 +829,25 @@ Only normal quadrupolar field errors are considered.
 In this case the generating function $F$ reads
 %
 \begin{equation}
-  F(s_j) = f_{2000,j} \left( \zeta_{x,s_j}^+ \right) ^2 + f_{0200,j} \left( \zeta_{x,s_j}^- \right)^2 \notag
+  F(s_j) =
+  f_{2000,j} \left( \zeta_{x,s_j}^+ \right) ^2 + f_{0200,j} \left( \zeta_{x,s_j}^- \right)^2 \notag
+  f_{0020,j} \left( \zeta_{y,s_j}^+ \right) ^2 + f_{0002,j} \left( \zeta_{y,s_j}^- \right)^2 \notag
   %\\
   %&f_{0020,j} \left( \zeta_y^+ \right)^2 + f_{0002,j} \left( \zeta_y^- \right)^2
   \komma
   \label{eq_F_quad}
+\end{equation}
+%
+with
+%
+\begin{equation}
+    f_{2000,j} = \frac{
+        \sum\limits_w^W \delta K_{w,1}\beta_{x,w}\e{2i\varphi_{x,wj}}
+    }{
+        8\left( 1-\e{4i\pi Q_x}\right)
+    }
+    \fstop
+    \label{eq_f2000}
 \end{equation}
 %
 The complex Courant-Snyder coordinates can be calculated from the normal form coordinates by
@@ -848,9 +862,9 @@ Using the Poisson bracket identity \eqref{eq_poiss_br_ident} one can calculate
 %
 \begin{equation}
 \begin{matrix*}[l]
-     \liemap{F} \zxp  &= \left[f_{0200} \zxmto{2}, \zxp \right]  &= 2i f_{0200} \zxm \komma\notag \\
-     \liemapn{F}{2}\zxp &= \left[f_{2000} \zxpto{2}, 2i f_{0200} \zxm \right]
-      &= -4 \left| f_{2000}\right|^2 \zxp
+     \liemap{F} \zxp  &= \left[f_{0200} \zxmto{2}, \zxp \right]  &= 4i f_{0200} \zxm \komma\notag \\
+     \liemapn{F}{2}\zxp &= \left[f_{2000} \zxpto{2}, 4i f_{0200} \zxm \right]
+      &= - \left| 4f_{2000}\right|^2 \zxp
      \fstop
 \end{matrix*}
 \end{equation}
@@ -858,9 +872,9 @@ Using the Poisson bracket identity \eqref{eq_poiss_br_ident} one can calculate
 This can be used to calculate the C-S coordinate at position $s_j$ and turn $N$:
 %
 \begin{align}
-  h_x^+(s_j, N) &= e^{:F:}\zeta_{x,s_j}^+(N) \notag \\
-  &= \zeta_{x,s_j}^+(N) + 4if_{2000,j}^* \zeta_{x,s_j}^-(N) 
-  + \left| 4 f_{2000,j} \right|^2 \zeta_{x, s_j}^+(N) +
+  h_x^+(s_j, N) &= e^{:F:}\zeta_{x}^+(s_j,N) \notag \\
+  &= \zeta_{x}^+(s_j,N) + 4if_{2000,j}^* \zeta_{x}^-(s_j,N) 
+  + \frac{1}{2}\left| 4 f_{2000,j} \right|^2 \zeta_{x}^+(s_j,N) +
   O(f^3)
   \label{eq_h_2ndorder}
 \end{align}

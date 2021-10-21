@@ -14,10 +14,11 @@
     parameters from Hamiltonian terms later on. Since this is a mathematically heavy subject,
     the author tried to find the optimum between brevity and rigor. 
     
-    No original work is presented in this chapter unless specified. The author did insert the
-    quadrupole example in sections~\ref{sec_beam_optics} and \ref{sec_hamil_lie} without consulting
-    any literature but these examples are so basic that the result is well known and the derivations
-    are for sure standard exercises in lectures on accelerator physics.
+    No new discoveries are presented in this chapter. It is a mere summary of the necessary theory.
+    %No original work is presented in this chapter unless specified. The author did insert the
+    %quadrupole example in sections~\ref{sec_beam_optics} and \ref{sec_hamil_lie} without consulting
+    %any literature but these examples are so basic that the result is well known and the derivations
+    %are for sure standard exercises in lectures on accelerator physics.
 
 \end{chapterinfo}
 
@@ -96,7 +97,7 @@ transformed into a system $\{x,y,s\}$ with the properties:
 \end{align}
 %
 and a longitudinal coordinate $s$ along the reference orbit.
-\begin{figure}[h]
+\begin{figure}[ht]
     \includestandalone{frenetserret}
     \caption{
         The Frenet-Serret coordinate system which is moving along the design orbit of particles
@@ -153,7 +154,7 @@ $\phi(s)$ is called the \emph{betatron phase} and satisfies the following proper
 %
 The trajectories of particles with an action $J$ are limited by an envelope function $\sqrt{2J\beta}$ as illustrated in Fig.~\ref{fig_part_traj}.
 %
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includestandalone[width=.49\linewidth]{particle_traj_beta_1}
     \hfill
@@ -164,7 +165,7 @@ The trajectories of particles with an action $J$ are limited by an envelope func
 %
 Actual $\beta$~functions are shown in Fig.~\ref{fig_beta}.
 %
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \footnotesize
   \includestandalone[width=\linewidth]{./twiss/IP_beta_x}
@@ -358,6 +359,7 @@ and ${\phi_{ab} = 2\pi Q}$:
 % --- Courant Snyder Coordinates
 % --------------------------------------------------------------------------------------------------
 \subsection{Courant-Snyder coordinates}
+\label{sec_intro_cs}
 If one plots the phase space of a particle at a certain position $s_a$ over many turns, it draws an
 ellipse with area $2J_z\pi$ where $J_z$ is called \emph{action}.
 Particle motion is easier expressed in Courant-Snyder coordinates \cite{Courant1958, Bazzani1994}
@@ -379,7 +381,7 @@ Particle motion is easier expressed in Courant-Snyder coordinates \cite{Courant1
     \label{eq_cs_matrix}
 \end{equation}
 %
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includestandalone{figures/xp_linear}
     \hspace{1cm}
@@ -474,14 +476,14 @@ The Hamiltonian equations of motion \cite{Landau1976} read
 %
 for canonical variables $z$ and $p_z$.
 The previous example of a quadrupole is again used to demonstrate this approach.
-The Hamiltonian for particle moving through a single quadrupole reads
+The Hamiltonian for a particle moving through a single quadrupole reads
 %
 \begin{equation}
     H = \frac{x\delta}{\rho} + \frac{1}{2}\left( x^2 - y^2 \right) + \frac{p_x^2+p_y^2}{2(1+\delta)}
-    \label{eq_hamil_quad}
+    \label{eq_hamil_quad_delta}
 \end{equation}
 %
-In the simple example at hand, on-momentum particles are considered:
+In the simple example at hand, only on-momentum particles are considered:
 %
 \begin{equation}
     H = \frac{1}{2}\left( x^2 - y^2 \right) + \frac{p_x^2+p_y^2}{2}
@@ -599,10 +601,10 @@ In the formalism of complex CS-coordinates, a transfer map can be written as
 In the linear case, $\mat{M}$ is a $4\times 4$ matrix and the indices
 and for each of the four coordinates, a sum expression can be written
 \begin{align}
-    h_x^+(s_b) = m^1_{1} h_x^+(s_a) + \conj{m^1_{1}} h_x^-(s_a)
-        + m^1_{2} h_y^+(s_a) + \conj{m^1_{2}} h_y^-(s_a) \notag \\
-    h_x^-(s_b) = m^2_{1} h_x^+(s_a) + \conj{m^2_{1}} h_x^-(s_a)
-        + m^2_{2} h_y^+(s_a) + \conj{m^2_{2}} h_y^-(s_a) 
+    h_x^+(s_b) = m^1_{1} h_x^+(s_a) + \conj{{m^1_{1}}} h_x^-(s_a)
+        + m^1_{2} h_y^+(s_a) + \conj{{m^1_{2}}} h_y^-(s_a) \notag \\
+    h_x^-(s_b) = m^2_{1} h_x^+(s_a) + \conj{{m^2_{1}}} h_x^-(s_a)
+        + m^2_{2} h_y^+(s_a) + \conj{{m^2_{2}}} h_y^-(s_a) 
 \end{align}
 and analogously for the vertical coordinates. The coefficients $m_c^r$ denote the matrix elements of
 $\mat{M}$ at column $c$ and row $r$.
@@ -628,7 +630,7 @@ machine evolve in phase space, CS-space and normal form space.
 The irregular shape of in phase space is tilted to a more "upright" form in CS-space but only a
 transformation to normal form space flattens the trajectory to a circle.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includestandalone{figures/xp_nonlinear}
     \includestandalone{figures/cs_nonlinear}
@@ -948,7 +950,7 @@ The Hamiltonian of the whole accelerator reads
 \end{align}
 %
 with $H_w(s_a)$ being the Hamiltonian term from \eqref{eq_Hamil_sa}.
-The sum over $w$ in Eqs.~(\ref{eq_rdt}) and (\ref{eq_Hamil}) runs over each element $w$ in the accelerator.
+The sum over $w$ in Eq.~(\ref{eq_Hamil}) runs over each element $w$ in the accelerator.
 The accumulated phase shift due to the detuning between elements $i$ and
 $j$ reads:
 %
@@ -973,7 +975,7 @@ $I$ is the interval $[\min(i,j), \max (i,j)]$ and $\text{sgn}(x)$ denotes the si
 %
 \label{sec:phasebeating_K1_first}
 
-The total phase advance beating is then the sum of the accumulated detuning from Hamiltonian
+The total phase advance beating is then the sum of the accumulated detuning from Ha\-mil\-to\-nian
 terms and the phase beating from the RDTs:
 %
 \begin{equation}
@@ -1093,7 +1095,7 @@ If both are zero there is no coupled motion.
 \section{Calculation of optics functions}
 
 % --------------------------------------------------------------------------------------------------
-\subsection{$\beta$ function measurement}
+\subsection{\texorpdfstring{$\beta$}{beta}~function measurement}
 \label{sec_beta_meas}
 
 To calculate the $\beta$~function at a location $s$ in the machine, two methods are routinely used
@@ -1300,7 +1302,7 @@ Since the Fourier transform is linear, this identity can be propagated to the sp
 \end{equation}
 where $H(n_x,n_y)$ is the measured spectral line which is just the real projection of the complex line. 
 %
-Under the assumption that the region between $s_a$ and $s_b$ is free from non-linearities and coupling
+Under the assumption that the region between $s_a$ and $s_b$ is free from non-li\-nea\-ri\-ties and coupling
 the action $J_z$ does not change between the two positions and
 %
 \begin{align}
@@ -1339,7 +1341,7 @@ because $H^-(1,0) = 0$, one can express $A^+(0,n_y)$ and $B(n_x, 0)$ in terms of
 \end{align}
 %
 
-Which can now be plugged in Eq~(\ref{eq_f0101_f0110}) to calculate the amplitude of the coupling RDTs
+Which can now be plugged in Eq~(\ref{eq_abs_f_from_AB}) to calculate the amplitude of the coupling RDTs
 $f_{1001}$ and $f_{1010}$. To get the phase the starting point is, again, Eqs~(\ref{eq_A01}) -- (\ref{eq_B-10}).
 The phases of $A_{0.1},\,B_{1,0},\,A_{0,-1},\,B_{-1,0}$ contain the phases of the RDTs:
 %
@@ -1397,13 +1399,13 @@ At each turn an AC dipole located at position $s_d$ inflicts a kick to the beam.
 described in Courant-Snyder coordinates as
 %
 \begin{equation}
-    \Delta h_z(N) = i A_\theta\beta(s_d) \cos(2\pi \Qd{z} N)
+    \Delta h_z^+(N) = i A_\theta\beta(s_d) \cos(2\pi \Qd{z} N)
 \end{equation}
 %
 depending on the AC dipole frequency $\Qd{z}$ and the turn number $N$. Figure~\ref{fig_ac_kick} shows
 a schematic of the beam deflection for several turns.
 %
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includestandalone{figACkick}
     \caption{
@@ -1415,7 +1417,7 @@ a schematic of the beam deflection for several turns.
 For a small $\epsilon$ the C-S coordinates of the beam directly after the AC-dipole reads
 %
 \begin{equation}
-    h_z(s_d + \epsilon, N=0) = h_z(s_d+\epsilon) + \Delta h_z(N=0)
+    h_z^+(s_d + \epsilon, N=0) = h_z^+(s_d-\epsilon) + \Delta h_z^+(N=0)
     \label{eq_ackick}
 \end{equation}
 %
@@ -1428,11 +1430,11 @@ Then the coordinates can be propagated to an arbitrary position $s$ in the ring 
 expressions:
 %
 \begin{align}
-    h_z(s<s_d, N) &= R_{s-s_d}\left[R^N h_z(s_d) + R^N\Delta h_z(0) + \ldots + R\Delta h_z(N-1)\right] \notag\\
-    h_z(s>s_d, N) &= R_{s-s_d}\left[R^N h_z(s_d) + R^N\Delta h_z(0) + \ldots + R\Delta h_z(N-1) + \Delta h_z(N)\right] 
+    h_z^+(s<s_d, N) &= R_{s-s_d}\left[R^N h_z^+(s_d) + R^N\Delta h_z^+(0) + \ldots + R\Delta h_z^+(N-1)\right] \notag\\
+    h_z^+(s>s_d, N) &= R_{s-s_d}\left[R^N h_z^+(s_d) + R^N\Delta h_z^+(0) + \ldots + R\Delta h_z^+(N-1) + \Delta h_z^+(N)\right] 
     \komma\\
-    h_z(s<s_d, N) &= R_{s-s_d}\left[R^N h_z(s_d) + \sum\limits_{T=1}^N R^T\Delta h_z(N-T)\right] \notag\\
-    h_z(s>s_d, N) &= R_{s-s_d}\left[R^N h_z(s_d) + \sum\limits_{T=0}^N R^T\Delta h_z(N-T)\right]
+    h_z^+(s<s_d, N) &= R_{s-s_d}\left[R^N h_z^+(s_d) + \sum\limits_{T=1}^N R^T\Delta h_z^+(N-T)\right] \notag\\
+    h_z^+(s>s_d, N) &= R_{s-s_d}\left[R^N h_z^+(s_d) + \sum\limits_{T=0}^N R^T\Delta h_z^+(N-T)\right]
     \komma
     \label{eq_hz_ackick}
 \end{align}
@@ -1448,7 +1450,7 @@ with $R$ being the rotation map of the linear motion. For simplicity, the follow
 The cosine in \eqref{eq_ackick} can be expressed in complex form
 %
 \begin{align}
-    \Delta h_z(N) &= \frac{iA_\theta\beta(s_d)}{2} \left(
+    \Delta h_z^+(N) &= \frac{iA_\theta\beta(s_d)}{2} \left(
         \e{2\pi i \Qd{z} N} +
         \e{-2\pi i \Qd{z} N}
     \right) \notag\\
@@ -1468,9 +1470,9 @@ For the second line, $\delta_\pm$ is defined as
 Using the complex form of the cosine, the kick in \eqref{eq_hz_ackick} can be split into left and right moving parts:
 %
 \begin{multline}
-    h_z(s>s_d, N) = \\
+    h_z^+(s>s_d, N) = \\
     R_{s-s_d}\left[
-        R^N h_z(s_d) +
+        R^N h_z^+(s_d) +
         \frac{iA_\theta\beta(s_d)}{2}\left\{
             \sum\limits_{T=0}^N R^T \delta_+^{N-T}
             + \sum\limits_{T=0}^N R^T \delta_-^{N-T}
@@ -1510,8 +1512,8 @@ The two cases of \eqref{eq_ackick} differ only in one additional exponent of $R^
 \equationref{eq_ackick} can be written as
 %
 \begin{align}
-    h_z(s, N) = R_{s-s_d}R^N 
-    \Bigg[&h_z(s_d)  \notag \\
+    h_z^+(s, N) = R_{s-s_d}R^N 
+    \Bigg[&h_z^+(s_d)  \notag \\
         &+ \frac{iA_\theta\beta(s_d)}{2}\frac{1-(R^{-1}\delta_+)^{N+\Theta(s,s_d)}}{1-R^{-1}\delta_+}  \notag \\
         &+ \frac{iA_\theta\beta(s_d)}{2}\frac{1-(R^{-1}\delta_-)^{N+\Theta(s,s_d)}}{1-R^{-1}\delta_-}
     \Bigg]
@@ -1535,8 +1537,8 @@ and
 Those identities can be used to simplify the exponentials
 %
 \begin{align}
-    h_z(s, N) = R_{s-s_d}R^N 
-    \Bigg[&h_z(s_d)  \notag \\
+    h_z^+(s, N) = R_{s-s_d}R^N 
+    \Bigg[&h_z^+(s_d)  \notag \\
         &+ \frac{A_\theta\beta(s_d)}{4}\frac{1-\e{2\pi i Q_z^+(N+\Theta(s,s_d))}}{\e{i\pi Q_z^+}\sin\left( \pi Q_z^+ \right)}  \notag \\
         &- \frac{A_\theta\beta(s_d)}{4}\frac{1-\e{-2\pi i Q_z^-(N+\Theta(s,s_d))}}{\e{i\pi Q_z^-}\sin\left( \pi Q_z^- \right)}
     \Bigg]
@@ -1547,7 +1549,7 @@ Those identities can be used to simplify the exponentials
 The constant part of \eqref{eq_delta_written_out} can be put into 
 %
 \begin{equation}
-    \tilde{h}_z(s_d) \equiv h_z(s_d) + 
+    \tilde{h}_z^+(s_d) \equiv h_z^+(s_d) + 
     \left(
     \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}\lambda_z \e{i \pi Q_z^-}
     -\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)} \e{-i\pi Q_z^+}
@@ -1558,7 +1560,7 @@ The constant part of \eqref{eq_delta_written_out} can be put into
 Now, the driven motion is seperated off:
 %
 \begin{align}
-    h_z(s, N) = R_{s-s_d}R^N 
+    h_z^+(s, N) = R_{s-s_d}R^N 
     \Bigg[&\tilde{h}_z(s_d) 
     \notag \\
         &+ \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)} \e{-\pi i Q_z^-(2N+2\Theta(s,s_d)-1)} 
@@ -1566,13 +1568,13 @@ Now, the driven motion is seperated off:
         &- \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)} \e{\pi i Q_z^+(2N+2\Theta(s,s_d) -1)}
     \Bigg]
     \fstop
-    \label{eq_driven_simpl}
+    \label{eq_driven_simpl_R}
 \end{align}
 %
 and the linear rotation can be integrated into the terms:
 %
 \begin{align}
-    h_z(s, N) =
+    h_z^+(s, N) =
         &\tilde{h}_z(s, N) \notag \\
         &+\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}
         \e{i\left[-2\pi NQ_{z} - \varphi_{s_ds} + \pi Q_z^-(2N+2\Theta(s,s_d)-1)\right]}
@@ -1597,7 +1599,7 @@ Noting that
     }:
 %
 \begin{align}
-    h_z(s, N) =
+    h_z^+(s, N) =
         &\tilde{h}_z(s, N) \notag \\
         &+ \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}
         \e{i\left[-2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
@@ -1651,8 +1653,11 @@ the driven motion can be rewritten in the from
 %
 which is used in other works \cite{Miyamoto2008, Miyamoto2010}. 
 
-
+% --------------------------------------------------------------------------------------------------
+% Compensation
+% --------------------------------------------------------------------------------------------------
 \subsection{Compensation of linear parameters}
+\label{sec_comp}
 
 This section briefly summarises the compensation of the driven motion for the optics parameters
 $\beta$, $\alpha$ and $\phi$ \footnote{\cite{Miyamoto2008} and Ryoichi Miyamoto, private communication, Feb. 2017}.
@@ -1714,9 +1719,10 @@ This allows for $H(1,0)$ to be rewritten
 %
 \begin{align}
   H(1,0) =&\: \frac{A_\theta\beta(s_d)}{4\sin(\pi Q_z^-)}
-  \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]} \notag \\
-  &\times\e{i\left[ \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
+      \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]} \notag \\
+      &\times\e{i\left[ \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
   \fstop
+  \label{eq_H_drv}
 \end{align}
 %
 Comparing to the free case, \eqref{eq_four_real_free}, the driven phase is defined as 
@@ -1788,7 +1794,7 @@ The driven $\alpha$ function follows from the definition of the free $\alpha$~fu
   \label{eq_drv_alpha}
 \end{align}
 %
-Comparing the amplitude of the driven motion \eqref{eq_z_drv} with the form \eqref{eq_drv_x_from_h_tpl}
+Comparing the amplitude of the driven motion \eqref{eq_H_drv} with the amplitude of \eqref{eq_four_real_free}
 the driven action $J_x^d$ can be deduced:
 %
 \begin{align}
@@ -1801,6 +1807,6 @@ the driven action $J_x^d$ can be deduced:
 \end{align}
 %
 The expressions for the driven optics parameters $\beta^d$, $\alpha^d$, $\varphi^d$ and $J^d$ derived
-in this section can be used to compensate the effect of the driven motion on the measurement and enable
+in this section can be used to compensate for the effect of the driven motion on the measurement and enable
 an easy measurement leveraging the advantages of an AC-dipole for optics measurements in circular
 accelerators.

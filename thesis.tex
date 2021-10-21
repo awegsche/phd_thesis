@@ -11,9 +11,11 @@
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage{makeidx}
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=uk]{english}
 
 
-\usepackage{unicode-math}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
 \usepackage{fontspec}
 \usepackage[
     headsepline%=1pt:\linewidth
@@ -88,9 +90,9 @@
 
 \ohead[\pagemark]{\pagemark}
 
-% print: 4.0 -- 2.5
-\newdimen{\outermarg}      \setlength{\outermarg}{2.5cm} % leave considerable outer border for images
-\newdimen{\innermarg}      \setlength{\innermarg}{4.0cm} % leave large inner border for binding
+%% print: 4.0 -- 2.5
+%\newdimen{\outermarg}      \setlength{\outermarg}{2.5cm} % leave considerable outer border for images
+%\newdimen{\innermarg}      \setlength{\innermarg}{4.0cm} % leave large inner border for binding
 % pdf: 3.5 -- 3.0
 \newdimen{\outermarg}      \setlength{\outermarg}{3.0cm} % leave considerable outer border for images
 \newdimen{\innermarg}      \setlength{\innermarg}{3.5cm} % leave large inner border for binding
@@ -279,7 +281,7 @@
 \newcommand{\hymto}[1]{\left(h_y^-\right)^{#1}}
 
 \newcommand{\four}[1]{\mathcal{F} \left\{ #1 \right\}}
-\newcommand{\conj}[1]{{#1}^*}
+\newcommand{\conj}[1]{#1^*}
 
 \newcommand{\ave}[2]
 {

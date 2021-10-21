@@ -5,16 +5,16 @@
     
     \tdplotsetmaincoords{70}{0}
     \centering
-    \begin{tikzpicture} [scale=3,
+    \begin{tikzpicture} [
+        scale=3,
         tdplot_main_coords, axis/.style={->,black,thick}, 
         vector/.style={-stealth,red,very thick}, 
         vector guide/.style={dashed,CLRemph1,thick}
-      ]
+    ]
 
         %standard tikz coordinate definition using x, y, z coords
         \coordinate (O) at (0,0,0);
         \draw (O) circle (0.1);
-
 
         \segment{0}{30}{\mathbf{M}_1};
         \segment{30}{60}{\mathbf{M}_2};
@@ -22,24 +22,17 @@
         %\segment{90}{120}{\mathbf{M}_4};
         \segmentn{330}{360}{\mathbf{M}_W};
         \segmentn{300}{330}{\mathbf{M}_{W-1}};
-        \draw[thick, dashed] ($ ({2.0*sin(90)}, {2.0*cos(90)}, 0) $) arc (90-90: 90-120 : 2.0);
-        \draw[thick, dashed] ($ ({2.0*sin(240)}, {2.0*cos(240)}, 0) $) arc (90-240: 90-270 : 2.0);
-        \draw[thick] ($ ({2.0*sin(270)}, {2.0*cos(270)}, 0) $) arc (90-270: 90-297 : 2.0);
-
-        
-
-        %draw axes
-
-        %draw a vector from O to P
-        %\begin{scope}[canvas is zy plane at x=0]
-
-        %\end{scope}
-
-        %draw guide lines to components
-        % \draw[vector guide]         (O) -- (\ax,\ay,0);
-        % \draw[vector guide] (\ax,\ay,0) -- (0,\ay,0);
-        % \draw[vector guide] (\ax,\ay,0) -- (0,\ay,0);
-        % \draw[vector guide] (\ax,\ay,0) -- (\ax,0,0);
-
+        \draw[thick, dashed]
+            ($ ({2.0*sin(90)}, {2.0*cos(90)}, 0) $)
+            arc
+            (90-90: 90-120 : 2.0);
+        \draw[thick, dashed]
+            ($ ({2.0*sin(240)}, {2.0*cos(240)}, 0) $)
+            arc
+            (90-240: 90-270 : 2.0);
+        \draw[thick]
+            ($ ({2.0*sin(270)}, {2.0*cos(270)}, 0) $)
+            arc
+            (90-270: 90-297 : 2.0);
     \end{tikzpicture}
 \end{document}

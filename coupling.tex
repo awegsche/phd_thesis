@@ -2,9 +2,9 @@
  \label{ch_forced_coupling}
 
 \begin{chapterinfo}
-    The goal of this chapter is the study of the form of resonance driving terms when measured from driven motion.
+    The goal of this chapter is the study of of resonance driving terms when measured from driven motion.
     The driving of the particle motion by an AC-dipole changes measured quantities like the optics functions $\beta$, $\alpha$
-    and the phase but also resonance driving terms. 
+    and the phase, as discussed in section~\ref{sec_comp}, but has also an impact on resonance driving terms. 
     Recent findings suggest that the current models describing the forced RDTs are neglecting a local effect
     of the AC-dipole, creating a jump of the amplitude of the RDTs $f_{jklm}$. The case of sextupolar RDTs has been studied.
     In this work, coupling RDTs are calculated for the first time in view of the new findings.
@@ -338,7 +338,7 @@ Combining the above, the expression for the coupled driven motion becomes
 %
 \begin{align}
     h_x^+(s,N)&=
-    h_x^{d+}(s,N) + 2if^{*}_{1001}  h_y^{d+}(s,N) + 2if^{*}_{1010} h_y^{d-} \notag \\
+    h_x^{d+}(s,N) + 2if^{*}_{1001}  h_y^{d+}(s,N) + 2if^{*}_{1010} h_y^{d-}(s,N) \notag \\
     &\quad
     -2if^*_{1001}(s_d) h_{y,x}^+(s,N)
     -2if^*_{1010}(s_d) h_{y,x}^-(s,N)
@@ -377,16 +377,19 @@ In order to get the new driven RDT, $f_{1001}^\text{drv}$, one can look at the r
 measurement without calibration errors and with perfect knowledge of the complex signal.
 Under these conditions one can get $f_{1001}$ from the free motion by (cf. \eqref{eq_hxpm_hypm})
 %
-\begin{equation}
-    f_{1001}^* = \frac{H^+(0,1)}{2iV^+(0,1)}
-    \label{eq_f1001_from_complex}
+\begin{align}
+    f_{1001,x}^* &= \frac{H^+(0,1)}{2iV^+(0,1)}
+    \label{eq_f1001x_from_complex}
+    \\
+    f_{1001,y} &= \frac{V^+(1,0)}{2iH^+(1,0)}
+    \label{eq_f1001y_from_complex}
     \fstop
-\end{equation}
+\end{align}
 %
 In the driven case, on the other hand, the coordinates change $h_z^\pm \rightarrow h_z^{d\pm}$, which
 causes also the generating terms to change $f_{jklm} \rightarrow f^d_{jklm}$ and, finally, the kick
 cross-terms pollute the driven motion.
-The easier term to calculate in \eqref{eq_f1001_from_complex} is $V^+(0,1)$
+The easy term to calculate in \eqref{eq_f1001x_from_complex} is $V^+(0,1)$
 %
 \begin{align}
     V^+(0,1) &= \four{h_y^+}(Q_y^d) = \four{h_y^{d+}}(Q_y^d)
@@ -430,7 +433,7 @@ For readability the fourier transforms are listed seperately:
 From this it is easy to calculate the driven coupling term, as obtained from a measurement of the horizontal signal
 %
 \begin{align}
-    f_{1001}^{\text{drv}*} &=
+    f_{1001,x}^{\text{drv}*} &=
     f_{1001}^*
     + f_{1001}^*(s_d) \frac{\sin\pi Q_y^-}{2\sin\left[\pi (Q_y^d-Q_x)\right]}
         \e{i\left[\varphi_{s_ds}^{x} -\varphi_{s_ds}^{y} + \pi(Q_y-Q_x)\text{sgn}(s-s_d)\right]}
@@ -446,7 +449,7 @@ From this it is easy to calculate the driven coupling term, as obtained from a m
 From \equationref{eq_drv_f1001_final} it gets apparent that the AC-dipole adds two effects to the $f$~term:
 the first one is creating an additional source at the position of the AC-dipole, proportional to the $f$~term
 at this position
-and the second, minor, one is a mixing of $f_{1001}$ and $f_{1010}$. The mixing of the other $f$~term is
+and the second one is a mixing of $f_{1001}$ and $f_{1010}$. The mixing of the other $f$~term is
 suppressed by the factors $\lambda_{y}$ and the denominator $\sin\left[\pi (\Qd{y} + Q_x)\right]$.
 
 % --------------------------------------------------------------------------------------------------
@@ -576,10 +579,12 @@ coupling will iteratively improve the precision of the coupling measurement.
 \end{figure}
 %
 In Figure~\ref{fig_comp_felix_ryo_ac_outside} the case of a coupling bump in the lattice is shown.
-The AC-dipole is located at $s=\SI{9846}{m}$ in a region with low coupling. As can be seen on the right plot
-the jump at the location of the AC-dipole is non-existing. The formula method and the new method show a good
+The AC-dipole is located at $s=\SI{9846}{m}$ in a region with low coupling.
+
+The right plot shows no effect of the AC-dipole.
+The formula method and the new method show a good
 agreement with the measured values. The rescaling method underestimates the $f$~term inside the bump but outside
-its accuracy is also excellent.
+its accuracy is also excellent. All three methods correctly predict zero coupling outside of the closed bump.
 The measured values show an offset which is due to the reconstruction of the complex signal from the
 momentum \eqref{eq_recon_AB} which picks up coupling sources from in between $s_a$ and $s_b$.
 %
@@ -600,6 +605,9 @@ thus, being in a region with strong coupling. In this case a visible bump is exp
 conventional methods should decrease because they do not consider the additional source.
 Indeed, the new formula yields overall a better accuracy, especially inside of the coupling bump.
 The jump at the position of the AC-dipole is well reproduced, as expected from \eqref{eq_drv_f1001_final}.
+
+However, the introduced coupling is rather small. Adding larger values, which are possible in realistic accelerator
+settings, shows a quickly degrading agreement between the new formula and the measurement.
 
 \section{Conclusion}
 

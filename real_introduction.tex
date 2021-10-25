@@ -9,31 +9,37 @@
 
 The goal of this PhD project is the development of linear optics measurement methods for
 circular accelerators.
-The term optics is used because the manipulation of a charged particle beam in an accelerator shares
-many characteristics with the bending and focusing of light optics through lenses and other optical
-devices and linear is referring to the linearity of the Hamiltonian describing these optical elements.
+The term \emph{optics} is used because the manipulation of a charged particle beam in an accelerator shares
+many characteristics with the bending and focusing of light through lenses and other optical
+devices and \emph{linear} refers to lattice elements with linear magnetic field.
 
-Linear optics corrections have achieved remarkable performance in the last years,
+Linear optics corrections have achieved remarkable performance in the last years %
+\cite{Tomas2017, Tomas2012, Persson2017, Aiba2013, Sagan2000, Borer1983, Langner2015},
 pushing the precision and accuracy of machine parameters further.
 But development of accelerator technology is not resting either and the introduction of
 next generation light sources and the design and construction of new colliders and future projects
 constantly demand more advanced and precise measurement methods.
 
-For the largest machines -- containing thousands of lattice elements -- many classical methods also suffer from 
-long execution times as the computational complexity of the measurement and correction algorithms grows
-with the number of parameters, often exponentially. 
+Data acquisition and processing, as well as the final analysis and correction procedures, is performed on
+electronic devices and computers. Therefore the term \emph{method} used in this work to describe
+a measurement or correction procedure, usually encompasses also the implementation of a dedicated computer algorithm.
+
+For the largest machines -- containing thousands of lattice elements -- many classical measurement and
+correction methods suffer from long execution times as the computational complexity of the measurement
+and correction algorithms grows with the number of parameters, often exponentially. 
 Therefore, the speed of the used techniques is also getting more and more crucial for a smooth operation. 
-Some methods require preparation with time scales of days.
 Moreover, often the full potential of the analysis can only be harvested \emph{offline} in the days and
 weeks following the actual measurement.
 
 \section{Objectives of this work}
 
 In this work three distinct optics measurement methods are treated. All of these methods take as input the
-Fourier analysis of turn-by-turn data of the beam centroid position picked up at certain measurement
+Fourier analysis of turn-by-turn data of the beam centroid position, picked up at certain measurement
 devices called \emph{Beam Position Monitors} (BPMs). In order to get a sufficiently strong signal, the
 particle beam is excited. If the excitation method induces a forced oscillation, optics functions are changed
 and this effect has to be compensated.
+The remainder of this chapter introduces the data acquisition and its surrounding devices, as well as
+CERN and its accelerator facilities.
 
 The first method is a more precise and faster 
 measurement of the $\beta$~function, an optics parameter that presents a direct observable for the
@@ -47,12 +53,12 @@ In the LHC precise optics correction
 methods consider a local region of the accelerator as transfer line. Measured optics functions at the start
 of the segment are used as initial condition for a simulation using the best knowledge model of the accelerator.
 Then a fitting on the magnetic field strengths is used to match the expected optics to the measured one.
-Currently this correction method is used at certain, important points in the accelerator where particularly
+Currently this correction method is used at certain important points in the accelerator where particularly
 strict tolerances on errors are given or errors have a high impact on the optics.
 Local observables facilitate detecting strong local sources and permit to apply dedicated correction steps.
 This work introduces for the first time a local observable for linear lattice errors.
 
-The third topic is not a completely new measurement method but the revision of existing methods
+The third topic is the revision and further development of existing methods
 to describe the impact of forced particle motion on the measurement of transverse coupling.
 Certain lattice elements interlink vertical and horizontal particle motion, an effect called
 transverse coupling which has negative impact on the beam stability in the LHC.
@@ -60,11 +66,10 @@ The driving device, used to create the signal for turn-by-turn measurements infl
 the measurements of certain quantities, including coupling, and this influence has to be compensated.
 The current methods neglect a small local effect of this, which became apparent recently.
 A new description of the modeling of the driven motion is presented in a previous work and this
-thesis applies this description to the measurement of transverse coupling, showing the small local
+thesis applies this description to the measurement of transverse coupling, showing the local
 effect for the first time in theoretical considerations.
 
 
-%\cite{Tomas2017, Tomas2012, Persson2017, Aiba2013, Sagan2000, Borer1983, Langner2015},
 
 % --------------------------------------------------------------------------------------------------
 % CERN and LHC
@@ -113,7 +118,7 @@ they are accelerated to $\SI{50}{MeV}$. They are furhter accelerated in the PS B
 in the Proton Synchroton (PS) to $\SI{25}{GeV}$ and finally to $\SI{450}{GeV}$ in the Super Proton Synchrotron
 before they are injected into the LHC.
 %
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{CCC-v2019-final-white_small}
     \caption{CERN has various accelerators and decelerators. H$^-$ ions are pre-accelerated
@@ -136,7 +141,7 @@ a focusing and a defocusing quadrupole\footnote{
 To correct for magnet imperfections, corrector magnets are also installed in the cell.
 \figureref{fig_fodo} shows a schematic of an LHC FODO cell.
 %
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includestandalone[width=\linewidth]{fodo} 
     \caption{
@@ -197,7 +202,7 @@ the kick strength has to be as high as feasible without kicking the beam strongl
 Furthermore the excitation by a single kick carries the risk of filamenting the
 phase space and blowing up the beam emittance.
 %
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=.8\linewidth]{kick_plot.pdf}  
     \caption{The particle's turn-by-turn position for an excitation by a single kick.}
@@ -216,7 +221,7 @@ The particle's turn-by-turn position is illustrated in \figref{fig_ac_plot}.
 The adiabatic ramp up and down prevent a blow up of the beam emittance and since the oscillation amplitude
 can be held constant, a smaller maximum amplitude is needed. 
 %
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
      \begin{tikzpicture}
     \node (b1) {\includegraphics[width=.8\linewidth]{./ac_plot}};

@@ -22,9 +22,11 @@ optics for the High-Luminosity upgrade of the LHC in sections~\ref{sec_bad_combs
 With the exception of the first two sections, which set the context of the present study and introduce the
 mathematical tools, this chapter represents original work.
 
+The content of this chapter has been published in~\cite{Wegscheider2017}.
+
 \end{chapterinfo}
 
-\section{$\beta$~function measurement from turn-by-turn data}
+\section{\texorpdfstring{$\beta$}{beta}~function measurement from turn-by-turn data}
 \label{sec_classical_beta_meas}
 
 \subsection{Three BPM method}
@@ -91,7 +93,7 @@ uncertainties can be used to calculate a weighted mean.
 \begin{align}
     \beta(s_i) &= \sum\limits_{l} \beta_l(s_i) g_l
     \label{eq_beta_wmean}\\
-    \beta_l(s_i) &= \frac{\cot\phi_{ij_l} - \cot\phi_{ik_l}}{\cot\phi_{ij_l}\m - \cot\phi_{ik}l} \beta(s_i)\m
+    \beta_l(s_i) &= \frac{\cot\phi_{ij_l} - \cot\phi_{ik_l}}{\cot\phi_{ij_l}\m - \cot\phi_{ik_l}} \beta(s_i)\m
     \label{eq_beta_l}
 \end{align}
 %
@@ -217,7 +219,7 @@ Using a Taylor expansion the errors in these parameters can be propagated
 %
 where the Einstein summation convention is used and the derivatives are w.r.t. $ \Omega_i $: $ \partial^i\beta_l \equiv \frac{\partial \beta_l}{\partial \Omega_i} $.
 The argument $ (\vec{\Omega}_0) $ is omitted in the following for the $ \beta $ function and its derivatives at the unperturbed position $ \vec{\Omega}_0 $. For the calculation of the covariance matrix,
-\eqref{eq:err_prop} is truncated to second order and derive the two summands of \eqref{eq:cov} separately.
+\eqref{eq:err_prop} is truncated to second order and derive the two summands of \eqref{eq_cov} separately.
 %
 \begin{equation}
 E[\beta_l(\vec{\Omega})] \approx E\left[   
@@ -267,49 +269,49 @@ E\left[
 Finally, subtracting \eqref{eq:Eb_Eb} from \eqref{eq:Ebb}, yields
 %
 \begin{equation}
-(\text{Cov}[\v{\beta}])_{lm} = \partial^i\beta_l\partial^j\beta_mE[\Delta\Omega_i\Delta\Omega_j] = \partial^i\beta_l\partial^j\beta_m \text{Cov}[\vec{\Delta\Omega}]_{ij}\;.
+(\text{Cov}[\vec{\beta}])_{lm} = \partial^i\beta_l\partial^j\beta_mE[\Delta\Omega_i\Delta\Omega_j] = \partial^i\beta_l\partial^j\beta_m \text{Cov}[\vec{\Delta\Omega}]_{ij}\;.
 \label{eq:covbb}
 \end{equation}
 %
 In the last step again the assumption $ E(\Delta\Omega_i)=0 $ is made, implying
 %
-\begin{equation}\label{key}
+\begin{equation}\label{eq_cov}
 \text{Cov}[\vec{\Delta\Omega}]_{ij} =  E\left[\Delta\Omega_i \right] E[\Delta\Omega_j ] -  E\left[\Delta\Omega_i\Delta\Omega_j \right] =  E\left[\Delta\Omega_i\Delta\Omega_j \right]\;.
 \end{equation}
 %
 In matrix notation \eqref{eq:covbb} reads
 %
-\begin{equation}\label{key}
+\begin{equation}
 \mat{Cov}\left[\vec{\beta}\right] = \mat{T}\; \mat{Cov}\left[\vec{\Delta\Omega}\right] \;\mat{T}^T,
 \end{equation}
 %
  where 
 %
-\begin{equation}\label{key}
+\begin{equation}
 T_{ij} = \frac{\partial \beta_i}{\partial \Omega_j}\;.
 \end{equation}
 %
 If the parameters $ \vec{\Omega} $ are uncorrelated, the covariance matrix of $\vec{ \Delta\Omega} $ simplifies to
 %
-\begin{align}\label{key}
+\begin{align}
 \left(\text{Cov}\left[\vec{\Delta\Omega}\right] \right)_{ij}&= 0 \quad  \text{ if } i\neq j \;,\\
  \left(\text{Cov}\left[\vec{\Delta\Omega}\right] \right)_{ii}&= \sigma_i^2\;,
 \end{align}
 %
 %
-\begin{equation}\label{key}
+\begin{equation}
 \Rightarrow E\left[\Delta\Omega_i\Delta\Omega_j\right] = E\left[\Delta\Omega_i\right]E\left[\Delta\Omega_j\right]\quad \text{ if } i \neq j\;,
 \end{equation}
 %
 and \eqref{eq:covbb} reads
 %
-\begin{equation}\label{key}
+\begin{equation}
 (\text{Cov}[\vec{\beta}])_{lm} = \partial^i\beta_l\partial^i\beta_mE[\Delta\Omega_i^2] = \partial^i\beta_l\partial^i\beta_m \sigma_i^2\;,
 \end{equation}
 %
 with the variance being defined by
 %
-\begin{equation}\label{key}
+\begin{equation}
 \sigma_i^2 = E\left[\Delta\Omega_i^2\right].
 \end{equation}
 %
@@ -419,7 +421,7 @@ This is a limiting factor when the N-BPM method is used for pushed optics with v
 % Corrected beta from phase
 % --------------------------------------------------------------------------------------------------
 
-\section{Corrected $\beta$ from phase formula}
+\section{Corrected \texorpdfstring{$\beta$}{beta} from phase formula}
 \label{sec_corrected_beta_from_phase}
 \equationref{eq_3bpm_method} assumes that no error is present in the region between the involved BPMs.
 A new formula has been developed in \cite{Franchi2016} that takes quadrupolar errors into account.
@@ -567,7 +569,7 @@ Using \eqref{eq_phase} the phase error and the resulting $\beta$ shift at the po
 %
 up to first order in $ \delta s_i $.
 
-\subsection{Derivation of a corrected $\beta$ from phase formula}
+\subsection{Derivation of a corrected \texorpdfstring{$\beta$}{beta} from phase formula}
 
 An equation similar to Eq.~(\ref{eq:18}) has to be re-derived by taking into account the considerations
 of the preceding sections.
@@ -771,22 +773,24 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
 %
 \begin{figure}
 	\centering
-  \includegraphics[width=.7\linewidth]{10cm_b1_x_3bpm}
-    \includegraphics[width=.7\linewidth]{10cm_b1_x_nbpm}
+    %\includegraphics[width=.7\linewidth]{10cm_b1_x_3bpm}
+    %\includegraphics[width=.7\linewidth]{10cm_b1_x_nbpm}
+    \includegraphics[width=0.9\linewidth]{2021_ATS10cm_001}
 	\caption{Horizontal $ \beta $ beating of beam 1 at $ \beta^*=10\,\text{cm} $ during the ATS MD 2016. TOP: 3-BPM method. BOTTOM: analytical N-BPM method. The 3-BPM method suffers from bad phase advances and has many outliers. The regions of high $ \beta $ beating at around $ \SI{8000}{m} $ and $ \SI{23000}{m} $ lie in the telescopic arcs. }
 	\label{fig:10cm_beam1_hor_3bpm}
 \end{figure}
 %
 \begin{figure}
 	\centering
-	\includegraphics[width=.49\linewidth]{comparison_errorbars_Beam1}
-	\includegraphics[width=.49\linewidth]{comparison_errorbars_Beam2}
+	%\includegraphics[width=.49\linewidth]{comparison_errorbars_Beam1}
+	%\includegraphics[width=.49\linewidth]{comparison_errorbars_Beam2}
+    \includegraphics[width=0.9\linewidth]{2021_ATS10cm_histo}
 	
-	\includegraphics[width=.7\linewidth]{mean_errorbars}
+	\includegraphics[width=.6\linewidth]{mean_errorbars}
 	
 	\caption{
         A comparison of the error bars of the $ \beta^*=10\,\text{cm} $ optics of the October 2016 MD.
-        TOP: histogram of the errorbars of beam 1. CENTER: histogram of the errorbars of beam 2.
+        TOP LEFT: histogram of the errorbars of beam 1. TOP RIGHT: histogram of the errorbars of beam 2.
         BOTTOM: mean of the size the errorbars. The mean of the analytical N-BPM method is a factor
         4 more accurate than the 3 BPM method. The third set of values shows the mean of the errorbars
         of the simulations as shown in Figure~\ref{fig:compare_ATS} but for the whole ring.
@@ -794,7 +798,7 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
 	\label{fig:HL_report/comparison_errorbars}
 \end{figure}
 %
-Since a phase advance $ \phi_{ij} \approx n\pi $ results in an enhancement of phase measurement errors and in the extreme case numerically unstable values, a filtering was introduced. Instead of keeping a constant number of combinations as in \cite{nbpm} we set a threshold for \emph{bad} phase advances. A phase advance $ \Delta \phi $ is considered \emph{bad} if $ \Delta \phi \in [ n\pi - \delta, n\pi + \delta ] $ for $ n\in \mathbb{N} $ and a given threshold $ \delta $. If any of the four phase advances $ \phi_{ij_l}, \phi_{ik_l},\phi_{ij_l}\m,\phi_{ik_l}\m $ in Eq.~\eqref{eq.3bpm} is bad, the corresponding BPM combination is disregarded in the calculation of the weighted mean. This allows us to still use several combinations but skipping those which are numerically unstable. The current value for the threshold is $ \delta = 2\pi \cdot 10^{-2}$. The use of fewer combinations results in a lower computation time. 
+Since a phase advance $ \phi_{ij} \approx n\pi $ results in an enhancement of phase measurement errors and in the extreme case numerically unstable values, a filtering was introduced. Instead of keeping a constant number of combinations as in \cite{LangnerNBPM} we set a threshold for \emph{bad} phase advances. A phase advance $ \Delta \phi $ is considered \emph{bad} if $ \Delta \phi \in [ n\pi - \delta, n\pi + \delta ] $ for $ n\in \mathbb{N} $ and a given threshold $ \delta $. If any of the four phase advances $ \phi_{ij_l}, \phi_{ik_l},\phi_{ij_l}\m,\phi_{ik_l}\m $ in Eq.~\eqref{eq_3bpm_method} is bad, the corresponding BPM combination is disregarded in the calculation of the weighted mean. This allows us to still use several combinations but skipping those which are numerically unstable. The current value for the threshold is $ \delta = 2\pi \cdot 10^{-2}$. The use of fewer combinations results in a lower computation time. 
 
 
 To test the analytical N-BPM method and compare it to the original 3-BPM and the Monte Carlo N-BPM

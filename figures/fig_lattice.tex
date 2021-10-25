@@ -14,7 +14,7 @@
 
         %standard tikz coordinate definition using x, y, z coords
         \coordinate (O) at (0,0,0);
-        \draw (O) circle (0.1);
+        \draw[thick] (O) circle (0.1);
 
         \segment{0}{30}{\mathbf{M}_1};
         \segment{30}{60}{\mathbf{M}_2};
@@ -22,15 +22,15 @@
         %\segment{90}{120}{\mathbf{M}_4};
         \segmentn{330}{360}{\mathbf{M}_W};
         \segmentn{300}{330}{\mathbf{M}_{W-1}};
-        \draw[thick, dashed]
+        \draw[ultra thick, dashed]
             ($ ({2.0*sin(90)}, {2.0*cos(90)}, 0) $)
             arc
             (90-90: 90-120 : 2.0);
-        \draw[thick, dashed]
+        \draw[ultra thick, dashed]
             ($ ({2.0*sin(240)}, {2.0*cos(240)}, 0) $)
             arc
             (90-240: 90-270 : 2.0);
-        \draw[thick]
+        \draw[ultra thick]
             ($ ({2.0*sin(270)}, {2.0*cos(270)}, 0) $)
             arc
             (90-270: 90-297 : 2.0);

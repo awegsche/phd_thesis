@@ -164,9 +164,11 @@ normal form space where it is rotated around the ring. This process is repeated 
   \includestandalone{ac_kick_xp}
   \hspace{1.0em}
   \includestandalone{ac_kick_nf}
-      \caption{Two distinct kicks performed in CS-coordinates, transformed to NF-coordinates.
-      The kicks, always in $p_x$ direction in phase space, can be transformed to point in any direction
-      in normal form space, even in all 4 dimensions $(x, p_x, y, p_y) $.
+      \caption{
+        Two AC-dipole kicks in $p_x$ at different positions in phase space can have completely
+        different appearence in normal form coordinates. The transformation is not restricted to
+        the two dimensions depictet in this figure but can happen in all four normal form coordinates
+        $\zxp, \zxm, \zyp, \zym$.
       }
   \label{fig_sketch_drv_ac}
 \end{figure}
@@ -539,8 +541,8 @@ that adjacent BPMs are used for the reconstruction, the combined $f$~terms read
 \begin{align}
    f_{\mp,x,y} = \frac{1}{\sqrt{1-\lambda_y^2}}
    \left\{
-       \e{\pm i [\varphi^{\text{d},x}_{s_ds}] - \varphi^{x}_{s_ds}]}f_{\mp,x}
-       - \lambda_y\e{\pm[\varphi^{\text{d},y}_{s_ds}] - \varphi^{y}_{s_ds}]}f_{\pm,x}
+       \e{\pm i [\varphi^{\text{d},x}_{s_ds} - \varphi^{x}_{s_ds}]}f_{\mp,x}
+       - \lambda_y\e{\pm[\varphi^{\text{d},y}_{s_ds} - \varphi^{y}_{s_ds}]}f_{\pm,x}
     \right\}
     \fstop
 \end{align}
@@ -604,7 +606,9 @@ Figure~\ref{fig_comp_felix_ryo} now shows the picture when the AC-dipole is plac
 thus, being in a region with strong coupling. In this case a visible bump is expected and the agreement with the
 conventional methods should decrease because they do not consider the additional source.
 Indeed, the new formula yields overall a better accuracy, especially inside of the coupling bump.
-The jump at the position of the AC-dipole is well reproduced, as expected from \eqref{eq_drv_f1001_final}.
+The jump at the position of the AC-dipole is well reproduced, as expected from~\eqref{eq_drv_f1001_final}.
+
+\subsection{HL-LHC and stronger coupling}
 
 However, the introduced coupling is rather small. Adding larger values, which are possible in realistic accelerator
 settings, shows a quickly degrading agreement between the new formula and the measurement.
@@ -614,13 +618,24 @@ settings, shows a quickly degrading agreement between the new formula and the me
     \includegraphics[width=.49\linewidth]{abs15}
     \hfill
     \includegraphics[width=.49\linewidth]{abs45}
-    \caption{}
+    \caption{%
+      These plots show the same comparison as Fig.~\ref{fig_comp_felix_ryo} but for the HL-LHC lattice
+      at $\beta^*=\SI{15}{cm}$ with varying strengths of the skew quadrupoles which form the coupling
+      bump. A degradation of the performance of the new formula is observed.
+    }%
     \label{fig_highcoupling_hilumi}
 \end{figure}
 
 Figure~\ref{fig_highcoupling_hilumi} shows slightly stronger coupling in the HL-LHC lattice at $\beta^*=\SI{15}{cm}$.
+Two coupling strengths are tested. For reference, the initial setting for the first magnet in the bump is printed
+in the top right corner of each plot%
+\footnote{
+  The final value depends on the matching but is still
+  of the same order of magnitude.
+}.
 Althoug still better than the conventional methods, the new formula does not achieve the same performance as before
-and even the reproduction of the jump in amplitude at the position of the AC-dipole is almost non-existant.
+and starts to lose its performance w.r.t.\ the other methods.
+
 The matching of the closed coupling bump failed which resulted in non-zero coupling outside of the designated region.
 
 \section{Conclusion}

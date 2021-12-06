@@ -211,7 +211,7 @@ phase space and blowing up the beam emittance.
 %
 \subsubsection{AC-dipole}
 
-The other method to excite the beam that is used in LHC is a dipole connected to an alternate current
+The other method to excite the beam that is used in LHC is a dipole connected to an alternating current
 power amplifier.
 This creates a driven oscillation of the beam \cite{Peggs1998} which can be measured in BPMs \cite{Miyamoto2008, Miyamoto2010}.
 The excitation amplitude is slowly ramped up for 2000 turns in order to stay in an
@@ -247,25 +247,31 @@ motion is needed.
 \subsubsection{Beam Position Monitors}
 
 To record the turn-by-turn position of the beam, the LHC possesses more than 500 dual-plane
-Beam Position Monitors (BPMs) which are installed approximately regularly around the ring. 
+Beam Position Monitors (BPMs) \cite{koutchouk} which are installed approximately regularly around the ring. 
 
-The particle's transverse position in Complex Courant-Snyder coordinates at a location $s$ and turn
-$N$ can be optained by applying repeatedly the one turn map:
-%
-\begin{equation}
-    \hat{h}_z^\pm(s + NC) = \sqrt{2J_z} \e{i \left( \varphi_z(s) + 2\pi N Q_z\right)} 
-    \fstop
-\end{equation}
-%
-The real position and momentum of the particle can then be calculated by reversing the steps outlined
-in the first section of this chapter.
-%
-\begin{equation}
-    z(s + NC) = \sqrt{2J_z\beta_z(s)}\cos \left( \varphi_z(s) + 2\pi N Q_z\right)
-\end{equation}
-%
-The phase $\varphi_z(s)$ and amplitude $\sqrt{2J_z\beta_z(s)}$ can be obtained by a Fourier transformation of
-the particle positions.
+As the beam passes through the monitor, it induces an electric signal which is then processed
+to calculate the beam position.
+
+The BPM resolution in the LHC is approximately $\SI{0.1}{\milli\metre}$ \cite{fcc-bpm,wp2-bpm} with a pilot bunch of
+$10^{10}$ protons, that we use to measure the optics.
+
+%The particle's transverse position in Complex Courant-Snyder coordinates at a location $s$ and turn
+%$N$ can be optained by applying repeatedly the one turn map:
+%%
+%\begin{equation}
+%    \hat{h}_z^\pm(s + NC) = \sqrt{2J_z} \e{i \left( \varphi_z(s) + 2\pi N Q_z\right)} 
+%    \fstop
+%\end{equation}
+%%
+%The real position and momentum of the particle can then be calculated by reversing the steps outlined
+%in the first section of this chapter.
+%%
+%\begin{equation}
+%    z(s + NC) = \sqrt{2J_z\beta_z(s)}\cos \left( \varphi_z(s) + 2\pi N Q_z\right)
+%\end{equation}
+%%
+%The phase $\varphi_z(s)$ and amplitude $\sqrt{2J_z\beta_z(s)}$ can be obtained by a Fourier transformation of
+%the particle positions.
 
 % --------------------------------------------------------------------------------------------------
 % --- Outline

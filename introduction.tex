@@ -718,15 +718,14 @@ reads
   \label{eq_gen_hamil}
 \end{equation}
 %
-where $K_{n-1}$ and $J_{n-1}$ are normal and skew multipolar field strengths,
+where $K_{n-1}$ and $J_{n-1}$ are normal and skew integrated multipolar field strengths,
 %
 \begin{align}
   K_n &= \frac{1}{n!}\frac{\partial^n B_y}{\partial x^{n}}\\
   J_n &= \frac{1}{n!}\frac{\partial^n B_x}{\partial x^{n}}
 \end{align}
 %
-i.e. a pure dipole
-has only $K_0$, a pure quadrupole only $K_1$ etc.
+i.e. a pure dipole has only $K_0$, a pure quadrupole only $K_1$ etc.
 
 In complex Courant-Snyder coordinates, the Hamiltonian~\eqref{eq_gen_hamil} can be written in the form
 %
@@ -766,9 +765,8 @@ The Hamiltonian of the whole lattice is denoted by
     \fstop
 \end{equation}
 %
-In \eqref{eq_hamiltonianterm} $\beta_{z,w}$ is the $\beta$ function of the corresponding plane at position $w$,
-$K_{w,n-1}$ and $J_{w,n-1}$ are the normal and skew integrated magnetic strengths of element $w$ and order $n-1$ (1 for quadrupole, 2 for sextupole etc.)
-and 
+In \eqref{eq_hamiltonianterm} $\beta_{z,w}$ is the $\beta$ function of the corresponding plane at position $w$
+and
 %
 \begin{equation}
     \Omega(a) = 
@@ -898,7 +896,11 @@ and \eqref{eq_FfromH} has to hold for each polynomial order seperately. Thus one
     \label{eq_fijkl_from_h}
 \end{equation}
 %
-The enumerator of $f_{jklm}$ is referred to as \emph{resonance driving term}\index{resonance driving terms}.
+The enumerator of $f_{jklm}$ is referred to as \emph{resonance driving term}\index{resonance driving terms}%
+\footnote{%
+  Sometimes the whole expression $f_{jklm}$ is called resonance driving term.
+}%
+.
 
 % --------------------------------------------------------------------------------------------------
 % phase beating

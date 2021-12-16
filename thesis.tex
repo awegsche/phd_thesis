@@ -1,6 +1,9 @@
 
 
-\documentclass[titlepage]{scrbook}
+\documentclass[
+    titlepage,
+    chapterprefix=true
+]{scrbook}
 
 \usepackage{amsmath}
 \usepackage{mathtools}
@@ -8,20 +11,22 @@
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage{makeidx}
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=uk]{english}
 
 
-\usepackage{unicode-math}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
 \usepackage{fontspec}
 \usepackage[
     headsepline%=1pt:\linewidth
     %footsepline=1pt:\linewidth
 ]{scrlayer-scrpage}
 \usepackage[dvipsnames]{xcolor}
-\usepackage{titlesec}
+%\usepackage{titlesec}
 \usepackage{multirow}
 \usepackage{xcolor}
 \input{image_header}
-\usepackage{standalone}
+\usepackage[build]{standalone}
 \usepackage{wrapfig}
 \usepackage{setspace}
 \usepackage[
@@ -31,7 +36,14 @@
 ]{hyperref}
 \usepackage[format=hang]{caption}
 
-\graphicspath{{figures/}{twiss/}{forcedcoupling/}}
+\graphicspath{%
+    {figures/}%
+    {figures/intro/}%
+    {figures/nbpm/}%
+    {figures/lobster/}%
+    {twiss/}%
+    {forcedcoupling/}%
+}
 \makeindex
 
 
@@ -43,10 +55,18 @@
 % --------------------------------------------------------------------------------------------------
 % fontawesome
 % --------------------------------------------------------------------------------------------------
-%\usepackage{fa}
-\newfontfamily{\afont}{Font Awesome 5 Brands-Regular-400.otf}
-\newfontfamily{\awfont}{Font Awesome 5 Free-Regular-400.otf}
-\newfontfamily{\asfont}{Font Awesome 5 Free-Solid-900.otf}
+\usepackage{fontawesome5}
+%% Local computer
+%\newfontfamily{\afont}{Font Awesome 5 Brands-Regular-400.otf}
+%\newfontfamily{\awfont}{Font Awesome 5 Free-Regular-400.otf}
+%\newfontfamily{\asfont}{Font Awesome 5 Free-Solid-900.otf}
+
+% Overleaf, different font names
+\newfontfamily{\afont}{FontAwesome5Brands-Regular-400.otf}
+\newfontfamily{\awfont}{FontAwesome5Free-Regular-400.otf}
+\newfontfamily{\asfont}{FontAwesome5Free-Solid-900.otf}
+
+% selection of fontawesome symbols
 \newcommand{\FAb}[1] {{\afont \symbol{"#1}}\hspace{.5em}}
 \newcommand{\FA}[1] {{\awfont \symbol{"#1}}\hspace{.5em}}
 \newcommand{\FAs}[1] {{\asfont \symbol{"#1}}\hspace{.5em}}
@@ -77,9 +97,9 @@
 
 \ohead[\pagemark]{\pagemark}
 
-% print: 4.0 -- 2.5
-\newdimen{\outermarg}      \setlength{\outermarg}{2.5cm} % leave considerable outer border for images
-\newdimen{\innermarg}      \setlength{\innermarg}{4.0cm} % leave large inner border for binding
+%% print: 4.0 -- 2.5
+%\newdimen{\outermarg}      \setlength{\outermarg}{2.5cm} % leave considerable outer border for images
+%\newdimen{\innermarg}      \setlength{\innermarg}{4.0cm} % leave large inner border for binding
 % pdf: 3.5 -- 3.0
 \newdimen{\outermarg}      \setlength{\outermarg}{3.0cm} % leave considerable outer border for images
 \newdimen{\innermarg}      \setlength{\innermarg}{3.5cm} % leave large inner border for binding
@@ -98,29 +118,120 @@
 % --------------------------------------------------------------------------------------------------
 % sectioning
 % --------------------------------------------------------------------------------------------------
-\titleformat{\chapter}[frame]
-{\normalfont\thispagestyle{empty}\addfontfeatures{Letters=SmallCaps}}
-{\filright \hspace{1em} CHAPTER \thechapter \hspace{1em}}
-{8pt}
-{\Huge\bfseries\filcenter}
+%\makeatletter
+%\renewcommand{\chapterlinesformat}[3]{%
+%\vspace{2em}
+%    \framebox{%
+%        
+%        \parbox{\dimexpr\linewidth-2\fboxrule-2\fboxsep}{%
+%            \vspace{1.5em}%
+%            \begin{center}%
+%            \Huge\normalfont\bfseries
+%            \addfontfeature{Letters=SmallCaps}
+%            \bfseries
+%            #3%
+%            \end{center}%
+%            \vspace{1.5em}%
+%        }%
+%    }\\
+%    \raisebox{0pt}[0pt][0pt]{%
+%        \raisebox{5em}{%
+%        \hspace{0.5em}
+%        \colorbox{white}{
+%            \normalfont\Large%
+%            \hspace{0.5em}%
+%            CHAPTER \thechapter%
+%            \hspace{0.75em}%
+%        }
+%        }%
+%    }\\
+%}
+%\renewcommand{\thechapter}{%
+%    \normalfont \Large%
+%    \hspace{0.5em}%
+%    CHAPTER~\arabic{chapter}%
+%    \hspace{0.75em}%
+%}
+\renewcommand*{\chapterformat}{%
+    \normalfont \Large%
+    \hspace{0.5em}%
+    \MakeUppercase{\chapapp}~\thechapter%
+    \hspace{0.75em}%
+}
 
-\titleformat{\section}
-{\normalfont}
-{\filright\Large \bfseries \thesection \hspace{1em}}
-{8pt}
-{\Large\bfseries}
+\makeatletter
+\renewcommand{\chapterlineswithprefixformat}[3]{%
+\begin{tikzpicture}
+    \node[draw,rectangle,below right] at (0,0) {%
+        \parbox{\dimexpr\linewidth-2\fboxrule-2\fboxsep}{%
+            \vspace{1.5em}%
+            \begin{center}%
+            \Huge\normalfont\addfontfeature{Letters=SmallCaps} \bfseries
+            #3%
+            \end{center}%
+            \vspace{1.5em}%
+        }%
+    };
+    \Ifstr{#2}{}{}{%
+        \node[fill=white,below right] at (0.5em,0.5em) {%
+            \normalfont \Large%
+            \hspace{0.5em}%
+            \MakeUppercase{\chapapp}~\thechapter%
+            \hspace{0.75em}%
+        };%
+    }
+\end{tikzpicture}
+}
 
-\titleformat{\subsection}
-{\normalfont}
-{\filright\large \bfseries \thesubsection \hspace{1em}}
-{8pt}
-{\large\bfseries}
+\renewcommand{\chapterlinesformat}[3]{%
+\begin{tikzpicture}
+    \node[draw,rectangle,below right] at (0,0) {%
+        \parbox{\dimexpr\linewidth-2\fboxrule-2\fboxsep}{%
+            \vspace{1.0em}%
+            \begin{center}%
+            \Huge\normalfont\addfontfeature{Letters=SmallCaps} \bfseries
+            #2~#3%
+            \end{center}%
+            \vspace{1.0em}%
+        }%
+    };
+\end{tikzpicture}
+}
 
-\titleformat{\subsubsection}
-{\normalfont}
-{\filright\large \bfseries \thesubsubsection \hspace{1em}}
-{8pt}
-{\large\bfseries}
+\renewcommand{\sectionlinesformat}[4]{%
+    \Ifstr{#1}{section}{%
+   \normalfont\Large\bfseries #3~#4%
+   }{%
+   \normalfont\large\bfseries #3~#4%
+   }
+   
+}
+
+\makeatother
+
+%\titleformat{\chapter}[frame]
+%{\normalfont\thispagestyle{empty}\addfontfeatures{Letters=SmallCaps}}
+%{\filright \hspace{1em} CHAPTER \thechapter \hspace{1em}}
+%{8pt}
+%{\Huge\bfseries\filcenter}
+%
+%\titleformat{\section}
+%{\normalfont}
+%{\filright\Large \bfseries \thesection \hspace{1em}}
+%{8pt}
+%{\Large\bfseries}
+%
+%\titleformat{\subsection}
+%{\normalfont}
+%{\filright\large \bfseries \thesubsection \hspace{1em}}
+%{8pt}
+%{\large\bfseries}
+%
+%\titleformat{\subsubsection}
+%{\normalfont}
+%{\filright\large \bfseries \thesubsubsection \hspace{1em}}
+%{8pt}
+%{\large\bfseries}
 
 \newenvironment{chapterinfo}
 {
@@ -153,6 +264,7 @@
 \newcommand{\betastar}{\beta^*}
 \newcommand{\sumw}{\sum\limits_{w \in I}}
 \newcommand{\liemap}[1] {{:}#1{:}\,}
+\newcommand{\liemapn}[2] {{:}#1{:}^{#2}\,}
 \newcommand{\atan}{\mathrm{atan}}
 
 \newcommand{\zxp}{\zeta_x^+}
@@ -198,7 +310,7 @@
 
 \definecolor{CLRsub1}{RGB}{128, 128, 128}
 \definecolor{CLRemph1}{RGB}{88, 110, 225}
-\definecolor{CLRemph2}{RGB}{220, 160, 108}
+\definecolor{CLRemph2}{RGB}{230, 160, 108}
 
 % --------------------------------------------------------------------------------------------------
 % DOCUMENT
@@ -230,6 +342,8 @@
 % Content
 % --------------------------------------------------------------------------------------------------
 %\markpage{\addfontfeature{Numbers=OldStyle}\thepage\addfontfeature{Numbers=Lining}}
+\input{real_introduction}
+
 \input{introduction}
 
 \input{a_nbpm}
@@ -241,6 +355,6 @@
 %\printindex
 
 \bibliography{literature}
-\bibliographystyle{thesis_bib_style}
+\bibliographystyle{thesis_bibstyle}
     
 \end{document}

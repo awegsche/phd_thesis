@@ -11,3 +11,7 @@ thesis.pdf
 *.ilg
 tags
 courant_snyder/
+bewerbungen
+main_*
+*.fls
+*.fdb*

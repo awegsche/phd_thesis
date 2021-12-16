@@ -6,7 +6,7 @@
 \begin{tikzpicture}[
         scale=0.56,
         axis/.style={->,black}, 
-        vector/.style={-stealth,red,very thick}, 
+        vector/.style={-stealth,CLRemph2,very thick}, 
         vector guide/.style={dashed,CLRemph1,thick}
       ]
         %draw axes
@@ -14,9 +14,13 @@
         \draw[axis] (0,-3,0) -- (0,3,0) node[anchor=south]{\footnotesize${p_x}$};
 
         \begin{scope} [cm={1,0,.5,1,(0,0)}]
-        \beziercnl{0.75}{0.3}{CLRemph1};
-        \beziercnl{1.5}{0.6}{CLRemph1};
-        \beziercnl{2.25}{0.2}{CLRemph1};
+        \beziercnlTwo{0.75}{0.3}{gray}{0.0};
+        \beziercnlTwo{1.50}{0.4}{gray}{-0.1};
+        \beziercnlTwo{2.25}{0.3}{gray}{0.2};
+
         \end{scope}
+
+        \draw[vector, CLRemph2!80!red](0.75,1.7) -- ($(0.75,2.95)$);
+        \draw[vector, CLRemph1!80!blue](-1.5,0) -- (-1.5,.65);
 \end{tikzpicture}
 \end{document}

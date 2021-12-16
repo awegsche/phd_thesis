@@ -1,0 +1,23 @@
+
+
+\documentclass{standalone}
+\input{image_header}
+\begin{document}
+\begin{tikzpicture}[
+        scale=0.56,
+        axis/.style={->,black}, 
+        vector/.style={-stealth,CLRemph2,very thick}, 
+        vector guide/.style={dashed,CLRemph1,thick}
+      ]
+        %draw axes
+      \draw[axis] (-3,0,0) -- (3,0,0) node[anchor=west]{\footnotesize$\mathscr{R}[\zeta_x]$};
+    \draw[axis] (0,-3,0) -- (0,3,0) node[anchor=south]{\footnotesize$\mathscr{I}[\zeta_x]x$};
+
+        \draw[very thick, gray] circle (2.25);
+        \draw[very thick, gray] circle (1.5);
+        \draw[very thick, gray] circle (0.75);
+
+        \draw[vector, CLRemph2!80!red] (0,1.5) -- ($({-sin(10)*2.25}, {cos(10)*2.25})$);
+        \draw[vector, CLRemph1!80!blue] ($({-sin(80)*1.5}, {cos(80)*1.5})$) -- ($({-sin(75)*2.25}, {cos(75)*2.25})$);
+\end{tikzpicture}
+\end{document}

@@ -10,13 +10,31 @@
 
 \newcommand{\maxfigwidth}{8.5cm}
 
+\begin{chapterinfo}
+  Finding a truly local observable for perturbations of the linear beam dynamics is a nontrivial task,
+  contrary to the nonlinear regime, where local resonance driving terms already exist.
+  The phase beating between two locations depends on errors outside of this region.
+  However, phase advances between four nearby locations can be arranged in a way to cancel
+  the contributions from errors outside of this region up to first order.
+  The resulting local observable contains valuable information about quadrupolar lattice imperfections.
+  This report seeks to explore this local phase beating observable and to test its usefulness
+  for gaining insight in the linear optics imperfections of a circular accelerator. 
+
+  This chapter is entirely based on original work of the author. Section~\ref{sec_lobster_intro}
+  gives a brief introduction and motivation for the presented work. Section~\ref{sec:localobs} presents
+  the main part with a rather technical derivation of the local observable.
+  A thorough verification of the vailidity and possible use cases are presented
+  in section~\ref{sec:robustness_check}, using the LHC as example.
+  In section~\ref{sec:measurements} actual measurement data, acquired during LHC beam commissionning,
+  conducted by the OMC team, is compared to the simulated results.  
+  
+The content of this chapter has been published in~\cite{Wegscheider2020}.
+\end{chapterinfo}
+
+
 
 \section{Introduction}
-
-Linear optics corrections have achieved remarkable performance in the last years
-\cite{Tomas2017, Tomas2012, Persson2017, Aiba2013, Sagan2000, Borer1983, Langner2015},
-pushing the precision and accuracy of $\beta$ function and transverse coupling
-measurements further.
+\label{sec_lobster_intro}
 
 Special accelerator segments like the interaction regions of colliders
 need a precise control of local optics which becomes a challenging task
@@ -24,7 +42,7 @@ if the optics are pushed to more extreme settings. New methods and more
 precise hardware are required to measure and correct machine
 imperfections such as quadrupole errors. In the case of a collider the
 exact measurement and control of the $\beta$ function at the interaction point is important for operation of
-the machine and to optimise luminosity~\cite{jaime}.
+the machine and to optimise luminosity~\cite{Coello2020}.
 
 %For the correction of nonlinear lattice imperfections, resonance driving terms can successfully be
 %used. This technique is performed successfully in the routine optics measurement and correction of
@@ -67,8 +85,43 @@ of the signal and, thus, not affected by calibration errors.
 
 The phase advance between two elements of an accelerator depends, in general, on all the elements in
 the ring.
+Focusing errors are of particular interest with their first order influence on the $\beta$~function.
+The impact they cause on RDTs can be seen in \eqref{eq_f2000}, explicitly for a single error source
+located at popsition $s_1$:
+%
+\begin{equation}
+  f_{2000,j} = \delta K \beta_x(s_1) \e{2i\left[\varphi(s_j) - \varphi(s_1)\right]}
+\end{equation}
+%
 %Therefore, all lattice imperfections in the machine alter the phase advance between two
 %arbitrary positions.
+\begin{figure}
+  \centering
+  \includestandalone[width=0.7\linewidth]{fig_local_error}
+  \\[1.5em]
+  \includestandalone[width=0.7\linewidth]{fig_local_error_inside}
+  \caption{
+    Sketch of the effect of a focus error $\Delta K$ on $f_{2000}$.
+    The error creates a phase advance beating $\propto \e{2i\varphi\m}$.
+    The incontinuity at the position of the source is caused by the propagation of the phase
+    beating around the ring.
+    TOP:
+    If the error lies outside the interval from BPM1 to BPM2 and
+    the model phase advance between the two BPMs is exactly $\pi$, the effect is the same and the
+    phase advance beating is unaffected by this error.
+    BOTTOM:
+    If the error lies in between the two BPMs no cancellation is possible.
+  }
+  \label{fig_local_error}
+\end{figure}
+%
+The top plot of Figure~\ref{fig_local_error} illustrates the effect of a single focusing error on the RDT.
+In the case of a model phase advance of $\pi$ or a multiple of it, the effect is identical on both
+BPMs, if the error does not occur in between them. In the other case both BPMs experience different effects
+on their RDTs as shown in the bottom plot.
+
+From \eqref{eq_tune_shift_quad} one can see that the effect on the phase advance depends,
+up to first order, on global terms only in the form of $\re{f_j - f_i}$.
 
 
 Under the assumption that coupling and higher order imperfections are negligible we
@@ -113,7 +166,16 @@ studied.
 We express the betatron motion in the language of normal form and Courant-Snyder coordinates
 \cite{Bartolini1997}.
 
-The phase beating due to quadrupolar field errors is given by \eqref{eq_phasebeating_1st_app}.
+The phase beating due to quadrupolar field errors is given by \eqref{eq_phasebeating_1st_app}
+which is repeated here for convenience:
+%
+\begin{align}
+  \Delta\varphi_{ij} = \bar{h}_{ij} - 8 \sin^2\varphi_{ij}\m\re{f_i} - 8\sin\varphi_{ij}\m \cos\varphi_{ij}\m\im{f_i} 
+ +O(f^2)
+\fstop
+\label{eq_phasebeating_1st_app_again}
+\end{align}
+%
 $\bar{h}_{ij}$ only depends on quadrupole errors inside the range $[i,j]$ and is therefore a local
 term. The RDTs $f_i$ in \eqref{eq_phasebeating_1st_app}, on the other hand, contain global contributions.
 
@@ -122,6 +184,7 @@ cases: The first is the general case with arbitrary phase advances between the B
 four BPMs is necessary to calculate a pure local term. The second case considers only two BPMs with a
 phase advance of $\pi$.
 
+% --------------------------------------------------------------------------------------------------
 \subsection{The general case -- phase advances different from \texorpdfstring{$n\pi$}{n*pi}}
 \label{sec_generalcase}
 %
@@ -139,8 +202,6 @@ of the terms $f_i$. We can eliminate those terms by carefully summing up phase a
 different pairs of BPMs.
 
 
-% --------------------------------------------------------------------------------------------------
-\section{Eliminating global contributions}
 \label{sec_resummation}
 The goal of this section is to eliminate global contributions to \eqref{eq_phasebeating_1st_app}.
 This can be achieved a careful resummation of phase advances between four BPMs.
@@ -515,7 +576,7 @@ front of the quadrupoles of FODO cells. Additional trim quadrupoles (e.g. MQT) m
 \begin{figure}[htbp]
 %\begin{wrapfigure}{O}[\figborderhang]{6cm}
   \centering
-  \includestandalone[width=.5\linewidth]{figcombination}
+  \includestandalone[width=.7\linewidth]{figcombination}
   \caption{The probed interval $I_p$ for a typical section inside an LHC arc.
     BPMs are represented by rectangles.
     The phase advance between to consecutive BPMs is approximately $\SI{45}{^\circ}$.
@@ -604,7 +665,7 @@ The case \combtoangle{45}{90}{45} is sketched in Fig.~\ref{fig_thetacomb_ij-kl}.
 %
 \begin{figure}
   \centering
-  \includegraphics[width=.3\linewidth]{figThetacombijkl}
+  \includegraphics[width=.4\linewidth]{figThetacombijkl}
   \caption{The phase advances of the combination
     $\varphi_{ij}=\SI{45}{\degree}$, $\varphi_{jk}=\SI{90}{\degree}$, $ \varphi_{kl}=\SI{45}{\degree}$.
 The phase advance $\varphi_{il} = \SI{180}{\degree}$ causes $\cot\varphi_{jl}\m$ to diverge.
@@ -645,7 +706,7 @@ Eqs.~(\ref{eq_deltaphi_firstorder}), (\ref{eq_analyticalphi_firstorder}) and (\r
 %
 \begin{figure}
   \centering
-  \includegraphics[width=.7\linewidth]{sim_no_noise}
+  \includegraphics[width=.8\linewidth]{sim_no_noise}
   %\includegraphics[width=\linewidth]{./73_plots/sim_ij-kl_design_IP4}
   \caption{
     This figure shows the first two combinations of Tab.~\ref{tab_combs} and the case $\varphi_{ij}\m = \pi$
@@ -701,8 +762,7 @@ BPMs there are always two with low $\beta$ function.
 %
 \begin{figure}
   \centering
-  \includegraphics[width=.7\linewidth]{sim_noise}
-  %\includegraphics[width=\linewidth]{./73_plots/sim_ij-kl_design_IP4_noise}
+  \includegraphics[width=.8\linewidth]{sim_noise} %\includegraphics[width=\linewidth]{./73_plots/sim_ij-kl_design_IP4_noise}
   \caption{
     Similar plots as in Fig.~\ref{fig_design_nonoise} but including a phase error of \noiserms{} for
     high $\beta$ function values and \highnoise{} for low $\beta$s.
@@ -739,7 +799,7 @@ can increase the resolution of the phase measurement.
 %
 \begin{figure}
   \centering
-\includegraphics[width=.7\linewidth]{sim_peak}
+\includegraphics[width=.8\linewidth]{sim_peak}
 \caption{The local observable with the error distribution of Tab.~\ref{tab_design_peak}, including
     a strong error source at \texttt{MQ.22R4.B1} and phase
     noise of \noiserms.
@@ -775,13 +835,13 @@ values of the local observable did not change in this region.
 
 The bottom plot of Fig.~\ref{fig_disp_noise} shows the changed orbit for reference.
 The peaks of the local observable can be identified with the peaks in the orbit.
-Again the local obsevable is in 
+Again the local observable is in 
 advance of the error source.
 %
 \begin{figure}[t]
   \centering
-  \includegraphics[width=.7\linewidth]{sim_disp}\\
-  \includegraphics[width=.7\linewidth]{sim_orbit_x_noise_disp}
+  \includegraphics[width=.8\linewidth]{sim_disp}\\
+  \includegraphics[width=.8\linewidth]{sim_orbit_x_noise_disp}
   \caption{The local observable with the error distribution of Tab.~\ref{tab_design} and phase noise
     of \noiserms. Additionally the orbit has been changed by dispersion bumps. The orbit offset creates
   feed-down from sextupoles.}
@@ -793,7 +853,7 @@ advance of the error source.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=.7\linewidth]{meas}
+  \includegraphics[width=.8\linewidth]{meas}
   %\includegraphics[width=\linewidth]{best_design_errors_meas_--l__ij-kl---}
   \caption{Plot of measurement data of the LHC commissionning 2018 at $\beta^*=\SI{30}{\centi\metre}$.
     The errorbars include statistical errors

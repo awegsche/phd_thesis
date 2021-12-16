@@ -3,7 +3,7 @@
 
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
-\usetikzlibrary{patterns}
+\usetikzlibrary{patterns, shapes}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.16}
 \usetikzlibrary{cd}
@@ -13,20 +13,31 @@
 
 \newcommand{\BZRc}{0.5519}
 
-\newcommand{\bezierc}[1] {
+\newcommand{\bezierc}[2] {
   \begin{scope}[cm={#1,0,0,#1,(0,0)}]
-  \draw[very thick, CLRemph1] (0,1) .. controls (\BZRc, 1) and (1,\BZRc) .. (1,0);
-  \draw[very thick, CLRemph1] (1,0) .. controls (1, -\BZRc) and (\BZRc, -1) .. (0,-1);
-  \draw[very thick, CLRemph1] (0,-1) .. controls (-\BZRc, -1) and (-1,-\BZRc) .. (-1,0);
-  \draw[very thick, CLRemph1] (-1,0) .. controls (-1, \BZRc) and (-\BZRc,1) .. (0,1);
+  \draw[very thick, #2] (0,1) .. controls (\BZRc, 1) and (1,\BZRc) .. (1,0);
+  \draw[very thick, #2] (1,0) .. controls (1, -\BZRc) and (\BZRc, -1) .. (0,-1);
+  \draw[very thick, #2] (0,-1) .. controls (-\BZRc, -1) and (-1,-\BZRc) .. (-1,0);
+  \draw[very thick, #2] (-1,0) .. controls (-1, \BZRc) and (-\BZRc,1) .. (0,1);
 \end{scope}
 }
 
-\newcommand{\beziercnl}[2] {
+\newcommand{\beziercnl}[3] {
   \begin{scope}[cm={#1,0,0,#1,(0,0)}]
-    \draw[very thick, CLRemph1] (0,1) .. controls (\BZRc, 1) and ($(1,\BZRc)-(#2,0.0)$) .. (1,0);
-    \draw[very thick, CLRemph1] (1,0) .. controls ($(1, -\BZRc)+(#2,0.0)$) and ($(\BZRc, -1) + (0.0,#2)$) .. (0,-1.1);
-    \draw[very thick, CLRemph1] (0,-1.1) .. controls ($(-\BZRc, -1)-(0.0,#2)$) and ($(-1.2,-\BZRc)-(#2,0.0)$) .. (-1,0);
-    \draw[very thick, CLRemph1] (-1,0) .. controls ($(-.8, \BZRc)+(#2,0.0)$) and (-\BZRc,1) .. (0,1);
+    \draw[very thick, #3] (0,1.2) .. controls (\BZRc, 1.2) and ($(1,\BZRc)-(#2,0.0)$) .. (1,0);
+    \draw[very thick, #3] (1,0) .. controls ($(1, -\BZRc)+(#2,0.0)$) and ($(\BZRc, -1) + (0.0,#2)$) .. (0,-1.1);
+    \draw[very thick, #3] (0,-1.1) .. controls ($(-\BZRc, -1)-(0.0,#2)$) and ($(-1.2,-\BZRc)-(#2,0.0)$) .. (-1,0);
+    \draw[very thick, #3] (-1,0) .. controls ($(-.8, \BZRc)+(#2,0.0)$) and (-\BZRc,1.2) .. (0,1.2);
+\end{scope}
+}
+
+\newcommand{\beziercnlTwo}[4] {
+  \begin{scope}[cm={#1,0,0,#1,(0,0)}]
+    \coordinate (Pnorth) at ($(0, 1.2) + (0, #4)$);
+
+    \draw[very thick, #3] (Pnorth) .. controls ($(\BZRc, 0) + (Pnorth)$) and ($(1,\BZRc)-(#2,0.0)$) .. (1,0);
+    \draw[very thick, #3] (1,0) .. controls ($(1, -\BZRc)+(#2,0.0)$) and ($(\BZRc, -1) + (0.0,#2)$) .. (0,-1.1);
+    \draw[very thick, #3] (0,-1.1) .. controls ($(-\BZRc, -1)-(0.0,#2)$) and ($(-1.2,-\BZRc)-(#2,0.0)$) .. (-1,0);
+    \draw[very thick, #3] (-1,0) .. controls ($(-.8, \BZRc)+(#2,0.0)$) and ($(-\BZRc,0)+(Pnorth)$) .. (Pnorth);
 \end{scope}
 }

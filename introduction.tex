@@ -1,23 +1,24 @@
-\chapter{Introduction}
-
-\KOMAoptions{headsepline=true}
-\lohead{\leftmark}
-\rehead{\rightmark}
-\pagenumbering{arabic}
-\setcounter{page}{1}
+\chapter{Theoretical Foundations}
+\label{ch_introduction}
 
 \begin{chapterinfo}
-    This chapter is a general introduction to accelerator physics.
-    The goal of this introduction is to collect all the necessary tools that are needed to develop
+    This chapter presents the basic theoretical foundations needed to develop
     the methods and algorithms presented in the main part of this thesis.
     Therefore we need a sound understanding of linear beam optics, 
-    $\beta$~function, phase and coupling.
+    optics parameters like $\beta$~function and phase and, finally, linear transverse coupling.
     Only a brief summary of the vast field of accelerator physics can be given in the scope of this
     thesis. The interested reader may consult some of the great introductory works of the field, e.g.
     \cite{CAS2003, Wiedemann2015, WolskiBook}.
 
     Also the normal form approach shall be introduced here as it is needed to calculate optics
-    parameters from Hamiltonian terms in chapter~\ref{ch_localobs}.
+    parameters from Hamiltonian terms later on. Since this is a mathematically heavy subject,
+    the author tried to find the optimum between brevity and rigor. 
+    
+    No new discoveries are presented in this chapter. It is a mere summary of the necessary theory.
+    %No original work is presented in this chapter unless specified. The author did insert the
+    %quadrupole example in sections~\ref{sec_beam_optics} and \ref{sec_hamil_lie} without consulting
+    %any literature but these examples are so basic that the result is well known and the derivations
+    %are for sure standard exercises in lectures on accelerator physics.
 
 \end{chapterinfo}
 
@@ -40,82 +41,6 @@
 %latin letters ($\vec{E}, \vec{B}$).
 %\textbf{Matrices} are denoted by bold face letters, usually capital latin $\mat{M}, \mat{V}$.
 
-% --------------------------------------------------------------------------------------------------
-% CERN and LHC
-% --------------------------------------------------------------------------------------------------
-\section{The Large Hadron Collider}
-
-The \emph{Large Hadron Collider}\index{LHC} (LHC) is the world's largest particle accelerator with a circumference
-of $\SI{27}{\kilo\meter}$. It is situated at the french-swiss border near Geneva as part of the
-\emph{European Organization for Nuclear Research} (CERN)\index{CERN}.
-The initial purpose of the LHC was to discover the Higgs Boson and to study rare high energy events 
-with a centre of mass energy up to $\SI{14}{GeV}$.
-
-The number of collision events is proportional to the \emph{luminosity}\index{luminosity}
-%
-\begin{equation}
-    \mathscr{L} = \frac{N^2 n_b f}{4\pi\sigma_x\sigma_y}
-    \label{eq_lumi}
-\end{equation}
-%
-where $N$ is the number of particles per bunch, $n_b$ the number of bunches, $f$ is
-the revolution frequency and $\sigma_z$ is the beam size in direction $z$.
-
-\equationref{eq_lumi} assumes that the bunches collide head-on and no deteriorating effects are present. A more realistic form of the luminosity is~\cite{Herr2003}
-%
-\begin{equation}
-    \mathscr{L} = \frac{N^2 n_b f}{4\pi\sigma_x\sigma_y} F
-\end{equation}
-%
-where $F$ is a reduction factor, depending on the exact conditions of the beam and the interaction region such as crossing angle, offset of the beams w.r.t. each other or the optical axis, hourglass effect, non-Gaussian beam profiles etc. In the LHC, $F$ is expected to be around $0.8$. 
-
-The discovery of the Higgs Boson was officially confirmed in 2012~\cite{higgs_1, higgs_2} and since then the
-purpose of the LHC lies in providing luminosity for more precise measurements of Higgs channels and
-other high energy particle events. 
-
-Particles that enter the LHC are accelerated in several pre-accelerators, forming the so called
-\emph{injector chain}\cite{Schindl1999} which is illustrated in \figref{fig_cern_acc_cmplx}.
-Protons start their journey as $H^-$ ions in LINAC2 (LINAC4 in the future) where
-they are accelerated to $\SI{50}{MeV}$. They are furhter accelerated in the PS Booster to $\SI{1.4}{GeV}$,
-in the Proton Synchroton (PS) to $\SI{25}{GeV}$ and finally to $\SI{450}{GeV}$ in the Super Proton Synchrotron
-before they are injected into the LHC.
-%
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth]{CCC-v2019-final-white_small}
-    \caption{CERN has various accelerators and decelerators. H$^-$ ions are pre-accelerated
-    in LINAC2 (LINAC4 in the future) and passed to PSBooster, PS, SPS and finally injected into
-    the LHC. Image credit: \cite{CERN_AccCmplx}}
-    \label{fig_cern_acc_cmplx}
-\end{figure}
-%
-Heavy ions start in the LINAC3 and are then accelerated in the Low Energy Ion Ring (LEIR) before they are injected into
-the PS from where they continue as described for protons.
-
-The LHC consists of eight identical arcs for bending of the beams and eight straight sections between the
-arcs which contain the experiments, injection and extraction region and accelerating structures.
-
-An arc consists of 23 so called \emph{FODO}~cells containing two bending sections interleaved with
-a focusing and a defocusing quadrupole\footnote{
-    The acronym FBDB for focusing-bending-defocusing-bending would be more precise but this work will follow
-    the common denomination.
-}.
-To correct for magnet imperfections, corrector magnets are also installed in the cell.
-\figureref{fig_fodo} shows a schematic of an LHC FODO cell.
-%
-\begin{figure}[h]
-    \centering
-    \includestandalone[width=\linewidth]{fodo} 
-    \caption{
-        Schematic of an LHC FODO cell. Two bending sections, consisting of 3 bending dipoles each
-        are interleaved by one focusing and one defocusing quadrupole, respectively.
-    }
-    \label{fig_fodo}
-\end{figure}
-%
-During long shutdown 2, from 2019 until 2021, the CERN accelerator complex undergoes an extensive upgrade process 
-preparing it already partly for the high luminosity upgrade of LHC.
-In addition, the injector chain is upgraded in a separate project called \emph{LHC Injector Upgrade} (LIU) \cite{Hanke2017,Bartosik2017}.
 
 
 
@@ -131,8 +56,10 @@ In addition, the injector chain is upgraded in a separate project called \emph{L
 % beam optics
 % --------------------------------------------------------------------------------------------------
 \section{Beam Optics}
+\label{sec_beam_optics}
 
-Very much like light beams, charged particle beams in an accelerator can be bent, focused, defocused
+Very much like light beams, charged particle beams in an accelerator can be bent\footnote{%
+the \emph{bending} of light is, of course, technically difficult to achieve}, focused, defocused
 and can be subject to effects like dispersion and chromaticity. Therefore the term \emph{optics} is
 generally used to describe the movement and behaviour of particle beams around the accelerator.
 
@@ -165,12 +92,13 @@ depictet in \figref{fig_frenet_serret}\index{Frenet-Serret coordinates} where th
 transformed into a system $\{x,y,s\}$ with the properties:
 %
 \begin{align}
-    \hat{s} &\parallel \text{reference orbit}\notag\\
+    \Delta s &\parallel \text{reference orbit}\notag\\
     \hat{y} &= \hat{y}'\notag\\
-    \hat{x} &= \hat{y} \times \hat{s}
+    \hat{x} &= \hat{y} \times \Delta s
 \end{align}
 %
-\begin{figure}[h]
+and a longitudinal coordinate $s$ along the reference orbit.
+\begin{figure}[ht]
     \includestandalone{frenetserret}
     \caption{
         The Frenet-Serret coordinate system which is moving along the design orbit of particles
@@ -179,8 +107,8 @@ transformed into a system $\{x,y,s\}$ with the properties:
     \label{fig_frenet_serret}
 \end{figure}
 %
-As reference orbit the so called closed orbit is normally used. The properties of the closed orbit
-will be explained in a moment.
+The optical axis of the elements is usually used as reference orbit.
+If there is no transverse offset of the elements, this coincides with the closed orbit.
 
 In this coordinate system the motion of a particle in a circular accelerator is described by Hill's
 differential equation\index{Hill's equation}:
@@ -194,7 +122,7 @@ differential equation\index{Hill's equation}:
 where $z \in \{x,y\}$ is the transverse coordinate and $k(s)$ is the linear magnet strength at
 position $s$.
 
-A solution that satisfies \eqref{eq_hills} is
+A solution that satisfies \eqref{eq_hills} in two dimensions is
 %
 \begin{equation}
     z(s) = A_z(s) \cos\left(\phi_z(s) + \phi_{z,0} \right)
@@ -204,17 +132,20 @@ A solution that satisfies \eqref{eq_hills} is
 where the $s$-dependent amplitude of the oscillation can be split:
 %
 \begin{equation}
-    A_z(s) = \sqrt{2I_z \beta_z(s)}
+    A_z(s) = \sqrt{2J_z \beta_z(s)}
     \fstop
     \label{eq_betatron_ampl}
 \end{equation}
 %
 $\beta_z(s)$ is the $s$-dependent part of the amplitude, called $\beta$~function\index{$\beta$ function}.
-$\beta(s)$ and $\phi(s)$\index{betatron phase}\index{phase} are periodic with the circumference of the ring $C$.
+$J_z$ is the action invariant of the particle's motion.
+$\beta(s)$ is periodic with the circumference of the ring $C$.
 
 Of special interest for a collider is the value of the $\beta$~function at the interaction point,
-denoted as $\beta^* \equiv \beta(s_\text{IP})$ because it defines the beam size and
+ because it defines the beam size and
 has a high impact on the luminosity, as follows from \eqref{eq_lumi}.
+At the LHC, the $\beta$~function at the interaction point is denoted as $\beta^* \equiv \beta(s_\text{IP})$
+whereas the \emph{smallest} $\beta$~function is called $\beta_\text{waist}$.
 
 $\phi(s)$ is called the \emph{betatron phase} and satisfies the following property:
 %
@@ -224,41 +155,20 @@ $\phi(s)$ is called the \emph{betatron phase} and satisfies the following proper
     \label{eq_phase}
 \end{equation}
 %
-For convenience and later usage we introduce the following short-hand notation:
-%
-\begin{equation}
-    \phi_{z,ab} = \phi_z(s_b) - \phi_z(s_a) + 2\pi Q_z \Theta(s_a, s_b)
-\end{equation}
-%
-which is the \emph{phase advance}\index{phase advance} between position $s_a$ and $s_b$, taking into
-account the relative position of $s_a$ to $s_b$.
-If element $b$ lies upstream from element $a$, the interval \emph{wraps around} the end of the
-lattice definition and the tune
-has to be added to the phase advance. For this the following definition is used:
-%
-\begin{equation}
-    \Theta(s_a, s_b) =
-    \begin{cases}
-        1 & \text{if } s_a > s_b \\
-        0 & \text{else} \\
-    \end{cases}
-    \fstop
-\end{equation}
-%
 The trajectories of particles with an action $J$ are limited by an envelope function $\sqrt{2J\beta}$ as illustrated in Fig.~\ref{fig_part_traj}.
 %
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
-    \includestandalone[width=.49\linewidth]{particle_traj_beta_1}
-    \hfill
-    \includestandalone[width=.49\linewidth]{particle_traj_beta_many_wb} 
+    %\includegraphics[width=.49\linewidth]{particle_traj_beta_1}
+    %\hfill
+    \includegraphics[width=.7\linewidth]{particle_traj_beta_many_wb}
     \caption{The trajectories of particles with action $J$ are shown.}
     \label{fig_part_traj}
 \end{figure}
 %
 Actual $\beta$~functions are shown in Fig.~\ref{fig_beta}.
 %
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \footnotesize
   \includestandalone[width=\linewidth]{./twiss/IP_beta_x}
@@ -266,32 +176,46 @@ Actual $\beta$~functions are shown in Fig.~\ref{fig_beta}.
   \normalsize
   \caption{
     TOP: The $\beta$~function around IP1.
-    BOTTOM: The $\beta$~functions in an LHC arc, the plot ranges from IP to IP.
+    BOTTOM: The $\beta$~functions in an LHC arc, the plot ranges from IR2 to IR3,
+    avoiding high~$\beta$ regions (IR1 and IR5) shown in the top plot.
     Both plots show the LHC collision optics at $\beta^*=\SI{30}{cm}$.
   }
   \label{fig_beta}
 \end{figure}
 
-Solutions of \eqref{eq_hills} for linear lattice elements can be expressed in matrix form
+Solutions of \eqref{eq_hills} can be expressed in matrix form
 %
 \begin{equation}
     \begin{pmatrix}
-        z_b\\
-        z_b'
-    \end{pmatrix}
+        z\\
+        p_z
+    \end{pmatrix}_b
     =
     \begin{pmatrix}
         m_{11} & m_{12} \\
         m_{21} & m_{22}
     \end{pmatrix}
     \begin{pmatrix}
-        z_a\\
-        z_a'
-    \end{pmatrix}
+        z\\
+        p_z
+    \end{pmatrix}_a
     \fstop
     \label{eq_matrix_element}
 \end{equation}
 %
+Throughout this work, the following definition of momentum is used:
+\begin{equation}
+  p_z \equiv \frac{\der z}{\der s}
+  \fstop
+\end{equation}
+The reference frame spanned by $z$, $p_z$ is called \emph{phase space}%
+\footnote{%
+Sometimes the name phase space is reserved for the reference frame spanned by $\left(z,\frac{\der z}{\der t}\right)$ %
+whereas the one spanned by $\left(z,\frac{\der z}{\der s}\right)$ is called \emph{trace space}. %
+This work will, however, follow the convention stated in the main text.%
+}%
+.
+
 The matrix 
 %
 \begin{equation}
@@ -306,11 +230,19 @@ The matrix
 is called the \emph{transfer matrix}\index{transfer matrix}. It describes the transformation
 of phase space when going from one position $s_a$ in the lattice to another $s_b$.
 
-For illustration the transfer matrix of a focusing quadrupole will be given.
-For $s$ inside the magnet $k(s) = k_1$ . The solution of Hill's equation is
+At this point in an introductory text of, e.g. a thesis or a textbook on accelerator physics
+it is customary to give a simple example, a basic linear lattice element like a drift space or
+a quadrupole for illustration.
+The author chooses to present a quadrupole magnet, since the effect of quadrupolar imperfections
+is dealt with in later chapters. This example is revisited in the more complex frameworks of
+Hamiltonian mechanics and Lie maps to guide the reader.
+
+For $s$ inside the quadrupole $k(s) = k_1$ . The solution of Hill's equation is
 %
 \begin{equation}
-    z(s) = \cos \left[ \sqrt{k}(s-s_0)\right] z_0 + \frac{1}{\sqrt{k}}\sin\left[\sqrt{k}(s-s_0)\right]z_0'
+    z(s) = \cos \left[ \sqrt{k}(s-s_0)\right] z_0 +
+        \frac{1}{\sqrt{k}}\sin\left[\sqrt{k}(s-s_0)\right]z_0'
+    \label{eq_quad_transfer}
     \fstop
 \end{equation}
 %
@@ -319,15 +251,16 @@ The transfer matrix of a focusing quadrupole reads
 \begin{equation}
     \mat{M}_{QF} =
     \begin{pmatrix}
-        \cos K & \frac{1}{\sqrt{k}} \sin K \\
-        -\sqrt{k}\sin K & \cos K
+        \cos \sqrt{K} & \frac{1}{\sqrt{k}} \sin \sqrt{K} \\
+        -\sqrt{K}\sin \sqrt{K} & \cos \sqrt{K}
     \end{pmatrix}
+    \label{eq_trmat_quad}
 \end{equation}
 %
 where $K$ is the integrated magnet strength
 %
 \begin{equation}
-    K = \int\limits_{s_i}^{s_i + L} k(s)\der s
+    \sqrt{K} = \int\limits_{s_i}^{s_i + L} \sqrt{k(s)}\der s
 \end{equation}
 %
 for a quadrupole at position $s_i$ with length $L$.
@@ -338,19 +271,29 @@ transforms the phase space coordinates of a particle at a given position to the 
 next turn\index{one turn map}:
 %
 \begin{equation}
-    \mat{M}_\text{OT} = \prod\limits_{w=0}^W \mat{M}_i
+    \mat{M}_\text{OT} = \prod\limits_{w=1}^W \mat{M}_i
 \end{equation}
 %
 where $\mat{M}_w$ is the transfer matrix of the $w$th element, $W$ is the number of elements in the
 accelerator and the product denotes the repeated matrix multiplication from the left.
-
+\begin{figure}
+    \centering
+    \includestandalone[width=0.7\linewidth]{fig_lattice}
+    \caption{This schematic represents the accelerator lattice, consisting of consecutive maps
+    $\mathbf{M}_1 \ldots \mathbf{M}_W$.
+    }
+    \label{fig_lattice}
+\end{figure}
+%
+Figure~\ref{fig_lattice} illustrates this setup.
 The phase advance of one turn
 %
 \begin{equation}
     Q_z \equiv \frac{1}{2\pi}\int\limits_{s_0}^{s_0+C} \frac{\der s}{\beta_z(s)}
+    \komma
 \end{equation}
 %
-is called the \emph{betatron tune}\index{tune}\index{betatron tune}.
+normalised by $2\pi$, is called the \emph{betatron tune}\index{tune}\index{betatron tune}.
 
 A general form of \eqref{eq_trmat} is 
 %
@@ -379,13 +322,42 @@ $\alpha$, $\beta$ function and a third quantity
     \gamma(s) = \frac{1+\alpha^2(s)}{\beta(s)}
 \end{equation}
 %
-are called \emph{Twiss~parameters}. The particles motion in phase space follows a tilted ellipse which is described by
+are called \emph{Twiss~parameters}.
+
+For convenience and later usage we introduce the following short-hand notation:
 %
 \begin{equation}
-    \gamma^2(s)x(s) + 2\alpha(s)x(s)p_x(s) + \beta(s)p_x^2(s) = \epsilon
+    \phi_{z,ab} = \phi_z(s_b) - \phi_z(s_a) + 2\pi Q_z \Theta(s_a, s_b)
 \end{equation}
 %
-where $\epsilon$ is the single particle emittance.
+which is the \emph{phase advance}\index{phase advance} between position $s_a$ and $s_b$, taking into
+account the relative position of $s_a$ to $s_b$.
+If element $b$ lies upstream from element $a$, the interval \emph{wraps around} the end of the
+lattice definition and the tune
+has to be added to the phase advance. For this the following definition is used:
+%
+\begin{equation}
+    \Theta(s_a, s_b) =
+    \begin{cases}
+        1 & \text{if } s_a > s_b \\
+        0 & \text{else} \\
+    \end{cases}
+    \fstop
+\end{equation}
+%
+The particles motion in phase space follows a tilted ellipse which is described by
+%
+\begin{equation}
+    \gamma(s)z^2(s) + 2\alpha(s)z(s)p_z(s) + \beta(s)p_z^2(s) = 2 J_z
+\end{equation}
+%
+where $J_z$ is called the \emph{action}%
+\footnote{
+    Often a quantity $\epsilon^\text{part}_z=2 J_z$ is defined, called the single particle emittance.
+    It must not be confused with the \emph{beam emittance}
+    $\epsilon_z = \frac{1}{2}\langle \epsilon_z^\text{part} \rangle$.
+}%
+. The area of the ellipse is $2J_z\pi$.
 
 The one turn map in this form can be retrieved by setting $\beta_a = \beta_b $, ${\alpha_a = \alpha_b}$
 and ${\phi_{ab} = 2\pi Q}$:
@@ -398,10 +370,15 @@ and ${\phi_{ab} = 2\pi Q}$:
     \fstop
 \end{equation}
 %
+
+% --------------------------------------------------------------------------------------------------
+% --- Courant Snyder Coordinates
+% --------------------------------------------------------------------------------------------------
 \subsection{Courant-Snyder coordinates}
+\label{sec_intro_cs}
 If one plots the phase space of a particle at a certain position $s_a$ over many turns, it draws an
 ellipse with area $2J_z\pi$ where $J_z$ is called \emph{action}.
-Particle motion is easier expressed in Courant-Snyder coordinates
+Particle motion is easier expressed in Courant-Snyder coordinates \cite{Courant1958, Bazzani1994}
 %
 \begin{equation}
     \begin{pmatrix}
@@ -420,7 +397,7 @@ Particle motion is easier expressed in Courant-Snyder coordinates
     \label{eq_cs_matrix}
 \end{equation}
 %
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includestandalone{figures/xp_linear}
     \hspace{1cm}
@@ -432,23 +409,43 @@ Particle motion is easier expressed in Courant-Snyder coordinates
 \end{figure}
 %
 which transforms the phase space ellipse into a circle with radius $\sqrt{2J_z}$.
-The one turn map is now a rotation of $2\pi Q_z$. 
+The transformation is illustrated in Figure~\ref{fig_phase_space_ellipse_nl}.
+In the following Courant-Snyder coordinates will frequently be abreviated by \emph{CS coordinates}.
 
-It is often convenient to express the Courant-Snyder coordinates in a their complex form:
+The transformation matrix in \eqref{eq_cs_matrix} is called $\mat{T}$ for the rest of this chapter.
+Applying $\mat{T}$ to the one turn map, one can see that the one-turn evolution of the particle is
+now a rotation of $2\pi Q_z$:
+\begin{equation}
+    \mat{T}\;\mat{M}_\text{OT}\;\mat{T}^{-1} = 
+    \begin{pmatrix}
+        \cos(2\pi Q_z) & -\sin(2\pi Q_z)\\
+        \sin(2\pi Q_z) & \cos(2\pi Q_z) \\
+    \end{pmatrix}
+    \fstop
+\end{equation}
+
+It is often convenient to express the Courant-Snyder coordinates in their complex form:
 %
 \begin{equation}
     h^\pm_z \equiv \hat{z} \mp i \hat{p}_z
     \label{eq_courantsnyder}
 \end{equation}
 %
-and the one turn map simplifies further to
+and the one turn map simplifies further to a rotation about $2\pi Q_z$:
 %
 \begin{equation}
-    \mat{M}_\text{OT} = \e{-i2\pi Q_z}
+    \mat{M}_\text{OT} \varphi_z = \varphi_z + 2\pi Q_z
     \fstop
 \end{equation}
+%
+The action on the complex Courant-Snyder coordinates reads
+%
+\begin{equation}
+  \mat{M}_{\text{OT}} h_z^\pm = \e{\mp 2\pi i Q_z}h_z^\pm
+  \fstop
+\end{equation}
 
-In a linear lattice, the particle motion in complex Courant-Snyder coordinates at turn $N$ and position
+In a linear lattice, the particle motion in complex Courant-Snyder coordinates at turn $N+1$ and position
 $s$ in the ring reads
 %
 \begin{equation}
@@ -457,20 +454,247 @@ $s$ in the ring reads
 %
 with $\varphi_{z,0}$ being a phase offset given by initial conditions.
 
+The formulae above assume no coupling between the transverse planes.
+Before we continue to dive into the depths of general normalised coordinates for non-linear
+optics, we introduce more general coordinates and maps, mixing the two planes:
+\begin{equation}
+    \begin{pmatrix}
+        x \\ p_x \\ y \\ p_y
+    \end{pmatrix}_b
+    =
+    \mat{M}\;
+    \begin{pmatrix}
+        x \\ p_x \\ y \\ p_y
+    \end{pmatrix}_a
+\end{equation}
+where the transfer map $\mat{M}$ now is a $4\times 4$ matrix.
+For convenience, the vector containing the 4D coordinates will be called $\vec{z}$.
+
+% --------------------------------------------------------------------------------------------------
+% Lie maps and hamiltonian
+% --------------------------------------------------------------------------------------------------
+\section{Hamiltonian description and Lie maps}
+\label{sec_hamil_lie}
+
+Some preliminaries are needed to describe the particle motion using the Hamiltonian description
+and Lie transformations.
+A thorough repetition of the topic of Lie groups and Lie algebras can not be given in the
+scope of this thesis, the reader may consult \cite{Georgi1982}.
+
+The general Hamiltonian of a charged particle in a circular accelerator is \cite{WolskiBook, Herr2020}
+%
+\begin{equation}
+    %H=-\left( 1+\frac{x}{\rho} \right) \sqrt{(1+\delta)^2 -p_x^2-p_y^2}
+    %+ \frac{x}{\rho} + \frac{x^2}{2\rho^2} - \frac{A_s(x,y)}{B_0\rho}
+    H=\frac{\delta}{\beta_0} - (1+hx)
+    \sqrt{
+      \left(\delta + \frac{1}{\beta_0} - \frac{q\phi}{cP_0}\right)^2 - (p_x-a_x)^2 - (p_y-a_y)^2
+      - \frac{1}{\beta_0^2\gamma_0^2}
+    }
+    - (1+hx)a_s
+\end{equation}
+with the following definitions:
+
+\begin{tabular}{ll}
+  $P_0$ & reference momentum, \\
+  $\delta = \frac{p_z}{P_0}$ & relative longitudinal momentum deviation, \\
+  $h=\frac{1}{\rho}$ & local curvature with $\rho$ being the local curvature radius, \\
+  $\beta_0$, $\gamma_0$ & relativistic factors, \\
+  $q$ & the particle's charge, \\
+  $\phi$ & the electric field, \\
+  $a_x, a_y, a_s$ & the transverse and longitudinal components of the vector potential,
+\end{tabular}
+
+The Hamiltonian equations of motion \cite{Landau1976} read
+\begin{align}
+    \frac{\der z}{\der s}=\frac{\partial H}{\partial p_z} \quad\text{ and }\quad
+    \frac{\der p_z}{\der s}=-\frac{\partial H}{\partial z}
+\end{align}
+%
+for canonical variables $z$ and $p_z$.
+The previous example of a quadrupole is again used to demonstrate this approach.
+The Hamiltonian for a particle moving through a single quadrupole is obtained from putting the
+corresponding vector potential
+%
+\begin{align}
+  a_s &= -\frac{k_1}{2}(x^2) \\
+  a_x &= a_y = \phi = 0
+\end{align}
+%
+and 0 curvature ($h = 0$):
+%
+\begin{align}
+    H &=\frac{\delta}{\beta_0}
+      - \sqrt{\left(\delta + \frac{1}{\beta_0}\right)^2 - p_x^2 - p_y^2 - \frac{1}{\beta_0^2\gamma_0^2}}
+      + \frac{k_1}{2}(x^2 - y^2) \\
+    H &= \frac{p_x^2 + p_y^2}{2} + \left(\frac{\delta}{2\beta_0\gamma_0}\right)^2 + O(2nd)
+    \fstop
+    \label{eq_hamil_quad_delta}
+\end{align}
+%
+In the simple example at hand, only one on-momentum particle is considered:
+%
+\begin{equation}
+    H = \frac{k}{2}\left( x^2 - y^2 \right) + \frac{p_x^2+p_y^2}{2}
+    \label{eq_hamil_quad}
+\end{equation}
+%
+Plugging this consecutively into the Hamiltonian equations of motion, yields
+\begin{align}
+    \frac{\der x}{\der s} &= \frac{\partial H}{\partial p_x} = p_x \\
+    \Rightarrow \frac{\der^2 x}{\der s^2} &= \frac{\der p_x}{\der s} = -kx
+\end{align}
+which coincides with Hill's equation, \eqref{eq_hills}.
+
+Poisson brackets,
+%
+\begin{equation}
+    [f,g] = 
+    \sum\limits_{z\in\{x,y\}}
+    \left(
+    \frac{\partial f}{\partial z} \frac{\partial g}{\partial p_z}
+    - \frac{\partial f}{\partial p_z}\frac{\partial g}{\partial z}
+    \right)
+    \komma
+\end{equation}
+%
+can be used to rewrite the Hamiltonian equations:
+\begin{align}
+    [z, H] = \frac{\partial H}{\partial p_z}\quad\text{ and }\quad
+    [p_z, H] = -\frac{\partial H}{\partial z}
+    \fstop
+\end{align}
+%
+The Poisson brackets form a \emph{Lie algebra} and therefore some properties can be utilised.
+First, we define a \emph{Lie operator} acting on $g$
+\begin{equation}
+    \liemap{f}g = [f,g]
+    \fstop
+\end{equation}
+Then we can use the exponential parameterisation of Lie groups to move away from the origin
+\cite{Georgi1982} and describe the particle motion going through a thin element in the lattice
+with Hamiltonian $H$%
+\footnote{
+    Actually, \eqref{eq_exponential_map} is valid for a Hamiltonian of thin elements only.
+    But the Lie map formalism applies also to the full thick lens description. The exponential
+    map just becomes 
+    $x(s_b) = \e{\liemap{LH^\text{thick}}}x(s_a)$ for a thick lens Hamiltonian $H^\text{thick}$.
+}:
+%
+\begin{equation}
+    x(s_b) = \e{\liemap{H}}x(s_a)
+    \label{eq_exponential_map}
+    \fstop
+\end{equation}
+%
+To illustrate this, once again the quadrupole is used. Some helpful identities, for convenience:
+\begin{align}
+    \liemapn{g}{2} &= \liemap{g}\circ\liemap{g}\notag \\
+    \liemap{x^2} f(x,p_x) &= 2x\frac{\partial f(x,p_x)}{\partial p_x} \notag \\
+    \liemap{p^2} f(x,p_x) &= -2p_x\frac{\partial f(x,p_x)}{\partial x}
+   % \notag \\
+   % \liemapn{x}{n} f(x,p_x) &= \frac{\partial^n f(x,p_x)}{\partial p_x^n} \notag \\
+   % \liemapn{p}{n} f(x,p_x) &= -\frac{\partial^n f(x,p_x)}{\partial x^n}
+\end{align}
+%
+Now it is possible to show
+\begin{align}
+    x(s_b) = \e{\liemap{H}} x(s_a) &= x(s_a) - p_x(s_a)
+        - \frac{1}{2}kx(s_a) + \frac{1}{6}kp_x(s_a)
+        \notag \\
+        &\quad + \frac{1}{24}k^2x(s_a) - \frac{1}{120}k^2p_x(s_a)
+        + \ldots
+        \notag \\
+       &= x(s_a) \cos(\sqrt{k}) - \frac{p(s_a)}{\sqrt{k}} \sin(\sqrt{k})
+\end{align}
+which agrees with the propagation through a quadrupole given in \eqref{eq_quad_transfer}.
+Usually, non-linear terms are collected into a non-linear map $\e{\liemap{H}}$, generated
+by the non-linear Hamiltonian and a linear transfer mapt (rotation in CS-coordinates) $\mat{M}$:
+%
+\begin{equation}
+    \mathscr{M}_w = \e{\liemap{H_w}} \mat{M}_w
+    \komma
+\end{equation}
+%
+where the subscript $w$ denotes the map of element $w$ in the lattice and the particle motion
+is propagated through the element by
+\begin{equation}
+    \vec{z}(s_w + L) = \e{\liemap{H_w}} \mat{M}_w \vec{z}(s_w)
+\end{equation}
+for element $w$ with length $L$.
+ 
+
+
 % --------------------------------------------------------------------------------------------------
 % Normal forms and RDTs
 % --------------------------------------------------------------------------------------------------
-\section{Resonance driving terms}
+\section{The normal form approach}
+\label{sec_normal_form}
 
 In order to derive optics parameters from Hamiltonian terms the normal form approach\index{normal form}
-\cite{Bartolini1997,Tomas2005} -- classically
-used to describe non-linear optics -- is useful. 
+-- usually encountered in treatments of non-linear optics -- is useful.
+It is described in its full mathematical detail in \cite{Bartolini1997,Bazzani1994}
+and more illustrative in \cite{Tomas2005, Herr2013, Herr2020}.
+
+In the formalism of complex CS-coordinates, a transfer map can be written as
+%
+\begin{equation}
+    \begin{pmatrix}
+        h_x^+ \\ h_x^- \\ h_y^+ \\ h_y^-
+    \end{pmatrix}_b
+    =
+    \mat{M}\;
+    \begin{pmatrix}
+        h_x^+ \\ h_x^- \\ h_y^+ \\ h_y^-
+    \end{pmatrix}_a
+    %\fstop
+\end{equation}
+%
+where
+%
+\begin{equation}
+ \mat{M}  = \
+ \begin{pmatrix}
+   m_{1000}^1 & m_{0100}^1 & m_{0010}^1 & m_{0001}^1 \\
+   m_{1000}^2 & m_{0100}^2 & m_{0010}^2 & m_{0001}^2 \\
+   m_{1000}^3 & m_{0100}^3 & m_{0010}^3 & m_{0001}^3 \\
+   m_{1000}^4 & m_{0100}^4 & m_{0010}^4 & m_{0001}^4 \\
+ \end{pmatrix}
+ \fstop
+\end{equation}
+The significance of the multi-index $m_{jklm}^i$ will become clear in a moment.
+It shall be noted that some symmetry relation applies:
+%
+\begin{equation}
+  m_{jklm} = \conj{m_{kjml}}
+\end{equation}
+%
+
+The map of a non-linear lattice element $i$ cannot be described by a matrix $\mat{M}_i$ only.
+A higher order map is necessary. Here the multi-index comes into play.
+Higher order maps $\mathcal{M}$ are composed of higher order polynomials:
+%
+\begin{equation}
+    h_x^+(s_b) = \sum\limits_{n=1}^\infty\sum\limits_{j+k+l+m=n} m^1_{jklm}
+        \left( h_x^+(s_a) \right)^j
+        \left( h_x^-(s_a) \right)^k
+        \left( h_y^+(s_a) \right)^l
+        \left( h_y^-(s_a) \right)^m
+    \fstop
+\end{equation}
+%
 
 The transformation to Courant-Snyder coordinates flattens the phase space of linear optics to a circle.
 For non-linear optics where the phase space motion is far more complicated the normal form approach
-can be used to flatten the phase space motion to a circle.
+can be used to transform to a new set of coordinates, the \emph{normal form coordinates}
+(their exact form will be defined at the end of this section), in which the
+the phase space motion is flattened to a circle.
+Figure~\ref{fig_phase_space_ellipse_nl} illustrates how particle trajectories inside a non-linear
+machine evolve in phase space, CS-space and normal form space.
+The irregular shape of in phase space is tilted to a more "upright" form in CS-space but only a
+transformation to normal form space flattens the trajectory to a circle.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includestandalone{figures/xp_nonlinear}
     \includestandalone{figures/cs_nonlinear}
@@ -485,17 +709,25 @@ can be used to flatten the phase space motion to a circle.
     \label{fig_phase_space_ellipse_nl}
 \end{figure}
 
-The map of a non-linear lattice element $i$ cannot be described by a matrix $\mat{M}_i$ only.
-A higher order map is necessary
-This map is generated by the non-linear Hamiltonian of the element:
-%
+This map is generated by the non-linear Hamiltonian of the element.
+The Hamiltonian of element $w$ evaluated at position $s$ in multipolar expansion,
+reads
 \begin{equation}
-    \mathscr{M}_w = \e{\liemap{H_w}} \mat{M}_w
-    \komma
+  \tilde{H}_w =
+  -\re{\sum\limits_{n\ge 2} (K_{n-1} + i J_{n-1}\frac{(x+iy)^n}{n!})}_w
+  \label{eq_gen_hamil}
 \end{equation}
 %
- 
-where the Hamiltonian of element $w$ evaluated at position $s$ is given by
+where $K_{n-1}$ and $J_{n-1}$ are normal and skew integrated multipolar field strengths,
+%
+\begin{align}
+  K_n &= \frac{1}{n!}\frac{\partial^n B_y}{\partial x^{n}}\\
+  J_n &= \frac{1}{n!}\frac{\partial^n B_x}{\partial x^{n}}
+\end{align}
+%
+i.e. a pure dipole has only $K_0$, a pure quadrupole only $K_1$ etc.
+
+In complex Courant-Snyder coordinates, the Hamiltonian~\eqref{eq_gen_hamil} can be written in the form
 %
 \begin{equation}
     H_w(s_i) = \sum\limits_{n\geq2} \sum\limits_{j+k+l+m=n} h_{w,jklm}
@@ -509,8 +741,7 @@ where the Hamiltonian of element $w$ evaluated at position $s$ is given by
     \fstop
 \end{equation}
 %
-where $n$ is the mulitpole order (1 for dipole, 2 for quadrupole etc)
-and the Hamiltonian term $h_{w,jklm}$ is defined as
+where the Hamiltonian term $h_{w,jklm}$ is defined as
 %
 \begin{equation}
     h_{w,jklm} = 
@@ -534,9 +765,8 @@ The Hamiltonian of the whole lattice is denoted by
     \fstop
 \end{equation}
 %
-In \eqref{eq_hamiltonianterm} $\beta_{z,w}$ is the $\beta$ function of the corresponding plane at position $w$,
-$K_{w,n-1}$ and $J_{w,n-1}$ are the normal and skew integrated magnetic strengths of element $w$ and order $n-1$ (1 for quadrupole, 2 for sextupole etc.)
-and 
+In \eqref{eq_hamiltonianterm} $\beta_{z,w}$ is the $\beta$ function of the corresponding plane at position $w$
+and
 %
 \begin{equation}
     \Omega(a) = 
@@ -547,24 +777,6 @@ and
     \fstop
 \end{equation}
 %
-The \emph{Lie map}\index{Lie map} is defined as
-%
-\begin{equation}
-    \e{\liemap{f}}g \equiv g + [f,g] + [f, [f,g]] + \ldots
-    \komma
-    \label{eq_liemap}
-\end{equation}
-%
-and $[f,g]$ is the Poisson bracket\index{Poisson bracket}
-%
-\begin{equation}
-    [f,g] = 
-    \frac{\partial f}{\partial x} \frac{\partial g}{\partial y}
-    - \frac{\partial f}{\partial y}\frac{\partial g}{\partial x}
-    \komma
-\end{equation}
-for canonical variables $x$ and $y$.
-%
 The one-turn map of an accelerator now reads
 %
 \begin{equation}
@@ -572,20 +784,22 @@ The one-turn map of an accelerator now reads
     \fstop
 \end{equation}
 %
-The transformation from complex Courant-Snyder coordinates to normal form coordinates is performed
-using the generating function $F$:
+The transformation from complex Courant-Snyder coordinates to normal form coordinates and back is performed
+using a generating function $F$:
 %
-\begin{equation}
-    \zeta_z^\pm = \e{\liemap{F}} h_z^\pm
+\begin{align}
+    \zeta_z^\pm &= \e{-\liemap{F}} h_z^\pm 
+    \label{eq_z_from_h} \\
+    h^\pm &= \e{\liemap{F}} \zeta_z^\pm
+    \label{eq_h_from_z}
     \fstop
-    \label{eq_hfromz}
-\end{equation}
+\end{align}
 %
 The \emph{normal form coordinates}\index{normal form!coordinates} $\zeta_z^\pm$
-can be expressed in terms of the normal form phase $\psi$ and normal form invariant $J_z$:
+can be expressed in terms of the normal form phase $\psi$ and normal form invariant $I_z$:
 %
 \begin{equation}
-    \zeta_z^\pm(s_i) = \sqrt{2J_z}\e{i\left[\mp \psi_z(s_i) + \psi_{z,0} \right]}
+    \zeta_z^\pm(s_i) = \sqrt{2I_z}\e{i\left[\mp \psi_z(s_i) + \psi_{z,0} \right]}
     \fstop
 \end{equation}
 %
@@ -599,6 +813,10 @@ coordinates can be calculated easily:
 \end{equation}
 and all other combinations are zero.
 %
+
+\section{Resonance driving terms}
+\label{sec_rdts}
+
 The following commutative diagram shows the transformation from the Courant-Snyder one turn map to 
 the normal form one turn map:
 
@@ -610,8 +828,8 @@ the normal form one turn map:
         \begin{tikzcd} [row sep=large,column sep=8em]
             \vec{\zeta}(N) \arrow[r, "\nfMotion=\e{\liemap{\phiave{H}}}R"]
                 & \vec{\zeta}(N+1) \\
-            \vec{h(N)} \arrow[r, "\mathscr{M}_\text{OT}"'] \arrow[u, "\e{\liemap{F}}"]
-                & \vec{h(N+1)} \arrow[u, "\e{\liemap{F}}"']
+            \vec{h(N)} \arrow[r, "\mathscr{M}_\text{OT}"'] \arrow[u, "\e{-\liemap{F}}"]
+                & \vec{h(N+1)} \arrow[u, "\e{-\liemap{F}}"']
         \end{tikzcd} 
     \label{}
 \end{equation}
@@ -634,7 +852,7 @@ and an arbitrary rotation may be defined as
 The normal form coordinate of the particle at position $s$ and turn $N$ reads
 %
 \begin{align}
-     \zeta_z^\pm(s, N) &= \sqrt{2J_z} \e{\mp i \left[  \psi_{z,0} + NQ_z +\psi(s) \right]}
+     \zeta_z^\pm(s, N) &= \sqrt{2I_z} \e{\mp i \left[  \psi_{z,0} + NQ_z +\psi(s) \right]}
      \fstop
 \end{align}
 %
@@ -678,7 +896,11 @@ and \eqref{eq_FfromH} has to hold for each polynomial order seperately. Thus one
     \label{eq_fijkl_from_h}
 \end{equation}
 %
-The enumerator of $f_{jklm}$ is referred to as \emph{resonance driving term}\index{resonance driving terms}.
+The enumerator of $f_{jklm}$ is referred to as \emph{resonance driving term}\index{resonance driving terms}%
+\footnote{%
+  Sometimes the whole expression $f_{jklm}$ is called resonance driving term.
+}%
+.
 
 % --------------------------------------------------------------------------------------------------
 % phase beating
@@ -693,36 +915,52 @@ Only normal quadrupolar field errors are considered.
 In this case the generating function $F$ reads
 %
 \begin{equation}
-  F(s_j) = f_{2000,j} \left( \zeta_{x,s_j}^+ \right) ^2 + f_{0200,j} \left( \zeta_{x,s_j}^- \right)^2 \notag
+  F(s_j) =
+  f_{2000,j} \left( \zeta_{x,s_j}^+ \right) ^2 + f_{0200,j} \left( \zeta_{x,s_j}^- \right)^2 \notag
+  f_{0020,j} \left( \zeta_{y,s_j}^+ \right) ^2 + f_{0002,j} \left( \zeta_{y,s_j}^- \right)^2 \notag
   %\\
   %&f_{0020,j} \left( \zeta_y^+ \right)^2 + f_{0002,j} \left( \zeta_y^- \right)^2
   \komma
   \label{eq_F_quad}
 \end{equation}
 %
-The complex Courant-Snyder coordinates can be calculated from the normal form coordinates by
-\eqref{eq_hfromz}
+with
 %
 \begin{equation}
-    h_x^+ = \zxp + \left[ F, \zxp \right] + \left[ F \left[ F, zxp \right] \right]
+    f_{2000,j} = \frac{
+        \sum\limits_w^W \delta K_{w,1}\beta_{x,w}\e{2i\varphi_{x,wj}}
+    }{
+        8\left( 1-\e{4i\pi Q_x}\right)
+    }
+    \fstop
+    \label{eq_f2000}
+\end{equation}
+%
+The complex Courant-Snyder coordinates can be calculated from the normal form coordinates by
+\eqref{eq_h_from_z}
+%
+\begin{equation}
+    h_x^+ = \zxp + \liemap{F} \zxp +  \frac{1}{2} \liemapn{F}{2} \zxp + O(f^3)
     \fstop
 \end{equation}
 %
 Using the Poisson bracket identity \eqref{eq_poiss_br_ident} one can calculate
 %
-\begin{align}
-     \left[ F, \zxp \right]  &= \left[f_{0200} \zxmto{2}, \zxp \right] & &= 2i f_{0200} \zxm \komma\notag \\
-     \left[ F, \left[ F, \zxp \right]\right] &= \left[f_{2000} \zxpto{2}, 2i f_{0200} \zxm \right]
-     & &= -4 \left| f_{2000}\right|^2 \zxp
+\begin{equation}
+\begin{matrix*}[l]
+     \liemap{F} \zxp  &= \left[f_{0200} \zxmto{2}, \zxp \right]  &= 4i f_{0200} \zxm \komma\notag \\
+     \liemapn{F}{2}\zxp &= \left[f_{2000} \zxpto{2}, 4i f_{0200} \zxm \right]
+      &= - \left| 4f_{2000}\right|^2 \zxp
      \fstop
-\end{align}
+\end{matrix*}
+\end{equation}
 %
 This can be used to calculate the C-S coordinate at position $s_j$ and turn $N$:
 %
 \begin{align}
-  h_x^+(s_j, N) &= e^{:F:}\zeta_{x,s_j}^+(N) \notag \\
-  &= \zeta_{x,s_j}^+(N) + 4if_{2000,j}^* \zeta_{x,s_j}^-(N) 
-  + \left| 4 f_{2000,j} \right|^2 \zeta_{x, s_j}^+(N) +
+  h_x^+(s_j, N) &= e^{:F:}\zeta_{x}^+(s_j,N) \notag \\
+  &= \zeta_{x}^+(s_j,N) + 4if_{2000,j}^* \zeta_{x}^-(s_j,N) 
+  + \frac{1}{2}\left| 4 f_{2000,j} \right|^2 \zeta_{x}^+(s_j,N) +
   O(f^3)
   \label{eq_h_2ndorder}
 \end{align}
@@ -735,7 +973,7 @@ The phase of the real signal $\hat{x}_j = \re{h_x^+(s_j)}$ reads,
 up to first order,
 %
 \begin{equation}
-    \hat{x}_j = \re{\left( 1+4if_{2000,j}^* \right) \sqrt{2I_x}\e{-i[ N Q_x+\psi_{x,0j}]}}
+    \hat{x}_j = \re{\left( 1+4if_{2000,j}^* \right) \sqrt{2J_x}\e{-i[ N Q_x+\psi_{x,0j}]}}
   \fstop
   \label{eq_real_H10}
 \end{equation}
@@ -757,10 +995,10 @@ line is the argument of the term in parenthesis in \eqref{eq_real_H10}:
 \end{align}
 %
 To get the $\beta$~function under the effect of focusing errors, one can compare the amplitude
-$\sqrt{\beta_zI_z}$ of the coordinate by considering the change in $I_z$ negligible:
+$\sqrt{\beta_zJ_z}$ of the coordinate by considering the change in $J_z$ negligible:
 %
 \begin{align}
-    \sqrt{2\beta_xI_x} &= \sqrt{2\beta_x\m I_x}\re{ 1 + 4if_{2000,i}} \notag \\
+    \sqrt{2\beta_xJ_x} &= \sqrt{2\beta_x\m J_x}\re{ 1 + 4if_{2000,i}} \notag \\
     \beta_x &= \beta_x\m \left( 1 + 8\im{f_{2000,i}}\right) + O(f^2)
     \fstop
     \label{eq_betabeat}
@@ -795,7 +1033,7 @@ The Hamiltonian of the whole accelerator reads
 \end{align}
 %
 with $H_w(s_a)$ being the Hamiltonian term from \eqref{eq_Hamil_sa}.
-The sum over $w$ in Eqs.~(\ref{eq_rdt}) and (\ref{eq_Hamil}) runs over each element $w$ in the accelerator.
+The sum over $w$ in Eq.~(\ref{eq_Hamil}) runs over each element $w$ in the accelerator.
 The accumulated phase shift due to the detuning between elements $i$ and
 $j$ reads:
 %
@@ -820,7 +1058,7 @@ $I$ is the interval $[\min(i,j), \max (i,j)]$ and $\text{sgn}(x)$ denotes the si
 %
 \label{sec:phasebeating_K1_first}
 
-The total phase advance beating is then the sum of the accumulated detuning from Hamiltonian
+The total phase advance beating is then the sum of the accumulated detuning from Ha\-mil\-to\-nian
 terms and the phase beating from the RDTs:
 %
 \begin{equation}
@@ -893,8 +1131,13 @@ precise $\beta$~function and in chapter \ref{ch_localobs} to construct a local o
 \label{sec_coupling_rdts}
 
 Linear transverse coupling is the effect that the linear optics of one plane influences the optics
-parameters of the other plane. This can have undesired impact on the optics quality and optics
-control.
+parameters of the other plane.
+This can have undesired impact on beam size and luminosity as well as on Landau damping%
+\footnote{%
+Landau damping is a mechanism, first discovered in plasma physics\cite{landau_landau_damp, landau_damp_revis}, %
+by which larger tune spread leads to a more stable beam.%
+}%
+.
 
 The generating function with only skew quadrupoles reads
 %
@@ -933,131 +1176,20 @@ determines the strength of the coupling between the planes.
 If both are zero there is no coupled motion.
 
 % --------------------------------------------------------------------------------------------------
-% --------------------------------------------------------------------------------------------------
-% Intro to OMC
-% --------------------------------------------------------------------------------------------------
-\section{Optics measurements and corrections}
-
-There are two areas for which the continued measurement and correction of optics parameters is of
-importance. The first is machine protection. If the nominal LHC beam hits the wall of the beam pipe
-it can deal severe damage to the elements ranging from heating up superconducting elements and
-inducing a magnet quench to physically destroying machine parts by melting (or even evaporating) the
-material.
-
-The second area for which  optics control is highly important is the machine performance.
-The delivered luminosity can be reduced by optics errors.
-The two main LHC experiments, ATLAS and CMS demand a luminosity imbalance below $\SI{5}{\percent}$.
-To achieve this an optics correction up to the percent level is needed.
-High quality optics also improve operational efficiency.
-
-% --------------------------------------------------------------------------------------------------
-% Measurement tools and techniques
-% --------------------------------------------------------------------------------------------------
-\subsection{Measurement tools and techniques}
-
-The most important technique for beam based optics measurements that is applied in the LHC is the excitation
-of the particle beam.
-If the bunch is excited it performs a betatron oscillation about the closed orbit with a measurable amplitude.
-The position of the beam is recorded at certain positions in the accelerator at each revolution. The
-obtained turn-by-turn data is then analysed as described later.
-
-To obtain said excitation there are two methods that will be introduced in this section: a free kick
-which provokes a free oscillation of the bunch and an AC-dipoles which drives a forced oscillation of
-the beam. 
-
-% --------------------------------------------------------------------------------------------------
-\subsubsection{Free Kick}
-
-If the beam experiences a kick it will perform a damped free oscillation.
-The particle's position at the same location turn after turn is illustrated in \figref{fig_kick_plot}.
-Light particles like electrons
-suffer from a strong damping because of their high synchroton radiation but heavier particles like the
-protons accelerated in the LHC are damped much slower.
-Nevertheless the oscillation amplitude decreases fast and not many turns are available for high
-precision measurements of the turn-by-turn signal. In order to still have as much signal as possible
-the kick strength has to be as high as feasible without kicking the beam strongly enough to damage elements or even kick it out of the accelerator.
-
-Furthermore the excitation by a single kick carries the risk of filamenting the
-phase space and blowing up the beam emittance.
-%
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=.8\linewidth]{kick_plot.pdf}  
-    \caption{The particle's turn-by-turn position for an excitation by a single kick.}
-    \label{fig_kick_plot}
-\end{figure}
-%
-\subsubsection{AC-dipole}
-
-The other method to excite the beam that is used in LHC is a dipole connected to an alternate current
-power amplifier.
-This creates a driven oscillation of the beam \cite{Peggs1998} which can be measured in BPMs \cite{Miyamoto2008, Miyamoto2010}.
-The excitation amplitude is slowly ramped up for 2000 turns in order to stay in an
-adiabatic regime \cite{Tomas2005ac} held constant for 6600 turns and then again adiabatically ramped down.
-The particle's turn-by-turn position is illustrated in \figref{fig_ac_plot}.
-
-The adiabatic ramp up and down prevent a blow up of the beam emittance and since the oscillation amplitude
-can be held constant, a smaller maximum amplitude is needed. 
-%
-\begin{figure}[h]
-    \centering
-     \begin{tikzpicture}
-    \node (b1) {\includegraphics[width=.8\linewidth]{./ac_plot}};
-    \node at ($(b1) + (3.2,2.2)$) {\includegraphics[width=.4\linewidth]{./ac_plot_zoom}};
-    \end{tikzpicture}   
-    \caption{
-        The turn-by-turn position of an AC-dipole excitation. The driving force is ramped up,
-        held at flat-top and ramped down again.
-        The small plot shows a magnified view of the start of the ramp up.
-    }
-    \label{fig_ac_plot}
-\end{figure}
-%
-Since the driven excitation creates a forced oscillation as opposed to a free one as in the case of
-a single kick, the turn-by-turn motion of the particle does not reflect the pure betatron oscillation
-and this effect has to be compensated. For this compensation a good theoretical knowledge of the driven
-motion is needed.
-
-%Another disadvantage of the AC-dipole in its current form in the LHC is a cooldown time of about
-%one minute that can slow down the measurement process.
-
-% --------------------------------------------------------------------------------------------------
-\subsubsection{Beam Position Monitors}
-
-To record the turn-by-turn position of the beam, the LHC possesses more than 500 dual-plane
-Beam Position Monitors (BPMs) which are installed approximately regularly around the ring. 
-
-The particle's transverse position in Complex Courant-Snyder coordinates at a location $s$ and turn
-$N$ can be optained by applying repeatedly the one turn map:
-%
-\begin{equation}
-    \hat{h}_z^\pm(s + NC) = \sqrt{2I_z} \e{i \left( \varphi_z(s) + 2\pi N Q_z\right)} 
-    \fstop
-\end{equation}
-%
-The real position and momentum of the particle can then be calculated by reversing the steps outlined
-in the first section of this chapter.
-%
-\begin{equation}
-    z(s + NC) = \sqrt{2I_z\beta_z(s)}\cos \left( \varphi_z(s) + 2\pi N Q_z\right)
-\end{equation}
-%
-The phase $\varphi_z(s)$ and amplitude $\sqrt{2I_z\beta_z(s)}$ can be obtained by a Fourier transformation of
-the particle positions.
 
 % --------------------------------------------------------------------------------------------------
 % Calculation of optics functions
 % --------------------------------------------------------------------------------------------------
-\subsection{Calculation of optics functions}
+\section{Calculation of optics functions}
 
 % --------------------------------------------------------------------------------------------------
-\subsubsection{$\beta$ function measurement}
+\subsection{\texorpdfstring{$\beta$}{beta}~function measurement}
 \label{sec_beta_meas}
 
 To calculate the $\beta$~function at a location $s$ in the machine, two methods are routinely used
 in the LHC: the first calculates the $\beta$~function from the amplitude ($\propto \sqrt{2I\beta}$)
 and the second one uses the phase advance.
-In this work only the second one is considered and the task of one of the chapters is the improvement
+In this work only the second one is considered and the task of chapter~\ref{ch_anbpm} is the improvement
 of this method.
 
 In order to get the real $\beta$~function from phase, one can start with the transfer matrix $\mat{M}_{ij}$
@@ -1102,10 +1234,10 @@ $\mat{M}_{ij} = \mat{M}_{ij}\m$ and, consequently,
 %
 \equationref{eq_3bpm_method} was developped in \cite{Castro1996} and used for LEP and in run I of LHC.
 
-For optimal operation of the machine a precise control of the $\beta$~function is needed. On the one
-hand, the particles must stay within the boundaries of the physical aperture and 
+For optimal operation of the machine a precise control of the $\beta$~function is needed.
+Firstly, the particles must stay within the boundaries of the physical aperture and
 at the interaction point the beam size has to be as small as possible to increase luminosity.
-On the other hand a too large deviation from the optical axis inside a higher order magnet may leed to an undesirable
+And secondly, a too large deviation from the optical axis inside a higher order magnet may leed to an undesirable
 feed-down of the orbit offset.
 
 The deviation of the $\beta$~function from its design value is called \emph{beta beating} and defined as 
@@ -1117,14 +1249,16 @@ The deviation of the $\beta$~function from its design value is called \emph{beta
 \end{equation}
 %
 The $\beta$~beating is often expressed in percent.
+As stated in the introduction, the goal is to limit $\beta$~beating for machine protection reasons
+and to optimise the luminosity.
 The effect of $\beta$~beating is particularly problematic in strong magnetic fields where only small
 deviations from the design orbit create large perturbations the particle dynamics.
 
 % --------------------------------------------------------------------------------------------------
-\subsubsection{Coupling measurement}
+\subsection{Coupling measurement}
 \label{sec_coupling_measurement}
 
-One possible method to calculate coupling used for LHC which is independent of BPM calibration errors
+One possible method to calculate coupling used for LHC -- which is independent of BPM calibration errors --
 makes use of two nearby BPMs in order to cancel out calibration factors. It is therefore called
 the \emph{two BPM method}. This method is described in this section.
 
@@ -1139,15 +1273,28 @@ Repeating the calculations of section~\ref{sec_coupling_rdts} for all transverse
     \label{eq_hxpm_hypm}
 \end{align}
 %
-The Fourier transform of normal form coordinates reads
+The Fourier transform of the coordinates reads
 %
 \begin{equation}
-    \four{\zeta_z^\pm}(\nu) = \sqrt{2I_z}\e{i\varphi_{z,0}} \delta(Q_z \pm \nu)
+    \four{h_z^\pm}(\omega) = \sqrt{2I_z}\e{i\varphi_{z,0}} \delta(Q_z \pm \omega)
     \komma
 \end{equation}
 %
 where $\delta(x)$ denotes the Dirac delta~function.
-With this one can introduce a shorthand notation for the spectral lines $\four{h_z^\pm}(n_xQ_x+n_yQ_y)$:
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/spectrum_plot}
+    \caption{
+        This example plot shows the Fourier transform of horizontal and vertical particle motion
+        from simulations with an AC-dipole and coupling sources. The vertical and horizontal fractional 
+        driven tunes are $Q_x^d=0.270$ and $Q_y^d=0.322$.
+    }
+    \label{fig_cplx_spctr}
+\end{figure}
+Figure~\ref{fig_cplx_spctr} shows the spectrum of $h_x^+$ and $h_y^+$ excited by an AC-dipole and with coupling.
+The driven fractional tunes are $Q_x^d=0.270$ and $Q_y^d=0.322$. The respective main lines are well dominating the spectrum
+and the secondary lines induced by coupling are clearly visible at the position of the respective other plane's tune.
+For the following it is convenient to introduce a shorthand notation for the spectral lines $\four{h_z^\pm}(n_xQ_x+n_yQ_y)$:
 %
 \begin{align}
     H^\pm(n_x,n_y) &= \four{h_x^\pm}(n_xQ_x+n_yQ_y) \notag\\
@@ -1164,7 +1311,7 @@ If the BPM calibration is not perfect the measured $H$ and $V$ lines are not pro
    \fstop
 \end{align}
 %
-The calibration factors $C_{x/y}$ cancel out if one devides the spectral line by the amplitude of
+The calibration factors $C_{x/y}$ cancel out if one divides the spectral line by the amplitude of
 the main line:
 %
 \begin{align}
@@ -1177,19 +1324,19 @@ Important for the coupling calculation are the following normalised spectral lin
 %
 \begin{align}
     A_{0,1}&=\frac{H^+(0,1)}{\left|H^+(1,0)\right|}
-      &= 2i\sqrt{\frac{I_y}{I_x}}\conj{f_{1001}} \e{-i\varphi_{y}}
+      &= 2i\sqrt{\frac{J_y}{J_x}}\conj{f_{1001}} \e{-i\varphi_{y}}
     \label{eq_A01} \\
     B_{1,0}&=\frac{V^+(1,0)}{\left|V^+(0,1)\right|}
-      &= 2i\sqrt{\frac{I_x}{I_y}}{f_{1001}} \e{-i\varphi_{x}}
+      &= 2i\sqrt{\frac{J_x}{J_y}}{f_{1001}} \e{-i\varphi_{x}}
     \label{eq_B10}
 \end{align}
 which contain $f_{1001}$ and
 \begin{align}
     A_{0,-1}&=\frac{H^+(0,-1)}{\left|H^+(1,0)\right|}
-      &= 2i\sqrt{\frac{I_y}{I_x}}\conj{f_{1010}} \e{i\varphi_{y}}
+      &= 2i\sqrt{\frac{J_y}{J_x}}\conj{f_{1010}} \e{i\varphi_{y}}
     \label{eq_A0-1} \\
     B_{-1,0}&=\frac{V^+(-1,0)}{\left|V^+(0,1)\right|}
-      &= 2i\sqrt{\frac{I_x}{I_y}}\conj{f_{1010}} \e{i\varphi_{x}}
+      &= 2i\sqrt{\frac{J_x}{J_y}}\conj{f_{1010}} \e{i\varphi_{x}}
     \label{eq_B-10}
 \end{align}
 %
@@ -1211,7 +1358,7 @@ the complex coordinates from the measured ones.
 
 Since $h_z^\pm = z \pm ip_z$ the complex coordinate can be obtained from positon and momentum.
 BPMs can only measure position but using the position data from a second BPM one can reconstruct the momentum.
-The propagation of complex C-S coordinates through a region that is empty of nonlilnearities reads
+The propagation of complex C-S coordinates through a region that is empty of non-linnearities reads
 %
 \begin{equation}
     \begin{pmatrix}
@@ -1245,12 +1392,12 @@ Since the Fourier transform is linear, this identity can be propagated to the sp
 \end{equation}
 where $H(n_x,n_y)$ is the measured spectral line which is just the real projection of the complex line. 
 %
-Under the assumption that the region between $s_a$ and $s_b$ is free from non-linearities and coupling
-the action $I_z$ does not change between the two positions and
+Under the assumption that the region between $s_a$ and $s_b$ is free from non-li\-nea\-ri\-ties and coupling
+the action $J_z$ does not change between the two positions and
 %
 \begin{align}
-    |H(1,0)_a| &= |H(1,0)_b| = \sqrt{2I_x} \notag\\
-    |V(0,1)_a| &= |V(0,1)_b| = \sqrt{2I_y}
+    |H(1,0)_a| &= |H(1,0)_b| = \sqrt{2J_x} \notag\\
+    |V(0,1)_a| &= |V(0,1)_b| = \sqrt{2J_y}
     \fstop
 \end{align}
 %
@@ -1284,7 +1431,7 @@ because $H^-(1,0) = 0$, one can express $A^+(0,n_y)$ and $B(n_x, 0)$ in terms of
 \end{align}
 %
 
-Which can now be plugged in Eq~(\ref{eq_f0101_f0110}) to calculate the amplitude of the coupling RDTs
+Which can now be plugged in Eq~(\ref{eq_abs_f_from_AB}) to calculate the amplitude of the coupling RDTs
 $f_{1001}$ and $f_{1010}$. To get the phase the starting point is, again, Eqs~(\ref{eq_A01}) -- (\ref{eq_B-10}).
 The phases of $A_{0.1},\,B_{1,0},\,A_{0,-1},\,B_{-1,0}$ contain the phases of the RDTs:
 %
@@ -1342,13 +1489,13 @@ At each turn an AC dipole located at position $s_d$ inflicts a kick to the beam.
 described in Courant-Snyder coordinates as
 %
 \begin{equation}
-    \Delta h_z(N) = i A_\theta\beta(s_d) \cos(2\pi \Qd{z} N)
+    \Delta h_z^+(N) = i A_\theta\beta(s_d) \cos(2\pi \Qd{z} N)
 \end{equation}
 %
 depending on the AC dipole frequency $\Qd{z}$ and the turn number $N$. Figure~\ref{fig_ac_kick} shows
 a schematic of the beam deflection for several turns.
 %
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includestandalone{figACkick}
     \caption{
@@ -1360,7 +1507,7 @@ a schematic of the beam deflection for several turns.
 For a small $\epsilon$ the C-S coordinates of the beam directly after the AC-dipole reads
 %
 \begin{equation}
-    h_z(s_d + \epsilon, N=0) = h_z(s_d+\epsilon) + \Delta h_z(N=0)
+    h_z^+(s_d + \epsilon, N=0) = h_z^+(s_d-\epsilon) + \Delta h_z^+(N=0)
     \label{eq_ackick}
 \end{equation}
 %
@@ -1373,11 +1520,11 @@ Then the coordinates can be propagated to an arbitrary position $s$ in the ring 
 expressions:
 %
 \begin{align}
-    h_z(s<s_d, N) &= R_{s-s_d}\left[R^N h_z(s_d) + R^N\Delta h_z(0) + \ldots + R\Delta h_z(N-1)\right] \notag\\
-    h_z(s>s_d, N) &= R_{s-s_d}\left[R^N h_z(s_d) + R^N\Delta h_z(0) + \ldots + R\Delta h_z(N-1) + \Delta h_z(N)\right] 
+    h_z^+(s<s_d, N) &= R_{s-s_d}\left[R^N h_z^+(s_d) + R^N\Delta h_z^+(0) + \ldots + R\Delta h_z^+(N-1)\right] \notag\\
+    h_z^+(s>s_d, N) &= R_{s-s_d}\left[R^N h_z^+(s_d) + R^N\Delta h_z^+(0) + \ldots + R\Delta h_z^+(N-1) + \Delta h_z^+(N)\right] 
     \komma\\
-    h_z(s<s_d, N) &= R_{s-s_d}\left[R^N h_z(s_d) + \sum\limits_{T=1}^N R^T\Delta h_z(N-T)\right] \notag\\
-    h_z(s>s_d, N) &= R_{s-s_d}\left[R^N h_z(s_d) + \sum\limits_{T=0}^N R^T\Delta h_z(N-T)\right]
+    h_z^+(s<s_d, N) &= R_{s-s_d}\left[R^N h_z^+(s_d) + \sum\limits_{T=1}^N R^T\Delta h_z^+(N-T)\right] \notag\\
+    h_z^+(s>s_d, N) &= R_{s-s_d}\left[R^N h_z^+(s_d) + \sum\limits_{T=0}^N R^T\Delta h_z^+(N-T)\right]
     \komma
     \label{eq_hz_ackick}
 \end{align}
@@ -1393,7 +1540,7 @@ with $R$ being the rotation map of the linear motion. For simplicity, the follow
 The cosine in \eqref{eq_ackick} can be expressed in complex form
 %
 \begin{align}
-    \Delta h_z(N) &= \frac{iA_\theta\beta(s_d)}{2} \left(
+    \Delta h_z^+(N) &= \frac{iA_\theta\beta(s_d)}{2} \left(
         \e{2\pi i \Qd{z} N} +
         \e{-2\pi i \Qd{z} N}
     \right) \notag\\
@@ -1413,9 +1560,9 @@ For the second line, $\delta_\pm$ is defined as
 Using the complex form of the cosine, the kick in \eqref{eq_hz_ackick} can be split into left and right moving parts:
 %
 \begin{multline}
-    h_z(s>s_d, N) = \\
+    h_z^+(s>s_d, N) = \\
     R_{s-s_d}\left[
-        R^N h_z(s_d) +
+        R^N h_z^+(s_d) +
         \frac{iA_\theta\beta(s_d)}{2}\left\{
             \sum\limits_{T=0}^N R^T \delta_+^{N-T}
             + \sum\limits_{T=0}^N R^T \delta_-^{N-T}
@@ -1455,8 +1602,8 @@ The two cases of \eqref{eq_ackick} differ only in one additional exponent of $R^
 \equationref{eq_ackick} can be written as
 %
 \begin{align}
-    h_z(s, N) = R_{s-s_d}R^N 
-    \Bigg[&h_z(s_d)  \notag \\
+    h_z^+(s, N) = R_{s-s_d}R^N 
+    \Bigg[&h_z^+(s_d)  \notag \\
         &+ \frac{iA_\theta\beta(s_d)}{2}\frac{1-(R^{-1}\delta_+)^{N+\Theta(s,s_d)}}{1-R^{-1}\delta_+}  \notag \\
         &+ \frac{iA_\theta\beta(s_d)}{2}\frac{1-(R^{-1}\delta_-)^{N+\Theta(s,s_d)}}{1-R^{-1}\delta_-}
     \Bigg]
@@ -1480,8 +1627,8 @@ and
 Those identities can be used to simplify the exponentials
 %
 \begin{align}
-    h_z(s, N) = R_{s-s_d}R^N 
-    \Bigg[&h_z(s_d)  \notag \\
+    h_z^+(s, N) = R_{s-s_d}R^N 
+    \Bigg[&h_z^+(s_d)  \notag \\
         &+ \frac{A_\theta\beta(s_d)}{4}\frac{1-\e{2\pi i Q_z^+(N+\Theta(s,s_d))}}{\e{i\pi Q_z^+}\sin\left( \pi Q_z^+ \right)}  \notag \\
         &- \frac{A_\theta\beta(s_d)}{4}\frac{1-\e{-2\pi i Q_z^-(N+\Theta(s,s_d))}}{\e{i\pi Q_z^-}\sin\left( \pi Q_z^- \right)}
     \Bigg]
@@ -1492,7 +1639,7 @@ Those identities can be used to simplify the exponentials
 The constant part of \eqref{eq_delta_written_out} can be put into 
 %
 \begin{equation}
-    \tilde{h}_z(s_d) \equiv h_z(s_d) + 
+    \tilde{h}_z^+(s_d) \equiv h_z^+(s_d) + 
     \left(
     \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}\lambda_z \e{i \pi Q_z^-}
     -\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)} \e{-i\pi Q_z^+}
@@ -1503,7 +1650,7 @@ The constant part of \eqref{eq_delta_written_out} can be put into
 Now, the driven motion is seperated off:
 %
 \begin{align}
-    h_z(s, N) = R_{s-s_d}R^N 
+    h_z^+(s, N) = R_{s-s_d}R^N 
     \Bigg[&\tilde{h}_z(s_d) 
     \notag \\
         &+ \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)} \e{-\pi i Q_z^-(2N+2\Theta(s,s_d)-1)} 
@@ -1511,13 +1658,13 @@ Now, the driven motion is seperated off:
         &- \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^+\right)} \e{\pi i Q_z^+(2N+2\Theta(s,s_d) -1)}
     \Bigg]
     \fstop
-    \label{eq_driven_simpl}
+    \label{eq_driven_simpl_R}
 \end{align}
 %
 and the linear rotation can be integrated into the terms:
 %
 \begin{align}
-    h_z(s, N) =
+    h_z^+(s, N) =
         &\tilde{h}_z(s, N) \notag \\
         &+\frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}
         \e{i\left[-2\pi NQ_{z} - \varphi_{s_ds} + \pi Q_z^-(2N+2\Theta(s,s_d)-1)\right]}
@@ -1542,7 +1689,7 @@ Noting that
     }:
 %
 \begin{align}
-    h_z(s, N) =
+    h_z^+(s, N) =
         &\tilde{h}_z(s, N) \notag \\
         &+ \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}
         \e{i\left[-2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
@@ -1596,13 +1743,16 @@ the driven motion can be rewritten in the from
 %
 which is used in other works \cite{Miyamoto2008, Miyamoto2010}. 
 
-
+% --------------------------------------------------------------------------------------------------
+% Compensation
+% --------------------------------------------------------------------------------------------------
 \subsection{Compensation of linear parameters}
+\label{sec_comp}
 
 This section briefly summarises the compensation of the driven motion for the optics parameters
 $\beta$, $\alpha$ and $\phi$ \footnote{\cite{Miyamoto2008} and Ryoichi Miyamoto, private communication, Feb. 2017}.
 
-In an actual measurement the phase and amplitude are calculated from the fourier analysis of the
+In an actual measurement the phase and amplitude are calculated from the Fourier analysis of the
 real signal.
 %
 \begin{align}
@@ -1659,9 +1809,10 @@ This allows for $H(1,0)$ to be rewritten
 %
 \begin{align}
   H(1,0) =&\: \frac{A_\theta\beta(s_d)}{4\sin(\pi Q_z^-)}
-  \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]} \notag \\
-  &\times\e{i\left[ \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
+      \sqrt{1+\lambda^2-2\lambda\cos\left[2\varphi_{s_ds} - \pi Q_z\text{sgn}(s-s_d)\right]} \notag \\
+      &\times\e{i\left[ \pi \Qd{z}\text{sgn}(s-s_d) + \psi \right]}
   \fstop
+  \label{eq_H_drv}
 \end{align}
 %
 Comparing to the free case, \eqref{eq_four_real_free}, the driven phase is defined as 
@@ -1733,7 +1884,7 @@ The driven $\alpha$ function follows from the definition of the free $\alpha$~fu
   \label{eq_drv_alpha}
 \end{align}
 %
-Comparing the amplitude of the driven motion \eqref{eq_z_drv} with the form \eqref{eq_drv_x_from_h_tpl}
+Comparing the amplitude of the driven motion \eqref{eq_H_drv} with the amplitude of \eqref{eq_four_real_free}
 the driven action $J_x^d$ can be deduced:
 %
 \begin{align}
@@ -1746,6 +1897,6 @@ the driven action $J_x^d$ can be deduced:
 \end{align}
 %
 The expressions for the driven optics parameters $\beta^d$, $\alpha^d$, $\varphi^d$ and $J^d$ derived
-in this section can be used to compensate the effect of the driven motion on the measurement and enable
+in this section can be used to compensate for the effect of the driven motion on the measurement and enable
 an easy measurement leveraging the advantages of an AC-dipole for optics measurements in circular
 accelerators.

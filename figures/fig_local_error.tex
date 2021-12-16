@@ -1,0 +1,37 @@
+
+\documentclass{standalone}
+\input{image_header}
+
+\begin{document}
+   \begin{tikzpicture} [axis/.style={->,black,thick}]
+        %\draw[axis] (-1,-1.1) -- (10,-1.1) node[anchor=west]{$\varphi\m(s)$};
+        %\draw[axis] (-1,-1.1) -- (-1,1.1) node[anchor=south]{$\Delta \varphi$};
+        %\draw[gray] (-1,0) -- (10,0);
+        %\foreach \x in {-1,...,4} {
+        %\draw ({1+2*\x},-1.1) -- ({1+2*\x},-1.3) node[anchor=north] {\small ${\x}\pi$};
+        %}
+        \draw[axis] (-1,0) -- (8,0) node[anchor=west]{$\varphi\m(s)$};
+        \draw[domain=1:7,variable=\x, samples=131,smooth] plot ({\x}, {sin(180.0*(\x-1.0))});
+        \draw[domain=7:7.75,variable=\x, samples=131,smooth,dashed] plot ({\x}, {sin(180.0*(\x-1.0))});
+        \draw[domain=0:1,variable=\x, samples=29,smooth] plot ({\x}, {sin(180.0*(\x-1.31))});
+        \draw[domain=-1:0,variable=\x, samples=29,smooth,dashed] plot ({\x}, {sin(180.0*(\x-1.31))});
+        \filldraw[black, fill=white] ($ (1, {sin(180.0*(1-1.31))}) $) circle (0.075);
+        \quadrupole{(1,0)}{(A)};
+        \node[above] at ($(A) + (-3*\bpmthickness,0.2)$) {$\delta K$};
+
+        \coordinate (P1) at ($ (3.5, {sin(180.0*2.5)}) $);
+        \coordinate (P2) at ($ (5.5, {sin(180.0*4.5)}) $);
+        \draw[line width=.5mm, CLRemph2] ( 3.5, 0 ) -- (P1);
+        \node[below] at (3.5,0) {\small BPM1};
+        \filldraw[thick,fill=CLRemph2,draw=CLRemph2!70!black] (P1) circle (0.1);
+
+        \draw[line width=.5mm, CLRemph2] ( 5.5, 0 ) -- (P2);
+        \node[below] at (5.5,0) {\small BPM2};
+        \filldraw[thick,fill=CLRemph2,draw=CLRemph2!70!black] (P2) circle (0.1);
+
+        \draw[dashed] ($(P1) + (0,0.2)$) -- ($(P2) + (0,0.2)$)
+         node[pos=1/2,above]{$\varphi_{12}\m = \pi$ };
+         \draw[thick] ($(P1) + (0,0.1)$) -- ($(P1) + (0,0.3)$);
+         \draw[thick] ($(P2) + (0,0.1)$) -- ($(P2) + (0,0.3)$);
+   \end{tikzpicture} 
+\end{document}

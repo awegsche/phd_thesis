@@ -517,7 +517,7 @@ The Hamiltonian for a particle moving through a single quadrupole is obtained fr
 corresponding vector potential
 %
 \begin{align}
-  a_s &= -\frac{k_1}{2}(x^2) \\
+  a_s &= -\frac{k_1}{2}(x^2 + y^2) \\
   a_x &= a_y = \phi = 0
 \end{align}
 %
@@ -527,7 +527,9 @@ and 0 curvature ($h = 0$):
     H &=\frac{\delta}{\beta_0}
       - \sqrt{\left(\delta + \frac{1}{\beta_0}\right)^2 - p_x^2 - p_y^2 - \frac{1}{\beta_0^2\gamma_0^2}}
       + \frac{k_1}{2}(x^2 - y^2) \\
-    H &= \frac{p_x^2 + p_y^2}{2} + \left(\frac{\delta}{2\beta_0\gamma_0}\right)^2 + O(2nd)
+    H &= \frac{p_x^2 + p_y^2}{2} + \left(\frac{\delta}{2\beta_0\gamma_0}\right)^2
+    + \frac{k_1}{2}(x^2 - y^2)
+    + O(2nd)
     \fstop
     \label{eq_hamil_quad_delta}
 \end{align}

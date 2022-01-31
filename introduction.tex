@@ -241,7 +241,7 @@ For $s$ inside the quadrupole $k(s) = k_1$ . The solution of Hill's equation is
 %
 \begin{equation}
     z(s) = \cos \left[ \sqrt{k}(s-s_0)\right] z_0 +
-        \frac{1}{\sqrt{k}}\sin\left[\sqrt{k}(s-s_0)\right]z_0'
+        \frac{1}{\sqrt{k}}\sin\left[\sqrt{k}(s-s_0)\right]p_{z,0}
     \label{eq_quad_transfer}
     \fstop
 \end{equation}
@@ -502,7 +502,8 @@ with the following definitions:
   $\beta_0$, $\gamma_0$ & relativistic factors, \\
   $q$ & the particle's charge, \\
   $\phi$ & the electric field, \\
-  $a_x, a_y, a_s$ & the transverse and longitudinal components of the vector potential,
+  $a_x = \frac{q}{P_0}A_x, a_y = \frac{q}{P_0}A_y$ & the normalised transverse components of the vector potential $(A_x, A_y)$, \\
+  $a_s = \frac{q}{P_0}A_s$ & the normalised longitudinal component of the vector potential
 \end{tabular}
 
 The Hamiltonian equations of motion \cite{Landau1976} read
@@ -1200,7 +1201,7 @@ The quotient of the first row elements reads
 %
 \begin{equation}
     \frac{\left(m_{ij}\right)_{11}}{\left(m_{ij}\right)_{12}} =
-    \frac{1}{\beta_i} \cot\varphi_{ij} + \alpha_i
+    \frac{1}{\beta_i} \left(\cot\varphi_{ij} + \alpha_i\right)
     \fstop
     \label{eq_trmat_quot}
 \end{equation}
@@ -1358,16 +1359,16 @@ The normalised spectral lines $A_{0,n_y}$ and $B_{n_x,0}$ are the Fourier compon
 coordinates. But only the projections onto the real axis can be measured. The next step is to calculate
 the complex coordinates from the measured ones.
 
-Since $h_z^\pm = z \pm ip_z$ the complex coordinate can be obtained from positon and momentum.
+Since $h_z^\pm = z \pm ip_z$ the complex coordinate can be obtained from position and momentum.
 BPMs can only measure position but using the position data from a second BPM one can reconstruct the momentum.
-The propagation of complex C-S coordinates through a region that is empty of non-linnearities reads
+The propagation of complex C-S coordinates through a region that is empty of non-linearities reads
 %
 \begin{equation}
     \begin{pmatrix}
-        z\\p_z
+        \hat{z}\\ \hat{p}_z
     \end{pmatrix}_b = \mat{R}_{ab} 
     \begin{pmatrix}
-        z\\p_z
+        \hat{z}\\ \hat{p}_z
     \end{pmatrix}_a
 \end{equation}
 %
@@ -1375,14 +1376,14 @@ where the transfer matrix $\mat{R}_{ab}$ is a simple rotation matrix as discusse
 From this one can reconstruct the momentum:
 %
 \begin{equation}
-    p_a = \frac{x_b}{\cos\Delta} + x_a \tan\Delta
+    \hat{p}_a = \frac{\hat{x}_b}{\cos\Delta} + \hat{x}_a \tan\Delta
 \end{equation}
 %
 where $\Delta$ is the deviation from $\pi/2$ of the phase advance between the two positions $s_a$ and $s_b$.
 Therefore:
 %
 \begin{equation}
-    h_z^\pm(s_a) = z_a - i \left(\frac{z_b}{\cos\Delta} + z_a\tan\Delta \right) = z_a(1-i\tan\Delta) - i \frac{z_b}{\cos\Delta}
+    h_z^\pm(s_a) = \hat{z}_a - i \left(\frac{\hat{z}_b}{\cos\Delta} + \hat{z}_a\tan\Delta \right) = \hat{z}_a(1-i\tan\Delta) - i \frac{\hat{z}_b}{\cos\Delta}
     \fstop
 \end{equation}
 %
@@ -1492,6 +1493,7 @@ described in Courant-Snyder coordinates as
 %
 \begin{equation}
     \Delta h_z^+(N) = i A_\theta\beta(s_d) \cos(2\pi \Qd{z} N)
+    \label{eq_ackick}
 \end{equation}
 %
 depending on the AC dipole frequency $\Qd{z}$ and the turn number $N$. Figure~\ref{fig_ac_kick} shows
@@ -1506,19 +1508,18 @@ a schematic of the beam deflection for several turns.
     \label{fig_ac_kick}
 \end{figure}
 %
-For a small $\epsilon$ the C-S coordinates of the beam directly after the AC-dipole reads
+At a small distance $\epsilon$ after the AC-dipole the C-S coordinates of the beam read
 %
 \begin{equation}
     h_z^+(s_d + \epsilon, N=0) = h_z^+(s_d-\epsilon) + \Delta h_z^+(N=0)
-    \label{eq_ackick}
+    \label{eq_ackick_at_epsilon}
 \end{equation}
 %
 in the first turn where the AC dipole is active. This turn will be denoted with $N=0$.
 
 Under the assumption that the kick strength of the AC-dipole is ramped up slowly enough, this is an
 adiabatic process and the effect of the kicks can be added repeatedly for each turn.
-
-Then the coordinates can be propagated to an arbitrary position $s$ in the ring to get the following
+The coordinates can be propagated to an arbitrary position $s$ in the ring to get the following
 expressions:
 %
 \begin{align}
@@ -1549,10 +1550,10 @@ The cosine in \eqref{eq_ackick} can be expressed in complex form
     &= \frac{iA_\theta\beta(s_d)}{2} \left(
         \delta_+^N + \delta_-^N
     \right)
-    \fstop
+    \komma
 \end{align}
 %
-For the second line, $\delta_\pm$ is defined as
+where $\delta_\pm$ is defined as
 %
 \begin{equation}
     \delta_\pm = \e{\pm 2\pi i \Qd{z}}
@@ -1622,7 +1623,7 @@ Furthermore, the terms $R\delta_\pm$ can be written out:
 and
 %
 \begin{equation}
-    1 - \e{2i\alpha} = -\e{i\alpha}\tfrac{1}{2i} \sin\alpha
+    1 - \e{2i\alpha} = -\e{i\alpha}2i \sin\alpha
     \fstop
 \end{equation}
 %

@@ -4,7 +4,7 @@
 \begin{chapterinfo}
     The goal of this chapter is the study of of resonance driving terms when measured from driven motion.
     The driving of the particle motion by an AC-dipole changes measured quantities like the optics functions $\beta$, $\alpha$
-    and the phase, as discussed in section~\ref{sec_comp}, but has also an impact on resonance driving terms. 
+    and the phase, as discussed in section~\ref{sec_comp}, and also has an impact on resonance driving terms. 
     Recent findings suggest that the current models describing the forced RDTs are neglecting a local effect
     of the AC-dipole, creating a jump of the amplitude of the RDTs $f_{jklm}$. The case of sextupolar RDTs has been studied.
     In this work, coupling RDTs are calculated for the first time in view of the new findings.
@@ -21,9 +21,11 @@ by the driving of forced oscillation by the AC-dipole, the spectrum also undergo
 measured RDTs are not equal to the free ones.
 
 In the past, two methods were used to model the effect of the driven motion, the first is a simple
-rescaling of the tune dependent denominators of the RDTs, this method will therefore be called \emph{rescaling} method.
+rescaling of the tune dependent denominators of the RDTs, this method will therefore be called the
+\emph{rescaling} method.
 
-The second one \cite{Miyamoto2010} applies the findings of a detailed study of the driven particle motion using the equations of motion of the particle in the accelerator with AC-dipole.
+The second one \cite{Miyamoto2010} applies the findings of a detailed study of the driven
+particle motion using the equations of motion of the particle in the accelerator with an AC-dipole.
 This method provides reconstruction and compensation formulae for all optics parameters,
 including those that enter into the coupling terms. This method will be called \emph{formula method} in the following.
 
@@ -37,7 +39,7 @@ A comparison between rescaling method, formula method and the newly calculated c
 \subsection{AC-dipole as skew quadrupole}
 \label{sec_acd_as_skew}
 
-To start the section about the beam motion that is driven \emph{and} coupled,
+To consider beam motion that is driven \emph{and} coupled,
 we illustrate the effect of an AC-dipole as coupling source by stating the analogy between their
 impact on the particles motion.
 
@@ -130,7 +132,7 @@ one can bring this in a form similar to \eqref{eq_driven_simpl2}
     \fstop
 \end{align}
 %
-The following table summarises which quantities get replaced
+The following table summarises which quantities are analogous
 \begin{center}
 \begin{tabular}{ll}
     AC dipole & coupling \\
@@ -448,11 +450,26 @@ From this it is easy to calculate the driven coupling term, as obtained from a m
     \label{eq_drv_f1001_final}
 \end{align}
 %
-From \equationref{eq_drv_f1001_final} it gets apparent that the AC-dipole adds two effects to the $f$~term:
-the first one is creating an additional source at the position of the AC-dipole, proportional to the $f$~term
-at this position
-and the second one is a mixing of $f_{1001}$ and $f_{1010}$. The mixing of the other $f$~term is
-suppressed by the factors $\lambda_{y}$ and the denominator $\sin\left[\pi (\Qd{y} + Q_x)\right]$.
+From \eqref{eq_drv_f1001_final} it is apparent that the AC-dipole adds two effects to the difference RDT $f_{1001}$
+the first one,
+%
+\begin{equation}
+    f_{1001}^*(s_d) \frac{\sin\pi Q_y^-}{2\sin\left[\pi (Q_y^d-Q_x)\right]}
+        \e{i\left[\varphi_{s_ds}^{x} -\varphi_{s_ds}^{y} + \pi(Q_y-Q_x)\text{sgn}(s-s_d)\right]}
+\end{equation}
+%
+is creating an additional source at the position of the AC-dipole, proportional to $f_{1001}$ at this position
+and the second one,
+%
+\begin{equation}
+    \lambda_y f_{1010}^*\e{2i\left[ \varphi_{s_ds}^{y} + \pi Q_y\right]}
+    + f_{1010}^*(s_d) \frac{\sin\pi Q_y^-}{2\sin\left[\pi (Q_y^d+Q_x)\right]}
+        \e{i\left[\varphi_{s_ds}^{x} + \varphi_{s_ds}^{y} + \pi(Q_y+Q_x)\text{sgn}(s-s_d)\right]}
+\end{equation}
+%
+mixes the difference term with the sum term $f_{1010}$ (as well as a second contribution proportional to $f_{1001}$).
+The mixing-in of those terms is
+suppressed by the factors $\lambda_{y}$ and the denominator $\sin\left[\pi (\Qd{y} + Q_x)\right]$, respectively.
 
 % --------------------------------------------------------------------------------------------------
 \subsection{Rescaling and Formula methods}
@@ -533,7 +550,7 @@ where the interval $I(s_a,s_b)$  contains all elements between $s_a$ and $s_b$,
 \end{equation}
 %
 and for $h_{w,\mp}$ the same convention applies as for $f_\mp$.
-Measurements can only be performed on the real signal and the complex signal needed for the calculation
+Measurements can only be performed on the real signal. The complex signal needed for the calculation
 of RDTs has to be reconstructed.  
 This reconstruction mixes the RDTs $f_+$ and $f_-$, given by the following equation. Under the assumption
 that adjacent BPMs are used for the reconstruction, the combined $f$~terms read
@@ -554,7 +571,7 @@ the measured ones.
 
 In this section the effect of the driven motion on the measured RDTs is studied using an LHC optics with no other
 perturbations than the additional coupling sources and no higher order multipoles active, in order to avoid feed
-down from polluting the results.
+down polluting the results.
 From \eqref{eq_drv_f1001_final} one can see that the effect of the AC-dipole jump is proportional to
 the strength of the RDTs at the  position of the AC-dipole.
 This means, given a weak initial coupling around the AC-dipole or a sufficient
@@ -570,7 +587,7 @@ coupling will iteratively improve the precision of the coupling measurement.
   \includegraphics[width=.49\linewidth]{forcedcoupling/ac_outside_closed_bump_at_loc}
   \caption{Comparison of the three methods with a coupling bump in the lattice.
     The absolute value of coupling term $f_{1001}$ is shown.
-    Formula method and new method (called \emph{new formula}) manage to reproduce well the $f_{1001}$.
+    The formula method and new method (called \emph{new formula}) manage to reproduce well the $f_{1001}$.
     The naive rescaling method underestimates the $f$~term in the bump.
     The offset between \emph{meas} and the reconstructed values is due to the reconstruction
     of the complex signal.
@@ -611,8 +628,8 @@ The jump at the position of the AC-dipole is well reproduced, as expected from~\
 
 \subsection{HL-LHC and stronger coupling}
 
-However, the introduced coupling is rather small. Adding larger values, which are possible in realistic accelerator
-settings, shows a quickly degrading agreement between the new formula and the measurement.
+The HL-LHC has more challenging optics and a similar coupling source as for the LHC simulations in the previous section
+creates considerbly larger coupling.
 
 \begin{figure}
     \centering
@@ -634,10 +651,14 @@ in the top right corner of each plot%
   The final value depends on the matching but is still
   of the same order of magnitude.
 }.
+The left plot shows the same initial strength as for the LHC simulations in the previous section.
+The matching of the closed coupling branch failed which resulted in non-zero coupling outside of the designated region.
+
+
 Althoug still better than the conventional methods, the new formula does not achieve the same performance as before
 and starts to lose its performance w.r.t.\ the other methods.
 
-The matching of the closed coupling bump failed which resulted in non-zero coupling outside of the designated region.
+%The matching of the closed coupling bump failed which resulted in non-zero coupling outside of the designated region.
 
 \section{Conclusion}
 

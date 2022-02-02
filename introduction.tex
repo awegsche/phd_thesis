@@ -1540,6 +1540,16 @@ with $R$ being the rotation map of the linear motion. For simplicity, the follow
     \fstop
 \end{align}
 %
+\begin{figure}
+    \centering
+    \includestandalone{ac_kick_at_eps} 
+    \caption{
+        Schematic showing the positions and length occuring in \eqref{eq_ackick_at_epsilon}.
+        The AC-dipole is located at position $s_d$.
+        The beam gets a kick when passing from $s_d - \varepsilon$ to $s_d + \varepsilon$.
+    }
+\end{figure}
+%
 The cosine in \eqref{eq_ackick} can be expressed in complex form
 %
 \begin{align}
@@ -1601,8 +1611,8 @@ and
     \fstop
 \end{align}
 %
-The two cases of \eqref{eq_ackick} differ only in one additional exponent of $R^{-1}\delta_\pm$.
-\equationref{eq_ackick} can be written as
+The two cases of \eqref{eq_hz_ackick} differ only in one additional exponent of $R^{-1}\delta_\pm$
+and it can be written compactly as
 %
 \begin{align}
     h_z^+(s, N) = R_{s-s_d}R^N 
@@ -1639,7 +1649,7 @@ Those identities can be used to simplify the exponentials
     \label{eq_delta_written_out}
 \end{align}
 %
-The constant part of \eqref{eq_delta_written_out} can be put into 
+The term $h_z^+$ in \eqref{eq_delta_written_out} can be put into 
 %
 \begin{equation}
     \tilde{h}_z^+(s_d) \equiv h_z^+(s_d) + 
@@ -1704,7 +1714,7 @@ Noting that
 \end{align}
 %
 The free motion of the beam is perturbed by two driving modes corresponding to the sum and difference
-of natural tune and driven tune. In most applications the ac-dipole strength much greater than the free 
+of natural tune and driven tune. In most applications the ac-dipole strength is much greater than the free 
 oscillation amplitude $A_\theta\beta(s_d) \gg |\bar{h}_z(s,N)|$.
 
 All derivations in this section have been made for $h_z^+$. It shall be noted here that the negatively turning

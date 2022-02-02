@@ -1,0 +1,23 @@
+\documentclass{standalone}
+\input{image_header}
+
+\begin{document}
+
+\newcommand{\markl}{0.3}
+
+\begin{tikzpicture}
+    
+    \draw (0,0) arc (90: 100: 10);
+    \draw (0,0) arc (90: 80: 10);
+    \draw[dashed] ($({(10)*sin(10)}, {(10)*cos(10)-10.0})$) arc (80: 70: 10);
+    \draw[dashed] ($({(10)*sin(-10)}, {(10)*cos(-10)-10.0})$) arc (100: 110: 10);
+    \draw[->, gray] (0,-0.2) arc (90: 85: 9.8);
+
+    \draw ($({(10-\markl)*sin(5)}, {(10-\markl)*cos(5)-10.0})$) -- ($({(10+\markl)*sin(5)}, {(10+\markl)*cos(5)-10.0})$);
+    \draw ($({(10-\markl)*sin(-5)}, {(10-\markl)*cos(-5)-10.0})$) -- ($({(10+\markl)*sin(-5)}, {(10+\markl)*cos(-5)-10.0})$);
+    \draw[very thick] ($({(10-\markl)*sin(0)}, {(10-\markl)*cos(0)-10.0})$) -- ($({(10+\markl)*sin(0)}, {(10+\markl)*cos(0)-10.0})$);
+    \node[above] at ($({(10+\markl)*sin(0)}, {(10+\markl)*cos(0)-10.0})$) {$s_d$};
+    \node[below] at ($({(10-\markl)*sin(2.5)}, {(10-\markl)*cos(2.5)-10.0})$) {$\varepsilon$};
+\end{tikzpicture}
+
+\end{document}

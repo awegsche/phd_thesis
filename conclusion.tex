@@ -1,3 +1,48 @@
-\chapter{Conclusion}
+\chapter{Conclusion and Outlook}
 
-Three distinct optics measurement methods were described in this work. 
+The development and enhancement of three distinct optics measurement methods have been presented in this work.
+These developments improve the precision and accuracy of optics measurements and extend our understanding of the
+imperfections in an accelerator.
+
+The first method, called the \emph{Analytical N-BPM method} is a more precise and faster measurement of the $\beta$~function.
+It is based on the method previously developed and used for LHC measurements during run 1, called the N-BPM method,
+that combines measurements from a set of $N$ neighbouring BPMs to remove statistical uncertainties.
+Systematic uncertainties were taken into account through computationally expensive Monte-Carlo simulations.
+The N-BPM method required a careful preparation for each individual optics setting before the actual measurement.
+The analytical N-BPM method performs error propagation purely from analytic calculations and can therefore be applied
+during the measurement without the need of precomputing the covariance matrix.
+It also avoids the complications from failing simulations, which can happen for extreme optics settings,
+like low $\beta^*$~optics for example.
+A filtering of BPM combinations with unsuitable phase advances was also introduced in this method, which makes it even
+more independent from the exact optics.
+The analytical N-BPM method is now routinely used in various optics measurement and machine development
+studies of various of CERN's main accelerators, including the LHC.
+It has also been used in collaborative
+efforts in accelerators from several external institutes like SuperKEKB and PETRA III.
+
+The second method is a new local observable for linear lattice imperfections.
+Although such observables already exists for non-linear imperfections, in the linear case there was none.
+This work presents a local observable for the linear imperfections for the first time. This locality holds up to first
+order in the quadrupole error $\delta K_1$.
+The phase advance beating, which depends on all errors in the lattice, can be rearranged in a way that eliminates
+global contributions, yielding two kinds of local observables:
+if the unperturbed phase advance is a multiple of $\pi$, the phase advance beating is directly a local observable,
+in the general case a combination of four nearby phase measurements has to be used to construct a local term.
+The existence of this observable has been shown in this work.
+Strong error sources can be detected using the local observable, which can be used to guide local error corrections.
+Such a usage is planned for the upcoming run 3 of the LHC.
+
+The last method describes the impact of forced particle motion on the measurement of transverse coupling.
+The AC-dipole, which is used to create the forced motion for measurements, creates a jump in the amplitude of the
+coupling RDTs. This jump does not appear in any of the current methods to calculate forced coupling and correct for
+the forced motion.
+In this work, forced coupling RDTs are calculated using a new framework that has recently been developed and which
+accounts for this jump. The agreement for small coupling is excellent.
+A future usage to compensate for the driven motion using an iterative approach is conceivable.
+
+The introduction of next generation light sources and the design and construction of new colliders and future projects
+create the demand for more advanced or novel measurement and correction methods.
+More challenging optics designs require more precise measurements and large lattices call for efficient algorithms and
+according implementation.
+This work presents developments in the domain of linear optics measurements for circular accelerators,
+improving existing methods and introducing new ones in order to prepare for future operation of the LHC and other accelerators.

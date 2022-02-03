@@ -41,12 +41,12 @@ of the probed BPM $i$. It is a model dependent approach, the greater the differe
 and the real accelerator the less accurate will be the result. A good knowledge of the actual accelerator
 is crucial for this approach to work.
 
-\equationref{eq_3bpm_method} has been developped for LEP and it has been used for optics measurements in LEP
+\equationref{eq_3bpm_method} has been developed for LEP and it has been used for optics measurements in LEP
 and LHC during run I.
 But it has two shortcomings: it assumes that the actual $\beta$~beating is very low and it
 diverges for phase advances close to $n\pi$, $n \in \mathbb{N}$. The latter makes measurements at
 exact $n\pi$ phase advances impossible and strongly enhances phase measurement errors near $n\pi$.
-Unfortunately especially in the IR phase advances are very small and precise $\beta$~function measurements
+Unfortunately, especially in the IR phase advances are very small and precise $\beta$~function measurements
 are not feasible.
 
 %\begin{wrapfigure}{O}[\figborderhang]{6cm}
@@ -72,7 +72,7 @@ phase advance $\phi_{13} = \SI{90}{\degree}$ which is less optimal.
 In LHC interaction regions the phase advance between consecutive BPMs does not follow the same constraints
 as in the arc and values different from $\SI{45}{\degree}$ may appear. In the final focus quadrupoles
 the $\beta$~function peaks are very high to deliver a strong focusing of the beams in the interaction
-point. This yields a very small phase advance in this area, rendering a $\beta$ measurement from phase
+point\footnote{cf. Fig.~\ref{fig_beta}}. This yields a very small phase advance in this area, rendering a $\beta$ measurement from phase
 impossible. At the same time a high precision of $\beta$~beating is necessary to control $\betastar$ and
 to optimise the aperture.
 
@@ -88,12 +88,18 @@ Unfortunately, systematic errors increase
 as more and more BPMs are skipped because of the presence of other elements with their imperfections in between the
 BPMs.
 In order to further improve the precision the information about statistical and systematic
-uncertainties can be used to calculate a weighted mean. 
+uncertainties can be used to calculate a weighted mean:
 %
 \begin{align}
     \beta(s_i) &= \sum\limits_{l} \beta_l(s_i) g_l
     \label{eq_beta_wmean}\\
-    \beta_l(s_i) &= \frac{\cot\phi_{ij_l} - \cot\phi_{ik_l}}{\cot\phi_{ij_l}\m - \cot\phi_{ik_l}} \beta(s_i)\m
+    \beta_l(s_i) &=
+        \frac{
+            \cot\phi_{ij_l} - \cot\phi_{ik_l}
+        }{
+            \cot\phi_{ij_l}\m - \cot\phi_{ik_l}\m
+        } \beta(s_i)\m
+    \komma
     \label{eq_beta_l}
 \end{align}
 %
@@ -101,6 +107,7 @@ with the weights $g_l$ satisfying
 %
 \begin{equation}
     \sum\limits_l g_l = 1
+    \komma
 \end{equation}
 %
 and $j_l,\,k_l$ pairs of BPMs around the probed BPM.
@@ -118,7 +125,7 @@ and $j_l,\,k_l$ pairs of BPMs around the probed BPM.
 %
 Furthermore the $\beta$~function values calculated from different combinations are not statistically
 independent and correlation has to be taken into account when calculating the weights.
-The N-BPM method \cite{LangnerNBPM, Langner2017} was developped to implement this feature.
+The N-BPM method \cite{LangnerNBPM, Langner2017} was developed to implement this feature.
 It was successfully used in the LHC during run II and for the re-analysis of run I data
 as well as in the storage rings of ALBA and ESRF.
 
@@ -155,6 +162,7 @@ can be rewritten in vector notation:
         \vdots\\
         \vec{\beta}^T
     \end{pmatrix}
+    \komma
 \end{align}
 %
 where each line of the equation system is just the same.
@@ -162,11 +170,12 @@ The difference between measurement $l$ and the mean value $\hat{\beta}$ is denot
 %
 \begin{equation}
     \vec{\epsilon} = \vec{\hat{\beta}} - \vec{\beta}
+    \fstop
 \end{equation}
 %
 The least square minimisation seeks a set of weights $g_i$ for which the squared errors are minimal. Since the different $\beta_l$
 are correlated and have a covariance matrix $\mat{Cov}[\vec{\beta}] \neq \mat{diag}(\sigma_1^2, \ldots, \sigma_n^2)$
-the theory of generalised least-squares estimation has to be applied.
+the theory of generalised least-squares estimation~\cite{kariya2004generalized} has to be applied.
 
 The \emph{covariance matrix} of a set of random variables $\Omega_i$ is defined as
 %
@@ -174,6 +183,7 @@ The \emph{covariance matrix} of a set of random variables $\Omega_i$ is defined 
     \mat{Cov}[\vec{\Omega}] &= \mat{E}[(\vec{\Omega} - E[\vec{\Omega}])(\vec{\Omega} - E[\vec{\Omega}])^T]
     \notag \\
     &= \mat{E}[\vec{\Omega}\vec{\Omega}^T] - E[\vec{\Omega}]E[\vec{\Omega}]^T
+    \komma
     \label{eq_def_cov}
 \end{align}
 %
@@ -207,7 +217,8 @@ Collecting all parameters into a vector
 \vec{\Delta K}\\
 \vec{\Delta s}\\
 \vec{\Delta x}
-\end{pmatrix}.
+\end{pmatrix}
+\fstop
 \end{equation}
 %
 Using a Taylor expansion the errors in these parameters can be propagated
@@ -312,12 +323,13 @@ and \eqref{eq:covbb} reads
 with the variance being defined by
 %
 \begin{equation}
-\sigma_i^2 = E\left[\Delta\Omega_i^2\right].
+\sigma_i^2 = E\left[\Delta\Omega_i^2\right]
+\fstop
 \end{equation}
 %
-\subsection{The generalized least-squares estimator}
+\subsection{The generalised least-squares estimator}
 
-After computing the covariance matrix of $ \beta $, the generalized least-squares estimator can be calculated
+After computing the covariance matrix of $ \beta $, the generalised least-squares estimator can be calculated
 by solving the translated system
 %
 \begin{equation}
@@ -403,7 +415,7 @@ In the existing numerical N-BPM method only the statistical errors are calculate
 $\mathbf{V}_\text{syst}$ and hence $\sigma_\text{syst}^2$ are evaluated from Monte Carlo simulations
 of lattices with errors.
 For that the statistics over many simulations is gathered.
-Even with a highly parallelized code on a multicore machine this procedure takes about 1 hour for a
+Even with a highly parallelised code on a multicore machine this procedure takes about 1 hour for a
 ``fast'' set of 1000 simulations. Since the computation time scales linearly with the number of simulations,
 this can take up to 10 hours for $10^{4}$ simulations which were used in the post processing of a measurement.
 
@@ -424,22 +436,19 @@ This is a limiting factor when the N-BPM method is used for pushed optics with v
 \section{Corrected \texorpdfstring{$\beta$}{beta} from phase formula}
 \label{sec_corrected_beta_from_phase}
 \equationref{eq_3bpm_method} assumes that no error is present in the region between the involved BPMs.
-A new formula has been developed in \cite{Franchi2016} that takes quadrupolar errors into account.
-This formula has the constraint that only the $\beta$~function at the position of the first BPM can
-be calculated.
-
-Using this formula it is possible to improve the N-BPM method by calculating the correlation matrix
-analytically.
+A new formula has been developed in \cite{Franchi2016} that takes quadrupolar errors into account,
 %
 \begin{equation}
-\beta(s_1) = \frac{\cot\phi_{12} - \cot\phi_{13}}{\cot\phi_{12}\m - \cot\phi_{13}\m +\bar{h}_{12} - \bar{h}_{13}}\beta\m(s_1) + O(\delta K_1^2)\quad ,
+\beta(s_1) = \frac{\cot\phi_{12} - \cot\phi_{13}}{\cot\phi_{12}\m - \cot\phi_{13}\m +\bar{h}_{12} - \bar{h}_{13}}\beta\m(s_1) + O(\delta K_1^2)
+\komma
 \label{eq:18}
 \end{equation}
 %
 with 
 %
 \begin{equation}
-\bar{h}_{ij} =  \dfrac{\sum\limits_{i<w<j}\beta_w\m\delta K_{w,1}\sin^2\phi_{wj}\m}{\sin^2\phi_{ij}\m}\;.
+\bar{h}_{ij} =  \dfrac{\sum\limits_{i<w<j}\beta_w\m\delta K_{w,1}\sin^2\phi_{wj}\m}{\sin^2\phi_{ij}\m}
+\fstop
 \label{eq:h_ij}
 \end{equation}
 %
@@ -452,10 +461,10 @@ combinations as possible we will derive below a form of \eqref{eq:18} without th
 In \cite{Franchi2016} the quality of \eqref{eq:18} has been assessed for the ESRF storage ring by
 simulating a lattice with errors and comparing the results of \eqref{eq:18} to the beta beating of
 the simulated lattice. In this paper the same study is repeated for the LHC and its future upgrade the HL-LHC.
-Table~\ref{tab:unc_estimates} summarizes those uncertainty estimates for the LHC elements that are
+Table~\ref{tab:unc_estimates} summarises those uncertainty estimates for the LHC elements that are
 relevant for this study. 
 In Figure~\ref{fig:hist1518} a comparison between Eqs.~(\ref{eq_3bpm_method}) and~(\ref{eq:18}) is shown
-in the horizontal plane. The plot shows a histogram of the deviation of the formulas (1) and (11)
+in the horizontal plane. The plot shows a histogram of the deviation of the two formulae
 from the real (i.e. simulated) $ \beta $ function values. The histogram contains the values of all the
 individual BPMs for one simulated lattice. The top plot shows the case with only quadrupolar field
 errors whereas in the bottom plot also misalignment errors were included in the lattice. The introduction
@@ -579,7 +588,7 @@ and BPM misalignments, \eqref{eq:Dphi}, are incorporated in the phase advance $\
 %
 \begin{align}
     \varphi^\text{err}_{ij}  &=
-    \varphi_{ij}\m + \bar{h}_{ij} - 8\sin^2\varphi_{ij}\m\re{f_i} - 8 \sin\varphi_{ij}\m\cos\varphi_{ij}\m
+    \varphi_{ij}\m + \bar{h}_{ij} - 8\sin^2\varphi_{ij}\m\re{f_i} - 8 \sin\varphi_{ij}\m\cos\varphi_{ij}\m\im{f_i}
     + \frac{1}{\beta_j\m}\delta s_j - \frac{1}{\beta_i\m}\delta s_i \notag \\
     &= \varphi_{ij}\m + \Delta\varphi_{ij}
     \fstop
@@ -665,14 +674,10 @@ and the final expression for the $\beta$~function at position $s_i$ from the com
 In order to account for sextupole misalignments and quadrupole longitudinal misalignments, it suffices
 to add the corresponding effective $\delta K_1$ to the sum in $\bar{g}_{ij}$,
 as described in the previous sections. 
-
-Having defined the set I as
+The set $I$ is defined in~\eqref{eq_def_sgn_fun},
+so that an element with index $ w \in I$ lies between elements $ i $ and $ j $
+and Eqs~(\ref{eq:beta_g}) and~(\ref{eq:g_ij}) hold for every BPM combination $ i $, $ j $, $ k $.
 %
-\begin{equation}
- I = \left[\min(i,j), \max(i,j)\right] \subset \mathbb{N}\quad ,
- \end{equation}
-%
-%\begin{wrapfigure}{O}[\figborderhang]{9cm}
 \begin{figure}
 	\centering
   \includegraphics[width=.7\linewidth]{hist1518_EVERYTHING_01}
@@ -682,10 +687,7 @@ Having defined the set I as
 %\end{wrapfigure}
 \end{figure}
 %
-so that an element with index $ w \in I$ lies between elements $ i $ and $ j $, \eqref{eq:beta_g}
-and~\eqref{eq:g_ij} hold for every combination $ i $, $ j $, $ k $ of the BPMs.
- By doing so, we do not need to distinguish the three cases where the probed BPM is in the middle, left or right.
-
+By doing so, we do not need to distinguish the three cases where the probed BPM is in the middle, left or right.
 
 All these considerations can be put into \eqref{eq:beta_g} and used to get a more accurate
 $ \beta $ function.
@@ -790,9 +792,9 @@ $ \mathbf{T}^\phi $ is the same of \eqref{eq:Tphiij}. For the quadrupolar field 
 	
 	\caption{
         A comparison of the error bars of the $ \beta^*=10\,\text{cm} $ optics of the October 2016 MD.
-        TOP LEFT: histogram of the errorbars of beam 1. TOP RIGHT: histogram of the errorbars of beam 2.
-        BOTTOM: mean of the size the errorbars. The mean of the analytical N-BPM method is a factor
-        4 more accurate than the 3 BPM method. The third set of values shows the mean of the errorbars
+        TOP LEFT: histogram of the error bars of beam 1. TOP RIGHT: histogram of the error bars of beam 2.
+        BOTTOM: mean of the size the error bars. The mean of the analytical N-BPM method is a factor
+        4 more accurate than the 3 BPM method. The third set of values shows the mean of the error bars
         of the simulations as shown in Figure~\ref{fig:compare_ATS} but for the whole ring.
         }
 	\label{fig:HL_report/comparison_errorbars}
@@ -834,8 +836,14 @@ measurement (MD) \cite{mdpubl} for testing the ATS principle with a $ \beta^* = 
 method deals well with the ATS MD optics. Monte Carlo simulations were
 not possible for this optics.
 
-Figure~\ref{fig:HL_report/comparison_errorbars} shows the precision of the final results for the $ \beta^*=10\,\text{cm} $ optics of both beams compared to the simulations of the HL-LHC lattice with $ \beta^*=\SI{15}{cm} $. To ease the comparison the errorbars are
-shown in the bottom plot. They are slightly larger for the real measurement than those in simulations. We believe that the use of lower beam excitation   to ensure machine protection is behind these larger errorbars. Figure~\ref{fig:10cm_beam1_hor_3bpm} shows also that the 3-BPM method has many outliers and errorbars up to several kilometers caused by bad phase advances. Large error bars have been excluded for the mean shown in Figure~\ref{fig:HL_report/comparison_errorbars}.
+Figure~\ref{fig:HL_report/comparison_errorbars} shows the precision of the final results for the $ \beta^*=10\,\text{cm} $
+optics of both beams compared to the simulations of the HL-LHC lattice with $ \beta^*=\SI{15}{cm} $.
+To ease the comparison the error bars are shown in the bottom plot.
+They are slightly larger for the real measurement than those in simulations.
+We believe that the use of lower beam excitation to ensure machine protection is behind these larger error bars.
+Figure~\ref{fig:10cm_beam1_hor_3bpm} shows also that the 3-BPM method has many outliers and error bars up to several
+kilometers caused by bad phase advances. Large error bars have been excluded for the mean shown in
+Fig.~\ref{fig:HL_report/comparison_errorbars}.
 
 
 

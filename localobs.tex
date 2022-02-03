@@ -44,6 +44,10 @@ imperfections such as quadrupole errors. In the case of a collider the
 exact measurement and control of the $\beta$ function at the interaction point is important for operation of
 the machine and to optimise luminosity~\cite{Coello2020}.
 
+In contrast to a global correction of the phase advance, which is only valid for a certain optics configuration,
+the identification and correction of a distinct local error source would cancel this error source for all optics
+configurations.
+
 %For the correction of nonlinear lattice imperfections, resonance driving terms can successfully be
 %used. This technique is performed successfully in the routine optics measurement and correction of
 %LHC \cite{Persson2013}. \smallquest{are there others that use rdts?}
@@ -71,7 +75,7 @@ An extension of $\chi(N)$ into the linear regime does not seem possible since me
 and phase are used in a way to remove information on the linear beam dynamics.
 
 Certain optics parameters (e.g. the $\beta$ function or coupling) can be calculated from the phase
-advances between two or three BPMs \cite{Franchi2010, Miyamoto2010, Castro1996}
+advances between two or three BPMs~\cite{Franchi2010, Miyamoto2010, Castro1996}
 independently from BPM calibration errors \cite{Calaga2007}. 
 The phase advance measured from a Fourier Transform \cite{Guo2016} turn-by-turn data is independent of the amplitude
 of the signal and, thus, not affected by calibration errors.
@@ -133,8 +137,12 @@ The focus of this work lies on circular machines where phase advance can be meas
 exciting an oscillation of the beam.
 Excitation methods include single kicks and driven oscillation by an AC-dipole \cite{Miyamoto2008} which
 generate a stable coherent motion of the beam.
-Conceptually the local observable described in this work applies also to linear machines but accurate measurements
-of phase advances remain challenging and the application of the proposed technique might not be practical.
+Conceptually the local observable described in this work applies also to linear machines%
+\footnote{%
+In this sentence, \emph{linear} refers to a straight beam line as opposed to linear lattice elements,
+as in the rest of the text.}%
+but accurate measurements
+of phase advances remain challenging in ths kind of accelerator and the application of the proposed technique might not be practical.
 Instead model-based fitting methods \cite{Zhang2018}
 might be more suited to retrieve optics parameters directly.
 
@@ -440,7 +448,7 @@ The measurement uncertainty can be propagated to $\Phi_{ijkl}^\text{meas}$:
   \label{eq_Phi_err}
 \end{align}
 %
-Equation~(\ref{eq_Phi_err}) is used to calculate the size of the errorbars in local observable plots.
+Equation~(\ref{eq_Phi_err}) is used to calculate the size of the error bars in local observable plots.
 
 A consideration of degrees of freedom suggests that three BPMs should suffice to reconstruct
 the local linear optics errors. However, this reconstruction would depend on the amplitude which,
@@ -488,7 +496,7 @@ In general, phase advances that are sufficiently close to multiples of $\pi$ mig
 standard operation of an accelerator -- an exception is for example the ATS optics
 \cite{Fartoukh2013} that is now used
 in LHC and which is the proposed baseline for its high luminosity upgrade --, but it would be conceivable to prepare
-special optics settings for a corresponding measurement in any acclerator.
+special optics settings for a corresponding measurement in any accelerator, given that it allows freely changing the optics parameters.
 The error of the local observable in this case,
 %
 \begin{equation}
@@ -503,7 +511,7 @@ is smaller than for the general local observable.
 \label{ssec:second_order_phasebeating}
 
 The details of the second order calculations can be found in the appendix. Here we summarise the results.
-The detuning hamiltonian term $h_{1100,ij} $ as well as the RDT $f_{i} $ have to be extended to second order:
+The detuning Hamiltonian term $h_{1100,ij} $ as well as the RDT $f_{i} $ have to be extended to second order:
 %
 \begin{align}
   h_{1100,ij} &\rightarrow h_{1100,ij}^{(1)} + h_{1100,ij}^{(2)}\\
@@ -590,7 +598,7 @@ front of the quadrupoles of FODO cells. Additional trim quadrupoles (e.g. MQT) m
 %
 %\end{figure}
 %
-Four cases will be studied: the first one is a set of LHC design field
+Four cases will be studied: the first one is a set of expected LHC
 errors from WISE~\cite{wise1,wise2}, shown in Tab.~\ref{tab_design}, in the absence of phase noise.
 This setup will let us verify the equality of Eqs.~(\ref{eq_deltaphi_firstorder}) and (\ref{eq_analyticalphi_firstorder}).
 Then Gaussian noise of \noiserms{} is added to the simulated phase advances to illustrate the behaviour
@@ -634,7 +642,7 @@ of sextupoles via orbit offsets.
       MB &-& 4 \\
     \end{tabular*}
     \caption{
-      In addition to design LHC errors distribution we introduced a single strong error source in
+      In addition to the error distribution of Table~\ref{tab_design} we introduced a single strong error source in
       arc45.
     }
     \label{tab_design_peak}
@@ -655,10 +663,10 @@ similar phase advances and thus we can more easily compare the values of $\Phi_{
 and $\Phi_{ijkl}^\text{meas}$ at different positions.
 On the other hand this gives rise to model phase advances close to multiples of $\pi$ for several
 combinations which gives the possibility to explore these cases.
-Table~\ref{tab_combs} shows the closest combinations with all occuring model phase advances.
+Table~\ref{tab_combs} shows the closest combinations with all occurring model phase advances.
 Reflected combinations are omitted. Model phase advances close to $n\pi $ cause the cotangent
 terms to diverge. They are therefore highlighted in red.
-Since we still want to study these cases and avoid divergences and the resulting numerical instabilies
+Since we still want to study these cases and avoid divergences and the resulting numerical instabilities
 we impose a filter on the phase advances. 
 Those which are closer to $n\pi$ than $10^{-6}\times 2\pi$ are excluded. 
 The case \combtoangle{45}{90}{45} is sketched in Fig.~\ref{fig_thetacomb_ij-kl}.
@@ -695,10 +703,10 @@ of readability we limit the plot region to just one telescopic arc, the one betw
 For simplicity we show only results for the horizontal plane. 
 
 
-\subsection{Design field errors}
+\subsection{LHC with known field errors}
 
 The first case, Fig.~\ref{fig_design_nonoise}, is free of noise with the quad error distribution of
-Tab.~\ref{tab_design}.
+Tab.~\ref{tab_design}, with a distribution of known LHC magnet errors as measured in~\cite{wise1,wise2}.
 The agreement between analytical and measurement values is excellent, showing the validity of
 Eqs.~(\ref{eq_deltaphi_firstorder}), (\ref{eq_analyticalphi_firstorder}) and (\ref{eq_npi_localobs}).
 
@@ -855,8 +863,8 @@ advance of the error source.
   \centering
   \includegraphics[width=.8\linewidth]{meas}
   %\includegraphics[width=\linewidth]{best_design_errors_meas_--l__ij-kl---}
-  \caption{Plot of measurement data of the LHC commissionning 2018 at $\beta^*=\SI{30}{\centi\metre}$.
-    The errorbars include statistical errors
+  \caption{Plot of measurement data of the LHC commissioning 2018 at $\beta^*=\SI{30}{\centi\metre}$.
+    The error bars include statistical errors
     obtained from the phase measurement of the FFT.
     The effect of dispersion bumps on the local observable is clearly visible and matches well the
     prediction. The center region shows only a small effect from sextupoles.
@@ -864,7 +872,7 @@ advance of the error source.
   \label{fig_measlobster002}
 \end{figure}
 %
-We calculate the local observable from a measurement taken during the LHC beam commissionning in 2018.
+We calculate the local observable from a measurement taken during the LHC beam commissioning in 2018.
 
 The measurement can be seen in Fig.~\ref{fig_measlobster002} for the combinations \combtoangle{45}{45}{45}
 (top plot) and \combtoangle{90}{45}{45} (bottom plot).

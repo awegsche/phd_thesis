@@ -138,7 +138,7 @@ The following table summarises which quantities are analogous
     AC dipole & coupling \\
     \hline
     \hline
-    $ A_\theta $        & $ J_{1,w}\sqrt{J_y\beta_y}$ \\
+    $ A_\theta $        & $ J_{1,w}\sqrt{I_y\beta_y}$ \\
     $ \varphi_x(s_d) $  & $ \varphi_y(s_j) - \varphi_y(s_w) \mp \varphi_x(s_w)$ \\
     $ \Qd{x} $          & $ Q_y $\\
     \hline
@@ -270,7 +270,7 @@ To avoid lengthy expressions, the driven uncoupled coordinates $h_z^{d\pm}$ are 
 %
 \begin{align}
     h_z^{d\pm} = \tilde{h}_z^{\pm} 
-    +\frac{A_\theta}{4\sin(\pi Q_z^-)} \Bigg\{&
+    +\frac{A_\theta\beta(s_d)}{4\sin(\pi Q_z^-)} \Bigg\{&
     \e{\pm i\left[-2N\pi Q_z^d - \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]}
     \notag\\
     &- \lambda_z\e{\pm i\left[2N\pi Q_z^d - \varphi_{s_ds} - \pi Q_z^+\text{sgn}(s-s_d)\right]}
@@ -311,19 +311,19 @@ The term $\sum\limits_{T = 0}^N R_x^{T}\Delta h_y^+(N-T) $ can be simplified as 
 \begin{align}
     \sum\limits_{T=0}^N R_x^T \Delta h_y^+(N-T)
         &=
-        i\frac{A_\theta}{2} \left\{
+        i\frac{A_\theta\beta(s_d)}{2} \left\{
             \sum\limits_{T=0}^N R_x \delta_{y+}^{N-T}
             +\sum\limits_{T=0}^N R_x \delta_{y-}^{N-T}
         \right\}
         \notag \\
         &=
-        i\frac{A_\theta}{2} \left\{
+        i\frac{A_\theta\beta(s_d)}{2} \left\{
             R_x^N\frac{1-(R_x^{-1}\delta_{y+})}{1-R^{-1}\delta_{y+}}
             +R_x^N\frac{1-(R_x^{-1}\delta_{y-})}{1-R^{-1}\delta_{y-}}
         \right\}
         \notag \\
         &=
-        \frac{A_\theta}{4} \left\{
+        \frac{A_\theta\beta(s_d)}{4} \left\{
             \frac{1-\e{2\pi i N\left[ Q_x + Q_y^d \right]}}{\e{i\pi \left[Q_x+Q_y^d\right]}\sin\left[\pi (Q_x+Q_y^d)\right]}
             -\frac{1-\e{-2\pi i N\left[ Q_y^d - Q_x \right]}}{\e{i\pi \left[Q_y^d-Q_x\right] }\sin\left[\pi (Q_y^d-Q_x)\right]}
         \right\}
@@ -352,7 +352,7 @@ with the definition
 %
 \begin{align}
     h_{y,x}^\pm(s,N) &= 
-        \frac{A_\theta}{8} \Bigg\{
+        \frac{A_\theta\beta(s_d)}{8} \Bigg\{
              \frac{\e{\pm i \left[-2N \pi Q_y^d + \pi( Q_y^d - Q_x )\text{sgn}(s-s_d) - \varphi_{s_ds}^{x}\right]}}
                 {\sin\left[\pi (Q_y^d - Q_x)\right]}
                 \notag \\  & \quad\quad\quad
@@ -398,7 +398,7 @@ The easy term to calculate in \eqref{eq_f1001x_from_complex} is $V^+(0,1)$
 \begin{align}
     V^+(0,1) &= \four{h_y^+}(Q_y^d) = \four{h_y^{d+}}(Q_y^d)
     \notag \\
-    &= \frac{A_\theta}{4\sin(\pi Q_y^-)}
+    &= \frac{A_\theta\beta(s_d)}{4\sin(\pi Q_y^-)}
         \e{i\left[-\varphi_{s_ds}^{y} + \pi Q_y\text{sgn}(s-s_d)\right]}
         \fstop
 \end{align}
@@ -417,19 +417,19 @@ $H^+(0,1)$, however, includes many terms proportional to $\e{-i\pi N Q_y^d}$:
 For readability the fourier transforms are listed seperately:
 %
 \begin{align}
-    \four{h_y^{d+}}(Q_y^d) &= \frac{A_\theta}{4\sin\pi Q_y^-}
+    \four{h_y^{d+}}(Q_y^d) &= \frac{A_\theta\beta(s_d)}{4\sin\pi Q_y^-}
         \e{i\left[-\varphi_{s_ds}^{y} + \pi Q_y^-\text{sgn}(s-s_d)\right]}
     \komma
     \notag \\
-    \four{h_y^{d-}}(Q_y^d) &= \frac{\lambda_y A_\theta}{4\sin\pi Q_y^-}
+    \four{h_y^{d-}}(Q_y^d) &= \frac{\lambda_y A_\theta\beta(s_d)}{4\sin\pi Q_y^-}
         \e{i\left[\varphi_{s_ds}^{y} + \pi Q_y^+\text{sgn}(s-s_d)\right]}
     \komma
     \notag \\
-    \four{h_{y,x}^{+}}(Q_y^d) &= \frac{A_\theta}{8\sin\left[\pi (Q_y^d - Q_x)\right]}
+    \four{h_{y,x}^{+}}(Q_y^d) &= \frac{A_\theta\beta(s_d)}{8\sin\left[\pi (Q_y^d - Q_x)\right]}
         \e{i\left[-\varphi_{s_ds}^{x} + \pi (Q_y^d - Q_x)\text{sgn}(s-s_d)\right]}
     \komma
     \notag \\
-    \four{h_{y,x}^{-}}(Q_y^d) &= \frac{A_\theta}{8\sin\left[\pi (Q_y^d + Q_x)\right]}
+    \four{h_{y,x}^{-}}(Q_y^d) &= \frac{A_\theta\beta(s_d)}{8\sin\left[\pi (Q_y^d + Q_x)\right]}
         \e{i\left[\varphi_{s_ds}^{x} + \pi (Q_y^d + Q_x)\text{sgn}(s-s_d)\right]}
     \fstop
 \end{align}

@@ -431,14 +431,14 @@ It is often convenient to express the Courant-Snyder coordinates in their comple
     \label{eq_courantsnyder}
 \end{equation}
 %
-and the one turn map simplifies further to a rotation about $2\pi Q_z$:
-%
-\begin{equation}
-    \mat{M}_\text{OT} \varphi_z = \varphi_z + 2\pi Q_z
-    \fstop
-\end{equation}
-%
-The action on the complex Courant-Snyder coordinates reads
+and the one turn map simplifies further to a rotation about $2\pi Q_z$, 
+%%
+%\begin{equation}
+%    \mat{M}_\text{OT} \varphi_z = \varphi_z + 2\pi Q_z
+%    \fstop
+%\end{equation}
+%%
+%The action on the complex Courant-Snyder coordinates reads
 %
 \begin{equation}
   \mat{M}_{\text{OT}} h_z^\pm = \e{\mp 2\pi i Q_z}h_z^\pm
@@ -486,7 +486,7 @@ The general Hamiltonian of a charged particle in a circular accelerator is \cite
 \begin{equation}
     %H=-\left( 1+\frac{x}{\rho} \right) \sqrt{(1+\delta)^2 -p_x^2-p_y^2}
     %+ \frac{x}{\rho} + \frac{x^2}{2\rho^2} - \frac{A_s(x,y)}{B_0\rho}
-    H=\frac{\delta}{\beta_0} - (1+hx)
+    \hat{H}=\frac{\delta}{\beta_0} - (1+hx)
     \sqrt{
       \left(\delta + \frac{1}{\beta_0} - \frac{q\phi}{cP_0}\right)^2 - (p_x-a_x)^2 - (p_y-a_y)^2
       - \frac{1}{\beta_0^2\gamma_0^2}
@@ -508,8 +508,8 @@ with the following definitions:
 
 The Hamiltonian equations of motion \cite{Landau1976} read
 \begin{align}
-    \frac{\der z}{\der s}=\frac{\partial H}{\partial p_z} \quad\text{ and }\quad
-    \frac{\der p_z}{\der s}=-\frac{\partial H}{\partial z}
+    \frac{\der z}{\der s}=\frac{\partial \hat{H}}{\partial p_z} \quad\text{ and }\quad
+    \frac{\der p_z}{\der s}=-\frac{\partial \hat{H}}{\partial z}
 \end{align}
 %
 for canonical variables $z$ and $p_z$.
@@ -525,10 +525,10 @@ corresponding vector potential
 and 0 curvature ($h = 0$):
 %
 \begin{align}
-    H &=\frac{\delta}{\beta_0}
+    \hat{H} &=\frac{\delta}{\beta_0}
       - \sqrt{\left(\delta + \frac{1}{\beta_0}\right)^2 - p_x^2 - p_y^2 - \frac{1}{\beta_0^2\gamma_0^2}}
       + \frac{k_1}{2}(x^2 - y^2) \\
-    H &= \frac{p_x^2 + p_y^2}{2} + \left(\frac{\delta}{2\beta_0\gamma_0}\right)^2
+    \hat{H} &= \frac{p_x^2 + p_y^2}{2} + \left(\frac{\delta}{2\beta_0\gamma_0}\right)^2
     + \frac{k_1}{2}(x^2 - y^2)
     + O(2nd)
     \fstop
@@ -538,13 +538,13 @@ and 0 curvature ($h = 0$):
 In the simple example at hand, only one on-momentum particle is considered:
 %
 \begin{equation}
-    H = \frac{k_1}{2}\left( x^2 - y^2 \right) + \frac{p_x^2+p_y^2}{2}
+    \hat{H} = \frac{k_1}{2}\left( x^2 - y^2 \right) + \frac{p_x^2+p_y^2}{2}
     \label{eq_hamil_quad}
 \end{equation}
 %
 Plugging this consecutively into the Hamiltonian equations of motion, yields
 \begin{align}
-    \frac{\der x}{\der s} &= \frac{\partial H}{\partial p_x} = p_x \\
+    \frac{\der x}{\der s} &= \frac{\partial \hat{H}}{\partial p_x} = p_x \\
     \Rightarrow \frac{\der^2 x}{\der s^2} &= \frac{\der p_x}{\der s} = -k_1x
 \end{align}
 which coincides with Hill's equation, \eqref{eq_hills}.
@@ -563,8 +563,8 @@ Poisson brackets,
 %
 can be used to rewrite the Hamiltonian equations:
 \begin{align}
-    [z, H] = \frac{\partial H}{\partial p_z}\quad\text{ and }\quad
-    [p_z, H] = -\frac{\partial H}{\partial z}
+    [z, \hat{H}] = \frac{\partial \hat{H}}{\partial p_z}\quad\text{ and }\quad
+    [p_z, \hat{H}] = -\frac{\partial \hat{H}}{\partial z}
     \fstop
 \end{align}
 %
@@ -575,11 +575,13 @@ First, we define a \emph{Lie operator} acting on $g$
     \fstop
 \end{equation}
 Then we can use the exponential parameterisation of Lie groups to move away from the origin
-\cite{Georgi1982} and describe the particle motion going through an element in the lattice
-with Hamiltonian $H$%
+\cite{Georgi1982} and describe the particle motion going through an element $w$ in the lattice
+using the \emph{kick Hamiltonian} of this element,
+which is constructed by multiplying the thin lens Hamiltonian by the length of the element,
+$H=\hat{H}L$%
 %
 \begin{equation}
-    x(s_b) = \e{\liemap{LH}}x(s_a)
+    x(s_b) = \e{\liemap{H}}x(s_a)
     \label{eq_exponential_map}
     \komma
 \end{equation}
@@ -593,6 +595,7 @@ To illustrate this, once again the quadrupole is used. Some helpful identities, 
    % \notag \\
    % \liemapn{x}{n} f(x,p_x) &= \frac{\partial^n f(x,p_x)}{\partial p_x^n} \notag \\
    % \liemapn{p}{n} f(x,p_x) &= -\frac{\partial^n f(x,p_x)}{\partial x^n}
+   \fstop
 \end{align}
 %
 Now it is possible to show
@@ -608,18 +611,18 @@ Now it is possible to show
 which agrees with the propagation through a quadrupole given in \eqref{eq_quad_transfer},
 noting that the Hamiltonian, and therefore $k$, is constant inside the (ideal) quadrupole described by the
 Hamiltonian~\eqref{eq_hamil_quad}.
-Usually, non-linear terms are collected into a non-linear map $\e{\liemap{HL}}$, generated
-by the non-linear Hamiltonian and a linear transfer mapt (rotation in CS-coordinates) $\mat{M}$:
+Usually, non-linear terms are collected into a non-linear map $\e{\liemap{H}}$, generated
+by the non-linear Hamiltonian and a linear transfer map (rotation in CS-coordinates) $\mat{M}$:
 %
 \begin{equation}
-    \mathscr{M}_w = \e{\liemap{LH_w}} \mat{M}_w
+    \mathscr{M}_w = \e{\liemap{H_w}} \mat{M}_w
     \komma
 \end{equation}
 %
 where the subscript $w$ denotes the map of element $w$ in the lattice and the particle motion
 is propagated through the element by
 \begin{equation}
-    \vec{z}(s_w + L) = \e{\liemap{LH_w}} \mat{M}_w \vec{z}(s_w)
+    \vec{z}(s_w + L) = \e{\liemap{H_w}} \mat{M}_w \vec{z}(s_w)
 \end{equation}
 for element $w$ with length $L$.
  
@@ -782,9 +785,22 @@ The one-turn map of an accelerator now reads
 %
 \begin{equation}
     \mathscr{M}_\text{OT} = \prod\limits_{i=0}^W \e{\liemap{H_i}} \mat{M}_i
+    \label{eq_one_turn_lie}
     \fstop
 \end{equation}
 %
+It shall be noted that Lie maps do not, in general, commute and, in order to construct
+a one-turn equivalent of the Hamiltonian, the Baker-Campbell-Hausdorff formula has to be applied:
+%
+\begin{equation}
+    \e{\liemap{H_1}}\e{\liemap{H_2}} = \e{\liemap{H_1 + H_2 + \frac{1}{2}[H_1,H_2]
+    + \frac{1}{12} [H_1, [H_1, H_2]] + \ldots}}
+    \komma
+\end{equation}
+%
+as opposed to~\eqref{eq_Hamil_sa} which is only a simple summation of Hamiltonian coefficients
+to build one single Hamiltonian operator.
+
 The transformation from complex Courant-Snyder coordinates to normal form coordinates and back is performed
 using a generating function $F$:
 %
@@ -804,7 +820,7 @@ can be expressed in terms of the normal form phase $\psi$ and normal form invari
     \fstop
 \end{equation}
 %
-Since $\psi$ and $J_z$ are canonical variables, the Poisson bracket between any of the normal form
+Since $\psi$ and $I_z$ are canonical variables, the Poisson bracket between any of the normal form
 coordinates can be calculated easily:
 %
 \begin{equation}
@@ -827,7 +843,7 @@ the normal form one turn map:
 \begin{equation}
     \centering
         \begin{tikzcd} [row sep=large,column sep=8em]
-            \vec{\zeta}(N) \arrow[r, "\nfMotion=\e{\liemap{L\phiave{H}}}R"]
+            \vec{\zeta}(N) \arrow[r, "\nfMotion=\e{\liemap{\phiave{H}}}R"]
                 & \vec{\zeta}(N+1) \\
             \vec{h}(N) \arrow[r, "\mathscr{M}_\text{OT}"'] \arrow[u, "\e{-\liemap{F}}"]
                 & \vec{h}(N+1) \arrow[u, "\e{-\liemap{F}}"']
@@ -1376,21 +1392,21 @@ where the transfer matrix $\mat{R}_{ab}$ is a simple rotation matrix as discusse
 From this one can reconstruct the momentum:
 %
 \begin{equation}
-    \hat{p}_a = \frac{\hat{x}_b}{\cos\Delta} + \hat{x}_a \tan\Delta
+    \hat{p}_a = \frac{\hat{x}_b}{\cos\phi_{ab}} + \hat{x}_a \tan\phi_{ab}
 \end{equation}
 %
-where $\Delta$ is the deviation from $\pi/2$ of the phase advance between the two positions $s_a$ and $s_b$.
+where $\phi_{ab}$ is the phase advance between the two positions $s_a$ and $s_b$.
 Therefore:
 %
 \begin{equation}
-    h_z^\pm(s_a) = \hat{z}_a - i \left(\frac{\hat{z}_b}{\cos\Delta} + \hat{z}_a\tan\Delta \right) = \hat{z}_a(1-i\tan\Delta) - i \frac{\hat{z}_b}{\cos\Delta}
+    h_z^\pm(s_a) = \hat{z}_a - i \left(\frac{\hat{z}_b}{\cos\phi_{ab}} + \hat{z}_a\tan\phi_{ab} \right) = \hat{z}_a(1-i\tan\phi_{ab}) - i \frac{\hat{z}_b}{\cos\phi_{ab}}
     \fstop
 \end{equation}
 %
 Since the Fourier transform is linear, this identity can be propagated to the spectral lines:
 %
 \begin{equation}
-    H^+(n_x,n_y)_a = (1-i\tan\Delta)H(n_x,n_y)_a - \frac{i}{\cos\Delta}H(n_x,n_y)_b
+    H^+(n_x,n_y)_a = (1-i\tan\phi_{ab})H(n_x,n_y)_a - \frac{i}{\cos\phi_{ab}}H(n_x,n_y)_b
     \label{eq_reconstr_cplx}
 \end{equation}
 where $H(n_x,n_y)$ is the measured spectral line which is just the real projection of the complex line. 
@@ -1415,7 +1431,7 @@ This allows to express the real normalised spectral lines as
 This can be plugged into the reconstruction formula \eqref{eq_reconstr_cplx}
 %
 \begin{equation}
-    \frac{H^+(n_x,n_y)_a}{H(1,0)_i} = (1-i\tan\Delta)A(n_x,n_y)_a - \frac{i}{\cos\Delta}A(n_x,n_y)_b
+    \frac{H^+(n_x,n_y)_a}{H(1,0)_i} = (1-i\tan\phi_{ab})A(n_x,n_y)_a - \frac{i}{\cos\phi_{ab}}A(n_x,n_y)_b
     \label{eq_reconstr_from_norm}
 \end{equation}
 %
@@ -1428,8 +1444,8 @@ Together with the identity
 because $H^-(1,0) = 0$, one can express $A^+(0,n_y)$ and $B(n_x, 0)$ in terms of normalised real spectral lines
 %
 \begin{align}
-    2A^+(n_x,n_y)_a = (1-i\tan\Delta)A(n_x,n_y)_a - \frac{i}{\cos\Delta}A(n_x,n_y)_b \notag \\
-    2B^+(n_x,n_y)_a = (1-i\tan\Delta)B(n_x,n_y)_a - \frac{i}{\cos\Delta}B(n_x,n_y)_b
+    2A^+(n_x,n_y)_a = (1-i\tan\phi_{ab})A(n_x,n_y)_a - \frac{i}{\cos\phi_{ab}}A(n_x,n_y)_b \notag \\
+    2B^+(n_x,n_y)_a = (1-i\tan\phi_{ab})B(n_x,n_y)_a - \frac{i}{\cos\phi_{ab}}B(n_x,n_y)_b
     \label{eq_recon_AB}
 \end{align}
 %
@@ -1743,7 +1759,7 @@ the driven motion can be rewritten in the from
 %
 \begin{align}
     h_z^\pm(s,N) = 
-        \frac{A_\theta}{4\sin\left( \pi Q_z^-\right)}
+        \frac{A_\theta\beta(s_d)}{4\sin\left( \pi Q_z^-\right)}
         \Bigg[ 
             &\e{\pm i\left[-2N\pi \Qd{z} - \varphi_{s_ds} + \pi Q_z^-\text{sgn}(s-s_d)\right]} 
             \notag \\
@@ -1779,7 +1795,7 @@ for the free motion and
 \begin{align}
    H(1,0)
    % &= \notag \\
-   &= \frac{A_\theta}{4\sin(\pi Q_z^-)}\left[
+   &= \frac{A_\theta\beta(s_d)}{4\sin(\pi Q_z^-)}\left[
         \e{i\left[-\varphi_{s_ds} + \pi Q_z^-\text{sgn}(s_ds)\right]}
         -\lambda \e{i\left[\varphi_{s_ds} + \pi Q_z^+\text{sgn}(s_ds)\right]}
        \right]

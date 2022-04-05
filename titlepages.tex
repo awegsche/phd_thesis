@@ -37,18 +37,104 @@
 }
 
 \thispagestyle{empty}
-\renewcommand\baselinestretch{1.75}\selectfont
+\renewcommand\baselinestretch{1.5}\selectfont
 \begin{tabular}{ll}
-   Gutachter der Dissertation: & Gutachter 1\\
-    & Gutachter 2\\
-   Mitglieder der Prüfungskommission: & Prüfer 1\\
-   & Prüfer 2\\
-   & Prüfer 3
+   Gutachter der Dissertation:%
+   & Prof. Dr Wolfgang Hillert\\
+   & Dr Andrea Franchi \vspace{1em} \\ 
+   Mitglieder der Prüfungskommission:%
+   & Prof. Dr Wolfgang Hillert\\
+   & Dr Andrea Franchi\\
+   & Prof. Dr Daniela Pfannkuche \\
+   & Dr Frank Zimmermann\\
+   & Dr Rogelio Tom\'as \vspace{1.0em}  \\
+   Vorsitzender der Prüfungskommission: & Prof. Dr Daniela Pfannkuche \vspace{1.0em}  \\
+   Datum der Disputation: & 29.05.2022 \vspace{1.0em} \\
+   Vorsitzender Fach-Promotionsausschuss PHYSIK: & Prof. Dr Wolfgang J. Parak \vspace{0.5em}  \\
+   Leiter des Fachbereichs PHYSIK: & Prof. Dr Günter H. W. Sigl \vspace{0.5em}  \\
+   Dekan der Fakultät MIN: & Prof. Dr Heinrich Graener
 \end{tabular}
+
 \vfill
 \renewcommand\baselinestretch{\textlinespread}\selectfont
-\noindent This document was typeset with XeLaTeX and the KOMA-Script\\
-Main Font: STIX Two
+\noindent Dieses Dokument wurde mit LuaLaTeX und dem KOMA-Script gesetzt.\\
+Hauptschriftart: STIX Two
+
+\chapter*{Abstract}
+
+Linear optics corrections in circular particle accelerators have achieved remarkable performance in the last years %
+pushing the precision and accuracy of the measurement and correction of machine parameters further.
+But development of accelerator technology is not resting either and the introduction of
+next generation light sources and the design and construction of new colliders and future projects
+constantly demand more advanced and precise measurement methods.
+
+This work presents the development and enhancement of three distinct optics measurement methods.
+The first one is a more precise, more accurate and faster measurement method of the $\beta$~function,
+an optics parameter that presents a direct observable for the focusing at any given point in the machine.
+Constraints on the tolerances of focusing errors are given for machine performance and protection reasons.
+This work builds on an improvement presented in a previous work and further increases precision, accuracy and speed.
+The second method is a novel local observable for linear lattice imperfections, which can be used to detect
+strong error sources in the machine, guiding dedicated corrections and being independent of the optics configuration.
+The last method provides a new way to describe the impact of forced particle motion on the measurement of transverse coupling.
+
+The developments in the domain of linear optics measurements presented in this thesis
+already positively impact LHC operation and machine development and are part of the preparation for
+future operation of the LHC and other accelerators.
+
+
+\chapter*{Zusammenfassung}
+%\begin{german}
+\foreignlanguage{ngerman}{
+Im Gebiet der Korrektur linearer Optik in Ringbeschleunigern wurde in den letzten Jahren beachtenswerter Fortschritt gemacht.
+Die Genauigkeit und Richtigkeit der Messung und Korrektur von Maschinenparametern wurde immer weiter verbessert.
+Die Entwicklung von Beschleunigertechnologie hält jedoch nicht still und die Einführung von Lichtquellen der nächsten Generation
+und Design und Bau von neuartigen Beschleunigern und Zukunftsprojekten erfordern neue, fortschrittliche Messmethoden.
+}
+
+\foreignlanguage{ngerman}{
+Diese Arbeit stellt die Weiterentwicklung und Verbesserung von drei unterschiedlichen Optikmessmethoden vor.
+Die erste Methode ist eine genauere und schnellere Messung der $\beta$-Funktion, einem Optikparameter,
+der eine direkte Messgröße für die Fukussiereigenschaften an einem beliebigen Punkt im Beschleuniger darstellt.
+Aus Gründen des Schutzes und der Leistungsfähigkeit der Maschine sind gewisse Anforderungen an die Fokussierung gegeben.
+Die hier vorgestellte Messmethode baut auf einer vorangehenden Verbesserung der klassischen Methode zur Messung der $\beta$-Funktion auf
+und liefert eine bessere Genauigkeit und k\:urzere Berechnungszeiten.
+Die zweite Methode ist eine neue lokale Observable für lineare Maschinenfehler, die dazu benutzt werden kann, starke Fehlerquellen zu erkennen,
+wodurch eine dedizierte Korrektur gezielt durchgeführt werden kann. Außerdem ist sie unabhängig von der
+genauen Maschinenkonfiguration, wodurch die Ntwendigkeit der Messung jeder einzelnen Zwischenkonfiguration entf\:allt.
+Die letzte Methode bietet eine neue Beschreibung des Effekts der getriebenen Schwingung der Teilchen auf die Messung der linearen transversalen Kopplung.
+}
+
+\foreignlanguage{ngerman}{
+Die Weiterentwicklungen im Bereich der linearen Strahloptikmessung, die in dieser Arbeit vorgestellt werden,
+erleichtern bereits den Betrieb des LHC und Maschinenentwicklungsstudien und sind Teil der Vorbereitungen für
+den zukünftigen Betrieb des LHCs und anderer Beschleuniger.
+}
+%\end{german}
+
+\cleardoublepage
+\thispagestyle{empty}
+\section*{Eidesstattliche Versicherung / Declaration on oath}
+
+\foreignlanguage{german}{
+Hiermit versichere ich an Eides statt, die vorliegende Dissertationsschrift selbst verfasst und
+keine anderen als die angegeben Hilfsmittel und Quellen benutzt zu haben.\\[1.5em]
+Die eingereichte schriftliche Fassung entspricht der auf dem elektronischen Speichermedium.\\[1.5em]
+Die Dissertation wurde in der vorgelegten oder einer ähnlichen Form nicht schon einmal in einem früheren Promotionsverfahren angenommen oder als ungenügend beurteilt.
+\vspace{6em}
+}
+
+\noindent Genf, den 02.03.2022
+\hfill
+\begin{tikzpicture}
+    \draw (0,0) -- (5,0);
+\end{tikzpicture}
+
+%\begin{flushright}
+\hfill \raisebox{1.0em}{Unterschrift des Doktoranden}
+%\end{flushright}
+
+\cleardoublepage
+\input{acknowledgments}
 
 \tableofcontents
 \cleardoublepage

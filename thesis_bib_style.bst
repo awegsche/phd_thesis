@@ -661,7 +661,6 @@ FUNCTION {book}
   blank.sep
   format.edition output
   format.date "year" output.check
-  url.format output
   new.block
   note output
   fin.entry
@@ -766,6 +765,7 @@ FUNCTION {inproceedings}
   if$
   new.block
   note output
+  url.format output
   fin.entry
 }
 
@@ -836,6 +836,7 @@ FUNCTION {misc}
   format.date output
   new.block
   note output
+  url.format output
   fin.entry
   empty.misc.check
 }
@@ -873,6 +874,7 @@ FUNCTION {proceedings}
   format.date "year" output.check
   new.block
   note output
+  url.format  output
   fin.entry
 }
 
@@ -887,6 +889,7 @@ FUNCTION {techreport}
   format.date "year" output.check
   new.block
   note output
+  url.format output
   fin.entry
 }
 

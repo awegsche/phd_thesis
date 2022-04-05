@@ -195,6 +195,7 @@ of expected values of each component and similar for matrices.
 %
 \begin{equation}
     \left(Cov[\vec{\Omega}]\right)_{ij} = E[\Omega_i\Omega_j] - E[\Omega_i]E[\Omega_j]
+    \label{eq_cov_form}
     \fstop
 \end{equation}
 %
@@ -230,7 +231,8 @@ Using a Taylor expansion the errors in these parameters can be propagated
 %
 where the Einstein summation convention is used and the derivatives are w.r.t. $ \Omega_i $: $ \partial^i\beta_l \equiv \frac{\partial \beta_l}{\partial \Omega_i} $.
 The argument $ (\vec{\Omega}_0) $ is omitted in the following for the $ \beta $ function and its derivatives at the unperturbed position $ \vec{\Omega}_0 $. For the calculation of the covariance matrix,
-\eqref{eq:err_prop} is truncated to second order and derive the two summands of \eqref{eq_cov} separately.
+\eqref{eq:err_prop} is truncated to second order and for convenience and readability,
+the two summands of \eqref{eq_cov_form} are derived separately.
 %
 \begin{equation}
 E[\beta_l(\vec{\Omega})] \approx E\left[   
@@ -466,8 +468,8 @@ relevant for this study.
 In Figure~\ref{fig:hist1518} a comparison between Eqs.~(\ref{eq_3bpm_method}) and~(\ref{eq:18}) is shown
 in the horizontal plane. The plot shows a histogram of the deviation of the two formulae
 from the real (i.e. simulated) $ \beta $ function values. The histogram contains the values of all the
-individual BPMs for one simulated lattice. The top plot shows the case with only quadrupolar field
-errors whereas in the bottom plot also misalignment errors were included in the lattice. The introduction
+individual BPMs for one simulated lattice. The left plot shows the case with only quadrupolar field
+errors whereas in the right plot also misalignment errors were included in the lattice. The introduction
 of errors not taken into account in \eqref{eq:h_ij} deteriorates the result. However \eqref{eq:18}
 still yields a clearly better estimate.
 

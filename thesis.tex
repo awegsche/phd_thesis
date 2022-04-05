@@ -11,8 +11,10 @@
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage{makeidx}
-\usepackage{polyglossia}
-\setdefaultlanguage[variant=uk]{english}
+\usepackage[english]{babel}
+%\usepackage{polyglossia}
+%\setdefaultlanguage[variant=uk]{english}
+%\setotherlanguage{german}
 
 
 \usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
@@ -49,7 +51,8 @@
 
 % debug
 \usepackage{lipsum}
-\newcommand{\DBGNolink}{\texttt{<no-link>}}
+%\newcommand{\DBGNolink}{\texttt{<no-link>}}
+\newcommand{\DBGNolink}{}
 
 
 % --------------------------------------------------------------------------------------------------
@@ -336,7 +339,6 @@
 \binoppenalty=9999
 \relpenalty=9999
 
-%\input{acknowledgments}
 
 % --------------------------------------------------------------------------------------------------
 % Content

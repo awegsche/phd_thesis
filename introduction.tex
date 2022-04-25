@@ -1251,12 +1251,12 @@ $\mat{M}_{ij} = \mat{M}_{ij}\m$ and, consequently,
     \label{eq_3bpm_method}
 \end{align}
 %
-\equationref{eq_3bpm_method} was developped in \cite{Castro1996} and used for LEP and in run I of LHC.
+\equationref{eq_3bpm_method} was developed in \cite{Castro1996} and used for LEP and in run I of LHC.
 
 For optimal operation of the machine a precise control of the $\beta$~function is needed.
 Firstly, the particles must stay within the boundaries of the physical aperture and
 at the interaction point the beam size has to be as small as possible to increase luminosity.
-And secondly, a too large deviation from the optical axis inside a higher order magnet may leed to an undesirable
+And secondly, a too large deviation from the optical axis inside a higher order magnet may lead to an undesirable
 feed-down of the orbit offset.
 
 The deviation of the $\beta$~function from its design value is called \emph{beta beating} and defined as 
@@ -1334,27 +1334,27 @@ The calibration factors $C_{x/y}$ cancel out if one divides the spectral line by
 the main line:
 %
 \begin{align}
-    A_{0,n_y} &= \frac{H^+(0,n_y)}{\left|H^+(1,0)\right|} \notag \\
-    B_{n_x,0} &= \frac{V^+(n_x,0)}{\left|V^+(0,1)\right|} 
+    A^+_{0,n_y} &= \frac{H^+(0,n_y)}{\left|H^+(1,0)\right|} \notag \\
+    B^+_{n_x,0} &= \frac{V^+(n_x,0)}{\left|V^+(0,1)\right|} 
     \fstop
 \end{align}
 %
 Important for the coupling calculation are the following normalised spectral lines:
 %
 \begin{align}
-    A_{0,1}&=\frac{H^+(0,1)}{\left|H^+(1,0)\right|}
+    A^+_{0,1}&=\frac{H^+(0,1)}{\left|H^+(1,0)\right|}
       &= 2i\sqrt{\frac{J_y}{J_x}}\conj{f_{1001}} \e{-i\varphi_{y}}
     \label{eq_A01} \\
-    B_{1,0}&=\frac{V^+(1,0)}{\left|V^+(0,1)\right|}
+    B^+_{1,0}&=\frac{V^+(1,0)}{\left|V^+(0,1)\right|}
       &= 2i\sqrt{\frac{J_x}{J_y}}{f_{1001}} \e{-i\varphi_{x}}
     \label{eq_B10}
 \end{align}
 which contain $f_{1001}$ and
 \begin{align}
-    A_{0,-1}&=\frac{H^+(0,-1)}{\left|H^+(1,0)\right|}
+    A^+_{0,-1}&=\frac{H^+(0,-1)}{\left|H^+(1,0)\right|}
       &= 2i\sqrt{\frac{J_y}{J_x}}\conj{f_{1010}} \e{i\varphi_{y}}
     \label{eq_A0-1} \\
-    B_{-1,0}&=\frac{V^+(-1,0)}{\left|V^+(0,1)\right|}
+    B^+_{-1,0}&=\frac{V^+(-1,0)}{\left|V^+(0,1)\right|}
       &= 2i\sqrt{\frac{J_x}{J_y}}\conj{f_{1010}} \e{i\varphi_{x}}
     \label{eq_B-10}
 \end{align}
@@ -1365,8 +1365,8 @@ The coupling RDTs $f_{1010}$ and $f_{1001}$ can then be calculated by combining 
 and Eqs~(\ref{eq_A0-1}) with (\ref{eq_B-10}), respectively:
 %
 \begin{align}
-    \left|f_{1001}\right| &= \frac{1}{2}\sqrt{\left| A_{0,1}B_{1,0} \right|} \notag \\
-    \left|f_{1010}\right| &= \frac{1}{2}\sqrt{\left| A_{0,-1}B_{-1,0} \right|}
+    \left|f_{1001}\right| &= \frac{1}{2}\sqrt{\left| A^+_{0,1}B^+_{1,0} \right|} \notag \\
+    \left|f_{1010}\right| &= \frac{1}{2}\sqrt{\left| A^+_{0,-1}B^+_{-1,0} \right|}
     \label{eq_abs_f_from_AB}
     \fstop
 \end{align}
@@ -1392,7 +1392,7 @@ where the transfer matrix $\mat{R}_{ab}$ is a simple rotation matrix as discusse
 From this one can reconstruct the momentum:
 %
 \begin{equation}
-    \hat{p}_a = \frac{\hat{x}_b}{\cos\phi_{ab}} + \hat{x}_a \tan\phi_{ab}
+    \hat{p}_{z,a} = \frac{\hat{z}_b}{\cos\phi_{ab}} + \hat{z}_a \tan\phi_{ab}
 \end{equation}
 %
 where $\phi_{ab}$ is the phase advance between the two positions $s_a$ and $s_b$.
@@ -1431,7 +1431,7 @@ This allows to express the real normalised spectral lines as
 This can be plugged into the reconstruction formula \eqref{eq_reconstr_cplx}
 %
 \begin{equation}
-    \frac{H^+(n_x,n_y)_a}{H(1,0)_i} = (1-i\tan\phi_{ab})A(n_x,n_y)_a - \frac{i}{\cos\phi_{ab}}A(n_x,n_y)_b
+    \frac{H^+(n_x,n_y)_a}{H(1,0)_a} = (1-i\tan\phi_{ab})A(n_x,n_y)_a - \frac{i}{\cos\phi_{ab}}A(n_x,n_y)_b
     \label{eq_reconstr_from_norm}
 \end{equation}
 %
@@ -1441,7 +1441,7 @@ Together with the identity
     H(1,0) = \frac{1}{2} \left( H^+(1,0) + {H^-(1,0)}\right) = \frac{1}{2}H^+(1,0)
 \end{equation}
 %
-because $H^-(1,0) = 0$, one can express $A^+(0,n_y)$ and $B(n_x, 0)$ in terms of normalised real spectral lines
+because $H^-(1,0) = 0$, one can express $A^+(0,n_y)$ and $B^+(n_x, 0)$ in terms of normalised real spectral lines
 %
 \begin{align}
     2A^+(n_x,n_y)_a = (1-i\tan\phi_{ab})A(n_x,n_y)_a - \frac{i}{\cos\phi_{ab}}A(n_x,n_y)_b \notag \\
